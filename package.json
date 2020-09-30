@@ -1,15 +1,14 @@
 {
   "name": "frontegg-angular",
+  "private": true,
   "version": "0.0.0",
+  "workspaces": [
+    "projects/*"
+  ],
   "scripts": {
     "ng": "ng",
-    "start:demo-saas": "ng serve --project=demo-saas --port 4000",
-    "build:demo-saas": "ng build --project=demo-saas",
-    "test:demo-saas": "ng test --project=demo-saas",
-    "lint:demo-saas": "ng lint --project=demo-saas",
-    "e2e:demo-saas": "ng e2e --project=demo-saas"
+    "start": "ng serve --project=demo-saas --port 4000"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~10.1.3",
     "@angular/common": "~10.1.3",
@@ -27,9 +26,9 @@
     "@angular-devkit/build-angular": "~0.1001.3",
     "@angular/cli": "~10.1.3",
     "@angular/compiler-cli": "~10.1.3",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -38,6 +37,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "lerna": "^3.22.1",
     "ng-packagr": "^10.1.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",

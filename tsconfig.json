@@ -16,9 +16,11 @@
       "dom"
     ],
     "paths": {
-      "core": [
-        "dist/core/core",
-        "dist/core"
+      "@frontegg/ng-core": [
+        "projects/core/dist"
+      ],
+      "@frontegg/ng-auth": [
+        "projects/auth/dist"
       ]
     }
   }

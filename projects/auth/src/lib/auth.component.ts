@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-core',
+  selector: 'lib-auth',
   template: `
     <p>
-      core works! aa
+      auth works!
     </p>
   `,
   styles: [
   ]
 })
-export class CoreComponent implements OnInit {
+export class AuthComponent implements OnInit {
 
   constructor() { }
 

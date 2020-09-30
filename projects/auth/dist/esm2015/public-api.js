@@ -1,0 +1,7 @@
+/*
+ * Public API Surface of auth
+ */
+export * from './lib/auth.service';
+export * from './lib/auth.component';
+export * from './lib/auth.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIvVXNlcnMvZGF2aWRhbnRvb24vZ2l0L2Zyb250ZWdnL2Zyb250ZWdnLWFuZ3VsYXIvcHJvamVjdHMvYXV0aC9zcmMvIiwic291cmNlcyI6WyJwdWJsaWMtYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsY0FBYyxvQkFBb0IsQ0FBQztBQUNuQyxjQUFjLHNCQUFzQixDQUFDO0FBQ3JDLGNBQWMsbUJBQW1CLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIGF1dGhcbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9hdXRoLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0aC5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0aC5tb2R1bGUnO1xuIl19
