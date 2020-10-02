@@ -1,6 +1,7 @@
 {
   "name": "@frontegg/ng-auth",
   "version": "0.0.1",
+  "lib": "./dist",
   "peerDependencies": {
     "@angular/common": "^10.1.3",
     "@angular/core": "^10.1.3"

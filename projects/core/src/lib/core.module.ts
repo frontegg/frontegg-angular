@@ -1,12 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CoreComponent } from './core.component';
-
+import { FronteggProviderComponent } from './frontegg-provider.component';
+import { PortalModule } from '@angular/cdk/portal';
+import { CountdownModule } from 'ngx-countdown';
+import { FronteggFirstComponent } from './frontegg-first-component.component';
+import { FronteggRouterComponent } from './frontegg-router.component';
 
 
 @NgModule({
-  declarations: [CoreComponent],
-  imports: [
+  declarations: [
+    FronteggProviderComponent,
+    FronteggFirstComponent,
+    FronteggRouterComponent,
   ],
-  exports: [CoreComponent]
+  imports: [
+    PortalModule,
+    CountdownModule,
+  ],
+  exports: [
+    FronteggProviderComponent,
+    FronteggFirstComponent,
+  ],
 })
-export class CoreModule { }
+export class CoreModule {
+}
