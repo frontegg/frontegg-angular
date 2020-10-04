@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('ng-test'), require('@angular/router'), require('@angular/cdk/portal'), require('ngx-countdown')) :
-    typeof define === 'function' && define.amd ? define('@frontegg/ng-core', ['exports', '@angular/core', 'ng-test', '@angular/router', '@angular/cdk/portal', 'ngx-countdown'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.frontegg = global.frontegg || {}, global.frontegg['ng-core'] = {}), global.ng.core, global.ngTest, global.ng.router, global.ng.cdk.portal, global.ngxCountdown));
-}(this, (function (exports, i0, ngTest, i1, portal, ngxCountdown) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@frontegg/react-core'), require('@angular/router'), require('@angular/cdk/portal')) :
+    typeof define === 'function' && define.amd ? define('@frontegg/ng-core', ['exports', '@angular/core', '@frontegg/react-core', '@angular/router', '@angular/cdk/portal'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.frontegg = global.frontegg || {}, global.frontegg['ng-core'] = {}), global.ng.core, global.reactCore, global.ng.router, global.ng.cdk.portal));
+}(this, (function (exports, i0, reactCore, i1, portal) { 'use strict';
 
     var CoreService = /** @class */ (function () {
         function CoreService() {
@@ -322,7 +322,65 @@
     }
 
     var _c0 = ["*"];
-    var FronteggProviderComponent = /** @class */ (function () {
+    var FronteggBaseComponent = /** @class */ (function () {
+        function FronteggBaseComponent(elem) {
+            this.elem = elem;
+            this.elem.nativeElement.ngClass = this;
+        }
+        FronteggBaseComponent.prototype.mountElement = function (component, otherProps) {
+            var _this = this;
+            var parent = this.elem.nativeElement.parentElement;
+            while (parent != null && !parent.ngClass) {
+                parent = parent.parentElement;
+            }
+            var ngChildren = __spread(this.elem.nativeElement.childNodes);
+            var ngComponents = reactCore.DOMProxy.createElement('div', {
+                ref: function (ref) { return ngChildren.forEach(function (node) { return ref === null || ref === void 0 ? void 0 : ref.appendChild(node); }); },
+            }, []);
+            this.rcPortal = reactCore.DOMProxy.createPortal(reactCore.DOMProxy.createElement(component, Object.assign({ _resolvePortals: function (setPortals) { return _this.rcSetPortals = setPortals; } }, otherProps), ngComponents), this.elem.nativeElement);
+            if (!parent) {
+                var rcProxy = document.createElement('div');
+                document.body.appendChild(rcProxy);
+                reactCore.DOMProxy.render(this.rcPortal, rcProxy);
+            }
+            else {
+                this.rcParent = parent.ngClass;
+                this.rcParent.mountChild(this.rcPortal);
+            }
+        };
+        // noinspection JSUnusedGlobalSymbols
+        FronteggBaseComponent.prototype.mountChild = function (child) {
+            this.rcSetPortals(function (portals) { return __spread(portals, [child]); });
+        };
+        // noinspection JSUnusedGlobalSymbols
+        FronteggBaseComponent.prototype.unmountChild = function (child) {
+            this.rcSetPortals(function (portals) { return __spread(portals.filter(function (p) { return p !== child; })); });
+        };
+        FronteggBaseComponent.prototype.ngOnDestroy = function () {
+            // console.log('FronteggFirstComponent.ngOnDestroy');
+            // this.rcParent?.unmountChild(this.rcPortal);
+        };
+        return FronteggBaseComponent;
+    }());
+    FronteggBaseComponent.ɵfac = function FronteggBaseComponent_Factory(t) { return new (t || FronteggBaseComponent)(i0.ɵɵdirectiveInject(i0.ElementRef)); };
+    FronteggBaseComponent.ɵcmp = i0.ɵɵdefineComponent({ type: FronteggBaseComponent, selectors: [["ng-component"]], ngContentSelectors: _c0, decls: 1, vars: 0, template: function FronteggBaseComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                i0.ɵɵprojectionDef();
+                i0.ɵɵprojection(0);
+            }
+        }, encapsulation: 2 });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(FronteggBaseComponent, [{
+                type: i0.Component,
+                args: [{
+                        template: "\n    <ng-content></ng-content>",
+                    }]
+            }], function () { return [{ type: i0.ElementRef }]; }, null);
+    })();
+
+    var _c0$1 = ["*"];
+    var FronteggProviderComponent = /** @class */ (function (_super) {
+        __extends(FronteggProviderComponent, _super);
         // 1) createElement(RcComponent)
         //   1.1) pass upper props to RcComponent
         //   1.2) create smart children component with unique id to inject ng-content after mount
@@ -330,75 +388,42 @@
         // 3) search for parent Rc Component to inject this ReactPortal to it's children
         // 4) after React.Portal did mount, inject ng-container to it's smart children component
         function FronteggProviderComponent(elem, router) {
-            this.elem = elem;
-            this.router = router;
-            this.rcPortals = [];
-            this.ngChildren = [];
-            this.routeListeners = [];
-            this.elem.nativeElement.ngClass = this;
+            var _this = _super.call(this, elem) || this;
+            _this.router = router;
+            _this.routeListeners = [];
+            return _this;
         }
         FronteggProviderComponent.prototype.ngAfterViewInit = function () {
             var _this = this;
-            this.rcProxy = document.createElement('div');
-            document.body.appendChild(this.rcProxy);
-            this.ngChildren = __spread(this.elem.nativeElement.childNodes);
-            var ngComponents = ngTest.createElement('div', {
-                ref: function (ref) { return _this.ngChildren.forEach(function (node) { return ref === null || ref === void 0 ? void 0 : ref.appendChild(node); }); },
-            }, []);
             // @ts-ignore
-            window.ngH = this.router;
-            // @ts-ignore
-            this.router.location._platformLocation._history.listen = function (e) {
+            var pl = this.router.location._platformLocation;
+            pl._history.listen = function (e) {
                 _this.routeListeners.push(e);
-                return function () {
-                    _this.routeListeners = _this.routeListeners.filter(function (l) { return l !== e; });
-                };
+                return function () { return _this.routeListeners = _this.routeListeners.filter(function (l) { return l !== e; }); };
             };
-            // @ts-ignore
-            this.router.location._platformLocation._history.createHref = function (e) {
-                return e.pathname;
-            };
-            // @ts-ignore
-            this.router.location._platformLocation._history.push = function (path, data) {
-                // @ts-ignore
-                _this.router.navigate([path], { state: data, replaceUrl: false });
-            };
-            // @ts-ignore
-            this.router.location._platformLocation._history.replace = function (path, data) {
-                _this.router.navigate([path], { state: data, replaceUrl: true });
-            };
-            // @ts-ignore
-            this.router.location._platformLocation._history.location = this.router.location._platformLocation.location;
+            pl._history.createHref = function (e) { return e.pathname; };
+            pl._history.push = function (path, data) { return _this.router.navigate([path], { state: data, replaceUrl: false }); };
+            pl._history.replace = function (path, data) { return _this.router.navigate([path], { state: data, replaceUrl: true }); };
+            pl._history.location = pl.location;
             this.router.events.subscribe(function (event) {
                 if (event instanceof i1.NavigationEnd) {
-                    // @ts-ignore
-                    _this.routeListeners.forEach(function (l) { return l(_this.router.location._platformLocation.location); });
+                    _this.routeListeners.forEach(function (l) { return l(pl.location); });
                 }
             });
-            this.rcWrapper = ngTest.createPortal(ngTest.createElement(ngTest.Wrapper, {
-                ref: function (ref) { return _this.rcWrapperRef = ref; },
-                ngComponents: ngComponents,
-                rcPortals: this.rcPortals,
-                // @ts-ignore
-                _history: this.router.location._platformLocation._history,
-            }), this.elem.nativeElement);
-            ngTest.render(this.rcWrapper, this.rcProxy);
-        };
-        FronteggProviderComponent.prototype.ngOnInit = function () {
-        };
-        FronteggProviderComponent.prototype.mountChild = function (child) {
-            this.rcWrapperRef.mountChild(child);
-        };
-        FronteggProviderComponent.prototype.unmountChild = function (child) {
-            this.rcWrapperRef.unmountChild(child);
-        };
-        FronteggProviderComponent.prototype.ngOnDestroy = function () {
-            // this.nodeRef?.remove();
+            this.mountElement(reactCore.FronteggProvider, {
+                _history: pl._history,
+                plugins: [],
+                debugMode: true,
+                context: {
+                    baseUrl: "http://localhost:8080",
+                    requestCredentials: 'include',
+                },
+            });
         };
         return FronteggProviderComponent;
-    }());
+    }(FronteggBaseComponent));
     FronteggProviderComponent.ɵfac = function FronteggProviderComponent_Factory(t) { return new (t || FronteggProviderComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i1.Router)); };
-    FronteggProviderComponent.ɵcmp = i0.ɵɵdefineComponent({ type: FronteggProviderComponent, selectors: [["frontegg-provider"]], ngContentSelectors: _c0, decls: 1, vars: 0, template: function FronteggProviderComponent_Template(rf, ctx) {
+    FronteggProviderComponent.ɵcmp = i0.ɵɵdefineComponent({ type: FronteggProviderComponent, selectors: [["frontegg-provider"]], features: [i0.ɵɵInheritDefinitionFeature], ngContentSelectors: _c0$1, decls: 1, vars: 0, template: function FronteggProviderComponent_Template(rf, ctx) {
             if (rf & 1) {
                 i0.ɵɵprojectionDef();
                 i0.ɵɵprojection(0);
@@ -409,102 +434,42 @@
                 type: i0.Component,
                 args: [{
                         selector: 'frontegg-provider',
-                        template: "\n    <!--    <frontegg-router></frontegg-router>-->\n    <ng-content></ng-content>",
-                        styles: [],
-                    }]
-            }], function () { return [{ type: i0.ElementRef }, { type: i1.Router }]; }, null);
-    })();
-
-    var _c0$1 = ["*"];
-    var FronteggFirstComponent = /** @class */ (function () {
-        function FronteggFirstComponent(elem) {
-            this.elem = elem;
-            console.log('FronteggFirstComponent.constructor');
-            this.elem.nativeElement.ngClass = this;
-        }
-        FronteggFirstComponent.prototype.ngAfterViewInit = function () {
-            var parent = this.elem.nativeElement.parentElement;
-            while (parent != null && !parent.ngClass) {
-                parent = parent.parentElement;
-            }
-            this.rcPortal = ngTest.createPortal(ngTest.createElement(ngTest.FirstComp, { isNg: true }, null), this.elem.nativeElement);
-            if (!parent) {
-                var rcProxy = document.createElement('div');
-                document.body.appendChild(rcProxy);
-                ngTest.render(this.rcPortal, rcProxy);
-            }
-            else {
-                this.rcParent = parent.ngClass;
-                this.rcParent.mountChild(this.rcPortal);
-            }
-        };
-        FronteggFirstComponent.prototype.ngOnInit = function () {
-            console.log('FronteggFirstComponent.ngOnInit');
-        };
-        FronteggFirstComponent.prototype.ngOnDestroy = function () {
-            console.log('FronteggFirstComponent.ngOnDestroy');
-            this.rcParent.unmountChild(this.rcPortal);
-        };
-        return FronteggFirstComponent;
-    }());
-    FronteggFirstComponent.ɵfac = function FronteggFirstComponent_Factory(t) { return new (t || FronteggFirstComponent)(i0.ɵɵdirectiveInject(i0.ElementRef)); };
-    FronteggFirstComponent.ɵcmp = i0.ɵɵdefineComponent({ type: FronteggFirstComponent, selectors: [["frontegg-first-component"]], ngContentSelectors: _c0$1, decls: 1, vars: 0, template: function FronteggFirstComponent_Template(rf, ctx) {
-            if (rf & 1) {
-                i0.ɵɵprojectionDef();
-                i0.ɵɵprojection(0);
-            }
-        }, encapsulation: 2 });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(FronteggFirstComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'frontegg-first-component',
-                        template: "<ng-content></ng-content>",
-                    }]
-            }], function () { return [{ type: i0.ElementRef }]; }, null);
-    })();
-
-    var _c0$2 = ["*"];
-    var FronteggRouterComponent = /** @class */ (function () {
-        function FronteggRouterComponent(elem, router) {
-            this.elem = elem;
-            // @ts-ignore
-            window.ngHistory = router;
-            router.events.subscribe(function (event) {
-                console.log(event);
-                if (event instanceof i1.NavigationStart) {
-                    console.log(event);
-                    if (event.navigationTrigger === 'imperative') {
-                        // @ts-ignore
-                        (window.rcHistory).replace(event.url, event.restoredState);
-                    }
-                    // @ts-ignore
-                    // console.log(window.ngHistory.location._platformLocation._history);
-                    // @ts-ignore
-                    // Object.assign(window.rcHistory, window.ngHistory.location._platformLocation._history);
-                    // event.url
-                    // window.localStorage.setItem('previousUrl', this.router.url);
-                }
-            });
-        }
-        return FronteggRouterComponent;
-    }());
-    FronteggRouterComponent.ɵfac = function FronteggRouterComponent_Factory(t) { return new (t || FronteggRouterComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i1.Router)); };
-    FronteggRouterComponent.ɵcmp = i0.ɵɵdefineComponent({ type: FronteggRouterComponent, selectors: [["frontegg-router"]], ngContentSelectors: _c0$2, decls: 1, vars: 0, template: function FronteggRouterComponent_Template(rf, ctx) {
-            if (rf & 1) {
-                i0.ɵɵprojectionDef();
-                i0.ɵɵprojection(0);
-            }
-        }, encapsulation: 2 });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(FronteggRouterComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'frontegg-router',
                         template: "\n    <ng-content></ng-content>",
                         styles: [],
                     }]
             }], function () { return [{ type: i0.ElementRef }, { type: i1.Router }]; }, null);
+    })();
+
+    var PageHeaderComponent = /** @class */ (function (_super) {
+        __extends(PageHeaderComponent, _super);
+        function PageHeaderComponent(elem) {
+            var _this = _super.call(this, elem) || this;
+            _this.elem = elem;
+            return _this;
+        }
+        PageHeaderComponent.prototype.ngAfterViewInit = function () {
+            var _a = this, title = _a.title, subTitle = _a.subTitle;
+            this.mountElement(reactCore.PageHeader, {
+                title: title,
+                subTitle: subTitle,
+            });
+        };
+        return PageHeaderComponent;
+    }(FronteggBaseComponent));
+    PageHeaderComponent.ɵfac = function PageHeaderComponent_Factory(t) { return new (t || PageHeaderComponent)(i0.ɵɵdirectiveInject(i0.ElementRef)); };
+    PageHeaderComponent.ɵcmp = i0.ɵɵdefineComponent({ type: PageHeaderComponent, selectors: [["frontegg-page-header"]], inputs: { title: "title", subTitle: "subTitle" }, features: [i0.ɵɵInheritDefinitionFeature], decls: 0, vars: 0, template: function PageHeaderComponent_Template(rf, ctx) { }, encapsulation: 2 });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(PageHeaderComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'frontegg-page-header',
+                        template: "",
+                    }]
+            }], function () { return [{ type: i0.ElementRef }]; }, { title: [{
+                    type: i0.Input
+                }], subTitle: [{
+                    type: i0.Input
+                }] });
     })();
 
     var CoreModule = /** @class */ (function () {
@@ -515,14 +480,11 @@
     CoreModule.ɵmod = i0.ɵɵdefineNgModule({ type: CoreModule });
     CoreModule.ɵinj = i0.ɵɵdefineInjector({ factory: function CoreModule_Factory(t) { return new (t || CoreModule)(); }, imports: [[
                 portal.PortalModule,
-                ngxCountdown.CountdownModule,
             ]] });
     (function () {
         (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(CoreModule, { declarations: [FronteggProviderComponent,
-                FronteggFirstComponent,
-                FronteggRouterComponent], imports: [portal.PortalModule,
-                ngxCountdown.CountdownModule], exports: [FronteggProviderComponent,
-                FronteggFirstComponent] });
+                PageHeaderComponent], imports: [portal.PortalModule], exports: [FronteggProviderComponent,
+                PageHeaderComponent] });
     })();
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(CoreModule, [{
@@ -530,16 +492,14 @@
                 args: [{
                         declarations: [
                             FronteggProviderComponent,
-                            FronteggFirstComponent,
-                            FronteggRouterComponent,
+                            PageHeaderComponent,
                         ],
                         imports: [
                             portal.PortalModule,
-                            ngxCountdown.CountdownModule,
                         ],
                         exports: [
                             FronteggProviderComponent,
-                            FronteggFirstComponent,
+                            PageHeaderComponent,
                         ],
                     }]
             }], null, null);
@@ -555,8 +515,8 @@
 
     exports.CoreModule = CoreModule;
     exports.CoreService = CoreService;
-    exports.FronteggFirstComponent = FronteggFirstComponent;
     exports.FronteggProviderComponent = FronteggProviderComponent;
+    exports.PageHeaderComponent = PageHeaderComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -4,7 +4,7 @@ import { Injector, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from '@frontegg/ng-core';
-import { AuthModule } from '@frontegg/ng-auth';
+// import { AuthModule } from '@frontegg/ng-auth';
 import { HomeModule } from './home/home.module';
 import { TeamModule } from './team/team.module';
 
@@ -16,9 +16,9 @@ import { TeamModule } from './team/team.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    AuthModule,
+    // AuthModule,
     HomeModule,
-    TeamModule
+    TeamModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

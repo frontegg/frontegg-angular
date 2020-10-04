@@ -1,1 +1,1 @@
-{"version":3,"file":"public-api.d.ts","sourceRoot":"/Users/davidantoon/git/frontegg/frontegg-angular/projects/core/src/","sources":["public-api.ts"],"names":[],"mappings":"AAIA,cAAc,oBAAoB,CAAC;AACnC,cAAc,mBAAmB,CAAC;AAClC,cAAc,mCAAmC,CAAC;AAClD,cAAc,0CAA0C,CAAC"}
+{"version":3,"file":"public-api.d.ts","sourceRoot":"/Users/davidantoon/git/frontegg/frontegg-angular/projects/core/src/","sources":["public-api.ts"],"names":[],"mappings":"AAIA,cAAc,oBAAoB,CAAC;AACnC,cAAc,mBAAmB,CAAC;AAClC,cAAc,mCAAmC,CAAC;AAClD,cAAc,wCAAwC,CAAC"}

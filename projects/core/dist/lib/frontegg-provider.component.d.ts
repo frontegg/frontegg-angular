@@ -1,21 +1,12 @@
-import { AfterViewInit, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { FronteggBaseComponent } from './frontegg-base.component';
 import * as i0 from "@angular/core";
-export declare class FronteggProviderComponent implements AfterViewInit, OnInit, OnDestroy {
-    private elem;
+export declare class FronteggProviderComponent extends FronteggBaseComponent implements AfterViewInit {
     private router;
-    rcWrapper: any;
-    rcWrapperRef: any;
-    rcProxy: any;
-    rcPortals: any[];
-    ngChildren: any[];
     routeListeners: any[];
     constructor(elem: ElementRef, router: Router);
     ngAfterViewInit(): void;
-    ngOnInit(): void;
-    mountChild(child: any): void;
-    unmountChild(child: any): void;
-    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDef<FronteggProviderComponent, never>;
     static ɵcmp: i0.ɵɵComponentDefWithMeta<FronteggProviderComponent, "frontegg-provider", never, {}, {}, never, ["*"]>;
 }

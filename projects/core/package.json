@@ -10,11 +10,10 @@
   },
   "peerDependencies": {
     "@angular/common": "^10.1.3",
-    "@angular/core": "^10.1.3",
-    "ng-test": "^0.2.1"
+    "@angular/core": "^10.1.3"
   },
   "dependencies": {
     "tslib": "^2.0.0",
-    "ngx-countdown": "^10.0.1"
+    "@frontegg/react-core": "^1.0.71"
   }
 }

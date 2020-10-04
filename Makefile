@@ -94,7 +94,7 @@ build: ##@4 Build build all packages
 
 build-%: ##@4 Build build a specific package
 	@echo "${YELLOW}Building package ${WHITE}${*}${RESET}"
-	@./projects/.bin/ng build --project=${*}
+	@export PACKAGE=${*}; cd ./projects/${*} && yarn build
 
 bw: ##@4 Build parallels build:watch all
 	@./node_modules/.bin/lerna run build:watch --parallel

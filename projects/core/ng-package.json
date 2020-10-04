@@ -7,6 +7,7 @@
   "whitelistedNonPeerDependencies": [
     "react",
     "react-dom",
-    "ngx-countdown"
+    "ngx-countdown",
+    "@frontegg/react-core"
   ]
 }

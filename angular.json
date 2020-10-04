@@ -203,6 +203,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "demo-saas"
 }
