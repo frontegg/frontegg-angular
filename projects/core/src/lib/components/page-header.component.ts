@@ -1,27 +1,31 @@
 import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { FronteggBaseComponent } from '../frontegg-base.component';
-import { PageHeader } from '@frontegg/react-core';
+import { PageHeader, PageHeaderProps } from '@frontegg/react-core';
 
 @Component({
   selector: 'frontegg-page-header',
   template: ``,
 })
 export class PageHeaderComponent extends FronteggBaseComponent implements AfterViewInit {
+  @Input() className: string;
   @Input() title: string;
-  @Input() subTitle: string;
+  @Input() titleClassName: string;
+  @Input() subTitle?: string;
+  @Input() childClassName?: string;
+  @Input() onBackButtonClick?: (e) => void;
 
   constructor(protected elem: ElementRef) {
     super(elem);
   }
 
   ngAfterViewInit(): void {
-    const {
-      title,
-      subTitle,
-    } = this;
-    this.mountElement(PageHeader, {
-      title,
-      subTitle,
+    this.mountElement<PageHeaderProps>(PageHeader, {
+      className: this.className,
+      title: this.title,
+      titleClassName: this.titleClassName,
+      subTitle: this.subTitle,
+      childClassName: this.childClassName,
+      onBackButtonClick: this.onBackButtonClick,
     });
   }
 }

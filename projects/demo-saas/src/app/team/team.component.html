@@ -1,7 +1,9 @@
 <div class="app-team-container">
   <h1>Team Page</h1>
 
-  <frontegg-page-header [title]="title" [subTitle]="'My Sub Title'"></frontegg-page-header>
+  <frontegg-page-header [title]="'My Demo Header Inside Angular'" [className]="'test-header'" [subTitle]="'My Sub Title'"></frontegg-page-header>
+
+
   <nav>
     <ul>
       <li><a routerLink="/" routerLinkActive="active"><span style="color: red;">Angular</span> Back To Home</a></li>
@@ -9,11 +11,11 @@
       <li><a routerLink="/team" routerLinkActive="active"><span style="color: red;">Angular</span> Team Home</a></li>
       <li><a routerLink="/team/test" routerLinkActive="active"><span style="color: red;">Angular</span> Team Nested
         Router</a></li>
-      <li><a routerLink="/login" routerLinkActive="active"><span style="color: red;">Angular</span> Go To Login</a></li>
+      <li><a routerLink="/account/logout" routerLinkActive="active"><span style="color: red;">Angular</span> Go To Logout</a></li>
     </ul>
   </nav>
 
-
+  <div *ngIf="isAuthenticated">User Is Authenticated</div>
   <br />
   <div>
     <span style="color: red;">Angular</span> ...Other Components

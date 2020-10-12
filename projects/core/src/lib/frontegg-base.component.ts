@@ -2,8 +2,7 @@ import { Component, ElementRef, OnDestroy } from '@angular/core';
 import { DOMProxy } from '@frontegg/react-core';
 
 @Component({
-  template: `
-    <ng-content></ng-content>`,
+  template: `<ng-content></ng-content>`,
 })
 export class FronteggBaseComponent implements OnDestroy {
   protected rcParent: any;
@@ -14,7 +13,7 @@ export class FronteggBaseComponent implements OnDestroy {
     this.elem.nativeElement.ngClass = this;
   }
 
-  protected mountElement(component: any, otherProps?: any): void {
+  protected mountElement<T = any>(component: any, otherProps?: T): void {
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
@@ -27,7 +26,7 @@ export class FronteggBaseComponent implements OnDestroy {
     this.rcPortal = DOMProxy.createPortal(DOMProxy.createElement(component, {
       _resolvePortals: (setPortals) => this.rcSetPortals = setPortals,
       ...otherProps,
-    }, ngComponents), this.elem.nativeElement);
+    } as any, ngComponents), this.elem.nativeElement);
     if (!parent) {
       const rcProxy = document.createElement('div');
       document.body.appendChild(rcProxy);

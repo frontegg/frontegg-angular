@@ -8,7 +8,13 @@
   },
   "dependencies": {
     "tslib": "^2.0.0",
-    "@frontegg/react-core": "^1.0.71"
+    "@types/react": "^16.9.51",
+    "react": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-dom": "^16.13.1",
+    "@frontegg/react-auth": "file://Users/davidantoon/git/frontegg/frontegg-react/packages/auth/dist",
+    "@frontegg/react-core": "file://Users/davidantoon/git/frontegg/frontegg-react/packages/core/dist",
+    "@frontegg/react-elements-semantic": "file://Users/davidantoon/git/frontegg/frontegg-react/packages/elements-semantic/dist"
   },
   "main": "bundles/frontegg-ng-core.umd.js",
   "module": "fesm2015/frontegg-ng-core.js",

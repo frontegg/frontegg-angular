@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@frontegg/react-core'), require('@angular/router'), require('@angular/cdk/portal')) :
-    typeof define === 'function' && define.amd ? define('@frontegg/ng-core', ['exports', '@angular/core', '@frontegg/react-core', '@angular/router', '@angular/cdk/portal'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.frontegg = global.frontegg || {}, global.frontegg['ng-core'] = {}), global.ng.core, global.reactCore, global.ng.router, global.ng.cdk.portal));
-}(this, (function (exports, i0, reactCore, i1, portal) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('@frontegg/react-core'), require('@frontegg/react-auth'), require('@frontegg/react-elements-semantic'), require('@angular/cdk/portal')) :
+    typeof define === 'function' && define.amd ? define('@frontegg/ng-core', ['exports', '@angular/core', '@angular/router', '@frontegg/react-core', '@frontegg/react-auth', '@frontegg/react-elements-semantic', '@angular/cdk/portal'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.frontegg = global.frontegg || {}, global.frontegg['ng-core'] = {}), global.ng.core, global.ng.router, global.reactCore, global.reactAuth, global.reactElementsSemantic, global.ng.cdk.portal));
+}(this, (function (exports, i0, i1, reactCore, reactAuth, reactElementsSemantic, portal) { 'use strict';
 
     var CoreService = /** @class */ (function () {
         function CoreService() {
@@ -373,12 +373,13 @@
         i0.ɵsetClassMetadata(FronteggBaseComponent, [{
                 type: i0.Component,
                 args: [{
-                        template: "\n    <ng-content></ng-content>",
+                        template: "<ng-content></ng-content>",
                     }]
             }], function () { return [{ type: i0.ElementRef }]; }, null);
     })();
 
     var _c0$1 = ["*"];
+    // declare namespace JSX { interface ElementAttributesProperty {} }
     var FronteggProviderComponent = /** @class */ (function (_super) {
         __extends(FronteggProviderComponent, _super);
         // 1) createElement(RcComponent)
@@ -412,7 +413,8 @@
             });
             this.mountElement(reactCore.FronteggProvider, {
                 _history: pl._history,
-                plugins: [],
+                plugins: [reactAuth.AuthPlugin()],
+                uiLibrary: reactElementsSemantic.uiLibrary,
                 debugMode: true,
                 context: {
                     baseUrl: "http://localhost:8080",
@@ -434,7 +436,7 @@
                 type: i0.Component,
                 args: [{
                         selector: 'frontegg-provider',
-                        template: "\n    <ng-content></ng-content>",
+                        template: "<ng-content></ng-content>",
                         styles: [],
                     }]
             }], function () { return [{ type: i0.ElementRef }, { type: i1.Router }]; }, null);
@@ -448,16 +450,19 @@
             return _this;
         }
         PageHeaderComponent.prototype.ngAfterViewInit = function () {
-            var _a = this, title = _a.title, subTitle = _a.subTitle;
             this.mountElement(reactCore.PageHeader, {
-                title: title,
-                subTitle: subTitle,
+                className: this.className,
+                title: this.title,
+                titleClassName: this.titleClassName,
+                subTitle: this.subTitle,
+                childClassName: this.childClassName,
+                onBackButtonClick: this.onBackButtonClick,
             });
         };
         return PageHeaderComponent;
     }(FronteggBaseComponent));
     PageHeaderComponent.ɵfac = function PageHeaderComponent_Factory(t) { return new (t || PageHeaderComponent)(i0.ɵɵdirectiveInject(i0.ElementRef)); };
-    PageHeaderComponent.ɵcmp = i0.ɵɵdefineComponent({ type: PageHeaderComponent, selectors: [["frontegg-page-header"]], inputs: { title: "title", subTitle: "subTitle" }, features: [i0.ɵɵInheritDefinitionFeature], decls: 0, vars: 0, template: function PageHeaderComponent_Template(rf, ctx) { }, encapsulation: 2 });
+    PageHeaderComponent.ɵcmp = i0.ɵɵdefineComponent({ type: PageHeaderComponent, selectors: [["frontegg-page-header"]], inputs: { className: "className", title: "title", titleClassName: "titleClassName", subTitle: "subTitle", childClassName: "childClassName", onBackButtonClick: "onBackButtonClick" }, features: [i0.ɵɵInheritDefinitionFeature], decls: 0, vars: 0, template: function PageHeaderComponent_Template(rf, ctx) { }, encapsulation: 2 });
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(PageHeaderComponent, [{
                 type: i0.Component,
@@ -465,9 +470,17 @@
                         selector: 'frontegg-page-header',
                         template: "",
                     }]
-            }], function () { return [{ type: i0.ElementRef }]; }, { title: [{
+            }], function () { return [{ type: i0.ElementRef }]; }, { className: [{
+                    type: i0.Input
+                }], title: [{
+                    type: i0.Input
+                }], titleClassName: [{
                     type: i0.Input
                 }], subTitle: [{
+                    type: i0.Input
+                }], childClassName: [{
+                    type: i0.Input
+                }], onBackButtonClick: [{
                     type: i0.Input
                 }] });
     })();

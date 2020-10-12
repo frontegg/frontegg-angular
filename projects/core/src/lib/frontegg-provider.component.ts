@@ -2,18 +2,18 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnDestroy,
-  OnInit,
 } from '@angular/core';
-import { DOMProxy, FronteggProvider } from '@frontegg/react-core';
 import { NavigationEnd, Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
+import { FronteggProvider } from '@frontegg/react-core';
+import { AuthPlugin } from '@frontegg/react-auth';
+import { uiLibrary } from '@frontegg/react-elements-semantic';
 
+// declare namespace JSX { interface ElementAttributesProperty {} }
 
 @Component({
   selector: 'frontegg-provider',
-  template: `
-    <ng-content></ng-content>`,
+  template: `<ng-content></ng-content>`,
   styles: [],
 })
 export class FronteggProviderComponent extends FronteggBaseComponent implements AfterViewInit {
@@ -49,7 +49,8 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
 
     this.mountElement(FronteggProvider, {
       _history: pl._history,
-      plugins: [],
+      plugins: [AuthPlugin()],
+      uiLibrary,
       debugMode: true,
       context: {
         baseUrl: `http://localhost:8080`,

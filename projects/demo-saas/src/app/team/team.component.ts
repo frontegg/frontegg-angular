@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-team',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class TeamComponent {
   title = 'demo-saas';
+  isAuthenticated = false;
+
 }

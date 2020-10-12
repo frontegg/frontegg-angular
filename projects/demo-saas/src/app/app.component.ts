@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ContextHolder } from '@frontegg/react-core';
 
 const developmentHosts = ['localhost', 'local.frontegg.com'];
 const host =
@@ -17,4 +18,6 @@ export class AppComponent {
     baseUrl: `${window.location.protocol}//${host}`,
     requestCredentials: 'include',
   };
+
+  test = ContextHolder.getUser()?.email;
 }

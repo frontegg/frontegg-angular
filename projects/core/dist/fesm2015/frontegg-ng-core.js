@@ -1,6 +1,8 @@
 import { ɵɵdefineInjectable, ɵsetClassMetadata, Injectable, ɵɵdirectiveInject, ElementRef, ɵɵdefineComponent, ɵɵprojectionDef, ɵɵprojection, Component, ɵɵInheritDefinitionFeature, Input, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
-import { DOMProxy, FronteggProvider, PageHeader } from '@frontegg/react-core';
 import { NavigationEnd, Router } from '@angular/router';
+import { DOMProxy, FronteggProvider, PageHeader } from '@frontegg/react-core';
+import { AuthPlugin } from '@frontegg/react-auth';
+import { uiLibrary } from '@frontegg/react-elements-semantic';
 import { PortalModule } from '@angular/cdk/portal';
 
 class CoreService {
@@ -62,12 +64,12 @@ FronteggBaseComponent.ɵcmp = ɵɵdefineComponent({ type: FronteggBaseComponent,
 /*@__PURE__*/ (function () { ɵsetClassMetadata(FronteggBaseComponent, [{
         type: Component,
         args: [{
-                template: `
-    <ng-content></ng-content>`,
+                template: `<ng-content></ng-content>`,
             }]
     }], function () { return [{ type: ElementRef }]; }, null); })();
 
 const _c0$1 = ["*"];
+// declare namespace JSX { interface ElementAttributesProperty {} }
 class FronteggProviderComponent extends FronteggBaseComponent {
     // 1) createElement(RcComponent)
     //   1.1) pass upper props to RcComponent
@@ -98,7 +100,8 @@ class FronteggProviderComponent extends FronteggBaseComponent {
         });
         this.mountElement(FronteggProvider, {
             _history: pl._history,
-            plugins: [],
+            plugins: [AuthPlugin()],
+            uiLibrary,
             debugMode: true,
             context: {
                 baseUrl: `http://localhost:8080`,
@@ -116,8 +119,7 @@ FronteggProviderComponent.ɵcmp = ɵɵdefineComponent({ type: FronteggProviderCo
         type: Component,
         args: [{
                 selector: 'frontegg-provider',
-                template: `
-    <ng-content></ng-content>`,
+                template: `<ng-content></ng-content>`,
                 styles: [],
             }]
     }], function () { return [{ type: ElementRef }, { type: Router }]; }, null); })();
@@ -128,24 +130,35 @@ class PageHeaderComponent extends FronteggBaseComponent {
         this.elem = elem;
     }
     ngAfterViewInit() {
-        const { title, subTitle, } = this;
         this.mountElement(PageHeader, {
-            title,
-            subTitle,
+            className: this.className,
+            title: this.title,
+            titleClassName: this.titleClassName,
+            subTitle: this.subTitle,
+            childClassName: this.childClassName,
+            onBackButtonClick: this.onBackButtonClick,
         });
     }
 }
 PageHeaderComponent.ɵfac = function PageHeaderComponent_Factory(t) { return new (t || PageHeaderComponent)(ɵɵdirectiveInject(ElementRef)); };
-PageHeaderComponent.ɵcmp = ɵɵdefineComponent({ type: PageHeaderComponent, selectors: [["frontegg-page-header"]], inputs: { title: "title", subTitle: "subTitle" }, features: [ɵɵInheritDefinitionFeature], decls: 0, vars: 0, template: function PageHeaderComponent_Template(rf, ctx) { }, encapsulation: 2 });
+PageHeaderComponent.ɵcmp = ɵɵdefineComponent({ type: PageHeaderComponent, selectors: [["frontegg-page-header"]], inputs: { className: "className", title: "title", titleClassName: "titleClassName", subTitle: "subTitle", childClassName: "childClassName", onBackButtonClick: "onBackButtonClick" }, features: [ɵɵInheritDefinitionFeature], decls: 0, vars: 0, template: function PageHeaderComponent_Template(rf, ctx) { }, encapsulation: 2 });
 /*@__PURE__*/ (function () { ɵsetClassMetadata(PageHeaderComponent, [{
         type: Component,
         args: [{
                 selector: 'frontegg-page-header',
                 template: ``,
             }]
-    }], function () { return [{ type: ElementRef }]; }, { title: [{
+    }], function () { return [{ type: ElementRef }]; }, { className: [{
+            type: Input
+        }], title: [{
+            type: Input
+        }], titleClassName: [{
             type: Input
         }], subTitle: [{
+            type: Input
+        }], childClassName: [{
+            type: Input
+        }], onBackButtonClick: [{
             type: Input
         }] }); })();
 
