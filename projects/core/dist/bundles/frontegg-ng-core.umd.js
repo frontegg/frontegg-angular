@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('@frontegg/react-core'), require('@frontegg/react-auth'), require('@frontegg/react-elements-semantic'), require('@angular/cdk/portal')) :
-    typeof define === 'function' && define.amd ? define('@frontegg/ng-core', ['exports', '@angular/core', '@angular/router', '@frontegg/react-core', '@frontegg/react-auth', '@frontegg/react-elements-semantic', '@angular/cdk/portal'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.frontegg = global.frontegg || {}, global.frontegg['ng-core'] = {}), global.ng.core, global.ng.router, global.reactCore, global.reactAuth, global.reactElementsSemantic, global.ng.cdk.portal));
-}(this, (function (exports, i0, i1, reactCore, reactAuth, reactElementsSemantic, portal) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/router'), require('@frontegg/react-core'), require('@frontegg/react-auth'), require('@frontegg/react-elements-material-ui'), require('@angular/cdk/portal')) :
+    typeof define === 'function' && define.amd ? define('@frontegg/ng-core', ['exports', '@angular/core', '@angular/router', '@frontegg/react-core', '@frontegg/react-auth', '@frontegg/react-elements-material-ui', '@angular/cdk/portal'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.frontegg = global.frontegg || {}, global.frontegg['ng-core'] = {}), global.ng.core, global.ng.router, global.reactCore, global.reactAuth, global.reactElementsMaterialUi, global.ng.cdk.portal));
+}(this, (function (exports, i0, i1, reactCore, reactAuth, reactElementsMaterialUi, portal) { 'use strict';
 
     var CoreService = /** @class */ (function () {
         function CoreService() {
@@ -327,6 +327,23 @@
             this.elem = elem;
             this.elem.nativeElement.ngClass = this;
         }
+        FronteggBaseComponent.prototype.findActiveRoute = function (route) {
+            var snapshot = route.snapshot;
+            var activated = route.firstChild;
+            if (activated != null) {
+                while (activated != null) {
+                    snapshot = activated.snapshot;
+                    activated = activated.firstChild;
+                }
+            }
+            if (!snapshot.routeConfig) {
+                return '/';
+            }
+            while (snapshot.routeConfig.path === '**' || snapshot.routeConfig.path === '*') {
+                snapshot = snapshot.parent;
+            }
+            return "/" + snapshot.routeConfig.path;
+        };
         FronteggBaseComponent.prototype.mountElement = function (component, otherProps) {
             var _this = this;
             var parent = this.elem.nativeElement.parentElement;
@@ -334,7 +351,7 @@
                 parent = parent.parentElement;
             }
             var ngChildren = __spread(this.elem.nativeElement.childNodes);
-            var ngComponents = reactCore.DOMProxy.createElement('div', {
+            var ngComponents = ngChildren.length === 0 ? null : reactCore.DOMProxy.createElement('div', {
                 ref: function (ref) { return ngChildren.forEach(function (node) { return ref === null || ref === void 0 ? void 0 : ref.appendChild(node); }); },
             }, []);
             this.rcPortal = reactCore.DOMProxy.createPortal(reactCore.DOMProxy.createElement(component, Object.assign({ _resolvePortals: function (setPortals) { return _this.rcSetPortals = setPortals; } }, otherProps), ngComponents), this.elem.nativeElement);
@@ -373,7 +390,7 @@
         i0.ɵsetClassMetadata(FronteggBaseComponent, [{
                 type: i0.Component,
                 args: [{
-                        template: "<ng-content></ng-content>",
+                        template: "\n    <ng-content></ng-content>",
                     }]
             }], function () { return [{ type: i0.ElementRef }]; }, null);
     })();
@@ -382,12 +399,6 @@
     // declare namespace JSX { interface ElementAttributesProperty {} }
     var FronteggProviderComponent = /** @class */ (function (_super) {
         __extends(FronteggProviderComponent, _super);
-        // 1) createElement(RcComponent)
-        //   1.1) pass upper props to RcComponent
-        //   1.2) create smart children component with unique id to inject ng-content after mount
-        // 2) create React Portal to be rendered inside this.elementRef
-        // 3) search for parent Rc Component to inject this ReactPortal to it's children
-        // 4) after React.Portal did mount, inject ng-container to it's smart children component
         function FronteggProviderComponent(elem, router) {
             var _this = _super.call(this, elem) || this;
             _this.router = router;
@@ -414,7 +425,7 @@
             this.mountElement(reactCore.FronteggProvider, {
                 _history: pl._history,
                 plugins: [reactAuth.AuthPlugin()],
-                uiLibrary: reactElementsSemantic.uiLibrary,
+                uiLibrary: reactElementsMaterialUi.uiLibrary,
                 debugMode: true,
                 context: {
                     baseUrl: "http://localhost:8080",
@@ -436,7 +447,7 @@
                 type: i0.Component,
                 args: [{
                         selector: 'frontegg-provider',
-                        template: "<ng-content></ng-content>",
+                        template: "\n    <ng-content></ng-content>",
                         styles: [],
                     }]
             }], function () { return [{ type: i0.ElementRef }, { type: i1.Router }]; }, null);
@@ -496,8 +507,10 @@
             ]] });
     (function () {
         (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(CoreModule, { declarations: [FronteggProviderComponent,
-                PageHeaderComponent], imports: [portal.PortalModule], exports: [FronteggProviderComponent,
-                PageHeaderComponent] });
+                PageHeaderComponent,
+                FronteggBaseComponent], imports: [portal.PortalModule], exports: [FronteggProviderComponent,
+                PageHeaderComponent,
+                FronteggBaseComponent] });
     })();
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(CoreModule, [{
@@ -506,6 +519,7 @@
                         declarations: [
                             FronteggProviderComponent,
                             PageHeaderComponent,
+                            FronteggBaseComponent,
                         ],
                         imports: [
                             portal.PortalModule,
@@ -513,6 +527,7 @@
                         exports: [
                             FronteggProviderComponent,
                             PageHeaderComponent,
+                            FronteggBaseComponent,
                         ],
                     }]
             }], null, null);
@@ -528,6 +543,7 @@
 
     exports.CoreModule = CoreModule;
     exports.CoreService = CoreService;
+    exports.FronteggBaseComponent = FronteggBaseComponent;
     exports.FronteggProviderComponent = FronteggProviderComponent;
     exports.PageHeaderComponent = PageHeaderComponent;
 

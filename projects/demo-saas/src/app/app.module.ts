@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Injector, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,7 +7,7 @@ import { CoreModule } from '@frontegg/ng-core';
 import { HomeModule } from './home/home.module';
 import { TeamModule } from './team/team.module';
 import { CommonModule } from '@angular/common';
-
+import { SsoModule } from './sso/sso.module';
 
 declare global {
   type JSX = any;
@@ -23,9 +23,9 @@ declare global {
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    // AuthModule,
     HomeModule,
     TeamModule,
+    SsoModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

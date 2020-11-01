@@ -1,7 +1,7 @@
 <div class="app-team-container">
   <h1>Team Page</h1>
 
-  <frontegg-page-header [title]="'My Demo Header Inside Angular'" [className]="'test-header'" [subTitle]="'My Sub Title'"></frontegg-page-header>
+  <frontegg-page-header [title]="'My Demo Header'" [className]="'test-header'" [subTitle]="'My Sub Title'"></frontegg-page-header>
 
 
   <nav>
@@ -14,6 +14,7 @@
       <li><a routerLink="/account/logout" routerLinkActive="active"><span style="color: red;">Angular</span> Go To Logout</a></li>
     </ul>
   </nav>
+
 
   <div *ngIf="isAuthenticated">User Is Authenticated</div>
   <br />

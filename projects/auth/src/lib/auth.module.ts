@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
-import { AuthComponent } from './auth.component';
+import { SsoPageComponent, SsoHeaderComponent, SsoRouterComponent, SsoToggleComponent } from './sso';
+import { ProfileComponent } from './profile';
 
 
+const components = [
+  ProfileComponent,
+
+  // sso
+  SsoPageComponent,
+  SsoHeaderComponent,
+  SsoRouterComponent,
+  SsoToggleComponent,
+];
 
 @NgModule({
-  declarations: [AuthComponent],
-  imports: [
-  ],
-  exports: [AuthComponent]
+  declarations: components,
+  imports: [],
+  exports: components,
 })
-export class AuthModule { }
+export class AuthModule {
+}

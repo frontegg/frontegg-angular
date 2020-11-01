@@ -8,6 +8,7 @@ import { FronteggBaseComponent } from './frontegg-base.component';
   declarations: [
     FronteggProviderComponent,
     PageHeaderComponent,
+    FronteggBaseComponent,
   ],
   imports: [
     PortalModule,
@@ -15,6 +16,7 @@ import { FronteggBaseComponent } from './frontegg-base.component';
   exports: [
     FronteggProviderComponent,
     PageHeaderComponent,
+    FronteggBaseComponent,
   ],
 })
 export class CoreModule {

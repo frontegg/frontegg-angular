@@ -3,27 +3,22 @@ import {
   Component,
   ElementRef,
 } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
 import { FronteggProvider } from '@frontegg/react-core';
 import { AuthPlugin } from '@frontegg/react-auth';
-import { uiLibrary } from '@frontegg/react-elements-semantic';
+import { uiLibrary } from '@frontegg/react-elements-material-ui';
 
 // declare namespace JSX { interface ElementAttributesProperty {} }
 
 @Component({
   selector: 'frontegg-provider',
-  template: `<ng-content></ng-content>`,
+  template: `
+    <ng-content></ng-content>`,
   styles: [],
 })
 export class FronteggProviderComponent extends FronteggBaseComponent implements AfterViewInit {
   routeListeners: any[] = [];
-  // 1) createElement(RcComponent)
-  //   1.1) pass upper props to RcComponent
-  //   1.2) create smart children component with unique id to inject ng-content after mount
-  // 2) create React Portal to be rendered inside this.elementRef
-  // 3) search for parent Rc Component to inject this ReactPortal to it's children
-  // 4) after React.Portal did mount, inject ng-container to it's smart children component
 
   constructor(elem: ElementRef, private router: Router) {
     super(elem);

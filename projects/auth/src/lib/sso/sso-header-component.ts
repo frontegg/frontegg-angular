@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
-import { FronteggBaseComponent } from '../frontegg-base.component';
-import {  PageHeader, PageHeaderProps } from '@frontegg/react-core';
-import { ActivatedRoute } from '@angular/router';
+import { SSO } from '@frontegg/react-auth';
+import { FronteggBaseComponent } from '@frontegg/ng-core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'frontegg-page-header',
+  selector: 'fe-auth-sso-header',
   template: ``,
 })
-export class PageHeaderComponent extends FronteggBaseComponent implements AfterViewInit {
+export class SsoHeaderComponent extends FronteggBaseComponent implements AfterViewInit {
   @Input() className: string;
   @Input() title: string;
   @Input() titleClassName: string;
@@ -19,9 +19,8 @@ export class PageHeaderComponent extends FronteggBaseComponent implements AfterV
     super(elem);
   }
 
-
   ngAfterViewInit(): void {
-    this.mountElement<PageHeaderProps>(PageHeader, {
+    this.mountElement<any>(SSO.Header, {
       className: this.className,
       title: this.title,
       titleClassName: this.titleClassName,

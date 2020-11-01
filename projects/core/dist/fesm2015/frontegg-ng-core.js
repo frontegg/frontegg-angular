@@ -2,7 +2,7 @@ import { ɵɵdefineInjectable, ɵsetClassMetadata, Injectable, ɵɵdirectiveInje
 import { NavigationEnd, Router } from '@angular/router';
 import { DOMProxy, FronteggProvider, PageHeader } from '@frontegg/react-core';
 import { AuthPlugin } from '@frontegg/react-auth';
-import { uiLibrary } from '@frontegg/react-elements-semantic';
+import { uiLibrary } from '@frontegg/react-elements-material-ui';
 import { PortalModule } from '@angular/cdk/portal';
 
 class CoreService {
@@ -23,13 +23,30 @@ class FronteggBaseComponent {
         this.elem = elem;
         this.elem.nativeElement.ngClass = this;
     }
+    findActiveRoute(route) {
+        let snapshot = route.snapshot;
+        let activated = route.firstChild;
+        if (activated != null) {
+            while (activated != null) {
+                snapshot = activated.snapshot;
+                activated = activated.firstChild;
+            }
+        }
+        if (!snapshot.routeConfig) {
+            return '/';
+        }
+        while (snapshot.routeConfig.path === '**' || snapshot.routeConfig.path === '*') {
+            snapshot = snapshot.parent;
+        }
+        return `/${snapshot.routeConfig.path}`;
+    }
     mountElement(component, otherProps) {
         let parent = this.elem.nativeElement.parentElement;
         while (parent != null && !parent.ngClass) {
             parent = parent.parentElement;
         }
         const ngChildren = [...this.elem.nativeElement.childNodes];
-        const ngComponents = DOMProxy.createElement('div', {
+        const ngComponents = ngChildren.length === 0 ? null : DOMProxy.createElement('div', {
             ref: ref => ngChildren.forEach(node => ref === null || ref === void 0 ? void 0 : ref.appendChild(node)),
         }, []);
         this.rcPortal = DOMProxy.createPortal(DOMProxy.createElement(component, Object.assign({ _resolvePortals: (setPortals) => this.rcSetPortals = setPortals }, otherProps), ngComponents), this.elem.nativeElement);
@@ -64,19 +81,14 @@ FronteggBaseComponent.ɵcmp = ɵɵdefineComponent({ type: FronteggBaseComponent,
 /*@__PURE__*/ (function () { ɵsetClassMetadata(FronteggBaseComponent, [{
         type: Component,
         args: [{
-                template: `<ng-content></ng-content>`,
+                template: `
+    <ng-content></ng-content>`,
             }]
     }], function () { return [{ type: ElementRef }]; }, null); })();
 
 const _c0$1 = ["*"];
 // declare namespace JSX { interface ElementAttributesProperty {} }
 class FronteggProviderComponent extends FronteggBaseComponent {
-    // 1) createElement(RcComponent)
-    //   1.1) pass upper props to RcComponent
-    //   1.2) create smart children component with unique id to inject ng-content after mount
-    // 2) create React Portal to be rendered inside this.elementRef
-    // 3) search for parent Rc Component to inject this ReactPortal to it's children
-    // 4) after React.Portal did mount, inject ng-container to it's smart children component
     constructor(elem, router) {
         super(elem);
         this.router = router;
@@ -119,7 +131,8 @@ FronteggProviderComponent.ɵcmp = ɵɵdefineComponent({ type: FronteggProviderCo
         type: Component,
         args: [{
                 selector: 'frontegg-provider',
-                template: `<ng-content></ng-content>`,
+                template: `
+    <ng-content></ng-content>`,
                 styles: [],
             }]
     }], function () { return [{ type: ElementRef }, { type: Router }]; }, null); })();
@@ -169,14 +182,17 @@ CoreModule.ɵinj = ɵɵdefineInjector({ factory: function CoreModule_Factory(t) 
             PortalModule,
         ]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(CoreModule, { declarations: [FronteggProviderComponent,
-        PageHeaderComponent], imports: [PortalModule], exports: [FronteggProviderComponent,
-        PageHeaderComponent] }); })();
+        PageHeaderComponent,
+        FronteggBaseComponent], imports: [PortalModule], exports: [FronteggProviderComponent,
+        PageHeaderComponent,
+        FronteggBaseComponent] }); })();
 /*@__PURE__*/ (function () { ɵsetClassMetadata(CoreModule, [{
         type: NgModule,
         args: [{
                 declarations: [
                     FronteggProviderComponent,
                     PageHeaderComponent,
+                    FronteggBaseComponent,
                 ],
                 imports: [
                     PortalModule,
@@ -184,6 +200,7 @@ CoreModule.ɵinj = ɵɵdefineInjector({ factory: function CoreModule_Factory(t) 
                 exports: [
                     FronteggProviderComponent,
                     PageHeaderComponent,
+                    FronteggBaseComponent,
                 ],
             }]
     }], null, null); })();
@@ -196,5 +213,5 @@ CoreModule.ɵinj = ɵɵdefineInjector({ factory: function CoreModule_Factory(t) 
  * Generated bundle index. Do not edit.
  */
 
-export { CoreModule, CoreService, FronteggProviderComponent, PageHeaderComponent };
+export { CoreModule, CoreService, FronteggBaseComponent, FronteggProviderComponent, PageHeaderComponent };
 //# sourceMappingURL=frontegg-ng-core.js.map

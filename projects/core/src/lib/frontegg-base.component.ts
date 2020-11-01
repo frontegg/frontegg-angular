@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnDestroy } from '@angular/core';
 import { DOMProxy } from '@frontegg/react-core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  template: `<ng-content></ng-content>`,
+  template: `
+    <ng-content></ng-content>`,
 })
 export class FronteggBaseComponent implements OnDestroy {
   protected rcParent: any;
@@ -13,13 +15,33 @@ export class FronteggBaseComponent implements OnDestroy {
     this.elem.nativeElement.ngClass = this;
   }
 
+  protected findActiveRoute(route: ActivatedRoute): string {
+    let snapshot = route.snapshot;
+    let activated = route.firstChild;
+    if (activated != null) {
+      while (activated != null) {
+        snapshot = activated.snapshot;
+        activated = activated.firstChild;
+      }
+    }
+
+    if (!snapshot.routeConfig) {
+      return '/';
+    }
+    while (snapshot.routeConfig.path === '**' || snapshot.routeConfig.path === '*') {
+      snapshot = snapshot.parent;
+    }
+
+    return `/${snapshot.routeConfig.path}`;
+  }
+
   protected mountElement<T = any>(component: any, otherProps?: T): void {
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
     }
     const ngChildren = [...this.elem.nativeElement.childNodes];
-    const ngComponents = DOMProxy.createElement('div', {
+    const ngComponents = ngChildren.length === 0 ? null : DOMProxy.createElement('div', {
       ref: ref => ngChildren.forEach(node => ref?.appendChild(node as any)),
     }, []);
 
