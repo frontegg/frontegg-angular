@@ -3,11 +3,14 @@ import {
   Component,
   ElementRef,
 } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
-import { FronteggProvider } from '@frontegg/react-core';
-import { AuthPlugin } from '@frontegg/react-auth';
+import { FronteggProvider, shallowEqual } from '@frontegg/react-core';
+import { AuthPlugin, AuthState, AuthStateMapper } from '@frontegg/react-auth';
 import { uiLibrary } from '@frontegg/react-elements-material-ui';
+import { FeProviderProps } from '@frontegg/react-core/FronteggProvider';
+import { fromEvent, Observable } from 'rxjs';
+import { loginState } from '@frontegg/react-auth/Api/LoginState';
 
 @Component({
   selector: 'frontegg-provider',
@@ -50,11 +53,18 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       }
     });
 
-    this.mountElement(FronteggProvider, {
+    const middleware = store => next => action => {
+      next(action);
+      const middlewareEvent = new CustomEvent('FronteggStoreEvent', { bubbles: true, cancelable: false, detail: store.getState() });
+      document.dispatchEvent(middlewareEvent);
+    };
+
+    this.mountElement<FeProviderProps>(FronteggProvider, {
       _history: pl._history,
       plugins: [AuthPlugin()],
       uiLibrary,
       debugMode: true,
+      storeMiddlewares: [middleware],
       context: {
         baseUrl: `http://localhost:8080`,
         requestCredentials: 'include',

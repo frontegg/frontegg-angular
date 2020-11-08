@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ContextHolder } from '@frontegg/react-core';
+import { ContextHolder } from '@frontegg/rest-api';
 
 const developmentHosts = ['localhost', 'local.frontegg.com'];
 const host =

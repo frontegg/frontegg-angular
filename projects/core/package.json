@@ -17,9 +17,6 @@
     "@types/react": "^16.9.51",
     "react": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-dom": "^16.13.1",
-    "@frontegg/react-auth": "^1.0.88",
-    "@frontegg/react-core": "^1.0.88",
-    "@frontegg/react-elements-semantic": "^1.0.88"
+    "react-dom": "^16.13.1"
   }
 }
