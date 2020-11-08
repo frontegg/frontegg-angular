@@ -8,12 +8,6 @@ import { ActivatedRoute } from '@angular/router';
   template: ``,
 })
 export class ProfileComponent extends FronteggBaseComponent implements AfterViewInit {
-  // @Input() className: string;
-  // @Input() title: string;
-  // @Input() titleClassName: string;
-  // @Input() subTitle?: string;
-  // @Input() childClassName?: string;
-  // @Input() onBackButtonClick?: (e) => void;
 
   constructor(protected elem: ElementRef, private route: ActivatedRoute) {
     super(elem);
@@ -22,12 +16,6 @@ export class ProfileComponent extends FronteggBaseComponent implements AfterView
   ngAfterViewInit(): void {
     this.mountElement(Profile.Page, {
       rootPath: this.findActiveRoute(this.route),
-      // className: this.className,
-      // title: this.title,
-      // titleClassName: this.titleClassName,
-      // subTitle: this.subTitle,
-      // childClassName: this.childClassName,
-      // onBackButtonClick: this.onBackButtonClick,
     });
   }
 }

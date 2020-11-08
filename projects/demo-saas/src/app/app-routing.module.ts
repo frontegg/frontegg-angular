@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { TeamComponent } from './team/team.component';
 import { RedirectComponent } from './home/redirect.component';
-// import { SsoComponent } from './sso/sso.component';
 import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 
 const routes: Routes = [

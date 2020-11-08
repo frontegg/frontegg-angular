@@ -9,8 +9,6 @@ import { FronteggProvider } from '@frontegg/react-core';
 import { AuthPlugin } from '@frontegg/react-auth';
 import { uiLibrary } from '@frontegg/react-elements-material-ui';
 
-// declare namespace JSX { interface ElementAttributesProperty {} }
-
 @Component({
   selector: 'frontegg-provider',
   template: `
@@ -32,8 +30,18 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       return () => this.routeListeners = this.routeListeners.filter(l => l !== e);
     };
     pl._history.createHref = (e) => e.pathname;
-    pl._history.push = (path, data) => this.router.navigate([path], { state: data, replaceUrl: false });
-    pl._history.replace = (path, data) => this.router.navigate([path], { state: data, replaceUrl: true });
+    pl._history.push = (path, data) => {
+      console.log('push', path);
+      this.router.navigate([path], { state: data, replaceUrl: false });
+    };
+    pl._history.replace = (path, data) => {
+      console.log('replace', path, pl);
+      this.router.navigate([path], { state: data, replaceUrl: true });
+    };
+    pl._history.goBack = () => {
+      console.log('goBack');
+      window.history.back();
+    };
     pl._history.location = pl.location;
 
     this.router.events.subscribe((event) => {
