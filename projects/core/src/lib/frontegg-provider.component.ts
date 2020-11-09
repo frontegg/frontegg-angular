@@ -54,8 +54,15 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
     });
 
     const middleware = store => next => action => {
-      next(action);
-      const middlewareEvent = new CustomEvent('FronteggStoreEvent', { bubbles: true, cancelable: false, detail: store.getState() });
+      next(action); // continue the default action in redux store
+      const storeName = action.type.substring(0, action.type.indexOf('/'));
+      // detail action
+      (window as any).fronteggStore = store.getState();
+      const middlewareEvent = new CustomEvent(`FronteggStoreEvent/${storeName}`, {
+        bubbles: true,
+        cancelable: false,
+        detail: action,
+      });
       document.dispatchEvent(middlewareEvent);
     };
 
