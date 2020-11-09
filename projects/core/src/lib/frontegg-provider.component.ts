@@ -5,12 +5,10 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
-import { FronteggProvider, shallowEqual } from '@frontegg/react-core';
-import { AuthPlugin, AuthState, AuthStateMapper } from '@frontegg/react-auth';
+import { FronteggProvider, FeProviderProps } from '@frontegg/react-core';
+import { AuthPlugin } from '@frontegg/react-auth';
 import { uiLibrary } from '@frontegg/react-elements-material-ui';
-import { FeProviderProps } from '@frontegg/react-core/FronteggProvider';
-import { fromEvent, Observable } from 'rxjs';
-import { loginState } from '@frontegg/react-auth/Api/LoginState';
+import { ContextHolder } from '@frontegg/rest-api';
 
 @Component({
   selector: 'frontegg-provider',
@@ -69,6 +67,10 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
     this.mountElement<FeProviderProps>(FronteggProvider, {
       _history: pl._history,
       plugins: [AuthPlugin()],
+      onRedirectTo: path => {
+        console.log('onRedirectTo', path);
+        // this.router.navigate([path], { replaceUrl: false });
+      },
       uiLibrary,
       debugMode: true,
       storeMiddlewares: [middleware],
@@ -77,6 +79,8 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
         requestCredentials: 'include',
       },
     });
+
+    (window as any).context = ContextHolder;
   }
 
 }
