@@ -8,6 +8,7 @@ import { HomeModule } from './home/home.module';
 import { TeamModule } from './team/team.module';
 import { CommonModule } from '@angular/common';
 import { SsoModule } from './sso/sso.module';
+import { NavComponent } from './nav/nav.component';
 
 declare global {
   type JSX = any;
@@ -17,6 +18,7 @@ declare global {
 @NgModule({
   declarations: [
     AppComponent,
+    NavComponent,
   ],
   imports: [
     CommonModule,
