@@ -19,6 +19,9 @@ import { SsoComponent } from './sso.component';
     CoreModule,
     AuthModule,
   ],
+  exports: [
+    SsoComponent,
+  ],
 })
 export class SsoModule {
 }

@@ -24,6 +24,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
   }
 
   ngAfterViewInit(): void {
+    console.log('mount.ngAfterViewInit.FronteggProviderComponent');
     // @ts-ignore
     const pl = this.router.location._platformLocation;
     pl._history.listen = (e) => {
@@ -68,7 +69,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       document.dispatchEvent(middlewareEvent);
     };
 
-    this.mountElement<FeProviderProps>(FronteggProvider, {
+    this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       _history: pl._history,
       plugins: [AuthPlugin()],
       uiLibrary,

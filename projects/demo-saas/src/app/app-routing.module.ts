@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { TeamComponent } from './team/team.component';
 import { RedirectComponent } from './home/redirect.component';
 import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
+import { SsoComponent } from './sso/sso.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,8 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'sso', children: [{
-      path: '**', component: SsoPageComponent,
-      // path: '**', component: SsoComponent,
+      // path: '**', component: SsoPageComponent,
+      path: '**', component: SsoComponent,
     }],
   },
   {

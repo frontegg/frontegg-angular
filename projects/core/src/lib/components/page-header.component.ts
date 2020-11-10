@@ -21,7 +21,7 @@ export class PageHeaderComponent extends FronteggBaseComponent implements AfterV
 
 
   ngAfterViewInit(): void {
-    this.mountElement<PageHeaderProps>(PageHeader, {
+    this.mountElement<PageHeaderProps>('PageHeader', PageHeader, {
       className: this.className,
       title: this.title,
       titleClassName: this.titleClassName,

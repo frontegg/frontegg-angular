@@ -14,7 +14,7 @@ export class ProfileComponent extends FronteggBaseComponent implements AfterView
   }
 
   ngAfterViewInit(): void {
-    this.mountElement(Profile.Page, {
+    this.mountElement('Profile.Page', Profile.Page, {
       rootPath: this.findActiveRoute(this.route),
     });
   }

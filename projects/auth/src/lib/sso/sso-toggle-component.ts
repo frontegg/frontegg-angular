@@ -15,6 +15,6 @@ export class SsoToggleComponent extends FronteggBaseComponent implements AfterVi
   }
 
   ngAfterViewInit(): void {
-    this.mountElement<SwitchToggleProps>(SSO.Toggle, {});
+    this.mountElement<SwitchToggleProps>('SSO.Toggle', SSO.Toggle, {});
   }
 }

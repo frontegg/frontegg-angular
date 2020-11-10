@@ -7,9 +7,11 @@ import { ActivatedRoute } from '@angular/router';
     <ng-content></ng-content>`,
 })
 export class FronteggBaseComponent implements OnDestroy {
+  protected name: any;
   protected rcParent: any;
   protected rcPortal: any;
   protected rcSetPortals: any;
+  protected cc: any[];
 
   constructor(protected elem: ElementRef) {
     this.elem.nativeElement.ngClass = this;
@@ -35,7 +37,9 @@ export class FronteggBaseComponent implements OnDestroy {
     return `/${snapshot.routeConfig.path}`;
   }
 
-  protected mountElement<T = any>(component: any, otherProps?: T): void {
+  protected mountElement<T = any>(name: string, component: any, otherProps?: T): void {
+    this.name = name;
+    console.log('mountElement', this.name);
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
@@ -62,6 +66,11 @@ export class FronteggBaseComponent implements OnDestroy {
 
   // noinspection JSUnusedGlobalSymbols
   public mountChild(child): void {
+    if (this.rcSetPortals == null) {
+      console.log('mount.mountChild', this.name, child.containerInfo);
+      setTimeout(() => this.mountChild(child), 0);
+      return;
+    }
     this.rcSetPortals(portals => [...portals, child]);
   }
 
