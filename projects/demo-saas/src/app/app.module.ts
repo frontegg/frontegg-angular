@@ -9,6 +9,7 @@ import { TeamModule } from './team/team.module';
 import { CommonModule } from '@angular/common';
 import { SsoModule } from './sso/sso.module';
 import { NavComponent } from './nav/nav.component';
+import { MfaModule } from './mfa/mfa.module';
 
 declare global {
   type JSX = any;
@@ -28,6 +29,7 @@ declare global {
     HomeModule,
     TeamModule,
     SsoModule,
+    MfaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

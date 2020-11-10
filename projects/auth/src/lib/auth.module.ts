@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { SsoPageComponent, SsoHeaderComponent, SsoRouterComponent, SsoToggleComponent } from './sso';
 import { ProfileComponent } from './profile';
 import { TeamHeaderComponent, TeamPageComponent } from './team';
-
+import { MfaComponent } from './mfa';
 
 const components = [
   ProfileComponent,
@@ -15,7 +15,10 @@ const components = [
 
   // team
   TeamHeaderComponent,
-  TeamPageComponent
+  TeamPageComponent,
+  
+  //mfa
+  MfaComponent
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { TeamComponent } from './team/team.component';
+import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
 import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'profile', children: [{
       path: '**', component: ProfileComponent,
+    }],
+  },
+  {
+    path: 'mfa', children: [{
+      path: '**', component: MfaComponent,
     }],
   },
   {
