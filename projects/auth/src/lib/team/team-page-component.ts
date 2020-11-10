@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { Team } from '@frontegg/react-auth';
 import { FronteggBaseComponent } from '@frontegg/ng-core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { BasePageProps } from '@frontegg/react-auth/interfaces';
 import { TeamPageProps } from '@frontegg/react-auth/Team/TeamPage';
 
