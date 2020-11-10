@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
-import { FronteggProvider, FeProviderProps } from '@frontegg/react-core';
+import { FronteggProvider, FeProviderProps, DOMProxy } from '@frontegg/react-core';
 import { AuthPlugin } from '@frontegg/react-auth';
 import { uiLibrary } from '@frontegg/react-elements-material-ui';
 import { ContextHolder } from '@frontegg/rest-api';
@@ -21,13 +21,14 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
 
   constructor(elem: ElementRef, private router: Router) {
     super(elem);
+    this.name = 'FronteggProvider';
   }
 
   ngAfterViewInit(): void {
-    console.log('mount.ngAfterViewInit.FronteggProviderComponent');
     // @ts-ignore
     const pl = this.router.location._platformLocation;
     pl._history.listen = (e) => {
+      console.log('add listener', e);
       this.routeListeners.push(e);
       return () => this.routeListeners = this.routeListeners.filter(l => l !== e);
     };

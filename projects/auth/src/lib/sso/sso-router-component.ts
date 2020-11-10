@@ -8,23 +8,13 @@ import { ActivatedRoute } from '@angular/router';
   template: `
     <ng-content></ng-content>`,
 })
-export class SsoRouterComponent extends FronteggBaseComponent implements OnInit, AfterViewInit {
+export class SsoRouterComponent extends FronteggBaseComponent implements AfterViewInit {
   @Input() rootPath: string;
 
   constructor(protected elem: ElementRef, private route: ActivatedRoute) {
     super(elem);
-    console.log('TT', 'SSO.Router', 'constructor');
+    this.name = 'SSO.Router';
   }
-
-  ngOnInit(): void {
-    console.log('TT', 'SSO.Router', 'ngInit');
-    let parent = this.elem.nativeElement.parentElement;
-    while (parent != null && !parent.ngClass) {
-      parent = parent.parentElement;
-    }
-    console.log('TT', 'SSO.Router', 'parent: ', parent);
-  }
-
 
   ngAfterViewInit(): void {
     console.log('TT', 'SSO.Router', 'ngAfterViewInit');

@@ -20,7 +20,7 @@ export class TeamHeaderComponent extends FronteggBaseComponent implements AfterV
   }
 
   ngAfterViewInit(): void {
-    this.mountElement<any>(Team.Header, {
+    this.mountElement<any>('Team.Header', Team.Header, {
       className: this.className,
       title: this.title,
       titleClassName: this.titleClassName,

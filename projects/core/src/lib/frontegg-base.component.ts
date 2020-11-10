@@ -1,20 +1,30 @@
-import { Component, ElementRef, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { DOMProxy } from '@frontegg/react-core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   template: `
-    <ng-content></ng-content>`,
+    <ng-template [ngIf]="this.loaded">
+      <ng-content></ng-content>
+    </ng-template>`,
 })
-export class FronteggBaseComponent implements OnDestroy {
-  protected name: any;
+export class FronteggBaseComponent implements OnInit, OnDestroy {
+  public loaded = false;
   protected rcParent: any;
   protected rcPortal: any;
   protected rcSetPortals: any;
-  protected cc: any[];
+  protected rcChildren: Set<FronteggBaseComponent>;
+  public state: 'registered' | 'rendered' = null;
+  protected name: string;
 
   constructor(protected elem: ElementRef) {
     this.elem.nativeElement.ngClass = this;
+    this.rcChildren = new Set();
+  }
+
+  ngOnInit(): void {
+    console.log(this.name, 'ngOnInit');
+    this.registerComponent();
   }
 
   protected findActiveRoute(route: ActivatedRoute): string {
@@ -37,9 +47,25 @@ export class FronteggBaseComponent implements OnDestroy {
     return `/${snapshot.routeConfig.path}`;
   }
 
+  protected registerChild(child: FronteggBaseComponent): void {
+    console.log(this.name, 'registerChild', child.name);
+    if (this.rcChildren.has(child)) {
+      this.rcChildren.delete(child);
+    }
+    this.rcChildren.add(child);
+  }
+
+  protected registerComponent(): void {
+    let parent = this.elem.nativeElement.parentElement;
+    while (parent != null && !parent.ngClass) {
+      parent = parent.parentElement;
+    }
+    parent?.ngClass?.registerChild?.(this);
+  }
+
   protected mountElement<T = any>(name: string, component: any, otherProps?: T): void {
-    this.name = name;
-    console.log('mountElement', this.name);
+    console.log(this.name, 'mountElement');
+    this.state = 'rendered';
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
@@ -59,29 +85,37 @@ export class FronteggBaseComponent implements OnDestroy {
       DOMProxy.render(this.rcPortal, rcProxy);
     } else {
       this.rcParent = parent.ngClass;
-      this.rcParent.mountChild(this.rcPortal);
+      this.rcParent.mountChild();
     }
   }
 
-
-  // noinspection JSUnusedGlobalSymbols
-  public mountChild(child): void {
-    if (this.rcSetPortals == null) {
-      console.log('mount.mountChild', this.name, child.containerInfo);
-      setTimeout(() => this.mountChild(child), 0);
+  public mountChild(): void {
+    let isAllChildrenRendered = true;
+    const portalsToInject = [];
+    this.rcChildren.forEach(rcChild => {
+      isAllChildrenRendered = isAllChildrenRendered && rcChild.state === 'rendered';
+      portalsToInject.push(rcChild.rcPortal);
+    });
+    if (!isAllChildrenRendered) {
       return;
     }
-    this.rcSetPortals(portals => [...portals, child]);
+    if (this.rcSetPortals == null) {
+      setTimeout(() => this.mountChild(), 0);
+      return;
+    }
+    this.rcSetPortals(portalsToInject);
   }
 
   // noinspection JSUnusedGlobalSymbols
-  public unmountChild(child): void {
-    this.rcSetPortals(portals => [...portals.filter(p => p !== child)]);
+  public unmountChild(child: FronteggBaseComponent): void {
+    console.log('unmountChild', this.name);
+    this.rcChildren.delete(child);
+    this.mountChild();
   }
 
   ngOnDestroy(): void {
-    // console.log('FronteggFirstComponent.ngOnDestroy');
-    // this.rcParent?.unmountChild(this.rcPortal);
+    console.log('ngOnDestroy', this.name);
+    this.rcParent?.unmountChild(this);
   }
 
 }

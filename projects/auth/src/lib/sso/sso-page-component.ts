@@ -10,26 +10,15 @@ import { SSOPageProps } from '@frontegg/react-auth/SSO/SSOPage';
   template: `
     <ng-content></ng-content>`,
 })
-export class SsoPageComponent extends FronteggBaseComponent implements OnInit, AfterViewInit {
+export class SsoPageComponent extends FronteggBaseComponent implements AfterViewInit {
   @Input() rootPath: string;
 
   constructor(protected elem: ElementRef, private route: ActivatedRoute) {
     super(elem);
-    console.log('TT', 'SSO.Page', 'constructor');
+    this.name = 'SSO.Page';
   }
-
-  ngOnInit(): void {
-    console.log('TT', 'SSO.Page', 'ngInit');
-    let parent = this.elem.nativeElement.parentElement;
-    while (parent != null && !parent.ngClass) {
-      parent = parent.parentElement;
-    }
-    console.log('TT', 'SSO.Page', 'parent: ', parent);
-  }
-
 
   ngAfterViewInit(): void {
-    console.log('TT', 'SSO.Page', 'ngAfterViewInit');
     this.mountElement<SSOPageProps>('SSO.Page', SSO.Page, {
       rootPath: this.rootPath ?? this.findActiveRoute(this.route),
     });

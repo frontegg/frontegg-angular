@@ -17,8 +17,7 @@ export class TeamPageComponent extends FronteggBaseComponent implements AfterVie
   }
 
   ngAfterViewInit(): void {
-    console.log('happend')
-    this.mountElement<TeamPageProps>(Team.Page, {
+    this.mountElement<TeamPageProps>('Team.Page', Team.Page, {
       rootPath: this.rootPath ?? this.findActiveRoute(this.route),
     });
   }

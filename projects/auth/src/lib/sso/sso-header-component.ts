@@ -8,7 +8,7 @@ import { PageHeaderProps } from '@frontegg/react-core';
   selector: 'fe-auth-sso-header',
   template: ``,
 })
-export class SsoHeaderComponent extends FronteggBaseComponent implements OnInit, AfterViewInit {
+export class SsoHeaderComponent extends FronteggBaseComponent implements  AfterViewInit {
   @Input() className: string;
   @Input() title: string;
   @Input() titleClassName: string;
@@ -18,19 +18,8 @@ export class SsoHeaderComponent extends FronteggBaseComponent implements OnInit,
 
   constructor(protected elem: ElementRef) {
     super(elem);
-    console.log('TT', 'SSO.Header', 'constructor');
+    this.name = 'SSO.Header';
   }
-
-  ngOnInit(): void {
-    console.log('TT', 'SSO.Header', 'ngInit');
-    let parent = this.elem.nativeElement.parentElement;
-    while (parent != null && !parent.ngClass) {
-      parent = parent.parentElement;
-    }
-    parent.ngClass.registerChild(this);
-    console.log('TT', 'SSO.Header', 'parent: ', parent.ngClass.cc);
-  }
-
 
   ngAfterViewInit(): void {
     console.log('TT', 'SSO.Header', 'ngAfterViewInit');
