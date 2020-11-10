@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SsoPageComponent, SsoHeaderComponent, SsoRouterComponent, SsoToggleComponent } from './sso';
 import { ProfileComponent } from './profile';
+import { TeamHeaderComponent, TeamPageComponent } from './team';
 
 
 const components = [
@@ -11,6 +12,10 @@ const components = [
   SsoHeaderComponent,
   SsoRouterComponent,
   SsoToggleComponent,
+
+  // team
+  TeamHeaderComponent,
+  TeamPageComponent
 ];
 
 @NgModule({
