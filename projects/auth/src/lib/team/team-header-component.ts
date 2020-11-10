@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { Team } from '@frontegg/react-auth';
 import { FronteggBaseComponent } from '@frontegg/ng-core';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'fe-auth-team-header',

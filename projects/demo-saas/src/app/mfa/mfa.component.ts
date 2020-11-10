@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './mfa.component.html',
 })
 export class MfaComponent implements OnInit {
+  title: string = 'Multi-factor Authentication';
 
   constructor() { }
 

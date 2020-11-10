@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { Profile } from '@frontegg/react-auth';
 import { FronteggBaseComponent } from '@frontegg/ng-core';
 import { ActivatedRoute } from '@angular/router';
