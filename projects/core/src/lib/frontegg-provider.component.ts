@@ -33,9 +33,12 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
     pl._history.createHref = (e) => e.pathname;
     pl._history.push = (path, data) => {
       console.log('push', path);
-      this.router.navigate([path], { state: data, replaceUrl: false });
+      this.router.navigate([typeof path === 'string' ? path : path.pathname], { state: data, replaceUrl: false });
     };
     pl._history.replace = (path, data) => {
+      if (typeof path !== 'string') {
+        return;
+      }
       console.log('replace', path, pl);
       this.router.navigate([path], { state: data, replaceUrl: true });
     };
@@ -47,6 +50,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        console.log('subscribe', pl.location);
         this.routeListeners.forEach(l => l(pl.location));
       }
     });
@@ -67,10 +71,6 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
     this.mountElement<FeProviderProps>(FronteggProvider, {
       _history: pl._history,
       plugins: [AuthPlugin()],
-      onRedirectTo: path => {
-        console.log('onRedirectTo', path);
-        // this.router.navigate([path], { replaceUrl: false });
-      },
       uiLibrary,
       debugMode: true,
       storeMiddlewares: [middleware],
