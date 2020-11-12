@@ -63,7 +63,7 @@ to align it with your App UI design.
 
 **Advanced Customizations**
 
-- [`Login Component`](src/Login/README.md)
+- [`Login Component`](src/login/README.md)
 
 ### `header <Component>`
 

@@ -6,9 +6,15 @@ import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
 import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 import { SsoComponent } from './sso/sso.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  {
+    path: 'login', children: [{
+      path: '**', component: LoginComponent,
+    }],
+  },
   {
     path: 'team', children: [{
       path: '**', component: TeamComponent,

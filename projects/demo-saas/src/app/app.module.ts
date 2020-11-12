@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { SsoModule } from './sso/sso.module';
 import { NavComponent } from './nav/nav.component';
 import { MfaModule } from './mfa/mfa.module';
+import { LoginModule } from './login/login.module';
 
 declare global {
   type JSX = any;
@@ -22,6 +23,7 @@ declare global {
     NavComponent,
   ],
   imports: [
+    LoginModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,
