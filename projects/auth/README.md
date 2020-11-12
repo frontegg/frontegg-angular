@@ -67,7 +67,7 @@ to align it with your App UI design.
 
 ### `header <Component>`
 
-*(optional)* Ng Component uses to customize your authentication page header
+*(optional)* The Ng Component is used to customize your authentication page header
 ```ts
 {
   plugins: [
@@ -80,7 +80,7 @@ to align it with your App UI design.
 ```
 ### `backgroundImage <string>`
 
-*(optional)* CSS Color uses to for authentication page background color
+*(optional)* The CSS Color is used to for authentication page background color
 ```ts
 {
   plugins: [
@@ -94,7 +94,7 @@ to align it with your App UI design.
 
 ### `backgroundColor <CSSColor>`
 
-*(optional)* CSS Color uses to for authentication page background color
+*(optional)* The CSS Color is used to for authentication page background color
 ```ts
 {
   plugins: [
@@ -108,7 +108,7 @@ to align it with your App UI design.
 
 ### `loaderComponent <Component>`
 
-*(optional)* Angular Component displayed in the first load while resolving the verifying the authenticated user, refreshing the token, 
+*(optional)* The Ng Component displayed on first load while resolving the verifying the authenticated user, refreshing the token, 
 and to check if the user should be redirected to the login page. 
 ```ts
 {
@@ -123,41 +123,41 @@ and to check if the user should be redirected to the login page.
 
 ### `routes <string[]>`
 
-*(optional)* Path routes for the Authentication Components, these pathes use to redirect
-the user to a specific route depends on authentication state. 
+*(optional)* The path routes for the Authentication Components, these pathes are used to redirect
+an user to a specific route depends on the authentication state. 
 ```ts
 {
-  plugins: [
-   AuthPlugin.forRoot({
+  const plugins = [
+    AuthPlugin({
       routes: {
         /**
-         * the page whither need to redirect in the case when a user is authenticated 
+         * redirect to the page when a user is authenticated 
          */
         authenticatedUrl: '/',
         /**
-         * the page whither need to redirect in the case when a user is not authenticated 
+         * redirect to the page when a user is not authenticated 
          */      
         loginUrl: '/account/login',
         /**
-         * navigating to this url, AuthProvider will logout and remove cookies 
+         * when navigating to this url, AuthProvider will logout and remove cookies 
          */
         logoutUrl: '/account/logout',
         /**
-         * the page whither need to redirect in the case when a user wants to activate its account 
+         * redirect to the page when a user wants to activate their account 
          */
         activateUrl: '/account/activate',
         /**
-         * the page in the case when a user forgot its account password 
+         * redirect to the page when a user forgot his account password 
          */
         forgetPasswordUrl: '/account/forgot/password',
         /**
-         * the page whither need to redirect in the case when a user redirected from reset password url 
+         * redirect to the page when a user is redirected from the forgot password url 
          */
         resetPasswordUrl: '/account/reset/password',
       },  
-      // ...rest options
-   })
-  ]
+      //...rest options
+    })
+  ];
 }
 ```
 

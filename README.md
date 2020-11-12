@@ -84,10 +84,10 @@ export class AppModule {}
 </frontegg-provider>
 ```
 
-`context` property is used:
+`context` property is uses:
 
 - Communication Settings
-- Theme customization
+- Theme Customization
 - Component Configurations
 
 ```ts
@@ -105,7 +105,7 @@ interface ContextOptions {
 
 ## Plugins
 
-**Frontegg-Angular** provide components per plugins for faster and simpler integration
+**Frontegg-Angular** provides components per plugins for faster and simpler integration
 
 - [Authentication Plugin](projects/auth)
 - [Audits Plugin](projects/audits)
@@ -116,7 +116,7 @@ interface ContextOptions {
 
 ## Contributing
 
-The main purpose of this repository is to continue developing Frontegg React to making it faster and easier to use.
+The main purpose of this repository is to continue developing Frontend React to make it faster and easier to use.
 Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process.
 
 **Notice** that contributions go far beyond pull requests and commits.

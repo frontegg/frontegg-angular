@@ -10,10 +10,10 @@ Each Auth Component export two types of component.
 ## Usage
 
 ```ts
-import {LoginComponent} from '@frontegg/ng-auth'
+import { LoginComponent } from "@frontegg/ng-auth";
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: "login", component: LoginComponent },
   // ...rest routes
-}
+];
 ```
