@@ -22,7 +22,6 @@ using **NPX**:
 /* Run Frontegg Angular installer */
 
 npx @frontegg/ng-cli init
-
 ```
 
 ## Manual Installation
@@ -60,8 +59,8 @@ import { CoreModule } from "@frontegg/ng-core";
   declarations: [AppComponent],
   imports: [
     CoreModule.forRoot({
-      options: {
-        baseUrl: `${window.location.protocol}//${host}`,
+      context: {
+        baseUrl: `${window.location.protocol}/${host}`,
         requestCredentials: "include",
       },
       plugins: [],
@@ -80,7 +79,7 @@ export class AppModule {}
 ```html
 /* app.component.html file */
 
-<frontegg-provider [context]="context">
+<frontegg-provider>
   <app-component></app-component>
 </frontegg-provider>
 ```
@@ -90,6 +89,17 @@ export class AppModule {}
 - Communication Settings
 - Theme customization
 - Component Configurations
+
+```ts
+  interface ContextOptions {
+    baseUrl: string; // required
+    urlPrefix?: string;
+    requestCredentials?: RequestCredentials;
+    tokenResolver?: () => Promise<string> | string;
+    additionalHeadersResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
+    additionalQueryParamsResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
+  }
+```
 
 ## Plugins
 

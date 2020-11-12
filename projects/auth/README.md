@@ -37,8 +37,8 @@ import { AuthModule } from '@frontegg/ng-auth';
   declarations: [AppComponent],
   imports: [
     CoreModule.forRoot({
-      options: {
-        baseUrl: `${window.location.protocol}//${host}`,
+      context: {
+        baseUrl: `${window.location.protocol}/${host}`,
         requestCredentials: "include",
       },
       plugins: [AuthModule],
@@ -61,9 +61,9 @@ to align it with your App UI design.
 - [`loaderComponent`](#loadercomponent-ngcomponent) `<Component>`
 - [`routes`](#routes-string) `<string[]>`
 
-<!-- **Advanced Customizations**
+**Advanced Customizations**
 
-- [`Login Component`](src/Login/README.md) ????????????????? -->
+- [`Login Component`](src/Login/README.md)
 
 ### `header <Component>`
 
