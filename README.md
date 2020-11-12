@@ -97,9 +97,7 @@ interface ContextOptions {
   requestCredentials?: RequestCredentials;
   tokenResolver?: () => Promise<string> | string;
   additionalHeadersResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
-  additionalQueryParamsResolver?: () =>
-    | Promise<KeyValuePair[]>
-    | KeyValuePair[];
+  additionalQueryParamsResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
 }
 ```
 
