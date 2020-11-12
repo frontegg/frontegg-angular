@@ -14,7 +14,7 @@
 
 Frontegg-Angular is available as an [npm package](https://www.npmjs.com/package/@frontegg/ng-core).
 
-<font color='red'>**NOTE!**:</font> **For typescript project make sure your are using typescirpt with version > 3.9.0**
+<font color='red'>**NOTE!**:</font> **For typescript project make sure you are using typescript with version > 3.9.0**
 
 using **NPX**:
 
@@ -91,14 +91,16 @@ export class AppModule {}
 - Component Configurations
 
 ```ts
-  interface ContextOptions {
-    baseUrl: string; // required
-    urlPrefix?: string;
-    requestCredentials?: RequestCredentials;
-    tokenResolver?: () => Promise<string> | string;
-    additionalHeadersResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
-    additionalQueryParamsResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
-  }
+interface ContextOptions {
+  baseUrl: string; // required
+  urlPrefix?: string;
+  requestCredentials?: RequestCredentials;
+  tokenResolver?: () => Promise<string> | string;
+  additionalHeadersResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
+  additionalQueryParamsResolver?: () =>
+    | Promise<KeyValuePair[]>
+    | KeyValuePair[];
+}
 ```
 
 ## Plugins

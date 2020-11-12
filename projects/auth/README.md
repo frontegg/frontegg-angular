@@ -67,7 +67,7 @@ to align it with your App UI design.
 
 ### `header <Component>`
 
-*(optional)* Ng Component used to customize your authentication page header
+*(optional)* Ng Component uses to customize your authentication page header
 ```ts
 {
   plugins: [
@@ -80,7 +80,7 @@ to align it with your App UI design.
 ```
 ### `backgroundImage <string>`
 
-*(optional)* CSS Color used to for authentication page background color
+*(optional)* CSS Color uses to for authentication page background color
 ```ts
 {
   plugins: [
@@ -94,7 +94,7 @@ to align it with your App UI design.
 
 ### `backgroundColor <CSSColor>`
 
-*(optional)* CSS Color used to for authentication page background color
+*(optional)* CSS Color uses to for authentication page background color
 ```ts
 {
   plugins: [
@@ -108,8 +108,8 @@ to align it with your App UI design.
 
 ### `loaderComponent <Component>`
 
-*(optional)* React Component displayed in first load while resolving the verifying the authenticated user, refreshing the token, 
-and to check if the user should be redirected to login page. 
+*(optional)* Angular Component displayed in the first load while resolving the verifying the authenticated user, refreshing the token, 
+and to check if the user should be redirected to the login page. 
 ```ts
 {
   plugins: [
@@ -123,7 +123,7 @@ and to check if the user should be redirected to login page.
 
 ### `routes <string[]>`
 
-*(optional)* Path routes for Authentication Components, these pathes used to redirect
+*(optional)* Path routes for the Authentication Components, these pathes use to redirect
 the user to a specific route depends on authentication state. 
 ```ts
 {
@@ -139,15 +139,15 @@ the user to a specific route depends on authentication state.
          */      
         loginUrl: '/account/login',
         /**
-         * navigating to this url, AuthProvider will logout and remove coockies 
+         * navigating to this url, AuthProvider will logout and remove cookies 
          */
         logoutUrl: '/account/logout',
         /**
-         * the page whither need to redirect in the case when a user want to activate his account 
+         * the page whither need to redirect in the case when a user wants to activate its account 
          */
         activateUrl: '/account/activate',
         /**
-         * the page in the case a user forgot his account password 
+         * the page in the case when a user forgot its account password 
          */
         forgetPasswordUrl: '/account/forgot/password',
         /**
