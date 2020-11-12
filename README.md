@@ -31,7 +31,6 @@ using **YARN**:
 
 ```
 /* install frontegg-core */
-
 yarn add @frontegg/ng-core
 
 yarn add @frontegg/ng-{plugin-name}

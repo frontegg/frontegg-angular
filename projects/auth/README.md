@@ -86,7 +86,7 @@ to align it with your App UI design.
   plugins: [
    AuthPlugin.forRoot({
     backgroundImage: 'https://image_url' | 'data:image/png;base64,...',  
-    //...rest options
+    // ...rest options
    })
   ]
 }
@@ -115,7 +115,7 @@ and to check if the user should be redirected to login page.
   plugins: [
    AuthPlugin.forRoot({
     loaderComponent: <MyLoaderComponent>,  
-    //...rest options
+    // ...rest options
    })
   ]
 }
