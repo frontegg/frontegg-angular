@@ -67,7 +67,7 @@ import { CoreModule } from "@frontegg/ng-core";
       },
       plugins: [],
     }),
-    // ...other modules
+    // ...rest modules
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -79,7 +79,7 @@ export class AppModule {}
 3. Add to frontegg-provider context property.
 
 ```html
-/* app.module.ts file */
+/* app.component.html file */
 
 <frontegg-provider [context]="context">
   <app-component></app-component>

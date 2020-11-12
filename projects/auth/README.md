@@ -43,7 +43,7 @@ import { AuthModule } from '@frontegg/ng-auth';
       },
       plugins: [AuthModule],
     }),
-    // ...other modules
+    // ...rest modules
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -73,7 +73,7 @@ to align it with your App UI design.
   plugins: [
    AuthPlugin.forRoot({
     header: MyAuthPageHeader,
-    //...rest options
+    // ...rest options
    })
   ]
 }
@@ -100,7 +100,7 @@ to align it with your App UI design.
   plugins: [
    AuthPlugin.forRoot({
     backgroundColor: '#FAFAFA' | 'red' | 'rgb(200,200,200)',
-    //...rest options
+    // ...rest options
    })
   ]
 }
@@ -155,7 +155,7 @@ the user to a specific route depends on authentication state.
          */
         resetPasswordUrl: '/account/reset/password',
       },  
-    //...rest options
+      // ...rest options
    })
   ]
 }
