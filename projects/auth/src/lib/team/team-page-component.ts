@@ -14,6 +14,7 @@ export class TeamPageComponent extends FronteggBaseComponent implements AfterVie
 
   constructor(protected elem: ElementRef, private route: ActivatedRoute) {
     super(elem);
+    this.name = 'Team.Page';
   }
 
   ngAfterViewInit(): void {

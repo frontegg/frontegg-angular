@@ -14,6 +14,6 @@ export class MfaComponent extends FronteggBaseComponent implements AfterViewInit
   }
 
   ngAfterViewInit(): void {
-    this.mountElement(Profile.MfaPage);
+    this.mountElement('Profile.MfaPage', Profile.MfaPage);
   }
 }

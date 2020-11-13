@@ -3,6 +3,7 @@ import { SsoPageComponent, SsoHeaderComponent, SsoRouterComponent, SsoToggleComp
 import { ProfileComponent } from './profile';
 import { TeamHeaderComponent, TeamPageComponent } from './team';
 import { MfaComponent } from './mfa';
+import { AuthService } from './auth.service';
 
 const components = [
   ProfileComponent,
@@ -16,15 +17,20 @@ const components = [
   // team
   TeamHeaderComponent,
   TeamPageComponent,
-  
-  //mfa
-  MfaComponent
+
+  // mfa
+  MfaComponent,
 ];
 
 @NgModule({
-  declarations: components,
   imports: [],
-  exports: components,
+  declarations: components,
+  providers: [
+    AuthService,
+  ],
+  exports: [
+    ...components,
+  ],
 })
 export class AuthModule {
 }

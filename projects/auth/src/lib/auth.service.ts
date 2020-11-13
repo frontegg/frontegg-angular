@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import { CoreService } from '@frontegg/ng-core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private codeService: CoreService) {
+
+    debugger;
+  }
 }
