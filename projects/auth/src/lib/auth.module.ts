@@ -4,6 +4,7 @@ import { ProfileComponent } from './profile';
 import { LoginComponent } from './login';
 import { TeamHeaderComponent, TeamPageComponent } from './team';
 import { SsoPageComponent, SsoHeaderComponent, SsoRouterComponent, SsoToggleComponent } from './sso';
+import { AuthService } from './auth.service';
 
 const components = [
   ProfileComponent,
@@ -23,12 +24,18 @@ const components = [
 
   //login
   LoginComponent
+
 ];
 
 @NgModule({
-  declarations: components,
   imports: [],
-  exports: components,
+  declarations: components,
+  providers: [
+    AuthService,
+  ],
+  exports: [
+    ...components,
+  ],
 })
 export class AuthModule {
 }

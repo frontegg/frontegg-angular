@@ -1296,10 +1296,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@frontegg/react-auth@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-auth/-/react-auth-1.4.0.tgz#3058e06c63582f34443aeace80101f9077938034"
-  integrity sha512-NUPg6jP+2J1f42gMAVufdx3uCSHtCR/F5x5ztgyoEwM1TOejQg6RXYBV6JbDTu3vvIOQmvLsqd07xGzv+FBeqw==
+"@frontegg/react-auth@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-auth/-/react-auth-1.6.0.tgz#69bc3b6954245545011969d0577f5c538bbc719a"
+  integrity sha512-E2iRVp8WY/RwV3e/SuyVTNbJ9xTRSS1H3mHZCcsdXcV9c8dBDOqOijS7fMZIar4NJfhk1sujCzcB1f0IbMnO5w==
   dependencies:
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
@@ -1307,12 +1307,12 @@
     react-dropzone "^9.0.0"
     redux-saga "^1.1.3"
 
-"@frontegg/react-core@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-core/-/react-core-1.4.0.tgz#e0fd7b4de276140a1faff67e137963d9f6b0e623"
-  integrity sha512-ocTNhG1EsH56NB5d75GwWBxQPrp+1LPehkdWG1LQLMDNj9zmxca82xwLAhqIC7dIzdNXKECRpAB5dwCSRfS8Wg==
+"@frontegg/react-core@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-core/-/react-core-1.6.0.tgz#a97d1b39f15bd1c072a442dca2dd0fc0f2df9210"
+  integrity sha512-JMWPjoujGKCppwT+/2wZtKPr4itCxdYc52K+PgFGRSEWZIc5EKlgT/BnOw1Gd0UxbaOOXCMv8/eSt5eKmS0jjQ==
   dependencies:
-    "@frontegg/rest-api" "^1.4.0"
+    "@frontegg/rest-api" "^1.6.0"
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
     formik "^2.1.5"
@@ -1330,19 +1330,19 @@
     underscore "^1.10.2"
     yup "^0.28.3"
 
-"@frontegg/react-elements-material-ui@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-elements-material-ui/-/react-elements-material-ui-1.4.0.tgz#6e966ca626afb87c009f14ff71a2ae5973f5c39c"
-  integrity sha512-7/ZcMIp+Q/CJWHvLDZPhtliI5dT4JZ/6GYrWEJ4ovZ843QuO3emhoDBlyP4X0wH+Y0rPIH0/Bmj9iKdCbZk8gg==
+"@frontegg/react-elements-material-ui@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-elements-material-ui/-/react-elements-material-ui-1.6.0.tgz#e2c6a1213e6ef78dd413ffafd227c23e58332356"
+  integrity sha512-SILARBiw1aX+SfmW+vhxNN6bz+ZpW16xJ62vROb3qI0xuDo4XNxhtk+2xgnfHT8qVfFdqqTNojdioeF5B1Dsvg==
   dependencies:
     classnames "^2.2.6"
     react-popper-tooltip "^3.1.0"
     underscore "^1.10.2"
 
-"@frontegg/rest-api@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-1.4.0.tgz#f85934381bbb76c2b635289182c3a357c708a694"
-  integrity sha512-IF8h8Pqngf8rwuYuKTVVpHRP/vqM/wyxtpAVnSlHGngUBrIzQKUlgihiiqPNKh7lybjhaSBq8kQi47iOvJc2QA==
+"@frontegg/rest-api@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-1.6.0.tgz#4b1535744906242e84a6a908dd2368ad2b080054"
+  integrity sha512-7k9cy6lScK29uibIw+ngW41ZnOa9hxn/SG8UJ0Ym/NG5bLvDjtg4uagWhoGm+I4GW9CotuS1W43n1HBFHxCNAw==
   dependencies:
     jwt-decode "2.2.0"
 

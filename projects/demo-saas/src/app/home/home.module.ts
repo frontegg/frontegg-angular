@@ -24,4 +24,5 @@ import { Test2Component } from './test2.component';
   ],
 })
 export class HomeModule {
+
 }

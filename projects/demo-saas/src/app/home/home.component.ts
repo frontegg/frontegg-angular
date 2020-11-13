@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthUserObservable, isAuthenticatedObservable } from '@frontegg/ng-auth';
+import { AuthService, AuthUserObservable, isAuthenticatedObservable } from '@frontegg/ng-auth';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +9,14 @@ export class HomeComponent implements OnInit {
   title = 'demo-saas';
   user = null;
 
+  constructor(private authService: AuthService) {
+    console.log('test');
+    debugger;
+  }
+
 
   ngOnInit(): void {
+    debugger;
     // AuthUserObservable().subscribe(user => {
     //   console.log('AuthUserObservable', user);
     //   this.user = user;

@@ -27,7 +27,12 @@ declare global {
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    CoreModule,
+    CoreModule.forRoot({
+      context: {
+        baseUrl: 'jjjh',
+      },
+      plugins: [],
+    }),
     HomeModule,
     TeamModule,
     SsoModule,
