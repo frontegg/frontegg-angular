@@ -74,7 +74,6 @@ export class AppModule {}
 ```
 
 2. Wrapp your app in `frontegg-provider` selector in `app.component.html`.
-3. Add to frontegg-provider context property.
 
 ```html
 /* app.component.html file */
@@ -84,14 +83,14 @@ export class AppModule {}
 </frontegg-provider>
 ```
 
-`context` property is uses:
+`context` property uses:
 
 - Communication Settings
 - Theme Customization
 - Component Configurations
 
 ```ts
-interface ContextOptions {
+interface context {
   baseUrl: string; // required
   urlPrefix?: string;
   requestCredentials?: RequestCredentials;
