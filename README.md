@@ -113,7 +113,7 @@ interface context {
 
 ## Contributing
 
-The main purpose of this repository is to continue developing Frontend React to make it faster and easier to use.
+The main purpose of this repository is to continue developing Frontend Angular to make it faster and easier to use.
 Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process.
 
 **Notice** that contributions go far beyond pull requests and commits.
