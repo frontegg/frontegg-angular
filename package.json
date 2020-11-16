@@ -7,10 +7,10 @@
   ],
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --project=demo-saas --port 3000",
-    "start-prod": "ng serve --prod=true --project=demo-saas --port 3000",
-    "build": "ng build --project=demo-saas",
-    "build-prod": "ng build --prod=true --project=demo-saas"
+    "start": "ng serve --project=demo-saas2 --port 3000",
+    "start-prod": "ng serve --prod=true --project=demo-saas2 --port 3000",
+    "build": "ng build --project=demo-saas2",
+    "build-prod": "ng build --prod=true --project=demo-saas2"
   },
   "dependencies": {
     "@frontegg/react-auth": "1.6.0",
