@@ -127,8 +127,8 @@ and to check if the user should be redirected to the login page.
 an user to a specific route depends on the authentication state. 
 ```ts
 {
-  const plugins = [
-    AuthPlugin({
+  plugins: [
+    AuthPlugin.forRoot({
       routes: {
         /**
          * redirect to the page when a user is authenticated 
