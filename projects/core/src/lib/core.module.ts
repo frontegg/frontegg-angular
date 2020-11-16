@@ -6,6 +6,7 @@ import { FronteggBaseComponent } from './frontegg-base.component';
 import { CommonModule } from '@angular/common';
 import { FeProviderProps } from '@frontegg/react-core';
 import { FE_PROFIVER_CONFIG } from './constants';
+import { FronteggGuard } from './frontegg.guard';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FE_PROFIVER_CONFIG } from './constants';
   ],
   providers: [
     CoreModule,
+    FronteggGuard
   ],
   exports: [
     FronteggProviderComponent,

@@ -3,12 +3,10 @@ import {
   Component,
   ElementRef, Inject,
 } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
 import { FronteggProvider, FeProviderProps, DOMProxy } from '@frontegg/react-core';
-import { AuthPlugin } from '@frontegg/react-auth';
 import { uiLibrary } from '@frontegg/react-elements-material-ui';
-import { ContextHolder } from '@frontegg/rest-api';
 import { FE_PROFIVER_CONFIG } from './constants';
 import { CoreService } from './core.service';
 
@@ -24,7 +22,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
   constructor(elem: ElementRef,
               private router: Router,
               private coreService: CoreService,
-              @Inject(FE_PROFIVER_CONFIG) config: FeProviderProps) {
+              @Inject(FE_PROFIVER_CONFIG) private config: FeProviderProps) {
     super(elem);
     this.name = 'FronteggProvider';
   }
@@ -63,22 +61,17 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
 
     const middleware = store => next => action => {
       next(action);
-      this.coreService.updateState(store.getState(), action);
+      this.coreService.setState(store.getState(), action);
     };
 
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       // _history: pl._history,
-      plugins: [AuthPlugin()],
       uiLibrary,
       debugMode: true,
       storeMiddlewares: [middleware],
-      context: {
-        baseUrl: `http://localhost:8080`,
-        requestCredentials: 'include',
-      },
+      context: this.config.context,
+      plugins: this.config.plugins,
     });
-
-    (window as any).context = ContextHolder;
   }
 
 }

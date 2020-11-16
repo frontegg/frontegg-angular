@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { SsoModule } from './sso/sso.module';
 import { NavComponent } from './nav/nav.component';
 import { MfaModule } from './mfa/mfa.module';
+import { AuthPlugin } from '@frontegg/react-auth';
 
 declare global {
   type JSX = any;
@@ -27,9 +28,10 @@ declare global {
     AppRoutingModule,
     CoreModule.forRoot({
       context: {
-        baseUrl: 'jjjh',
+        baseUrl: `http://localhost:8080`,
+        requestCredentials: 'include',
       },
-      plugins: [],
+      plugins: [AuthPlugin()],
     }),
     HomeModule,
     TeamModule,
