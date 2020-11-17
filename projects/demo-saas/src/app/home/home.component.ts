@@ -10,8 +10,7 @@ export class HomeComponent implements OnInit {
   user = null;
 
   constructor(private authService: AuthService) {
-    console.log('test');
-    debugger;
+    // authService.isAuthenticated
   }
 
 

@@ -41,7 +41,6 @@ import { AuthModule } from '@frontegg/ng-auth';
         baseUrl: `${window.location.protocol}/${host}`,
         requestCredentials: "include",
       },
-      plugins: [AuthModule],
     }),
     // ...rest modules
   ],
@@ -50,6 +49,13 @@ import { AuthModule } from '@frontegg/ng-auth';
 })
 export class AppModule {}
 ```
+
+## Auth Components
+
+- [Sso Component](projects/auth/src/lib/sso)
+- [Team Management Component](projects/auth/src/lib/team)
+- [Mfa Component](projects/auth/src/lib/mfa)
+- [Profile Component](projects/auth/src/lib/profile)
 
 ## Options and Customizations
 **Frontegg-Ng-Auth** provide the ability to fully customize your components 
@@ -70,7 +76,7 @@ to align it with your App UI design.
 *(optional)* The Ng Component is used to customize your authentication page header
 ```ts
 {
-  plugins: [
+  imports: [
    AuthPlugin.forRoot({
     header: MyAuthPageHeader,
     // ...rest options
@@ -78,12 +84,13 @@ to align it with your App UI design.
   ]
 }
 ```
+
 ### `backgroundImage <string>`
 
 *(optional)* The CSS Color is used to for authentication page background color
 ```ts
 {
-  plugins: [
+  imports: [
    AuthPlugin.forRoot({
     backgroundImage: 'https://image_url' | 'data:image/png;base64,...',  
     // ...rest options
@@ -97,7 +104,7 @@ to align it with your App UI design.
 *(optional)* The CSS Color is used to for authentication page background color
 ```ts
 {
-  plugins: [
+  imports: [
    AuthPlugin.forRoot({
     backgroundColor: '#FAFAFA' | 'red' | 'rgb(200,200,200)',
     // ...rest options
@@ -112,7 +119,7 @@ to align it with your App UI design.
 and to check if the user should be redirected to the login page. 
 ```ts
 {
-  plugins: [
+  imports: [
    AuthPlugin.forRoot({
     loaderComponent: <MyLoaderComponent>,  
     // ...rest options
@@ -127,7 +134,7 @@ and to check if the user should be redirected to the login page.
 an user to a specific route depends on the authentication state. 
 ```ts
 {
-  plugins: [
+  imports: [
     AuthPlugin.forRoot({
       routes: {
         /**

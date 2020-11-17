@@ -1,22 +1,17 @@
-// import { AuthPlugin } from '@frontegg/ng-auth';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { AuthModule } from '@frontegg/ng-auth';
+import { CoreModule } from '@frontegg/ng-core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoreModule } from '@frontegg/ng-core';
-// import { HomeModule } from './home/home.module';
-// import { TeamModule } from './team/team.module';
-// import { CommonModule } from '@angular/common';
-// import { SsoModule } from './sso/sso.module';
+import { HomeModule } from './home/home.module';
+import { TeamModule } from './team/team.module';
+import { SsoModule } from './sso/sso.module';
 import { NavComponent } from './nav/nav.component';
-// import { MfaModule } from './mfa/mfa.module';
-// import { LoginModule } from './login/login.module';
-
-declare global {
-  // type JSX = any;
-}
-
+import { MfaModule } from './mfa/mfa.module';
+import { AuthPlugin } from '@frontegg/react-auth';
 
 @NgModule({
   declarations: [
@@ -24,20 +19,21 @@ declare global {
     NavComponent,
   ],
   imports: [
-    // LoginModule,
-    // CommonModule,
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule.forRoot({
       context: {
-        baseUrl: 'jjjh',
+        baseUrl: `http://localhost:8080`,
+        requestCredentials: 'include',
       },
-      plugins: [],
+      plugins: [AuthPlugin()],
     }),
-    // HomeModule,
-    // TeamModule,
-    // SsoModule,
-    // MfaModule,
+    AuthModule,
+    SsoModule,
+    MfaModule,
+    HomeModule,
+    TeamModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -13,7 +13,21 @@ Each Auth Component export two types of component.
 import { LoginComponent } from "@frontegg/ng-auth";
 
 const routes: Routes = [
-  { path: "login", component: LoginComponent },
+  {
+    path: "",
+    canActivate: [FronteggGuard],
+    children: [
+      {
+        path: "login",
+        children: [
+          {
+            path: "**",
+            component: LoginComponent,
+          },
+        ],
+      },
+    ],
+  },
   // ...rest routes
 ];
 ```
