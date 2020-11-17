@@ -1,7 +1,7 @@
-import { Inject, Injectable } from '@angular/core';
-import { FE_PROFIVER_CONFIG, FronteggStoreEvent } from './constants';
+import { Inject, Injectable, Optional } from '@angular/core';
+import { FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG, FronteggStoreEvent } from './constants';
 import { FronteggService } from './FronteggService';
-import { FeProviderProps } from '@frontegg/react-core';
+import { FeProviderProps, PluginConfig } from '@frontegg/react-core';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -13,13 +13,16 @@ export class CoreService implements FronteggService {
   public loaded = false;
   public state: any;
   public actions: any;
-  public services: { [key in string]: FronteggService | null };
+  public services: { [key in string]: FronteggService | null } = {};
 
 
-  constructor(@Inject(FE_PROFIVER_CONFIG) private config: FeProviderProps) {
+  constructor(@Inject(FE_PROVIDER_CONFIG) private config: Omit<FeProviderProps, 'plugins'>,
+              @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig) {
     // store registered plugins to check when its loaded
-    this.services = this.config.plugins.reduce((p, n) => ({ ...p, [n.storeName]: null }), {});
 
+    if (authPlugin) {
+      this.services[authPlugin.storeName] = null;
+    }
     (window as any).coreService = this;
   }
 
@@ -40,6 +43,7 @@ export class CoreService implements FronteggService {
 
   public registerService(key: string, service: any): void {
     this.services[key] = service;
+    this.checkLoadedServices();
   }
 
   private checkLoadedServices(): void {

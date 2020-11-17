@@ -6,10 +6,19 @@ import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
 import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 import { FronteggGuard } from '@frontegg/ng-core';
+import { PageWrapperModule } from './page-wrapper/page-wrapper.module';
+import { PageWrapperComponent } from './page-wrapper/page-wrapper.component';
 
+// 1. all services is loaded
+// 2. all saga actions inserted
+// 3. plugin state updated from react
+// 4. isLoading || if we are in auth-components -> prevent gaurd
 const routes: Routes = [
   {
-    path: '', canActivate: [FronteggGuard], children: [
+    path: '',
+    canActivate: [FronteggGuard],
+    component: PageWrapperComponent,
+    children: [
       { path: '', component: HomeComponent },
       {
         path: 'team', children: [{
@@ -40,7 +49,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

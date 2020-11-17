@@ -1,13 +1,13 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef, Inject,
+  ElementRef, Inject, Optional,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
-import { FronteggProvider, FeProviderProps, DOMProxy } from '@frontegg/react-core';
+import { FronteggProvider, FeProviderProps, DOMProxy, PluginConfig } from '@frontegg/react-core';
 import { uiLibrary } from '@frontegg/react-elements-material-ui';
-import { FE_PROFIVER_CONFIG } from './constants';
+import { FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG } from './constants';
 import { CoreService } from './core.service';
 
 @Component({
@@ -22,7 +22,8 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
   constructor(elem: ElementRef,
               private router: Router,
               private coreService: CoreService,
-              @Inject(FE_PROFIVER_CONFIG) private config: FeProviderProps) {
+              @Inject(FE_PROVIDER_CONFIG) private config: Omit<FeProviderProps, 'plugins'>,
+              @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig) {
     super(elem);
     this.name = 'FronteggProvider';
   }
@@ -64,13 +65,18 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       this.coreService.setState(store.getState(), action);
     };
 
+    const plugins = [];
+    if (this.authPlugin) {
+      plugins.push(this.authPlugin);
+    }
+    debugger;
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       // _history: pl._history,
       uiLibrary,
       debugMode: true,
       storeMiddlewares: [middleware],
       context: this.config.context,
-      plugins: this.config.plugins,
+      plugins,
     });
   }
 
