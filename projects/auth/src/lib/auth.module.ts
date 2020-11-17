@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { SsoPageComponent, SsoHeaderComponent, SsoRouterComponent, SsoToggleComponent } from './sso';
-import { ProfileComponent } from './profile';
-import { TeamHeaderComponent, TeamPageComponent } from './team';
 import { MfaComponent } from './mfa';
+import { ProfileComponent } from './profile';
+import { LoginComponent } from './login';
+import { TeamHeaderComponent, TeamPageComponent } from './team';
+import { SsoPageComponent, SsoHeaderComponent, SsoRouterComponent, SsoToggleComponent } from './sso';
 import { AuthService } from './auth.service';
 
 const components = [
@@ -17,9 +18,13 @@ const components = [
   // team
   TeamHeaderComponent,
   TeamPageComponent,
-
-  // mfa
+  
+  //mfa
   MfaComponent,
+
+  //login
+  LoginComponent
+
 ];
 
 @NgModule({

@@ -6,12 +6,11 @@ import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
 import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 import { SsoComponent } from './sso/sso.component';
-import { LoginComponent } from './login/login.component';
 import { FronteggGuard } from '@frontegg/ng-core';
 
 const routes: Routes = [
   {
-    path: '', canActivate: [FronteggGuard], children: [
+    path: '', canActivate: [], children: [
       { path: '', component: HomeComponent },
       {
         path: 'team', children: [{

@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+//@import url('~@frontegg/react-core/esm/index.css');
+//@import url('~@frontegg/react-auth/esm/index.css');
+//@import url('~@frontegg/react-elements-semantic/esm/index.css');
+//@import url('https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css');
+
+
+* {
+  box-sizing: border-box;
+}
+
+:root{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-width: 320px;
+  background: #fff;
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+  font-size: 14px;
+  line-height: 1.4285em;
+  color: rgba(0,0,0,.87);
+  font-smoothing: antialiased;
+  a {
+    color:inherit;
+    text-decoration: none;
+  }
+}
