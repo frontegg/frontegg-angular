@@ -1,43 +1,75 @@
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanActivateChild,
+  CanLoad,
+  Route,
+  RouterStateSnapshot,
+  UrlSegment,
+  UrlTree,
+} from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { CoreService } from './core.service';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable()
-export class FronteggGuard implements CanActivate, CanActivateChild {
+export class FronteggGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(private coreService: CoreService) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.coreService.loading$.pipe(tap((loading) => {
-
-      if (loading) {
-        return false;
-      } else {
-        try {
-          const ss = !state.url.startsWith('/account');
-          debugger;
-          return ss;
-        } catch (e) {
-          console.error(e);
-          debugger;
-          return true;
-        }
-      }
-    }, e => {
-      debugger;
-      console
-        .error(e);
-    }));
-    // return this.coreService.loading$;
+  canLoad(route: Route, segments: UrlSegment[]): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.coreService.loading$
+        .subscribe((value) => {
+          if (!value) {
+            debugger;
+            resolve(true);
+          }
+        });
+    });
   }
 
-  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-    Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const canAc = this.coreService.pluginLoaded
-    debugger;
-    return canAc;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    return new Promise((resolve) => {
+
+      this.coreService.loading$
+        .subscribe((value) => {
+          if (!value) {
+            debugger;
+            resolve(true);
+          }
+        });
+      // const subscription = this.coreService.loading$
+      //   .pipe(map(value => !value))
+      //   .subscribe(value => {
+      //     if (!value) {
+      //       resolve(true);
+      //       if (subscription && !subscription.closed) {
+      //         subscription.unsubscribe();
+      //       }
+      //     }
+      //   });
+    });
+  }
+
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.coreService.loading$
+        .subscribe((value) => {
+          if (!value) {
+            debugger;
+            resolve(true);
+          }
+        });
+      // .subscribe(value => {
+      //   if (!value) {
+      //     resolve(true);
+      //     if (subscription && !subscription.closed) {
+      //       subscription.unsubscribe();
+      //     }
+      //   }
+      // });
+    });
   }
 
 }

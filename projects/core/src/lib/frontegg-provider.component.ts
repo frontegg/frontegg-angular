@@ -22,7 +22,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
   routeListeners: any[] = [];
 
   constructor(elem: ElementRef,
-              // private ngZone: NgZone,
+              private ngZone: NgZone,
               private router: Router,
               public coreService: CoreService,
               @Inject(FE_PROVIDER_CONFIG) private config: Omit<FeProviderProps, 'plugins'>,
@@ -31,10 +31,9 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
     this.name = 'FronteggProvider';
   }
 
-  // navigateTo(url): void {
-  //   debugger
-  //   this.router.navigate([url]);
-  // }
+  navigateTo(url): void {
+    this.router.navigateByUrl(url);
+  }
 
   ngAfterViewInit(): void {
     // @ts-ignore
@@ -83,15 +82,14 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       debugMode: true,
       storeMiddlewares: [middleware],
       context: this.config.context,
-      // onRedirectTo: (path, opts) => {
-      //   debugger;
-      //   if (opts?.refresh) {
-      //     window.location.href = path;
-      //   } else {
-      //     debugger
-      //     // this.ngZone.run(() => this.navigateTo(path));
-      //   }
-      // },
+      onRedirectTo: (path, opts) => {
+        debugger;
+        if (opts?.refresh) {
+          window.location.href = path;
+        } else {
+          this.ngZone.run(() => this.navigateTo(path));
+        }
+      },
       plugins,
       _resolveActions: (key, actions) => this.coreService.setActions(key, actions),
     });

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ContextHolder } from '@frontegg/rest-api';
 import { CoreService } from '@frontegg/ng-core';
 import { AuthService } from '@frontegg/ng-auth';
 

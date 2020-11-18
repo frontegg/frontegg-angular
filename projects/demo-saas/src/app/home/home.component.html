@@ -1,8 +1,8 @@
 <div class="app-home-container">
   <h1>Home Page</h1>
 
-  <ng-container *ngIf="authService.isAuthenticated$ | async as isAuthenticated">
-    {{isAuthenticated ? 'SSS' : 'sss'}}
+  <ng-container *ngIf="authService.isAuthenticated$ | async">
+    Logged In user
   </ng-container>
 
 </div>

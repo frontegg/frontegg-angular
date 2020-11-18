@@ -16,6 +16,8 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   protected rcChildren: Set<FronteggBaseComponent>;
   public state: 'registered' | 'rendered' = null;
   protected name: string;
+  protected registered = false;
+
 
   constructor(protected elem: ElementRef) {
     this.elem.nativeElement.ngClass = this;
@@ -30,6 +32,7 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   protected findActiveRoute(route: ActivatedRoute): string {
     let snapshot = route.snapshot;
     let activated = route.firstChild;
+
     if (activated != null) {
       while (activated != null) {
         snapshot = activated.snapshot;
@@ -49,6 +52,7 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
 
   protected registerChild(child: FronteggBaseComponent): void {
     console.log(this.name, 'registerChild', child.name);
+    debugger;
     if (this.rcChildren.has(child)) {
       this.rcChildren.delete(child);
     }
@@ -56,9 +60,18 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   }
 
   protected registerComponent(): void {
+    const isProvider = this.name === 'FronteggProvider';
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
+    }
+    if (!isProvider && parent == null) {
+      setTimeout(() => this.registerComponent(), 400);
+      return;
+    }
+
+    if (!isProvider) {
+      this.registered = true;
     }
     parent?.ngClass?.registerChild?.(this);
   }
@@ -66,14 +79,14 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   protected mountElement<T = any>(name: string, component: any, otherProps?: T): void {
     console.log(this.name, 'mountElement');
     this.state = 'rendered';
-    const isProvider = component === FronteggProvider;
-
+    const isProvider = this.name === 'FronteggProvider';
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
     }
-    if (!isProvider && parent == null) {
-      setTimeout(() => this.mountElement(name, component, otherProps), 1000);
+    debugger;
+    if (!isProvider && (parent == null || !registered)) {
+      setTimeout(() => this.mountElement(name, component, otherProps), 400);
       return;
     }
 
@@ -97,6 +110,7 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   }
 
   public mountChild(): void {
+    debugger;
     let isAllChildrenRendered = true;
     const portalsToInject = [];
     this.rcChildren.forEach(rcChild => {

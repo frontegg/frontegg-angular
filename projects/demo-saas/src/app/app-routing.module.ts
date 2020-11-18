@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { TeamComponent } from './team/team.component';
 import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
-import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
+import { AuthService, ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 import { FronteggGuard } from '@frontegg/ng-core';
 
 // 1. all services is loaded
@@ -14,12 +14,14 @@ import { FronteggGuard } from '@frontegg/ng-core';
 const routes: Routes = [
   {
     path: '',
+    // canLoad: [FronteggGuard],
     canActivate: [FronteggGuard],
-    canActivateChild: [FronteggGuard],
+    // canActivateChild: [FronteggGuard],
     children: [
       { path: '', component: HomeComponent },
       {
-        path: 'team', children: [{
+        path: 'team',
+        children: [{
           path: '**', component: TeamComponent,
         }],
       },
@@ -49,6 +51,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
+  ],
+  providers: [
+    AuthService,
   ],
   exports: [RouterModule],
 })

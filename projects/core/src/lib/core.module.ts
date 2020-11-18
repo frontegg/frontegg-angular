@@ -15,10 +15,6 @@ import { CoreService } from './core.service';
     PageHeaderComponent,
     FronteggBaseComponent,
   ],
-  providers: [
-    CoreService,
-    FronteggGuard
-  ],
   imports: [
     PortalModule,
     CommonModule,
@@ -35,6 +31,8 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
+        CoreService,
+        FronteggGuard,
         {
           provide: FE_PROVIDER_CONFIG,
           useValue: config,
