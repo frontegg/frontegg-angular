@@ -6,12 +6,10 @@ import {
   Route,
   RouterStateSnapshot,
   UrlSegment,
-  UrlTree,
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { CoreService } from './core.service';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 @Injectable()
 export class FronteggGuard implements CanActivate, CanActivateChild, CanLoad {
@@ -19,10 +17,9 @@ export class FronteggGuard implements CanActivate, CanActivateChild, CanLoad {
 
   canLoad(route: Route, segments: UrlSegment[]): Promise<boolean> {
     return new Promise((resolve) => {
-      this.coreService.loading$
+      this.coreService.loading$.pipe(take(1))
         .subscribe((value) => {
           if (!value) {
-            debugger;
             resolve(true);
           }
         });
@@ -31,44 +28,27 @@ export class FronteggGuard implements CanActivate, CanActivateChild, CanLoad {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve) => {
-
-      this.coreService.loading$
+      const sub = this.coreService.loading$
         .subscribe((value) => {
           if (!value) {
             debugger;
-            resolve(true);
+            resolve(this.coreService.isFronteggRoute(state.url));
+            setTimeout(() => sub.unsubscribe(), 0);
           }
         });
-      // const subscription = this.coreService.loading$
-      //   .pipe(map(value => !value))
-      //   .subscribe(value => {
-      //     if (!value) {
-      //       resolve(true);
-      //       if (subscription && !subscription.closed) {
-      //         subscription.unsubscribe();
-      //       }
-      //     }
-      //   });
     });
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve) => {
-      this.coreService.loading$
+      const sub = this.coreService.loading$
         .subscribe((value) => {
           if (!value) {
             debugger;
-            resolve(true);
+            resolve(this.coreService.isFronteggRoute(state.url));
+            setTimeout(() => sub.unsubscribe(), 0);
           }
         });
-      // .subscribe(value => {
-      //   if (!value) {
-      //     resolve(true);
-      //     if (subscription && !subscription.closed) {
-      //       subscription.unsubscribe();
-      //     }
-      //   }
-      // });
     });
   }
 

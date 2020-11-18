@@ -3,12 +3,17 @@ import {
   Component,
   ElementRef, Inject, NgZone, Optional,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
-import { FronteggProvider, FeProviderProps, DOMProxy, PluginConfig } from '@frontegg/react-core';
+import { FronteggProvider, FeProviderProps, DOMProxy, createBrowserHistory, PluginConfig } from '@frontegg/react-core';
 import { uiLibrary } from '@frontegg/react-elements-material-ui';
 import { FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG } from './constants';
 import { CoreService } from './core.service';
+
+
+const history = createBrowserHistory();
+
+(window as any).ww = history;
 
 @Component({
   selector: 'frontegg-provider',
@@ -60,12 +65,11 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
     //   window.history.back();
     // };
     // pl._history.location = pl.location;
-    // this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     console.log('subscribe', pl.location);
-    //     this.routeListeners.forEach(l => l(pl.location));
-    //   }
-    // });
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        history.replace(event.urlAfterRedirects);
+      }
+    });
 
     const middleware = store => next => action => {
       next(action);
@@ -77,7 +81,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       plugins.push(this.authPlugin);
     }
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
-      // _history: pl._history,
+      _history: history,
       uiLibrary,
       debugMode: true,
       storeMiddlewares: [middleware],

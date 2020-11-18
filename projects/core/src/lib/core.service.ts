@@ -57,4 +57,9 @@ export class CoreService implements FronteggService {
       this.loadingSubject$.next(false);
     }
   }
+
+  public isFronteggRoute(route: string): boolean {
+    console.log('isFronteggRoute', route);
+    return true;
+  }
 }

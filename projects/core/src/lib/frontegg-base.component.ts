@@ -66,13 +66,14 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
       parent = parent.parentElement;
     }
     if (!isProvider && parent == null) {
-      setTimeout(() => this.registerComponent(), 400);
+      setTimeout(() => this.registerComponent(), 0);
       return;
     }
 
     if (!isProvider) {
       this.registered = true;
     }
+    debugger;
     parent?.ngClass?.registerChild?.(this);
   }
 
@@ -84,9 +85,9 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
     }
-    debugger;
-    if (!isProvider && (parent == null || !registered)) {
-      setTimeout(() => this.mountElement(name, component, otherProps), 400);
+
+    if (!isProvider && (parent == null || !this.registered)) {
+      setTimeout(() => this.mountElement(name, component, otherProps), 0);
       return;
     }
 
