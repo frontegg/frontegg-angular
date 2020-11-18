@@ -9,21 +9,12 @@ export class HomeComponent implements OnInit {
   title = 'demo-saas';
   user = null;
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
     // authService.isAuthenticated
   }
 
 
   ngOnInit(): void {
-    debugger;
-    // AuthUserObservable().subscribe(user => {
-    //   console.log('AuthUserObservable', user);
-    //   this.user = user;
-    // });
-    //
-    // isAuthenticatedObservable().subscribe((state ) => {
-    //   console.log('isAuthenticatedObservable', state.isAuthenticated);
-    //   this.isAuthenticated = state.isAuthenticated;
-    // });
+
   }
 }

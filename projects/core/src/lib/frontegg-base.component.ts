@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { DOMProxy } from '@frontegg/react-core';
+import { DOMProxy, FronteggProvider } from '@frontegg/react-core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -66,10 +66,17 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   protected mountElement<T = any>(name: string, component: any, otherProps?: T): void {
     console.log(this.name, 'mountElement');
     this.state = 'rendered';
+    const isProvider = component === FronteggProvider;
+
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
     }
+    if (!isProvider && parent == null) {
+      setTimeout(() => this.mountElement(name, component, otherProps), 1000);
+      return;
+    }
+
     const ngChildren = [...this.elem.nativeElement.childNodes];
     const ngComponents = ngChildren.length === 0 ? null : DOMProxy.createElement('div', {
       ref: ref => ngChildren.forEach(node => ref?.appendChild(node as any)),

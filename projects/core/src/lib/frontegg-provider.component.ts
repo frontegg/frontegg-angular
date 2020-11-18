@@ -1,7 +1,7 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef, Inject, Optional,
+  ElementRef, Inject, NgZone, Optional,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
@@ -13,20 +13,28 @@ import { CoreService } from './core.service';
 @Component({
   selector: 'frontegg-provider',
   template: `
-    <ng-content></ng-content>`,
+    <ng-container *ngIf="(coreService.loading$ | async) === false">
+      <ng-content></ng-content>
+    </ng-container>`,
   styles: [],
 })
 export class FronteggProviderComponent extends FronteggBaseComponent implements AfterViewInit {
   routeListeners: any[] = [];
 
   constructor(elem: ElementRef,
+              // private ngZone: NgZone,
               private router: Router,
-              private coreService: CoreService,
+              public coreService: CoreService,
               @Inject(FE_PROVIDER_CONFIG) private config: Omit<FeProviderProps, 'plugins'>,
               @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig) {
     super(elem);
     this.name = 'FronteggProvider';
   }
+
+  // navigateTo(url): void {
+  //   debugger
+  //   this.router.navigate([url]);
+  // }
 
   ngAfterViewInit(): void {
     // @ts-ignore
@@ -69,14 +77,23 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
     if (this.authPlugin) {
       plugins.push(this.authPlugin);
     }
-    debugger;
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       // _history: pl._history,
       uiLibrary,
       debugMode: true,
       storeMiddlewares: [middleware],
       context: this.config.context,
+      // onRedirectTo: (path, opts) => {
+      //   debugger;
+      //   if (opts?.refresh) {
+      //     window.location.href = path;
+      //   } else {
+      //     debugger
+      //     // this.ngZone.run(() => this.navigateTo(path));
+      //   }
+      // },
       plugins,
+      _resolveActions: (key, actions) => this.coreService.setActions(key, actions),
     });
   }
 

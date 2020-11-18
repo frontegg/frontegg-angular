@@ -5,11 +5,7 @@ import { TeamComponent } from './team/team.component';
 import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
 import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
-import { SsoComponent } from './sso/sso.component';
-import { LoginComponent } from './login/login.component';
 import { FronteggGuard } from '@frontegg/ng-core';
-import { PageWrapperModule } from './page-wrapper/page-wrapper.module';
-import { PageWrapperComponent } from './page-wrapper/page-wrapper.component';
 
 // 1. all services is loaded
 // 2. all saga actions inserted
@@ -19,7 +15,7 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [FronteggGuard],
-    component: PageWrapperComponent,
+    canActivateChild: [FronteggGuard],
     children: [
       { path: '', component: HomeComponent },
       {

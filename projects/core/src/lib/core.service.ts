@@ -2,15 +2,16 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG, FronteggStoreEvent } from './constants';
 import { FronteggService } from './FronteggService';
 import { FeProviderProps, PluginConfig } from '@frontegg/react-core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoreService implements FronteggService {
-  loading = new Subject<boolean>();
-  public loading$ = this.loading.asObservable();
-  public loaded = false;
+  private loadingSubject$ = new BehaviorSubject(true);
+  public loading$ = this.loadingSubject$.asObservable();
+
+  public pluginLoaded = false;
   public state: any;
   public actions: any;
   public services: { [key in string]: FronteggService | null } = {};
@@ -27,7 +28,7 @@ export class CoreService implements FronteggService {
   }
 
   public setActions(key: string, actions: any): void {
-    this.services[key]?.setActions(key, actions);
+    this.services[key]?.setActions?.(key, actions);
     this.checkLoadedServices();
   }
 
@@ -46,7 +47,14 @@ export class CoreService implements FronteggService {
     this.checkLoadedServices();
   }
 
-  private checkLoadedServices(): void {
-    this.loaded = Object.values(this.services).reduce((p, n) => p && n?.loaded, true);
+  public checkLoadedServices(): void {
+    if (!this.loadingSubject$.getValue()) {
+      return;
+    }
+    this.pluginLoaded = Object.values(this.services).reduce((p, n) => p && n?.pluginLoaded, true);
+    if (this.pluginLoaded) {
+      debugger;
+      this.loadingSubject$.next(false);
+    }
   }
 }

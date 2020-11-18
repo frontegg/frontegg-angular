@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { FronteggService, CoreService } from '@frontegg/ng-core';
 import { AuthActions, AuthState } from '@frontegg/react-auth';
-import { BehaviorSubject, fromEvent, Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, fromEvent, Subscription } from 'rxjs';
 import { FronteggStoreEvent } from '@frontegg/ng-core';
 import { concatMap, distinctUntilChanged, filter } from 'rxjs/operators';
 
@@ -11,6 +11,7 @@ const storeName = 'auth';
   providedIn: 'root',
 })
 export class AuthService extends FronteggService implements OnDestroy {
+  public pluginLoaded = false;
   private isLoadingSubject$ = new BehaviorSubject(true);
   private isAuthenticatedSubject$ = new BehaviorSubject(false);
   private authStateSubject$ = new BehaviorSubject<AuthState>(null);
@@ -36,6 +37,10 @@ export class AuthService extends FronteggService implements OnDestroy {
         this.authStateSubject$.next(authState);
         this.isLoadingSubject$.next(authState.isLoading);
         this.isAuthenticatedSubject$.next(authState.isAuthenticated);
+        if (!this.pluginLoaded) {
+          this.pluginLoaded = !authState.isLoading;
+          this.coreService.checkLoadedServices();
+        }
       }));
 
     // TODO: 2. register services in coreService
@@ -47,7 +52,7 @@ export class AuthService extends FronteggService implements OnDestroy {
   }
 
   public setActions(key: string, actions: AuthActions): void {
-    if (key === storeName) {
+    if (key === storeName && actions != null) {
       this.actions = actions;
     }
   }
