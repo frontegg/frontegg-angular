@@ -8,6 +8,7 @@ import { FE_AUTH_PLUGIN_CONFIG } from '@frontegg/ng-core';
 import { AuthPlugin } from '@frontegg/react-auth';
 import { AuthPluginOptions } from '@frontegg/react-auth/interfaces';
 import { LoginComponent } from './login';
+import { AuthGuard } from './auth.guard';
 
 const components = [
   ProfileComponent,
@@ -26,15 +27,12 @@ const components = [
   MfaComponent,
 
   // login
-  LoginComponent
+  LoginComponent,
 ];
 
 @NgModule({
   imports: [],
   declarations: components,
-  providers: [
-    AuthService,
-  ],
   exports: [
     ...components,
   ],
@@ -44,6 +42,7 @@ export class AuthModule {
     return {
       ngModule: AuthModule,
       providers: [
+        AuthGuard,
         AuthService,
         {
           provide: FE_AUTH_PLUGIN_CONFIG,

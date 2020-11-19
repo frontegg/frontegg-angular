@@ -6,6 +6,7 @@ import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
 import { AuthService, ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 import { FronteggGuard } from '@frontegg/ng-core';
+import { AuthGuard } from '@frontegg/ng-auth';
 
 // 1. all services is loaded
 // 2. all saga actions inserted
@@ -16,11 +17,12 @@ const routes: Routes = [
     path: '',
     // canLoad: [FronteggGuard],
     canActivate: [FronteggGuard],
-    // canActivateChild: [FronteggGuard],
+    canActivateChild: [FronteggGuard],
     children: [
       { path: '', component: HomeComponent },
       {
         path: 'team',
+        canActivate: [AuthGuard],
         children: [{
           path: '**', component: TeamComponent,
         }],

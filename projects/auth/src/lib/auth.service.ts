@@ -13,7 +13,7 @@ const storeName = 'auth';
 export class AuthService extends FronteggService implements OnDestroy {
   public pluginLoaded = false;
   private isLoadingSubject$ = new BehaviorSubject(true);
-  private isAuthenticatedSubject$ = new BehaviorSubject(false);
+  private isAuthenticatedSubject$ = new BehaviorSubject(null);
   private authStateSubject$ = new BehaviorSubject<AuthState>(null);
   private storeListener$: Subscription;
 

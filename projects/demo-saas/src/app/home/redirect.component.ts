@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-redirect',
-  template: `404`,
+  template: ``,
 })
 export class RedirectComponent {
 }

@@ -13,14 +13,9 @@ import { CoreService } from './core.service';
 
 const history = createBrowserHistory();
 
-(window as any).ww = history;
-
 @Component({
   selector: 'frontegg-provider',
-  template: `
-    <ng-container *ngIf="(coreService.loading$ | async) === false">
-      <ng-content></ng-content>
-    </ng-container>`,
+  template: `<ng-content></ng-content>`,
   styles: [],
 })
 export class FronteggProviderComponent extends FronteggBaseComponent implements AfterViewInit {
@@ -37,36 +32,13 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
   }
 
   navigateTo(url): void {
-    this.router.navigateByUrl(url);
+    this.router.navigateByUrl(url)
   }
 
   ngAfterViewInit(): void {
-    // @ts-ignore
-    // const pl = this.router.location._platformLocation;
-    // pl._history.listen = (e) => {
-    //   console.log('add listener', e);
-    //   this.routeListeners.push(e);
-    //   return () => this.routeListeners = this.routeListeners.filter(l => l !== e);
-    // };
-    // pl._history.createHref = (e) => e.pathname;
-    // pl._history.push = (path, data) => {
-    //   console.log('push', path);
-    //   this.router.navigate([typeof path === 'string' ? path : path.pathname], { state: data, replaceUrl: false });
-    // };
-    // pl._history.replace = (path, data) => {
-    //   if (typeof path !== 'string') {
-    //     return;
-    //   }
-    //   console.log('replace', path, pl);
-    //   this.router.navigate([path], { state: data, replaceUrl: true });
-    // };
-    // pl._history.goBack = () => {
-    //   console.log('goBack');
-    //   window.history.back();
-    // };
-    // pl._history.location = pl.location;
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        debugger;
         history.replace(event.urlAfterRedirects);
       }
     });

@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { DOMProxy, FronteggProvider } from '@frontegg/react-core';
+import { DOMProxy } from '@frontegg/react-core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -60,20 +60,20 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   }
 
   protected registerComponent(): void {
+    debugger;
     const isProvider = this.name === 'FronteggProvider';
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
     }
     if (!isProvider && parent == null) {
-      setTimeout(() => this.registerComponent(), 0);
+      setTimeout(() => this.registerComponent(), 100);
       return;
     }
 
     if (!isProvider) {
       this.registered = true;
     }
-    debugger;
     parent?.ngClass?.registerChild?.(this);
   }
 
@@ -85,9 +85,8 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
     while (parent != null && !parent.ngClass) {
       parent = parent.parentElement;
     }
-
     if (!isProvider && (parent == null || !this.registered)) {
-      setTimeout(() => this.mountElement(name, component, otherProps), 0);
+      setTimeout(() => this.mountElement(name, component, otherProps), 100);
       return;
     }
 
@@ -111,7 +110,6 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   }
 
   public mountChild(): void {
-    debugger;
     let isAllChildrenRendered = true;
     const portalsToInject = [];
     this.rcChildren.forEach(rcChild => {
