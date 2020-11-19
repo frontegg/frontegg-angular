@@ -8,6 +8,7 @@ import { AuthService, AuthUserObservable, isAuthenticatedObservable } from '@fro
 export class HomeComponent implements OnInit {
   title = 'demo-saas';
   user = null;
+  JSON = JSON;
 
   constructor(public authService: AuthService) {
     // authService.isAuthenticated

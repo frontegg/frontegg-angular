@@ -15,7 +15,6 @@ import { AuthGuard } from '@frontegg/ng-auth';
 const routes: Routes = [
   {
     path: '',
-    // canLoad: [FronteggGuard],
     canActivate: [FronteggGuard],
     canActivateChild: [FronteggGuard],
     children: [

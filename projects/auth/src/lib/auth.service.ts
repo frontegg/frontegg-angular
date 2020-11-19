@@ -4,6 +4,7 @@ import { AuthActions, AuthState } from '@frontegg/react-auth';
 import { BehaviorSubject, fromEvent, Subscription } from 'rxjs';
 import { FronteggStoreEvent } from '@frontegg/ng-core';
 import { concatMap, distinctUntilChanged, filter } from 'rxjs/operators';
+import { User } from '@frontegg/react-auth/Api/interfaces';
 
 const storeName = 'auth';
 
@@ -12,8 +13,9 @@ const storeName = 'auth';
 })
 export class AuthService extends FronteggService implements OnDestroy {
   public pluginLoaded = false;
-  private isLoadingSubject$ = new BehaviorSubject(true);
-  private isAuthenticatedSubject$ = new BehaviorSubject(null);
+  private isLoadingSubject$ = new BehaviorSubject<boolean>(true);
+  private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(null);
+  private userSubject$ = new BehaviorSubject<User | null>(null);
   private authStateSubject$ = new BehaviorSubject<AuthState>(null);
   private storeListener$: Subscription;
 
@@ -22,6 +24,11 @@ export class AuthService extends FronteggService implements OnDestroy {
     filter((loading) => !loading),
     distinctUntilChanged(),
     concatMap(() => this.isAuthenticatedSubject$),
+  );
+  readonly user$ = this.isLoading$.pipe(
+    filter((loading) => !loading),
+    distinctUntilChanged(),
+    concatMap(() => this.userSubject$),
   );
 
   readonly authState$ = this.authStateSubject$.asObservable();
@@ -35,8 +42,13 @@ export class AuthService extends FronteggService implements OnDestroy {
       .subscribe((() => {
         const authState = this.coreService.state[storeName] as AuthState;
         this.authStateSubject$.next(authState);
-        this.isLoadingSubject$.next(authState.isLoading);
-        this.isAuthenticatedSubject$.next(authState.isAuthenticated);
+        if (this.isLoadingSubject$.getValue() !== authState.isLoading) {
+          this.isLoadingSubject$.next(authState.isLoading);
+        }
+        if (this.isAuthenticatedSubject$.getValue() !== authState.isAuthenticated) {
+          this.isAuthenticatedSubject$.next(authState.isAuthenticated);
+        }
+        this.userSubject$.next(authState.user);
         if (!this.pluginLoaded) {
           this.pluginLoaded = !authState.isLoading;
           this.coreService.checkLoadedServices();
