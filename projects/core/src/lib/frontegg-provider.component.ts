@@ -25,7 +25,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
               private ngZone: NgZone,
               private router: Router,
               public coreService: CoreService,
-              @Inject(FE_PROVIDER_CONFIG) private config: Omit<FeProviderProps, 'plugins'>,
+              @Inject(FE_PROVIDER_CONFIG) private config: FeProviderProps,
               @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig) {
     super(elem);
     this.name = 'FronteggProvider';

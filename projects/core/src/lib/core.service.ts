@@ -2,7 +2,9 @@ import { Inject, Injectable, Optional } from '@angular/core';
 import { FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG, FronteggStoreEvent } from './constants';
 import { FronteggService } from './FronteggService';
 import { FeProviderProps, PluginConfig } from '@frontegg/react-core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +18,7 @@ export class CoreService implements FronteggService {
   public actions: any;
   public services: { [key in string]: FronteggService | null } = {};
 
-
-  constructor(@Inject(FE_PROVIDER_CONFIG) private config: Omit<FeProviderProps, 'plugins'>,
+  constructor(@Inject(FE_PROVIDER_CONFIG) private config: FeProviderProps,
               @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig) {
     // store registered plugins to check when its loaded
 
