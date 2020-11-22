@@ -1,0 +1,37 @@
+name: Push Workflow
+
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
+      - '!release/next'
+jobs:
+  init:
+    name: 'Install, Build and Test'
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node12.13.0-chrome80-ff74
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Cache node_modules
+        id: cache-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ matrix.node-version }}-${{ runner.OS }}-build-${{ hashFiles('package.json') }}
+      - run: make clean
+      - run: make install
+      - run: make build
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
