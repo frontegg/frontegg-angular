@@ -1296,10 +1296,8 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@frontegg/react-auth@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-auth/-/react-auth-1.6.0.tgz#69bc3b6954245545011969d0577f5c538bbc719a"
-  integrity sha512-E2iRVp8WY/RwV3e/SuyVTNbJ9xTRSS1H3mHZCcsdXcV9c8dBDOqOijS7fMZIar4NJfhk1sujCzcB1f0IbMnO5w==
+"@frontegg/react-auth@file:../frontegg-react/packages/auth/dist":
+  version "1.6.1"
   dependencies:
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
@@ -1307,12 +1305,10 @@
     react-dropzone "^9.0.0"
     redux-saga "^1.1.3"
 
-"@frontegg/react-core@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-core/-/react-core-1.6.0.tgz#a97d1b39f15bd1c072a442dca2dd0fc0f2df9210"
-  integrity sha512-JMWPjoujGKCppwT+/2wZtKPr4itCxdYc52K+PgFGRSEWZIc5EKlgT/BnOw1Gd0UxbaOOXCMv8/eSt5eKmS0jjQ==
+"@frontegg/react-core@file:../frontegg-react/packages/core/dist":
+  version "1.6.1"
   dependencies:
-    "@frontegg/rest-api" "^1.6.0"
+    "@frontegg/rest-api" "^1.6.1"
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
     formik "^2.1.5"
@@ -1330,19 +1326,17 @@
     underscore "^1.10.2"
     yup "^0.28.3"
 
-"@frontegg/react-elements-material-ui@1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-elements-material-ui/-/react-elements-material-ui-1.6.0.tgz#e2c6a1213e6ef78dd413ffafd227c23e58332356"
-  integrity sha512-SILARBiw1aX+SfmW+vhxNN6bz+ZpW16xJ62vROb3qI0xuDo4XNxhtk+2xgnfHT8qVfFdqqTNojdioeF5B1Dsvg==
+"@frontegg/react-elements-material-ui@file:../frontegg-react/packages/elements-material-ui/dist":
+  version "1.6.1"
   dependencies:
     classnames "^2.2.6"
     react-popper-tooltip "^3.1.0"
     underscore "^1.10.2"
 
-"@frontegg/rest-api@^1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-1.6.0.tgz#4b1535744906242e84a6a908dd2368ad2b080054"
-  integrity sha512-7k9cy6lScK29uibIw+ngW41ZnOa9hxn/SG8UJ0Ym/NG5bLvDjtg4uagWhoGm+I4GW9CotuS1W43n1HBFHxCNAw==
+"@frontegg/rest-api@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-1.6.1.tgz#543cae606b3dd2f165d5312a4ab769ea651d619e"
+  integrity sha512-Bm1uXu8yBe2Hj90YCv4IWo83ZerBUmcsFx7t1Vuax5bxt9hA6Q4AzYqtTGpHDx9/eU9s7BpZrhobQVnrIMkXdw==
   dependencies:
     jwt-decode "2.2.0"
 

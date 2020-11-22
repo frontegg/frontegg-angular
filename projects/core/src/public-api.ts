@@ -10,3 +10,4 @@ export * from './lib/components/page-header.component';
 export * from './lib/frontegg-base.component';
 export * from './lib/frontegg.guard';
 export * from './lib/FronteggService';
+export * from './lib/constants';

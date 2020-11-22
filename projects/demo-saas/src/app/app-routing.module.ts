@@ -4,17 +4,25 @@ import { HomeComponent } from './home/home.component';
 import { TeamComponent } from './team/team.component';
 import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
-import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
-import { SsoComponent } from './sso/sso.component';
-import { LoginComponent } from './login/login.component';
+import { AuthService, ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 import { FronteggGuard } from '@frontegg/ng-core';
+import { AuthGuard } from '@frontegg/ng-auth';
 
+// 1. all services is loaded
+// 2. all saga actions inserted
+// 3. plugin state updated from react
+// 4. isLoading || if we are in auth-components -> prevent gaurd
 const routes: Routes = [
   {
-    path: '', canActivate: [FronteggGuard], children: [
+    path: '',
+    canActivate: [FronteggGuard],
+    canActivateChild: [FronteggGuard],
+    children: [
       { path: '', component: HomeComponent },
       {
-        path: 'team', children: [{
+        path: 'team',
+        canActivate: [AuthGuard],
+        children: [{
           path: '**', component: TeamComponent,
         }],
       },
@@ -42,7 +50,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
+  providers: [
+    AuthService,
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

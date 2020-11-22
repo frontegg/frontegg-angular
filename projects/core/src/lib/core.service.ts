@@ -1,30 +1,35 @@
-import { Inject, Injectable } from '@angular/core';
-import { FE_PROFIVER_CONFIG, FronteggStoreEvent } from './constants';
+import { Inject, Injectable, Optional } from '@angular/core';
+import { FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG, FronteggStoreEvent } from './constants';
 import { FronteggService } from './FronteggService';
-import { FeProviderProps } from '@frontegg/react-core';
-import { Subject } from 'rxjs';
+import { FeProviderProps, PluginConfig } from '@frontegg/react-core';
+import { BehaviorSubject } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoreService implements FronteggService {
-  loading = new Subject<boolean>();
-  public loading$ = this.loading.asObservable();
-  public loaded = false;
+  private loadingSubject$ = new BehaviorSubject(true);
+  public loading$ = this.loadingSubject$.asObservable();
+
+  public pluginLoaded = false;
   public state: any;
   public actions: any;
-  public services: { [key in string]: FronteggService | null };
+  public services: { [key in string]: FronteggService | null } = {};
 
-
-  constructor(@Inject(FE_PROFIVER_CONFIG) private config: FeProviderProps) {
+  constructor(@Inject(FE_PROVIDER_CONFIG) private config: FeProviderProps,
+              @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig) {
     // store registered plugins to check when its loaded
-    this.services = this.config.plugins.reduce((p, n) => ({ ...p, [n.storeName]: null }), {});
 
+    if (authPlugin) {
+      this.services[authPlugin.storeName] = null;
+    }
     (window as any).coreService = this;
   }
 
   public setActions(key: string, actions: any): void {
-    this.services[key]?.setActions(key, actions);
+    this.services[key]?.setActions?.(key, actions);
     this.checkLoadedServices();
   }
 
@@ -40,9 +45,22 @@ export class CoreService implements FronteggService {
 
   public registerService(key: string, service: any): void {
     this.services[key] = service;
+    this.checkLoadedServices();
   }
 
-  private checkLoadedServices(): void {
-    this.loaded = Object.values(this.services).reduce((p, n) => p && n?.loaded, true);
+  public checkLoadedServices(): void {
+    if (!this.loadingSubject$.getValue()) {
+      return;
+    }
+    this.pluginLoaded = Object.values(this.services).reduce((p, n) => p && n?.pluginLoaded, true);
+    if (this.pluginLoaded) {
+      debugger;
+      this.loadingSubject$.next(false);
+    }
+  }
+
+  public isFronteggRoute(route: string): boolean {
+    console.log('isFronteggRoute', route);
+    return true;
   }
 }

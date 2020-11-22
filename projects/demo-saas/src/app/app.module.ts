@@ -8,10 +8,10 @@ import { HomeModule } from './home/home.module';
 import { TeamModule } from './team/team.module';
 import { CommonModule } from '@angular/common';
 import { SsoModule } from './sso/sso.module';
-import { NavComponent } from './nav/nav.component';
 import { MfaModule } from './mfa/mfa.module';
 import { LoginModule } from './login/login.module';
-import { AuthPlugin } from '@frontegg/react-auth';
+import { AuthModule } from '@frontegg/ng-auth';
+import { NavComponent } from './nav/nav.component';
 
 declare global {
   type JSX = any;
@@ -20,7 +20,7 @@ declare global {
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
+    NavComponent
   ],
   imports: [
     LoginModule,
@@ -32,8 +32,8 @@ declare global {
         baseUrl: `http://localhost:8080`,
         requestCredentials: 'include',
       },
-      plugins: [AuthPlugin()],
     }),
+    AuthModule.forRoot(),
     HomeModule,
     TeamModule,
     SsoModule,

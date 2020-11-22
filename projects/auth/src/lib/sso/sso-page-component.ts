@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { SSO } from '@frontegg/react-auth';
 import { FronteggBaseComponent } from '@frontegg/ng-core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BasePageProps } from '@frontegg/react-auth/interfaces';
+import { ActivatedRoute } from '@angular/router';
 import { SSOPageProps } from '@frontegg/react-auth/SSO/SSOPage';
 
 @Component({
@@ -19,6 +18,7 @@ export class SsoPageComponent extends FronteggBaseComponent implements AfterView
   }
 
   ngAfterViewInit(): void {
+    debugger;
     this.mountElement<SSOPageProps>('SSO.Page', SSO.Page, {
       rootPath: this.rootPath ?? this.findActiveRoute(this.route),
     });

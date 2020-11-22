@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
-import { ContextHolder } from '@frontegg/rest-api';
-
-const developmentHosts = ['localhost', 'local.frontegg.com'];
-const host =
-  developmentHosts.indexOf(window.location.hostname) !== -1
-    ? `${window.location.hostname}:8080`
-    : window.location.hostname;
+import { CoreService } from '@frontegg/ng-core';
+import { AuthService } from '@frontegg/ng-auth';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +8,11 @@ const host =
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'demo-saas';
-  ddd = {
-    baseUrl: `${window.location.protocol}//${host}`,
-    requestCredentials: 'include',
-  };
+  constructor(public coreService: CoreService, public authService: AuthService) {
 
-  test = ContextHolder.getUser()?.email;
+    this.coreService.loading$.subscribe((value) => {
+      console.log('value', value);
+    });
+  }
+
 }

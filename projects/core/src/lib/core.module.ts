@@ -5,8 +5,9 @@ import { PageHeaderComponent } from './components/page-header.component';
 import { FronteggBaseComponent } from './frontegg-base.component';
 import { CommonModule } from '@angular/common';
 import { FeProviderProps } from '@frontegg/react-core';
-import { FE_PROFIVER_CONFIG } from './constants';
+import { FE_PROVIDER_CONFIG } from './constants';
 import { FronteggGuard } from './frontegg.guard';
+import { CoreService } from './core.service';
 
 @NgModule({
   declarations: [
@@ -18,10 +19,6 @@ import { FronteggGuard } from './frontegg.guard';
     PortalModule,
     CommonModule,
   ],
-  providers: [
-    CoreModule,
-    FronteggGuard
-  ],
   exports: [
     FronteggProviderComponent,
     PageHeaderComponent,
@@ -30,13 +27,16 @@ import { FronteggGuard } from './frontegg.guard';
 })
 export class CoreModule {
 
-  static forRoot(config?: FeProviderProps): ModuleWithProviders<CoreModule> {
+  static forRoot(config?: Omit<FeProviderProps, 'plugins'>): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
-      providers: [{
-        provide: FE_PROFIVER_CONFIG,
-        useValue: config,
-      }],
+      providers: [
+        CoreService,
+        FronteggGuard,
+        {
+          provide: FE_PROVIDER_CONFIG,
+          useValue: config,
+        }],
     };
   }
 }

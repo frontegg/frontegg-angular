@@ -1,4 +1,4 @@
-<div class="app-home-container">
+<div class="app-home-container" *ngIf="(coreService.loading$ | async) === false">
   <h2>Menu</h2>
   <nav>
     <ul>
