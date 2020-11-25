@@ -1,9 +1,8 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG, FronteggStoreEvent } from './constants';
+import { FE_AUDITS_PLUGIN_CONFIG, FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG, FronteggStoreEvent } from './constants';
 import { FronteggService } from './FronteggService';
 import { FeProviderProps, PluginConfig } from '@frontegg/react-core';
 import { BehaviorSubject } from 'rxjs';
-
 
 
 @Injectable({
@@ -19,12 +18,21 @@ export class CoreService implements FronteggService {
   public services: { [key in string]: FronteggService | null } = {};
 
   constructor(@Inject(FE_PROVIDER_CONFIG) private config: FeProviderProps,
-              @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig) {
+              @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig,
+              @Optional() @Inject(FE_AUDITS_PLUGIN_CONFIG) private auditsPlugin: PluginConfig,
+  ) {
     // store registered plugins to check when its loaded
 
-    if (authPlugin) {
-      this.services[authPlugin.storeName] = null;
-    }
+    [
+      authPlugin,
+      auditsPlugin,
+    ]
+      .forEach(plugin => {
+        if (plugin && plugin.storeName) {
+          this.services[plugin.storeName] = null;
+        }
+      });
+
     (window as any).coreService = this;
   }
 

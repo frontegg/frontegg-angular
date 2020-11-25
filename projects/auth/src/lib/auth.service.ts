@@ -37,7 +37,7 @@ export class AuthService extends FronteggService implements OnDestroy {
 
   constructor(private coreService: CoreService) {
     super();
-    // TODO: 1. listener to auth store changes event
+    // listener to auth store changes event
     this.storeListener$ = fromEvent(document, `${FronteggStoreEvent}/${storeName}`)
       .subscribe((() => {
         const authState = this.coreService.state[storeName] as AuthState;
@@ -55,7 +55,7 @@ export class AuthService extends FronteggService implements OnDestroy {
         }
       }));
 
-    // TODO: 2. register services in coreService
+    // register services in coreService
     coreService.registerService(storeName, this);
   }
 
