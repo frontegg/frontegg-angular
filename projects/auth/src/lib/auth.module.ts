@@ -33,6 +33,10 @@ const components = [
 @NgModule({
   imports: [],
   declarations: components,
+  providers: [
+    AuthGuard,
+    AuthService,
+  ],
   exports: [
     ...components,
   ],
@@ -42,8 +46,6 @@ export class AuthModule {
     return {
       ngModule: AuthModule,
       providers: [
-        AuthGuard,
-        AuthService,
         {
           provide: FE_AUTH_PLUGIN_CONFIG,
           useValue: AuthPlugin(config),

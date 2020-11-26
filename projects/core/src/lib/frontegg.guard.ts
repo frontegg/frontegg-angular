@@ -31,7 +31,6 @@ export class FronteggGuard implements CanActivate, CanActivateChild, CanLoad {
       const sub = this.coreService.loading$
         .subscribe((value) => {
           if (!value) {
-            debugger;
             resolve(this.coreService.isFronteggRoute(state.url));
             setTimeout(() => sub.unsubscribe(), 0);
           }
@@ -44,7 +43,6 @@ export class FronteggGuard implements CanActivate, CanActivateChild, CanLoad {
       const sub = this.coreService.loading$
         .subscribe((value) => {
           if (!value) {
-            debugger;
             resolve(this.coreService.isFronteggRoute(state.url));
             setTimeout(() => sub.unsubscribe(), 0);
           }

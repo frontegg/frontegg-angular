@@ -12,12 +12,18 @@ const storeName = 'auth';
   providedIn: 'root',
 })
 export class AuthService extends FronteggService implements OnDestroy {
+  // mandatory properties
   public pluginLoaded = false;
+  private authStateSubject$ = new BehaviorSubject<AuthState>(null);
+  private storeListener$: Subscription;
+
+  readonly authState$ = this.authStateSubject$.asObservable();
+  actions: AuthActions;
+
+  // optional properties
   private isLoadingSubject$ = new BehaviorSubject<boolean>(true);
   private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(null);
   private userSubject$ = new BehaviorSubject<User | null>(null);
-  private authStateSubject$ = new BehaviorSubject<AuthState>(null);
-  private storeListener$: Subscription;
 
   readonly isLoading$ = this.isLoadingSubject$.asObservable();
   readonly isAuthenticated$ = this.isLoading$.pipe(
@@ -31,17 +37,16 @@ export class AuthService extends FronteggService implements OnDestroy {
     concatMap(() => this.userSubject$),
   );
 
-  readonly authState$ = this.authStateSubject$.asObservable();
-
-  actions: AuthActions;
-
   constructor(private coreService: CoreService) {
     super();
     // listener to auth store changes event
     this.storeListener$ = fromEvent(document, `${FronteggStoreEvent}/${storeName}`)
       .subscribe((() => {
+
+        // Update NG-authPlugin state and notify authState$
         const authState = this.coreService.state[storeName] as AuthState;
         this.authStateSubject$.next(authState);
+
         if (this.isLoadingSubject$.getValue() !== authState.isLoading) {
           this.isLoadingSubject$.next(authState.isLoading);
         }
@@ -49,6 +54,9 @@ export class AuthService extends FronteggService implements OnDestroy {
           this.isAuthenticatedSubject$.next(authState.isAuthenticated);
         }
         this.userSubject$.next(authState.user);
+
+
+        // Tell coreService that this plugin is finished initialization
         if (!this.pluginLoaded) {
           this.pluginLoaded = !authState.isLoading;
           this.coreService.checkLoadedServices();

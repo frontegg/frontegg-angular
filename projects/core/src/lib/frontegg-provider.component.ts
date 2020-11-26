@@ -7,7 +7,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
 import { FronteggProvider, FeProviderProps, DOMProxy, createBrowserHistory, PluginConfig } from '@frontegg/react-core';
 import { uiLibrary } from '@frontegg/react-elements-material-ui';
-import { FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG } from './constants';
+import { FE_AUDITS_PLUGIN_CONFIG, FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG } from './constants';
 import { CoreService } from './core.service';
 
 
@@ -15,7 +15,8 @@ const history = createBrowserHistory();
 
 @Component({
   selector: 'frontegg-provider',
-  template: `<ng-content></ng-content>`,
+  template: `
+    <ng-content></ng-content>`,
   styles: [],
 })
 export class FronteggProviderComponent extends FronteggBaseComponent implements AfterViewInit {
@@ -26,13 +27,15 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
               private router: Router,
               public coreService: CoreService,
               @Inject(FE_PROVIDER_CONFIG) private config: FeProviderProps,
-              @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig) {
+              @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig,
+              @Optional() @Inject(FE_AUDITS_PLUGIN_CONFIG) private auditsPlugin: PluginConfig,
+  ) {
     super(elem);
     this.name = 'FronteggProvider';
   }
 
   navigateTo(url): void {
-    this.router.navigateByUrl(url)
+    this.router.navigateByUrl(url);
   }
 
   ngAfterViewInit(): void {
@@ -48,10 +51,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       this.coreService.setState(store.getState(), action);
     };
 
-    const plugins = [];
-    if (this.authPlugin) {
-      plugins.push(this.authPlugin);
-    }
+    const plugins = [this.authPlugin, this.auditsPlugin].filter(p => p);
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       _history: history,
       uiLibrary,
@@ -59,7 +59,6 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       storeMiddlewares: [middleware],
       context: this.config.context,
       onRedirectTo: (path, opts) => {
-        debugger;
         if (opts?.refresh) {
           window.location.href = path;
         } else {

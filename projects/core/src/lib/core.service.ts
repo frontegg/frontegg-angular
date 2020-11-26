@@ -62,7 +62,6 @@ export class CoreService implements FronteggService {
     }
     this.pluginLoaded = Object.values(this.services).reduce((p, n) => p && n?.pluginLoaded, true);
     if (this.pluginLoaded) {
-      debugger;
       this.loadingSubject$.next(false);
     }
   }

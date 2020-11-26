@@ -18,7 +18,6 @@ export class SsoPageComponent extends FronteggBaseComponent implements AfterView
   }
 
   ngAfterViewInit(): void {
-    debugger;
     this.mountElement<SSOPageProps>('SSO.Page', SSO.Page, {
       rootPath: this.rootPath ?? this.findActiveRoute(this.route),
     });

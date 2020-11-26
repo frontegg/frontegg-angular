@@ -12,10 +12,8 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    debugger;
     return new Promise((resolve) => {
       const sub = this.authService.isAuthenticated$.subscribe((value) => {
-        debugger;
         if (value !== null) {
           resolve(value);
           setTimeout(() => sub.unsubscribe(), 0);
