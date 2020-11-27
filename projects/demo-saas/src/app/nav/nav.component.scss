@@ -9,6 +9,8 @@
   z-index: 1;
   border-right: 1px solid #f2f2f3;
   box-shadow: 1px 0.05rem 0.01rem rgba(75, 75, 90, 0.075);
+  max-height: 100vh;
+  overflow: auto;
 
   h2 {
     padding: 20px;

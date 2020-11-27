@@ -22,6 +22,9 @@
       ],
       "@frontegg/ng-auth": [
         "projects/auth/dist"
+      ],
+      "@frontegg/ng-audits": [
+        "projects/audits/dist"
       ]
     }
   }

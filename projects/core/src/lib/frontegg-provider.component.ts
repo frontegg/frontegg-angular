@@ -41,7 +41,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
   ngAfterViewInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        debugger;
+        // debugger;
         history.replace(event.urlAfterRedirects);
       }
     });
@@ -51,7 +51,10 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       this.coreService.setState(store.getState(), action);
     };
 
-    const plugins = [this.authPlugin, this.auditsPlugin].filter(p => p);
+    const plugins = [this.authPlugin, this.auditsPlugin]
+      .map(p => Array.isArray(p) ? p[0] : p)
+      .filter(p => p && p.storeName);
+    debugger;
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       _history: history,
       uiLibrary,

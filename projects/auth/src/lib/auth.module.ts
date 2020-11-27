@@ -28,6 +28,7 @@ const components = [
 
   // login
   LoginComponent,
+
 ];
 
 @NgModule({
@@ -42,6 +43,8 @@ const components = [
   ],
 })
 export class AuthModule {
+  constructor(private authService: AuthService) {}
+
   static forRoot(config?: AuthPluginOptions): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,

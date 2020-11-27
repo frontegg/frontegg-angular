@@ -27,10 +27,10 @@ export class CoreService implements FronteggService {
       authPlugin,
       auditsPlugin,
     ]
+      .map(p => Array.isArray(p) ? p[0] : p)
+      .filter(p => p && p.storeName)
       .forEach(plugin => {
-        if (plugin && plugin.storeName) {
-          this.services[plugin.storeName] = null;
-        }
+        this.services[plugin.storeName] = null;
       });
 
     (window as any).coreService = this;
@@ -57,10 +57,12 @@ export class CoreService implements FronteggService {
   }
 
   public checkLoadedServices(): void {
+    // debugger;
     if (!this.loadingSubject$.getValue()) {
       return;
     }
     this.pluginLoaded = Object.values(this.services).reduce((p, n) => p && n?.pluginLoaded, true);
+    // debugger;
     if (this.pluginLoaded) {
       this.loadingSubject$.next(false);
     }

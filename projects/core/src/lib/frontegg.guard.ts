@@ -13,7 +13,10 @@ import { take } from 'rxjs/operators';
 
 @Injectable()
 export class FronteggGuard implements CanActivate, CanActivateChild, CanLoad {
-  constructor(private coreService: CoreService) {}
+  constructor(
+    private coreService: CoreService,
+  ) {
+  }
 
   canLoad(route: Route, segments: UrlSegment[]): Promise<boolean> {
     return new Promise((resolve) => {

@@ -11,6 +11,7 @@ import { TeamModule } from './team/team.module';
 import { SsoModule } from './sso/sso.module';
 import { NavComponent } from './nav/nav.component';
 import { MfaModule } from './mfa/mfa.module';
+
 import { AuthPlugin } from '@frontegg/react-auth';
 
 @NgModule({
@@ -27,9 +28,11 @@ import { AuthPlugin } from '@frontegg/react-auth';
         baseUrl: `http://localhost:8080`,
         requestCredentials: 'include',
       },
-      plugins: [AuthPlugin()],
+      // plugins: [AuthPlugin()],
     }),
-    AuthModule,
+    AuthModule.forRoot(),
+
+    // AuthModule,
     SsoModule,
     MfaModule,
     HomeModule,

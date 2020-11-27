@@ -60,7 +60,6 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   }
 
   protected registerComponent(): void {
-    debugger;
     const isProvider = this.name === 'FronteggProvider';
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {

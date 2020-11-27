@@ -12,6 +12,7 @@ import { MfaModule } from './mfa/mfa.module';
 import { LoginModule } from './login/login.module';
 import { AuthModule } from '@frontegg/ng-auth';
 import { NavComponent } from './nav/nav.component';
+import { AuditsModule } from '@frontegg/ng-audits';
 
 declare global {
   type JSX = any;
@@ -20,7 +21,7 @@ declare global {
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
   ],
   imports: [
     LoginModule,
@@ -34,12 +35,12 @@ declare global {
       },
     }),
     AuthModule.forRoot(),
+    AuditsModule.forRoot(),
     HomeModule,
     TeamModule,
     SsoModule,
     MfaModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
