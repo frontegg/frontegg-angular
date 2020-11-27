@@ -3,12 +3,9 @@ import { FE_AUDITS_PLUGIN_CONFIG } from '@frontegg/ng-core';
 import { AuditsPlugin } from '@frontegg/react-audits';
 import { AuditsService } from './audits.service';
 import { AuditsComponent } from './audits.component';
-import { AuditsGuard } from './audits.guard';
-import { AuditsDirective } from './audits.directive';
 
 const components = [
   AuditsComponent,
-  AuditsDirective,
 ];
 
 @NgModule({
@@ -16,13 +13,15 @@ const components = [
   declarations: components,
   providers: [
     AuditsService,
-    AuditsGuard,
   ],
   exports: [
     ...components,
   ],
 })
 export class AuditsModule {
+  constructor(private auditsService: AuditsService) {
+  }
+
   static forRoot(): ModuleWithProviders<AuditsModule> {
     return {
       ngModule: AuditsModule,
@@ -30,6 +29,7 @@ export class AuditsModule {
         {
           provide: FE_AUDITS_PLUGIN_CONFIG,
           useValue: AuditsPlugin(),
+
         },
       ],
     };

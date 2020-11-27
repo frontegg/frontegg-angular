@@ -24,7 +24,6 @@ export class AuditsService extends FronteggService implements OnDestroy {
 
   constructor(private coreService: CoreService) {
     super();
-
     this.storeListener$ = fromEvent(document, `${FronteggStoreEvent}/${storeName}`)
       .subscribe((() => {
 

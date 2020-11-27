@@ -10,9 +10,10 @@ export class AuditsComponent extends FronteggBaseComponent implements AfterViewI
 
   constructor(protected elem: ElementRef) {
     super(elem);
+    this.name = 'AuditsPage';
   }
 
   ngAfterViewInit(): void {
-    this.mountElement('Audits', AuditsPage);
+    this.mountElement('AuditsPage', AuditsPage);
   }
 }
