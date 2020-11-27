@@ -1,10 +1,9 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { FronteggService, CoreService } from '@frontegg/ng-core';
 import { AuditsActions, AuditsState } from '@frontegg/react-audits';
 
 import { BehaviorSubject, fromEvent, Subscription } from 'rxjs';
 import { FronteggStoreEvent } from '@frontegg/ng-core';
-import { AuthState } from '@frontegg/react-auth';
 
 const storeName = 'audits';
 
@@ -24,8 +23,8 @@ export class AuditsService extends FronteggService implements OnDestroy {
 
 
   constructor(private coreService: CoreService) {
-    
     super();
+
     this.storeListener$ = fromEvent(document, `${FronteggStoreEvent}/${storeName}`)
       .subscribe((() => {
 
@@ -34,8 +33,7 @@ export class AuditsService extends FronteggService implements OnDestroy {
         if (this.isLoadingSubject$.getValue() !== auditsState.isLoading) {
           this.isLoadingSubject$.next(auditsState.isLoading);
         }
-     
-        debugger;
+
         if (!this.pluginLoaded) {
           this.pluginLoaded = true;
           this.coreService.checkLoadedServices();
@@ -52,7 +50,6 @@ export class AuditsService extends FronteggService implements OnDestroy {
 
   public setActions(key: string, actions: AuditsActions): void {
     if (key === storeName && actions != null) {
-      debugger;
       this.actions = actions;
     }
   }

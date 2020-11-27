@@ -9,6 +9,7 @@ import { AuthPlugin } from '@frontegg/react-auth';
 import { AuthPluginOptions } from '@frontegg/react-auth/interfaces';
 import { LoginComponent } from './login';
 import { AuthGuard } from './auth.guard';
+import { AuthDirective } from './auth.directive';
 
 const components = [
   ProfileComponent,
@@ -28,6 +29,8 @@ const components = [
 
   // login
   LoginComponent,
+
+  AuthDirective,
 ];
 
 @NgModule({

@@ -21,7 +21,7 @@ declare global {
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
   ],
   imports: [
     LoginModule,
@@ -41,7 +41,6 @@ declare global {
     SsoModule,
     MfaModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
