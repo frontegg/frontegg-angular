@@ -7,6 +7,7 @@ import { RedirectComponent } from './home/redirect.component';
 import { AuthService, ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 import { FronteggGuard } from '@frontegg/ng-core';
 import { AuthGuard } from '@frontegg/ng-auth';
+import { AuditsComponent, AuditsService, AuditsModule } from '@frontegg/ng-audits';
 
 // 1. all services is loaded
 // 2. all saga actions inserted
@@ -43,6 +44,11 @@ const routes: Routes = [
         }],
       },
       {
+        path: 'audits', children: [{
+          path: '**', component: AuditsComponent,
+        }],
+      },
+      {
         path: '**', component: RedirectComponent,
       },
     ],
@@ -52,9 +58,11 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
+    AuditsModule,
   ],
   providers: [
     AuthService,
+    AuditsService
   ],
   exports: [RouterModule],
 })

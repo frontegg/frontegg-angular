@@ -1,0 +1,19 @@
+{
+  "name": "@frontegg/ng-audits",
+  "version": "0.0.1",
+  "lib": "./dist",
+  "scripts": {
+    "build:watch": "ng build --watch --project=audits",
+    "build": "ng build --prod --project=audits",
+    "test": "ng test --project=audits",
+    "lint": "ng lint --project=audits"
+  },
+  "peerDependencies": {
+    "@angular/common": "^10.1.3",
+    "@angular/core": "^10.1.3",
+    "@frontegg/ng-core": "^0.0.1"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

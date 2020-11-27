@@ -41,7 +41,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
   ngAfterViewInit(): void {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        debugger;
+        // debugger;
         history.replace(event.urlAfterRedirects);
       }
     });

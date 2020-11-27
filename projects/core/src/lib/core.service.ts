@@ -57,10 +57,12 @@ export class CoreService implements FronteggService {
   }
 
   public checkLoadedServices(): void {
+    // debugger;
     if (!this.loadingSubject$.getValue()) {
       return;
     }
     this.pluginLoaded = Object.values(this.services).reduce((p, n) => p && n?.pluginLoaded, true);
+   // debugger;
     if (this.pluginLoaded) {
       this.loadingSubject$.next(false);
     }
