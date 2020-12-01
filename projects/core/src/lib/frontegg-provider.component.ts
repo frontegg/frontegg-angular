@@ -55,7 +55,8 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
     const plugins = [this.authPlugin, this.auditsPlugin, this.connectivityPlugin]
       .map(p => Array.isArray(p) ? p[0] : p)
       .filter(p => p && p.storeName);
-    debugger;
+
+
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       _history: history,
       uiLibrary,

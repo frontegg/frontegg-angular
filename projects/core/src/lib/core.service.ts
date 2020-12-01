@@ -1,5 +1,11 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { FE_AUDITS_PLUGIN_CONFIG, FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG,FE_CONNECTIVITY_PLUGIN_CONFIG, FronteggStoreEvent } from './constants';
+import {
+  FE_AUDITS_PLUGIN_CONFIG,
+  FE_AUTH_PLUGIN_CONFIG,
+  FE_PROVIDER_CONFIG,
+  FE_CONNECTIVITY_PLUGIN_CONFIG,
+  FronteggStoreEvent,
+} from './constants';
 import { FronteggService } from './FronteggService';
 import { FeProviderProps, PluginConfig } from '@frontegg/react-core';
 import { BehaviorSubject } from 'rxjs';
@@ -59,12 +65,14 @@ export class CoreService implements FronteggService {
   }
 
   public checkLoadedServices(): void {
-    // debugger;
     if (!this.loadingSubject$.getValue()) {
       return;
     }
     this.pluginLoaded = Object.values(this.services).reduce((p, n) => p && n?.pluginLoaded, true);
+    const servicesLoading = Object.keys(this.services).map((p) => `${p}-${this.services[p] && this.services[p].pluginLoaded ? 'true' : 'false'}`);
 
+
+    console.log('pluginLoaded', this.pluginLoaded, servicesLoading);
     if (this.pluginLoaded) {
       this.loadingSubject$.next(false);
     }

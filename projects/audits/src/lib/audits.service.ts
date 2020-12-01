@@ -32,11 +32,6 @@ export class AuditsService extends FronteggService implements OnDestroy {
         if (this.isLoadingSubject$.getValue() !== auditsState.isLoading) {
           this.isLoadingSubject$.next(auditsState.isLoading);
         }
-
-        if (!this.pluginLoaded) {
-          this.pluginLoaded = true;
-          this.coreService.checkLoadedServices();
-        }
       }));
 
     // register services in coreService
@@ -47,9 +42,21 @@ export class AuditsService extends FronteggService implements OnDestroy {
     this.storeListener$.unsubscribe();
   }
 
+  updateStateIfRequired(): void {
+    if (!this.auditsStateSubject$.getValue()) {
+      const auditsState = this.coreService.state[storeName] as AuditsState;
+      this.auditsStateSubject$.next(auditsState);
+    }
+  }
+
   public setActions(key: string, actions: AuditsActions): void {
     if (key === storeName && actions != null) {
       this.actions = actions;
+      if (!this.pluginLoaded) {
+        this.pluginLoaded = true;
+        this.coreService.checkLoadedServices();
+        this.updateStateIfRequired();
+      }
     }
   }
 }

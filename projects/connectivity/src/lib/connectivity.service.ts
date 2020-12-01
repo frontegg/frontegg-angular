@@ -1,10 +1,9 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { FronteggService, CoreService } from '@frontegg/ng-core';
+import { FronteggService, CoreService, FronteggStoreEvent } from '@frontegg/ng-core';
 import { IConnectivityState } from '@frontegg/react-connectivity/interfaces';
 import { connectivityActions } from '@frontegg/react-connectivity/reducer';
 
 import { BehaviorSubject, fromEvent, Subscription } from 'rxjs';
-import { FronteggStoreEvent } from '@frontegg/ng-core';
 
 type ConnectivityActions = typeof connectivityActions;
 
@@ -28,21 +27,16 @@ export class ConnectivityService extends FronteggService implements OnDestroy {
     super();
     this.storeListener$ = fromEvent(
       document,
-      `${FronteggStoreEvent}/${storeName}`
+      `${FronteggStoreEvent}/${storeName}`,
     ).subscribe(() => {
-  
-      console.log('Connectivity subscribe')
+
+      console.log('Connectivity subscribe');
       const connectivityState = this.coreService.state[
         storeName
-      ] as IConnectivityState;
+        ] as IConnectivityState;
       this.connectivityStateSubject$.next(connectivityState);
       if (this.isLoadingSubject$.getValue() !== connectivityState.isLoading) {
         this.isLoadingSubject$.next(connectivityState.isLoading);
-      }
-
-      if (!this.pluginLoaded) {
-        this.pluginLoaded = true;
-        this.coreService.checkLoadedServices();
       }
     });
 
@@ -54,10 +48,22 @@ export class ConnectivityService extends FronteggService implements OnDestroy {
     this.storeListener$.unsubscribe();
   }
 
+
+  updateStateIfRequired(): void {
+    if (!this.connectivityStateSubject$.getValue()) {
+      const connectivityState = this.coreService.state[storeName] as IConnectivityState;
+      this.connectivityStateSubject$.next(connectivityState);
+    }
+  }
+
   public setActions(key: string, actions: ConnectivityActions): void {
-    console.log({key, actions})
     if (key === storeName && actions != null) {
       this.actions = actions;
+      if (!this.pluginLoaded) {
+        this.pluginLoaded = true;
+        this.coreService.checkLoadedServices();
+        this.updateStateIfRequired();
+      }
     }
   }
 }
