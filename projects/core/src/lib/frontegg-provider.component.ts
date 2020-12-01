@@ -7,7 +7,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
 import { FronteggProvider, FeProviderProps, DOMProxy, createBrowserHistory, PluginConfig } from '@frontegg/react-core';
 import { uiLibrary } from '@frontegg/react-elements-material-ui';
-import { FE_AUDITS_PLUGIN_CONFIG, FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG } from './constants';
+import { FE_AUDITS_PLUGIN_CONFIG, FE_AUTH_PLUGIN_CONFIG, FE_CONNECTIVITY_PLUGIN_CONFIG, FE_PROVIDER_CONFIG } from './constants';
 import { CoreService } from './core.service';
 
 
@@ -29,6 +29,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
               @Inject(FE_PROVIDER_CONFIG) private config: FeProviderProps,
               @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig,
               @Optional() @Inject(FE_AUDITS_PLUGIN_CONFIG) private auditsPlugin: PluginConfig,
+              @Optional() @Inject(FE_CONNECTIVITY_PLUGIN_CONFIG) private connectivityPlugin: PluginConfig,
   ) {
     super(elem);
     this.name = 'FronteggProvider';
@@ -51,7 +52,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
       this.coreService.setState(store.getState(), action);
     };
 
-    const plugins = [this.authPlugin, this.auditsPlugin]
+    const plugins = [this.authPlugin, this.auditsPlugin, this.connectivityPlugin]
       .map(p => Array.isArray(p) ? p[0] : p)
       .filter(p => p && p.storeName);
     debugger;
