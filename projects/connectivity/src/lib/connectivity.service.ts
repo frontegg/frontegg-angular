@@ -60,6 +60,7 @@ export class ConnectivityService extends FronteggService implements OnDestroy {
     if (key === storeName && actions != null) {
       this.actions = actions;
       if (!this.pluginLoaded) {
+        console.log('Connectivity is load')
         this.pluginLoaded = true;
         this.coreService.checkLoadedServices();
         this.updateStateIfRequired();

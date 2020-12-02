@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   user = null;
 
   constructor(private authService: AuthService) {
-    debugger;
+    // debugger;
   }
 
 

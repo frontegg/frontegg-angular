@@ -8,7 +8,7 @@ import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 import { FronteggGuard } from '@frontegg/ng-core';
 import { AuthGuard } from '@frontegg/ng-auth';
 import { AuditsComponent } from '@frontegg/ng-audits';
-import { ConnectivityComponent } from '@frontegg/ng-connectivity';
+import { ConnectivityComponent, ConnectivityWebhookComponent, ConnectivitySMSComponent} from '@frontegg/ng-connectivity';
 
 // 1. all services is loaded
 // 2. all saga actions inserted
@@ -54,6 +54,20 @@ const routes: Routes = [
           {
             path: '**',
             component: ConnectivityComponent,
+          }],
+      },
+      {
+        path: 'webhook', children: [
+          {
+            path: '**',
+            component: ConnectivityWebhookComponent,
+          }],
+      },
+      {
+        path: 'sms', children: [
+          {
+            path: '**',
+            component: ConnectivitySMSComponent,
           }],
       },
       {

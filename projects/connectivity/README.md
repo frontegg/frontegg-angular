@@ -4,7 +4,7 @@
     <img style="margin-top:40px" height="50" src="https://frontegg.com/wp-content/uploads/2020/04/logo_frrontegg.svg" alt="Frontegg logo">  
   </a>  
 </p>  
-<h1 align="center">Authentication Plugin</h1>  
+<h1 align="center">Connectivity Plugin</h1>  
 <div align="center">  
 
 [Angular](https://angular.io/) pre-built Component for faster and simpler integration with Frontegg services.
@@ -15,23 +15,23 @@ Frontegg-Ng-Auth is available as an [npm package](https://www.npmjs.com/package/
   
 ```sh  
 // using npm  
-npm install @frontegg/ng-auth  
+npm install @frontegg/ng-connectivity  
   
 // using yarn  
-yarn add @frontegg/ng-auth  
+yarn add @frontegg/ng-connectivity  
   
 // NOTE: to get the latest stable use @latest.  
 ```   
 ## Usage  
   
-All you need is to add AuthModule to the ``CoreModule``: 
+All you need is to add ConnectivityModule to the ``CoreModule``: 
   
 ```ts
 /* app.module.ts file */
 
 import { AppComponent } from "./app.component";
 import { CoreModule } from "@frontegg/ng-core";
-import { AuthModule } from '@frontegg/ng-auth';
+import { ConnectivityModule } from '@frontegg/ng-connectivity';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,6 +42,7 @@ import { AuthModule } from '@frontegg/ng-auth';
         requestCredentials: "include",
       },
     }),
+    ConnectivityModule.forRoot(),
     // ...rest modules
   ],
   providers: [],
@@ -50,131 +51,71 @@ import { AuthModule } from '@frontegg/ng-auth';
 export class AppModule {}
 ```
 
-## Auth Components
+and add the ConnectivityComponent to your ``RoutingModule``
 
-- [Sso Component](projects/auth/src/lib/sso)
-- [Team Management Component](projects/auth/src/lib/team)
-- [Mfa Component](projects/auth/src/lib/mfa)
-- [Profile Component](projects/auth/src/lib/profile)
-
-## Options and Customizations
-**Frontegg-Ng-Auth** provide the ability to fully customize your components 
-to align it with your App UI design.
-
-- [`header`](#header-ngcomponent) `<Component>`
-- [`backgroundImage`](#backgroundimage-string) `<string>`
-- [`backgroundColor`](#backgroundcolor-csscolor) `<CSSColor>`
-- [`loaderComponent`](#loadercomponent-ngcomponent) `<Component>`
-- [`routes`](#routes-string) `<string[]>`
-
-**Advanced Customizations**
-
-- [`Login Component`](src/login/README.md)
-
-### `header <Component>`
-
-*(optional)* The Ng Component is used to customize your authentication page header
 ```ts
-{
-  imports: [
-   AuthPlugin.forRoot({
-    header: MyAuthPageHeader,
-    // ...rest options
-   })
-  ]
-}
+/* routing.module.ts */
+
+// ...import all modules
+import { ConnectivityComponent } from '@frontegg/ng-connectivity';
+
+const routes: Routes = [
+  {
+    path: '',
+    // ...any dependency injections for the route
+    children: [
+      // ...main routes
+      {
+        path: 'connectivity',
+        children: [{
+          path: '**', component: ConnectivityComponent,
+        }],
+      },
+      // ...other routes
+    ]
+  }
+]
+
 ```
 
-### `backgroundImage <string>`
+### Usage only part of the Component
+If you want to customize the Connectivity component you can use one of the separate components:
 
-*(optional)* The CSS Color is used to for authentication page background color
+ - ConnectivityContentComponent - the main component like as the ``ConnectivityComponent`` but without the header.
+ - ConnectivityWebhookComponent - only the Webhook list and configuration form for it
+ - ConnectivitySMSComponent - only the SMS list and configuration 
+ - ConnectivityEmailComponent - only the Email list and configuration 
+ - ConnectivitySlackComponent - only the Slack list and configuration with authorization component for it
+
+The example of routing with SMS and Email components:
+
 ```ts
-{
-  imports: [
-   AuthPlugin.forRoot({
-    backgroundImage: 'https://image_url' | 'data:image/png;base64,...',  
-    // ...rest options
-   })
-  ]
-}
+/* routing.module.ts */
+
+// ...import all modules
+import { ConnectivitySMSComponent, ConnectivityEmailComponent } from '@frontegg/ng-connectivity';
+
+const routes: Routes = [
+  {
+    path: '',
+    // ...any dependency injections for the route
+    children: [
+      // ...main routes
+      {
+        path: 'sms',
+        children: [{
+          path: '**', component: ConnectivitySMSComponent,
+        }],
+      },
+      {
+        path: 'email',
+        children: [{
+          path: '**', component: ConnectivityEmailComponent,
+        }],
+      },
+      // ...other routes
+    ]
+  }
+]
+
 ```
-
-### `backgroundColor <CSSColor>`
-
-*(optional)* The CSS Color is used to for authentication page background color
-```ts
-{
-  imports: [
-   AuthPlugin.forRoot({
-    backgroundColor: '#FAFAFA' | 'red' | 'rgb(200,200,200)',
-    // ...rest options
-   })
-  ]
-}
-```
-
-### `loaderComponent <Component>`
-
-*(optional)* The Ng Component displayed on first load while resolving the verifying the authenticated user, refreshing the token, 
-and to check if the user should be redirected to the login page. 
-```ts
-{
-  imports: [
-   AuthPlugin.forRoot({
-    loaderComponent: <MyLoaderComponent>,  
-    // ...rest options
-   })
-  ]
-}
-```
-
-### `routes <string[]>`
-
-*(optional)* The path routes for the Authentication Components, these pathes are used to redirect
-an user to a specific route depends on the authentication state. 
-```ts
-{
-  imports: [
-    AuthPlugin.forRoot({
-      routes: {
-        /**
-         * redirect to the page when a user is authenticated 
-         */
-        authenticatedUrl: '/',
-        /**
-         * redirect to the page when a user is not authenticated 
-         */      
-        loginUrl: '/account/login',
-        /**
-         * when navigating to this url, AuthProvider will logout and remove cookies 
-         */
-        logoutUrl: '/account/logout',
-        /**
-         * redirect to the page when a user wants to activate their account 
-         */
-        activateUrl: '/account/activate',
-        /**
-         * redirect to the page when a user forgot his account password 
-         */
-        forgetPasswordUrl: '/account/forgot/password',
-        /**
-         * redirect to the page when a user is redirected from the forgot password url 
-         */
-        resetPasswordUrl: '/account/reset/password',
-      },  
-      //...rest options
-    })
-  ];
-}
-```
-
-## Contributing
-
-The main purpose of this repository is to continue developing Frontegg Angular to making it faster and easier to use.
-Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process.
-
-**Notice** that contributions go far beyond pull requests and commits.
-
-## License
-
-This project is licensed under the terms of the [MIT license](/LICENSE).

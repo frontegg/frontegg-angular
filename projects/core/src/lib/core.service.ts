@@ -71,8 +71,6 @@ export class CoreService implements FronteggService {
     this.pluginLoaded = Object.values(this.services).reduce((p, n) => p && n?.pluginLoaded, true);
     const servicesLoading = Object.keys(this.services).map((p) => `${p}-${this.services[p] && this.services[p].pluginLoaded ? 'true' : 'false'}`);
 
-
-    console.log('pluginLoaded', this.pluginLoaded, servicesLoading);
     if (this.pluginLoaded) {
       this.loadingSubject$.next(false);
     }

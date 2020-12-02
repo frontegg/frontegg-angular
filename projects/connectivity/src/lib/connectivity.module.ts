@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FE_CONNECTIVITY_PLUGIN_CONFIG } from '@frontegg/ng-core';
 import { ConnectivityPlugin } from '@frontegg/react-connectivity';
 import { ConnectivityService } from './connectivity.service';
-import { ConnectivityComponent } from './connectivityPage';
+import { ConnectivityComponent } from './connectivity.component';
 
 const components = [
   ConnectivityComponent,

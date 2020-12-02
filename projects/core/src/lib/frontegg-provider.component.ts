@@ -59,11 +59,12 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
 
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       _history: history,
-      uiLibrary,
+      // uiLibrary,
       debugMode: true,
       storeMiddlewares: [middleware],
       context: this.config.context,
       onRedirectTo: (path, opts) => {
+        console.log('onRedirectTo',  {path, opts})
         if (opts?.refresh) {
           window.location.href = path;
         } else {
