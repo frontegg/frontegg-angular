@@ -13,6 +13,7 @@ import { LoginModule } from './login/login.module';
 import { AuthModule } from '@frontegg/ng-auth';
 import { NavComponent } from './nav/nav.component';
 import { AuditsModule } from '@frontegg/ng-audits';
+import { ConnectivityModule } from '@frontegg/ng-connectivity';
 
 declare global {
   type JSX = any;
@@ -36,6 +37,7 @@ declare global {
     }),
     AuthModule.forRoot(),
     AuditsModule.forRoot(),
+    ConnectivityModule.forRoot(),
     HomeModule,
     TeamModule,
     SsoModule,
@@ -43,5 +45,4 @@ declare global {
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

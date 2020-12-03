@@ -364,6 +364,46 @@
           }
         }
       }
+    },
+    "connectivity": {
+      "projectType": "library",
+      "root": "projects/connectivity",
+      "sourceRoot": "projects/connectivity/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/connectivity/tsconfig.lib.json",
+            "project": "projects/connectivity/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/connectivity/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/connectivity/src/test.ts",
+            "tsConfig": "projects/connectivity/tsconfig.spec.json",
+            "karmaConfig": "projects/connectivity/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/connectivity/tsconfig.lib.json",
+              "projects/connectivity/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "demo-saas"

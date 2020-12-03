@@ -52,7 +52,7 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
 
   protected registerChild(child: FronteggBaseComponent): void {
     console.log(this.name, 'registerChild', child.name);
-    debugger;
+    // debugger;
     if (this.rcChildren.has(child)) {
       this.rcChildren.delete(child);
     }
@@ -60,6 +60,7 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   }
 
   protected registerComponent(): void {
+    // debugger;
     const isProvider = this.name === 'FronteggProvider';
     let parent = this.elem.nativeElement.parentElement;
     while (parent != null && !parent.ngClass) {

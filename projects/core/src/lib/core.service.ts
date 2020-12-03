@@ -1,5 +1,11 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { FE_AUDITS_PLUGIN_CONFIG, FE_AUTH_PLUGIN_CONFIG, FE_PROVIDER_CONFIG, FronteggStoreEvent } from './constants';
+import {
+  FE_AUDITS_PLUGIN_CONFIG,
+  FE_AUTH_PLUGIN_CONFIG,
+  FE_PROVIDER_CONFIG,
+  FE_CONNECTIVITY_PLUGIN_CONFIG,
+  FronteggStoreEvent,
+} from './constants';
 import { FronteggService } from './FronteggService';
 import { FeProviderProps, PluginConfig } from '@frontegg/react-core';
 import { BehaviorSubject } from 'rxjs';
@@ -20,12 +26,14 @@ export class CoreService implements FronteggService {
   constructor(@Inject(FE_PROVIDER_CONFIG) private config: FeProviderProps,
               @Optional() @Inject(FE_AUTH_PLUGIN_CONFIG) private authPlugin: PluginConfig,
               @Optional() @Inject(FE_AUDITS_PLUGIN_CONFIG) private auditsPlugin: PluginConfig,
+              @Optional() @Inject(FE_CONNECTIVITY_PLUGIN_CONFIG) private connectivityPlugin: PluginConfig,
   ) {
     // store registered plugins to check when its loaded
 
     [
       authPlugin,
       auditsPlugin,
+      connectivityPlugin,
     ]
       .map(p => Array.isArray(p) ? p[0] : p)
       .filter(p => p && p.storeName)
@@ -57,12 +65,12 @@ export class CoreService implements FronteggService {
   }
 
   public checkLoadedServices(): void {
-    // debugger;
     if (!this.loadingSubject$.getValue()) {
       return;
     }
     this.pluginLoaded = Object.values(this.services).reduce((p, n) => p && n?.pluginLoaded, true);
-    // debugger;
+    const servicesLoading = Object.keys(this.services).map((p) => `${p}-${this.services[p] && this.services[p].pluginLoaded ? 'true' : 'false'}`);
+
     if (this.pluginLoaded) {
       this.loadingSubject$.next(false);
     }
