@@ -23,13 +23,8 @@
             "polyfills": "projects/demo-saas/src/polyfills.ts",
             "tsConfig": "projects/demo-saas/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "projects/demo-saas/src/favicon.ico",
-              "projects/demo-saas/src/assets"
-            ],
-            "styles": [
-              "projects/demo-saas/src/styles.scss"
-            ],
+            "assets": ["projects/demo-saas/src/favicon.ico", "projects/demo-saas/src/assets"],
+            "styles": ["projects/demo-saas/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -87,13 +82,8 @@
             "polyfills": "projects/demo-saas/src/polyfills.ts",
             "tsConfig": "projects/demo-saas/tsconfig.spec.json",
             "karmaConfig": "projects/demo-saas/karma.conf.js",
-            "assets": [
-              "projects/demo-saas/src/favicon.ico",
-              "projects/demo-saas/src/assets"
-            ],
-            "styles": [
-              "projects/demo-saas/src/styles.scss"
-            ],
+            "assets": ["projects/demo-saas/src/favicon.ico", "projects/demo-saas/src/assets"],
+            "styles": ["projects/demo-saas/src/styles.scss"],
             "scripts": []
           }
         },
@@ -105,9 +95,7 @@
               "projects/demo-saas/tsconfig.spec.json",
               "projects/demo-saas/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -119,127 +107,6 @@
           "configurations": {
             "production": {
               "devServerTarget": "demo-saas:serve:production"
-            }
-          }
-        }
-      }
-    },
-    "demo-saas2": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/demo-saas2",
-      "sourceRoot": "projects/demo-saas2/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/demo-saas2",
-            "index": "projects/demo-saas2/src/index.html",
-            "main": "projects/demo-saas2/src/main.ts",
-            "polyfills": "projects/demo-saas2/src/polyfills.ts",
-            "tsConfig": "projects/demo-saas2/tsconfig.app.json",
-            "aot": true,
-            "assets": [
-              "projects/demo-saas2/src/favicon.ico",
-              "projects/demo-saas2/src/assets"
-            ],
-            "styles": [
-              "projects/demo-saas2/src/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/demo-saas2/src/environments/environment.ts",
-                  "with": "projects/demo-saas2/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "demo-saas2:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "demo-saas2:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "demo-saas2:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/demo-saas2/src/test.ts",
-            "polyfills": "projects/demo-saas2/src/polyfills.ts",
-            "tsConfig": "projects/demo-saas2/tsconfig.spec.json",
-            "karmaConfig": "projects/demo-saas2/karma.conf.js",
-            "assets": [
-              "projects/demo-saas2/src/favicon.ico",
-              "projects/demo-saas2/src/assets"
-            ],
-            "styles": [
-              "projects/demo-saas2/src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/demo-saas2/tsconfig.app.json",
-              "projects/demo-saas2/tsconfig.spec.json",
-              "projects/demo-saas2/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/demo-saas2/e2e/protractor.conf.js",
-            "devServerTarget": "demo-saas2:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "demo-saas2:serve:production"
             }
           }
         }
@@ -274,13 +141,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/core/tsconfig.lib.json",
-              "projects/core/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/core/tsconfig.lib.json", "projects/core/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -314,13 +176,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/auth/tsconfig.lib.json",
-              "projects/auth/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/auth/tsconfig.lib.json", "projects/auth/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -354,13 +211,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/audits/tsconfig.lib.json",
-              "projects/audits/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/audits/tsconfig.lib.json", "projects/audits/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -394,13 +246,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/connectivity/tsconfig.lib.json",
-              "projects/connectivity/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/connectivity/tsconfig.lib.json", "projects/connectivity/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

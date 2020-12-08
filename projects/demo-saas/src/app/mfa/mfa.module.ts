@@ -5,13 +5,7 @@ import { AuthModule } from '@frontegg/ng-auth';
 import { CoreModule } from '@frontegg/ng-core';
 
 @NgModule({
-  declarations: [
-    MfaComponent,
-  ],
-  imports: [
-    CoreModule,
-    AuthModule,
-  ],
+  declarations: [MfaComponent],
+  imports: [CoreModule, AuthModule],
 })
-export class MfaModule {
-}
+export class MfaModule {}

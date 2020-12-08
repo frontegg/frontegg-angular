@@ -4,12 +4,7 @@ import { TeamComponent } from './team.component';
 import { AuthModule } from '@frontegg/ng-auth';
 
 @NgModule({
-  declarations: [
-    TeamComponent,
-  ],
-  imports: [
-    AuthModule,
-  ],
+  declarations: [TeamComponent],
+  imports: [AuthModule],
 })
-export class TeamModule {
-}
+export class TeamModule {}

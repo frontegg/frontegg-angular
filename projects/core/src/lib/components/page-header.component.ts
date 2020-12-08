@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { FronteggBaseComponent } from '../frontegg-base.component';
-import {  PageHeader, PageHeaderProps } from '@frontegg/react-core';
+import { PageHeader, PageHeaderProps } from '@frontegg/react-core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -18,7 +18,6 @@ export class PageHeaderComponent extends FronteggBaseComponent implements AfterV
   constructor(protected elem: ElementRef) {
     super(elem);
   }
-
 
   ngAfterViewInit(): void {
     this.mountElement<PageHeaderProps>('PageHeader', PageHeader, {

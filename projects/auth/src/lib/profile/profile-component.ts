@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
   template: ``,
 })
 export class ProfileComponent extends FronteggBaseComponent implements AfterViewInit {
-
   constructor(protected elem: ElementRef, private route: ActivatedRoute) {
     super(elem);
   }

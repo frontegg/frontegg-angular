@@ -29,40 +29,37 @@ export class AuthService extends FronteggService implements OnDestroy {
   readonly isAuthenticated$ = this.isLoading$.pipe(
     filter((loading) => !loading),
     distinctUntilChanged(),
-    concatMap(() => this.isAuthenticatedSubject$),
+    concatMap(() => this.isAuthenticatedSubject$)
   );
   readonly user$ = this.isLoading$.pipe(
     filter((loading) => !loading),
     distinctUntilChanged(),
-    concatMap(() => this.userSubject$),
+    concatMap(() => this.userSubject$)
   );
 
   constructor(private coreService: CoreService) {
     super();
     // debugger;
     // listener to auth store changes event
-    this.storeListener$ = fromEvent(document, `${FronteggStoreEvent}/${storeName}`)
-      .subscribe((() => {
+    this.storeListener$ = fromEvent(document, `${FronteggStoreEvent}/${storeName}`).subscribe(() => {
+      // Update NG-authPlugin state and notify authState$
+      const authState = this.coreService.state[storeName] as AuthState;
+      this.authStateSubject$.next(authState);
 
-        // Update NG-authPlugin state and notify authState$
-        const authState = this.coreService.state[storeName] as AuthState;
-        this.authStateSubject$.next(authState);
+      if (this.isLoadingSubject$.getValue() !== authState.isLoading) {
+        this.isLoadingSubject$.next(authState.isLoading);
+      }
+      if (this.isAuthenticatedSubject$.getValue() !== authState.isAuthenticated) {
+        this.isAuthenticatedSubject$.next(authState.isAuthenticated);
+      }
+      this.userSubject$.next(authState.user);
 
-        if (this.isLoadingSubject$.getValue() !== authState.isLoading) {
-          this.isLoadingSubject$.next(authState.isLoading);
-        }
-        if (this.isAuthenticatedSubject$.getValue() !== authState.isAuthenticated) {
-          this.isAuthenticatedSubject$.next(authState.isAuthenticated);
-        }
-        this.userSubject$.next(authState.user);
-
-
-        // Tell coreService that this plugin is finished initialization
-        if (!this.pluginLoaded) {
-          this.pluginLoaded = !authState.isLoading;
-          this.coreService.checkLoadedServices();
-        }
-      }));
+      // Tell coreService that this plugin is finished initialization
+      if (!this.pluginLoaded) {
+        this.pluginLoaded = !authState.isLoading;
+        this.coreService.checkLoadedServices();
+      }
+    });
 
     // register services in coreService
     coreService.registerService(storeName, this);

@@ -12,7 +12,6 @@ const storeName = 'connectivity';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ConnectivityService extends FronteggService implements OnDestroy {
   public pluginLoaded = false;
   private isLoadingSubject$ = new BehaviorSubject<boolean>(true);
@@ -25,15 +24,9 @@ export class ConnectivityService extends FronteggService implements OnDestroy {
 
   constructor(private coreService: CoreService) {
     super();
-    this.storeListener$ = fromEvent(
-      document,
-      `${FronteggStoreEvent}/${storeName}`,
-    ).subscribe(() => {
-
+    this.storeListener$ = fromEvent(document, `${FronteggStoreEvent}/${storeName}`).subscribe(() => {
       console.log('Connectivity subscribe');
-      const connectivityState = this.coreService.state[
-        storeName
-        ] as IConnectivityState;
+      const connectivityState = this.coreService.state[storeName] as IConnectivityState;
       this.connectivityStateSubject$.next(connectivityState);
       if (this.isLoadingSubject$.getValue() !== connectivityState.isLoading) {
         this.isLoadingSubject$.next(connectivityState.isLoading);
@@ -48,7 +41,6 @@ export class ConnectivityService extends FronteggService implements OnDestroy {
     this.storeListener$.unsubscribe();
   }
 
-
   updateStateIfRequired(): void {
     if (!this.connectivityStateSubject$.getValue()) {
       const connectivityState = this.coreService.state[storeName] as IConnectivityState;
@@ -60,7 +52,7 @@ export class ConnectivityService extends FronteggService implements OnDestroy {
     if (key === storeName && actions != null) {
       this.actions = actions;
       if (!this.pluginLoaded) {
-        console.log('Connectivity is load')
+        console.log('Connectivity is load');
         this.pluginLoaded = true;
         this.coreService.checkLoadedServices();
         this.updateStateIfRequired();

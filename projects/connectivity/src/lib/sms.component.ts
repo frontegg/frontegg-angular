@@ -7,9 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'fe-connectivity-email',
   template: ``,
 })
-export class ConnectivitySMSComponent
-  extends FronteggBaseComponent
-  implements AfterViewInit {
+export class ConnectivitySMSComponent extends FronteggBaseComponent implements AfterViewInit {
   constructor(protected elem: ElementRef, private route: ActivatedRoute) {
     super(elem);
     this.name = 'ConnectivitySMSComponent';

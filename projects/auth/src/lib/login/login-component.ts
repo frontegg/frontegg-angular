@@ -7,7 +7,6 @@ import { FronteggBaseComponent } from '@frontegg/ng-core';
   template: ``,
 })
 export class LoginComponent extends FronteggBaseComponent implements AfterViewInit {
-
   constructor(protected elem: ElementRef) {
     super(elem);
   }

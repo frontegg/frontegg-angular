@@ -9,10 +9,8 @@ import { AuthService } from '@frontegg/ng-auth';
 })
 export class AppComponent {
   constructor(public coreService: CoreService, public authService: AuthService) {
-
     this.coreService.loading$.subscribe((value) => {
       console.log('value', value);
     });
   }
-
 }

@@ -9,7 +9,6 @@ import { SwitchToggleProps } from '@frontegg/react-core';
   template: ``,
 })
 export class SsoToggleComponent extends FronteggBaseComponent implements AfterViewInit {
-
   constructor(protected elem: ElementRef, private route: ActivatedRoute) {
     super(elem);
   }

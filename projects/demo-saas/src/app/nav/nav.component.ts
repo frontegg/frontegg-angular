@@ -7,7 +7,5 @@ import { CoreService } from '@frontegg/ng-core';
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
-
-  constructor(public coreService: CoreService) { }
-
+  constructor(public coreService: CoreService) {}
 }

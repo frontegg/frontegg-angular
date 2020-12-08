@@ -4,23 +4,16 @@ import { AuditsPlugin } from '@frontegg/react-audits';
 import { AuditsService } from './audits.service';
 import { AuditsComponent } from './audits.component';
 
-const components = [
-  AuditsComponent,
-];
+const components = [AuditsComponent];
 
 @NgModule({
   imports: [],
   declarations: components,
-  providers: [
-    AuditsService,
-  ],
-  exports: [
-    ...components,
-  ],
+  providers: [AuditsService],
+  exports: [...components],
 })
 export class AuditsModule {
-  constructor(private auditsService: AuditsService) {
-  }
+  constructor(private auditsService: AuditsService) {}
 
   static forRoot(): ModuleWithProviders<AuditsModule> {
     return {
@@ -29,7 +22,6 @@ export class AuditsModule {
         {
           provide: FE_AUDITS_PLUGIN_CONFIG,
           useValue: AuditsPlugin(),
-
         },
       ],
     };
