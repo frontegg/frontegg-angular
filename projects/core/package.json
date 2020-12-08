@@ -1,6 +1,6 @@
 {
   "name": "@frontegg/ng-core",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "lib": "./dist",
   "scripts": {
     "build:watch": "ng build --watch --project=core",
