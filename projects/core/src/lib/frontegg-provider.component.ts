@@ -58,7 +58,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
 
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       _history: history,
-      // uiLibrary,
+      uiLibrary,
       debugMode: true,
       storeMiddlewares: [middleware],
       context: this.config.context,
