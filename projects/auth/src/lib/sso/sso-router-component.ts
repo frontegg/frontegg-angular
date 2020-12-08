@@ -5,8 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'fe-auth-sso-router',
-  template: `
-    <ng-content></ng-content>`,
+  template: ` <ng-content></ng-content>`,
 })
 export class SsoRouterComponent extends FronteggBaseComponent implements AfterViewInit {
   @Input() rootPath: string;

@@ -4,23 +4,16 @@ import { ConnectivityPlugin } from '@frontegg/react-connectivity';
 import { ConnectivityService } from './connectivity.service';
 import { ConnectivityComponent } from './connectivity.component';
 
-const components = [
-  ConnectivityComponent,
-];
+const components = [ConnectivityComponent];
 
 @NgModule({
   imports: [],
   declarations: components,
-  providers: [
-    ConnectivityService,
-  ],
-  exports: [
-    ...components,
-  ],
+  providers: [ConnectivityService],
+  exports: [...components],
 })
 export class ConnectivityModule {
-  constructor(private connectivityService: ConnectivityService) {
-  }
+  constructor(private connectivityService: ConnectivityService) {}
 
   static forRoot(): ModuleWithProviders<ConnectivityModule> {
     return {
@@ -29,7 +22,6 @@ export class ConnectivityModule {
         {
           provide: FE_CONNECTIVITY_PLUGIN_CONFIG,
           useValue: ConnectivityPlugin(),
-
         },
       ],
     };

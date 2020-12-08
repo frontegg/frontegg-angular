@@ -7,9 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'fe-connectivity-content',
   template: ``,
 })
-export class ConnectivityContentComponent
-  extends FronteggBaseComponent
-  implements AfterViewInit {
+export class ConnectivityContentComponent extends FronteggBaseComponent implements AfterViewInit {
   constructor(protected elem: ElementRef, private route: ActivatedRoute) {
     super(elem);
     this.name = 'ConnectivityContent';

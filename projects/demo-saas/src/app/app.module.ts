@@ -20,10 +20,7 @@ declare global {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavComponent,
-  ],
+  declarations: [AppComponent, NavComponent],
   imports: [
     LoginModule,
     CommonModule,

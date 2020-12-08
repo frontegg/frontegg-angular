@@ -11,7 +11,6 @@ const storeName = 'audits';
   providedIn: 'root',
 })
 export class AuditsService extends FronteggService implements OnDestroy {
-
   public pluginLoaded = false;
   private isLoadingSubject$ = new BehaviorSubject<boolean>(true);
   private auditsStateSubject$ = new BehaviorSubject<AuditsState>(null);
@@ -21,18 +20,15 @@ export class AuditsService extends FronteggService implements OnDestroy {
 
   actions: AuditsActions;
 
-
   constructor(private coreService: CoreService) {
     super();
-    this.storeListener$ = fromEvent(document, `${FronteggStoreEvent}/${storeName}`)
-      .subscribe((() => {
-
-        const auditsState = this.coreService.state[storeName] as AuditsState;
-        this.auditsStateSubject$.next(auditsState);
-        if (this.isLoadingSubject$.getValue() !== auditsState.isLoading) {
-          this.isLoadingSubject$.next(auditsState.isLoading);
-        }
-      }));
+    this.storeListener$ = fromEvent(document, `${FronteggStoreEvent}/${storeName}`).subscribe(() => {
+      const auditsState = this.coreService.state[storeName] as AuditsState;
+      this.auditsStateSubject$.next(auditsState);
+      if (this.isLoadingSubject$.getValue() !== auditsState.isLoading) {
+        this.isLoadingSubject$.next(auditsState.isLoading);
+      }
+    });
 
     // register services in coreService
     coreService.registerService(storeName, this);

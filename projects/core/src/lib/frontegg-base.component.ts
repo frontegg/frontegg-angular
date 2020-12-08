@@ -3,10 +3,9 @@ import { DOMProxy } from '@frontegg/react-core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  template: `
-    <ng-template [ngIf]="this.loaded">
-      <ng-content></ng-content>
-    </ng-template>`,
+  template: ` <ng-template [ngIf]="this.loaded">
+    <ng-content></ng-content>
+  </ng-template>`,
 })
 export class FronteggBaseComponent implements OnInit, OnDestroy {
   public loaded = false;
@@ -17,7 +16,6 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   public state: 'registered' | 'rendered' = null;
   protected name: string;
   protected registered = false;
-
 
   constructor(protected elem: ElementRef) {
     this.elem.nativeElement.ngClass = this;
@@ -91,14 +89,28 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
     }
 
     const ngChildren = [...this.elem.nativeElement.childNodes];
-    const ngComponents = ngChildren.length === 0 ? null : DOMProxy.createElement('div', {
-      ref: ref => ngChildren.forEach(node => ref?.appendChild(node as any)),
-    }, []);
+    const ngComponents =
+      ngChildren.length === 0
+        ? null
+        : DOMProxy.createElement(
+            'div',
+            {
+              ref: (ref) => ngChildren.forEach((node) => ref?.appendChild(node as any)),
+            },
+            []
+          );
 
-    this.rcPortal = DOMProxy.createPortal(DOMProxy.createElement(component, {
-      _resolvePortals: (setPortals) => this.rcSetPortals = setPortals,
-      ...otherProps,
-    } as any, ngComponents), this.elem.nativeElement);
+    this.rcPortal = DOMProxy.createPortal(
+      DOMProxy.createElement(
+        component,
+        {
+          _resolvePortals: (setPortals) => (this.rcSetPortals = setPortals),
+          ...otherProps,
+        } as any,
+        ngComponents
+      ),
+      this.elem.nativeElement
+    );
     if (!parent) {
       const rcProxy = document.createElement('div');
       document.body.appendChild(rcProxy);
@@ -112,7 +124,7 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
   public mountChild(): void {
     let isAllChildrenRendered = true;
     const portalsToInject = [];
-    this.rcChildren.forEach(rcChild => {
+    this.rcChildren.forEach((rcChild) => {
       isAllChildrenRendered = isAllChildrenRendered && rcChild.state === 'rendered';
       portalsToInject.push(rcChild.rcPortal);
     });
@@ -137,5 +149,4 @@ export class FronteggBaseComponent implements OnInit, OnDestroy {
     console.log('ngOnDestroy', this.name);
     this.rcParent?.unmountChild(this);
   }
-
 }

@@ -8,7 +8,7 @@ import { PageHeaderProps } from '@frontegg/react-core';
   selector: 'fe-auth-sso-header',
   template: ``,
 })
-export class SsoHeaderComponent extends FronteggBaseComponent implements  AfterViewInit {
+export class SsoHeaderComponent extends FronteggBaseComponent implements AfterViewInit {
   @Input() className: string;
   @Input() title: string;
   @Input() titleClassName: string;

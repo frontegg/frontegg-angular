@@ -10,23 +10,11 @@ import { FronteggGuard } from './frontegg.guard';
 import { CoreService } from './core.service';
 
 @NgModule({
-  declarations: [
-    FronteggProviderComponent,
-    PageHeaderComponent,
-    FronteggBaseComponent,
-  ],
-  imports: [
-    PortalModule,
-    CommonModule,
-  ],
-  exports: [
-    FronteggProviderComponent,
-    PageHeaderComponent,
-    FronteggBaseComponent,
-  ],
+  declarations: [FronteggProviderComponent, PageHeaderComponent, FronteggBaseComponent],
+  imports: [PortalModule, CommonModule],
+  exports: [FronteggProviderComponent, PageHeaderComponent, FronteggBaseComponent],
 })
 export class CoreModule {
-
   static forRoot(config?: Omit<FeProviderProps, 'plugins'>): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
@@ -36,7 +24,8 @@ export class CoreModule {
         {
           provide: FE_PROVIDER_CONFIG,
           useValue: config,
-        }],
+        },
+      ],
     };
   }
 }

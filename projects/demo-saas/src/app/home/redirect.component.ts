@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-redirect',
   template: ``,
 })
-export class RedirectComponent {
-}
+export class RedirectComponent {}

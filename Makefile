@@ -103,6 +103,7 @@ bw: ##@4 Build parallels build:watch all
 
 bw-%: ##@2 Build build:watch specific package
 	@export PACKAGE=${*}; cd ./projects/${*} && yarn build:watch
+
 ########################################################################################################################
 #
 # Publish Operations
@@ -115,44 +116,19 @@ commit-changes:
 	@git add .
 	@git commit -m "Add generated files" || true
 
-move-package-json-to-dist:
-	@find ./packages -type d -maxdepth 1 ! -path ./packages \
-		| sed 's|^./packages/||' \
-		| xargs -I '{}' sh -c 'node scripts/move-package-json-to-dist.js ./packages/{}'
+########################################################################################################################
+#
+# Helpers Operations
+#
+########################################################################################################################
 
 
-publish-base:
-	@echo "${GREEN}************************************************************************************${RESET}"
-	@echo "${GREEN}* Lint: All Packages${RESET}"
-	@echo "${GREEN}************************************************************************************${RESET}"
-	${MAKE} lint
 
-	@echo "${GREEN}************************************************************************************${RESET}"
-	@echo "${GREEN}* Component Test: All Packages${RESET}"
-	@echo "${GREEN}************************************************************************************${RESET}"
-	${MAKE} test-component
+commit:
+	@node ./scripts/commit.js
 
-	${MAKE} build
+pretty:
+	@yarn prettier-hook
 
-	@echo "${GREEN}************************************************************************************${RESET}"
-	@echo "${GREEN}* Push: commit generated changes to the repository${RESET}"
-	@echo "${GREEN}************************************************************************************${RESET}"
-	${MAKE} commit-changes
-
-
-publish-prod: ##@5 Publish publish all changed packages to npm repository
-	${MAKE} publish-base
-
-	@echo "${GREEN}************************************************************************************${RESET}"
-	@echo "${GREEN}* Publish: Changed Packages${RESET}"
-	@echo "${GREEN}************************************************************************************${RESET}"
-	@./node_modules/.bin/lerna publish patch --force-publish --contents dist --yes
-
-publish-dev: ##@5 Publish publish all changed packages to npm repository
-	${MAKE} publish-base
-
-	@echo "${GREEN}************************************************************************************${RESET}"
-	@echo "${GREEN}* Publish: Changed Packages${RESET}"
-	@echo "${GREEN}************************************************************************************${RESET}"
-	@./node_modules/.bin/lerna publish patch --canary --preid "dev-${GITHUB_RUN_ID}" --force-publish --contents dist --yes
-
+demo:
+	cd ./packages/demo-saas && yarn start

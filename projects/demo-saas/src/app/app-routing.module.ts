@@ -8,7 +8,11 @@ import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
 import { FronteggGuard } from '@frontegg/ng-core';
 import { AuthGuard } from '@frontegg/ng-auth';
 import { AuditsComponent } from '@frontegg/ng-audits';
-import { ConnectivityComponent, ConnectivityWebhookComponent, ConnectivitySMSComponent} from '@frontegg/ng-connectivity';
+import {
+  ConnectivityComponent,
+  ConnectivityWebhookComponent,
+  ConnectivitySMSComponent,
+} from '@frontegg/ng-connectivity';
 
 // 1. all services is loaded
 // 2. all saga actions inserted
@@ -24,63 +28,87 @@ const routes: Routes = [
       {
         path: 'team',
         canActivate: [AuthGuard],
-        children: [{
-          path: '**', component: TeamComponent,
-        }],
+        children: [
+          {
+            path: '**',
+            component: TeamComponent,
+          },
+        ],
       },
       {
-        path: 'sso', children: [{
-          path: '**', component: SsoPageComponent,
-          // path: '**', component: SsoComponent,
-        }],
+        path: 'sso',
+        children: [
+          {
+            path: '**',
+            component: SsoPageComponent,
+            // path: '**', component: SsoComponent,
+          },
+        ],
       },
       {
-        path: 'profile', children: [{
-          path: '**', component: ProfileComponent,
-        }],
+        path: 'profile',
+        children: [
+          {
+            path: '**',
+            component: ProfileComponent,
+          },
+        ],
       },
       {
-        path: 'mfa', children: [{
-          path: '**', component: MfaComponent,
-        }],
+        path: 'mfa',
+        children: [
+          {
+            path: '**',
+            component: MfaComponent,
+          },
+        ],
       },
       {
-        path: 'audits', children: [{
-          path: '**', component: AuditsComponent,
-        }],
+        path: 'audits',
+        children: [
+          {
+            path: '**',
+            component: AuditsComponent,
+          },
+        ],
       },
       {
-        path: 'connectivity', children: [
+        path: 'connectivity',
+        children: [
           {
             path: '**',
             component: ConnectivityComponent,
-          }],
+          },
+        ],
       },
       {
-        path: 'webhook', children: [
+        path: 'webhook',
+        children: [
           {
             path: '**',
             component: ConnectivityWebhookComponent,
-          }],
+          },
+        ],
       },
       {
-        path: 'sms', children: [
+        path: 'sms',
+        children: [
           {
             path: '**',
             component: ConnectivitySMSComponent,
-          }],
+          },
+        ],
       },
       {
-        path: '**', component: RedirectComponent,
+        path: '**',
+        component: RedirectComponent,
       },
     ],
   },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-  ],
+  imports: [RouterModule.forRoot(routes)],
   providers: [],
   exports: [RouterModule],
 })

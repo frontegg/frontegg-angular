@@ -7,15 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AuthModule } from '@frontegg/ng-auth';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    CoreModule,
-    AuthModule,
-  ],
+  declarations: [LoginComponent],
+  imports: [CommonModule, BrowserModule, CoreModule, AuthModule],
 })
-export class LoginModule {
-}
+export class LoginModule {}

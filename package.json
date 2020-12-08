@@ -1,7 +1,7 @@
 {
   "name": "frontegg-angular",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "workspaces": [
     "projects/*"
   ],
@@ -10,7 +10,9 @@
     "start": "ng serve --project=demo-saas --port 3000",
     "start-prod": "ng serve --prod=true --project=demo-saas --port 3000",
     "build": "ng build --project=demo-saas2",
-    "build-prod": "ng build --prod=true --project=demo-saas"
+    "build-prod": "ng build --prod=true --project=demo-saas",
+    "prettier-hook": "prettier --config ./.prettierrc.json --write .",
+    "prettier-check-hook": "prettier --config ./.prettierrc.json --check ."
   },
   "dependencies": {
     "@angular/animations": "~10.1.3",
@@ -55,6 +57,11 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "~4.0.2",
+    "pre-commit": "^1.2.2",
+    "prettier": "2.1.1"
+  },
+  "pre-commit": {
+    "run": "prettier-check-hook"
   }
 }

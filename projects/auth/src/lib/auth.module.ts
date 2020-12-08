@@ -28,19 +28,13 @@ const components = [
 
   // login
   LoginComponent,
-
 ];
 
 @NgModule({
   imports: [],
   declarations: components,
-  providers: [
-    AuthGuard,
-    AuthService,
-  ],
-  exports: [
-    ...components,
-  ],
+  providers: [AuthGuard, AuthService],
+  exports: [...components],
 })
 export class AuthModule {
   constructor(private authService: AuthService) {}

@@ -3,12 +3,9 @@
     "projects/*"
   ],
   "version": "1.0.0",
-
-  "command": {
-    "version": {
-      "push": false
-    }
-  },
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
 }
