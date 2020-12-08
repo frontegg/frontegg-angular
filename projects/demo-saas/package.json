@@ -1,7 +1,7 @@
 {
   "name": "@frontegg/demo-saas",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "start": "ng serve",
     "build": "ng build",

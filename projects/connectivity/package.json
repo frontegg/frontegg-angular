@@ -1,6 +1,6 @@
 {
   "name": "@frontegg/ng-connectivity",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "lib": "./dist",
   "scripts": {
     "build:watch": "ng build --watch --project=connectivity",
