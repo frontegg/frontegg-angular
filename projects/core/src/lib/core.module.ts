@@ -1,6 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FronteggProviderComponent } from './frontegg-provider.component';
-import { PortalModule } from '@angular/cdk/portal';
 import { PageHeaderComponent } from './components/page-header.component';
 import { FronteggBaseComponent } from './frontegg-base.component';
 import { CommonModule } from '@angular/common';
@@ -11,7 +10,7 @@ import { CoreService } from './core.service';
 
 @NgModule({
   declarations: [FronteggProviderComponent, PageHeaderComponent, FronteggBaseComponent],
-  imports: [PortalModule, CommonModule],
+  imports: [CommonModule],
   exports: [FronteggProviderComponent, PageHeaderComponent, FronteggBaseComponent],
 })
 export class CoreModule {
