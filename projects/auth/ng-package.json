@@ -3,5 +3,6 @@
   "dest": "dist",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": ["react", "react-dom", "@frontegg/react-auth"]
 }
