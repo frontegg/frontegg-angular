@@ -1,6 +1,6 @@
 {
   "name": "@frontegg/ng-auth",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "lib": "./dist",
   "scripts": {
     "build:watch": "ng build --watch --project=auth",
