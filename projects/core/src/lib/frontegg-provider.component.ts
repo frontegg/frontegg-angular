@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, Inject, NgZone, Optional } from '
 import { NavigationEnd, Router } from '@angular/router';
 import { FronteggBaseComponent } from './frontegg-base.component';
 import { FronteggProvider, FeProviderProps, DOMProxy, createBrowserHistory, PluginConfig } from '@frontegg/react-core';
-import { uiLibrary } from '@frontegg/react-elements-material-ui';
 import {
   FE_AUDITS_PLUGIN_CONFIG,
   FE_AUTH_PLUGIN_CONFIG,
@@ -58,7 +57,7 @@ export class FronteggProviderComponent extends FronteggBaseComponent implements 
 
     this.mountElement<FeProviderProps>('FronteggProvider', FronteggProvider, {
       _history: history,
-      uiLibrary,
+      // uiLibrary,
       debugMode: true,
       storeMiddlewares: [middleware],
       context: this.config.context,

@@ -1,10 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { FronteggService, CoreService } from '@frontegg/ng-core';
-import { AuthActions, AuthState } from '@frontegg/react-auth';
+import { FronteggService, CoreService, FronteggStoreEvent } from '@frontegg/ng-core';
+import { AuthActions, AuthState, User } from '@frontegg/react-auth';
 import { BehaviorSubject, fromEvent, Subscription } from 'rxjs';
-import { FronteggStoreEvent } from '@frontegg/ng-core';
 import { concatMap, distinctUntilChanged, filter } from 'rxjs/operators';
-import { User } from '@frontegg/react-auth/Api/interfaces';
 
 const storeName = 'auth';
 
