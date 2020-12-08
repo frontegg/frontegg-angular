@@ -1,24 +1,123 @@
-# Core
+<p align="center">
+  <a href="https://www.frontegg.com/" rel="noopener" target="_blank">
+    <img style="margin-top:40px" height="50" src="https://frontegg.com/wp-content/uploads/2020/04/logo_frrontegg.svg" alt="Frontegg logo">
+  </a>
+</p>
+<h1 align="center">Frontegg-Angular</h1>
+<div align="center">
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
+[Angular](https://angular.io/) pre-built Component for faster and simpler integration with Frontegg services.
 
-## Code scaffolding
+</div>
 
-Run `ng generate component component-name --project core` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project core`.
-> Note: Don't forget to add `--project core` or else it will be added to the default project in your `angular.json` file. 
+## Installation
 
-## Build
+Frontegg-Angular is available as an [npm package](https://www.npmjs.com/package/@frontegg/ng-core).
 
-Run `ng build core` to build the project. The build artifacts will be stored in the `dist/` directory.
+<font color='red'>**NOTE!**:</font> **For typescript project make sure you are using typescript with version > 3.9.0**
 
-## Publishing
+using **NPX**:
 
-After building your library with `ng build core`, go to the dist folder `cd dist/core` and run `npm publish`.
+```
+/* Run Frontegg Angular installer */
 
-## Running unit tests
+npx @frontegg/ng-cli init
+```
 
-Run `ng test core` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Manual Installation
 
-## Further help
+using **YARN**:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+/* install frontegg-core */
+yarn add @frontegg/ng-core
+
+yarn add @frontegg/ng-{plugin-name}
+
+```
+
+using **NPM**:
+
+```
+/* install frontegg-core */
+npm install --save @frontegg/ng-core
+
+npm install --save @frontegg/ng-{plugin-name}
+```
+
+## Usage
+
+1. Import the CoreModule to your app.module file.
+
+```ts
+/* app.module.ts file */
+
+import { AppComponent } from "./app.component";
+import { CoreModule } from "@frontegg/ng-core";
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    CoreModule.forRoot({
+      context: {
+        baseUrl: `${window.location.protocol}/${host}`,
+        requestCredentials: "include",
+      },
+      plugins: [],
+    }),
+    // ...rest modules
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+2. Wrapp your app in `frontegg-provider` selector in `app.component.html`.
+
+```html
+/* app.component.html file */
+
+<frontegg-provider>
+  <app-component></app-component>
+</frontegg-provider>
+```
+
+`context` property uses:
+
+- Communication Settings
+- Theme Customization
+- Component Configurations
+
+```ts
+interface context {
+  baseUrl: string; // required
+  urlPrefix?: string;
+  requestCredentials?: RequestCredentials;
+  tokenResolver?: () => Promise<string> | string;
+  additionalHeadersResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
+  additionalQueryParamsResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
+}
+```
+
+## Plugins
+
+**Frontegg-Angular** provides components per plugins for faster and simpler integration
+
+- [Authentication Plugin](projects/auth)
+- [Audits Plugin](projects/audits)
+- [Team Management Plugin](projects/teams)
+- [Notifications Plugin](projects/notifications)
+- [Reports Plugin](projects/reports)
+- [Integrations Plugin](projects/integrations)
+
+## Contributing
+
+The main purpose of this repository is to continue developing Frontend Angular to make it faster and easier to use.
+Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process.
+
+**Notice** that contributions go far beyond pull requests and commits.
+
+## License
+
+This project is licensed under the terms of the [MIT license](/LICENSE).
