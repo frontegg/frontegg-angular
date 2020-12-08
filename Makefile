@@ -1,5 +1,5 @@
 MAKEFLAGS += --no-print-directory
-SOURCES = packages
+SOURCES = projects
 
 ########################################################################################################################
 #
@@ -131,4 +131,4 @@ pretty:
 	@yarn prettier-hook
 
 demo:
-	cd ./packages/demo-saas && yarn start
+	cd ./projects/demo-saas && yarn start
