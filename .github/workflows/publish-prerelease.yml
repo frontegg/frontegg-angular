@@ -40,7 +40,6 @@ jobs:
           echo "@frontegg:registry=http://registry.npmjs.org/" > .npmrc
           echo "registry=http://registry.npmjs.org/" >> .npmrc
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
-          npm whoami
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
       - name: Commit Version UP
