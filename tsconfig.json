@@ -27,7 +27,7 @@
         "projects/audits/dist"
       ],
       "@frontegg/ng-connectivity": [
-        "projects/connectivity/dist",
+        "projects/connectivity/dist"
       ]
     }
   }
