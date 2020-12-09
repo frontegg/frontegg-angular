@@ -6,7 +6,7 @@
 <h1 align="center">Frontegg-Angular</h1>
 <div align="center">
 
-[Angular](https://angular.io/) pre-built Component for faster and simpler integration with Frontegg services.
+[Angular](https://angular.io/) pre-built `hybrid` components wrapped by `Angular` components for faster and simpler integration with Frontegg services.
 
 </div>
 
@@ -16,15 +16,7 @@ Frontegg-Angular is available as an [npm package](https://www.npmjs.com/package/
 
 <font color='red'>**NOTE!**:</font> **For typescript project make sure you are using typescript with version > 3.9.0**
 
-using **NPX**:
-
-```
-/* Run Frontegg Angular installer */
-
-npx @frontegg/ng-cli init
-```
-
-## Manual Installation
+## Installation
 
 using **YARN**:
 
@@ -49,39 +41,62 @@ npm install --save @frontegg/ng-{plugin-name}
 
 1. Import the CoreModule to your app.module file.
 
-```ts
-/* app.module.ts file */
+    ```ts
+    /* app.module.ts file */
 
-import { AppComponent } from "./app.component";
-import { CoreModule } from "@frontegg/ng-core";
+    import { AppComponent } from "./app.component";
+    import { CoreModule } from "@frontegg/ng-core";
+    import { AppRoutingModule } from './app-routing.module';
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    CoreModule.forRoot({
-      context: {
-        baseUrl: `${window.location.protocol}/${host}`,
-        requestCredentials: "include",
-      },
-      plugins: [],
-    }),
-    // ...rest modules
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
-```
+    @NgModule({
+      declarations: [AppComponent],
+      imports: [
+        AppRoutingModule, // CoreModule inject routes and gaurds into application routes
+        CoreModule.forRoot({
+          context: {
+            baseUrl: `${window.location.protocol}/${host}`,
+            requestCredentials: "include",
+          },
+        }),
+        // ...rest modules
+      ],
+      providers: [],
+      bootstrap: [AppComponent],
+    })
+    export class AppModule {}
+    ```
 
-2. Wrapp your app in `frontegg-provider` selector in `app.component.html`.
+2. Add the AppRoutingModule to your root folder.
 
-```html
-/* app.component.html file */
+    ```ts
+    /* app-routing.module.ts file */
+    import { NgModule } from '@angular/core';
+    import { Routes, RouterModule } from '@angular/router';
+    import { withFronteggRoutes } from '@frontegg/ng-core';
 
-<frontegg-provider>
-  <app-component></app-component>
-</frontegg-provider>
-```
+    const routes: Routes = withFronteggRoutes([
+
+      /* here you can add your own routes */
+
+    ])
+
+    @NgModule({
+      imports: [RouterModule.forRoot(routes)],
+      exports: [RouterModule],
+    })
+    export class AppRoutingModule {
+    }
+    ```
+
+3. Wrapp your app in `frontegg-provider` selector in `app.component.html`.
+
+    ```html
+    /* app.component.html file */
+
+    <frontegg-provider>
+      <router-outlet></router-outlet>
+    </frontegg-provider>
+    ```
 
 `context` property uses:
 

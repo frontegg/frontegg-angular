@@ -7,11 +7,12 @@ import { FeProviderProps } from '@frontegg/react-core';
 import { FE_PROVIDER_CONFIG } from './constants';
 import { FronteggGuard } from './frontegg.guard';
 import { CoreService } from './core.service';
+import { FronteggRouterComponent } from './frontegg-router.component';
 
 @NgModule({
-  declarations: [FronteggProviderComponent, PageHeaderComponent, FronteggBaseComponent],
+  declarations: [FronteggProviderComponent, PageHeaderComponent, FronteggBaseComponent, FronteggRouterComponent],
   imports: [CommonModule],
-  exports: [FronteggProviderComponent, PageHeaderComponent, FronteggBaseComponent],
+  exports: [FronteggProviderComponent, PageHeaderComponent, FronteggBaseComponent, FronteggRouterComponent],
 })
 export class CoreModule {
   static forRoot(config?: Omit<FeProviderProps, 'plugins'>): ModuleWithProviders<CoreModule> {

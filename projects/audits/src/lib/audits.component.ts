@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import { AuditsPage } from '@frontegg/react-audits';
+import { Audits } from '@frontegg/react-audits';
 import { FronteggBaseComponent } from '@frontegg/ng-core';
 
 @Component({
@@ -13,6 +13,6 @@ export class AuditsComponent extends FronteggBaseComponent implements AfterViewI
   }
 
   ngAfterViewInit(): void {
-    this.mountElement('AuditsPage', AuditsPage);
+    this.mountElement('Audits.Page', Audits.Page);
   }
 }
