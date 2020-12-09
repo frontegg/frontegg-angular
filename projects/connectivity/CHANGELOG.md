@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/frontegg/frontegg-angular/compare/v1.0.5...v1.1.0) (2020-12-09)
+
+**Note:** Version bump only for package @frontegg/ng-connectivity
+
+
+
+
+
 ## [1.0.5](https://github.com/frontegg/frontegg-angular/compare/v1.0.4...v1.0.5) (2020-12-08)
 
 **Note:** Version bump only for package @frontegg/ng-connectivity

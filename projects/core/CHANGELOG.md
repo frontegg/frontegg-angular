@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/frontegg/frontegg-angular/compare/v1.0.5...v1.1.0) (2020-12-09)
+
+
+### Features
+
+* add withFronteggRoutes to inject frontegg gaurds and routes ([fbdd3e6](https://github.com/frontegg/frontegg-angular/commit/fbdd3e678aef13b996701259ec4e25ec0a7ad71b))
+
+
+
+
+
 ## [1.0.5](https://github.com/frontegg/frontegg-angular/compare/v1.0.4...v1.0.5) (2020-12-08)
 
 
