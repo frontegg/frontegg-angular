@@ -1287,20 +1287,20 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@frontegg/react-audits@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-audits/-/react-audits-1.12.0.tgz#9f8f24766cf2c2b338d6e39c600450304c9d788f"
-  integrity sha512-1lZ3D1FdT9JZUuSF30EABTLd3joMHtWmQ8BlYceuCcLjjHt+ITz3vtbZROUfDqgKP1DNG6Ba2J+jRELCOoO/HQ==
+"@frontegg/react-audits@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-audits/-/react-audits-1.13.0.tgz#98359ed89e67b1c919752a1483f331b6f80e625b"
+  integrity sha512-zeoYSxL7pHM6K4esRWNU6/FH8NZi5NVtiuOT12pVNw/vyylS9ZxfRq0+ZwycB9n5Jssoz6tHvfDzC58hEagRGA==
   dependencies:
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
     google-map-react "^2.1.9"
     redux-saga "^1.1.3"
 
-"@frontegg/react-auth@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-auth/-/react-auth-1.12.0.tgz#c44ceb02fc636be82b1c576daef0765931802fb5"
-  integrity sha512-0j8eqwq6jWaGFzW+Oa/oqk3Mexdkl1aKQiLeJkq7Khg7qf0JgVPqrMf9I/uuwJPAxrylJcP0rNPw7C+A37gUGA==
+"@frontegg/react-auth@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-auth/-/react-auth-1.13.0.tgz#1b7d7ee7fbb4100e53dcc0fc44702ec8a215d3ff"
+  integrity sha512-o+2WfRNFY0YK9BQQXPTJ4Ase/9yXx1erhN0Wo1dwHRz/CYMIRvS15WfUqwOqkUa503YJGkElzbnKjagq2pZj5w==
   dependencies:
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
@@ -1308,21 +1308,21 @@
     react-dropzone "^9.0.0"
     redux-saga "^1.1.3"
 
-"@frontegg/react-connectivity@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-connectivity/-/react-connectivity-1.12.0.tgz#1e84889bbd00d389339727b48ab2583357e50174"
-  integrity sha512-jOle1I+t56f8hQoUTxNa41Jalt57GOOQQpqbF37f3e7u70iSg/oiCGPlO5OhGyMWIcdsYBT4IZbdfBFgq/8Xyw==
+"@frontegg/react-connectivity@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-connectivity/-/react-connectivity-1.13.0.tgz#d2225a2e461078140e3d3a508b4afd7db4b6aec5"
+  integrity sha512-7gk0/7G/9fEwvCWMtiCNUkVWuoXzu2PLaKA8RnUgns7bgHQ0H9GkKvMeYAF9lUayIt1/vMfWogVoS7Rs8TcOAA==
   dependencies:
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
     redux-saga "^1.1.3"
 
-"@frontegg/react-core@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-core/-/react-core-1.12.0.tgz#eec3dfe4a475e14966242285c0220be52a9c5481"
-  integrity sha512-wErB+XPdBwE3lf1qjyF7wDPLTRZS1dUAv0d26acPt+rJ68Z0yH8UPXjPXsStgi9LseiIR2sW4vntyEnBrVeKFw==
+"@frontegg/react-core@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-core/-/react-core-1.13.0.tgz#ebbfbe3badebe02879d1045587bb96906ec066ef"
+  integrity sha512-k0mFp23jxr/VIdBlDsyAM3frJp2mWG5OJMrGCJ+2u16Byf9ydzv4SeUl8keiKNlqjXgG+mQ7+aRi8uFC1cg6NQ==
   dependencies:
-    "@frontegg/rest-api" "^1.12.0"
+    "@frontegg/rest-api" "^1.13.0"
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
     formik "^2.1.5"
@@ -1341,19 +1341,19 @@
     underscore "^1.10.2"
     yup "^0.28.3"
 
-"@frontegg/react-elements-material-ui@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-elements-material-ui/-/react-elements-material-ui-1.12.0.tgz#8a7430483511fbd0bff57c16abc3a3a78f6febfa"
-  integrity sha512-PUJhFVu6scj1wn8+hhnFmZkd8AK2QEYDBvXPTl/okH2g1gTdx89VYZ/aALCzDM4NlW76fWk5mXKax2H9/EuJxg==
+"@frontegg/react-elements-material-ui@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-elements-material-ui/-/react-elements-material-ui-1.13.0.tgz#2a92ec68b59074b3a1285cfee03f32af74568f0a"
+  integrity sha512-O9eAh0hdrobXiDAgXhlss1cJybRxohIlc8gj2BHlyIeAq/1m1khzLWFr/1TquAJT9AUP/Hz0MNik/fzigvJaCg==
   dependencies:
     classnames "^2.2.6"
     react-popper-tooltip "^3.1.0"
     underscore "^1.10.2"
 
-"@frontegg/rest-api@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-1.12.0.tgz#3b943cdd563cf5866e0e568f04fbc684a931f780"
-  integrity sha512-yXwSHOl8gTWowKCs+0HcQ0WkhC5FugQGLT9rMIE4tMqRLg6nBMt/ttwsj8raWwtCB92LB3o1A4ZXgribAfkhoQ==
+"@frontegg/rest-api@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-1.13.0.tgz#36b30ed0b06887b751890f746d861dc6d492d2e9"
+  integrity sha512-9/UjRJut+v4yu8ptYtOzLK/thMxjcLByCoHnsrx/P+cWngsZ6xbW7WfV0/mbH6mLHtZ9oa86S7kD8VvIlUVYWA==
   dependencies:
     jwt-decode "2.2.0"
 
