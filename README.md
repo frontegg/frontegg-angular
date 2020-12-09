@@ -16,15 +16,7 @@ Frontegg-Angular is available as an [npm package](https://www.npmjs.com/package/
 
 <font color='red'>**NOTE!**:</font> **For typescript project make sure you are using typescript with version > 3.9.0**
 
-using **NPX**:
-
-```
-/* Run Frontegg Angular installer */
-
-npx @frontegg/ng-cli init
-```
-
-## Manual Installation
+## Installation
 
 using **YARN**:
 
