@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, AuthUserObservable, isAuthenticatedObservable } from '@frontegg/ng-auth';
+import { AuthService } from '@frontegg/ng-auth';
 
 @Component({
   selector: 'app-home',
