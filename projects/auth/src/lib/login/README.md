@@ -10,7 +10,7 @@ Each Auth Component export two types of component.
 ## Usage
 
 ```ts
-import { LoginComponent } from "@frontegg/ng-auth";
+import { LoginPageComponent } from "@frontegg/ng-auth";
 
 const routes: Routes = [
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
         children: [
           {
             path: "**",
-            component: LoginComponent,
+            component: LoginPageComponent,
           },
         ],
       },

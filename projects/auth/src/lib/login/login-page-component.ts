@@ -3,15 +3,15 @@ import { LoginPage } from '@frontegg/react-auth';
 import { FronteggBaseComponent } from '@frontegg/ng-core';
 
 @Component({
-  selector: 'fe-auth-login',
+  selector: 'fe-auth-login-page',
   template: ``,
 })
-export class LoginComponent extends FronteggBaseComponent implements AfterViewInit {
+export class LoginPageComponent extends FronteggBaseComponent implements AfterViewInit {
   constructor(protected elem: ElementRef) {
     super(elem);
   }
 
   ngAfterViewInit(): void {
-    this.mountElement('Login', LoginPage);
+    this.mountElement('LoginPage', LoginPage);
   }
 }

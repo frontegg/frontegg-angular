@@ -6,7 +6,7 @@ import { MfaComponent } from './mfa';
 import { AuthService } from './auth.service';
 import { FE_AUTH_PLUGIN_CONFIG } from '@frontegg/ng-core';
 import { AuthPlugin } from '@frontegg/react-auth';
-import { LoginComponent } from './login';
+import { LoginPageComponent } from './login';
 import { AuthGuard } from './auth.guard';
 import { AuthPluginOptions } from '@frontegg/react-auth/interfaces';
 
@@ -27,7 +27,7 @@ const components = [
   MfaComponent,
 
   // login
-  LoginComponent,
+  LoginPageComponent,
 ];
 
 @NgModule({
