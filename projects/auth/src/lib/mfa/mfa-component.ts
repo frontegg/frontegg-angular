@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import { Profile } from '@frontegg/react-auth';
+import { MFA, Profile } from '@frontegg/react-auth';
 import { FronteggBaseComponent } from '@frontegg/ng-core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,6 +13,6 @@ export class MfaComponent extends FronteggBaseComponent implements AfterViewInit
   }
 
   ngAfterViewInit(): void {
-    this.mountElement('Profile.MfaPage', Profile.MfaPage);
+    this.mountElement('MfaPage', MFA.Layout);
   }
 }
