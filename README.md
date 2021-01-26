@@ -121,10 +121,10 @@ interface context {
 
 - [Authentication Plugin](projects/auth)
 - [Audits Plugin](projects/audits)
-- [Team Management Plugin](projects/teams)
-- [Notifications Plugin](projects/notifications)
-- [Reports Plugin](projects/reports)
-- [Integrations Plugin](projects/integrations)
+- [Team Management Plugin](projects/auth/src/lib/team)
+- [Integrations Plugin](projects/connectivity)
+- [Notifications Plugin](projects/notifications) (coming soon)
+- [Reports Plugin](projects/reports) (coming soon)
 
 ## Contributing
 

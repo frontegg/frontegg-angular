@@ -11,7 +11,7 @@
 </div>  
   
 ## Installation  
-Frontegg-Ng-Auth is available as an [npm package](https://www.npmjs.com/package/@frontegg/ng-auth).  
+Frontegg-Ng-Connectivity is available as an [npm package](https://www.npmjs.com/package/@frontegg/ng-connectivity).  
   
 ```sh  
 // using npm  
@@ -24,7 +24,7 @@ yarn add @frontegg/ng-connectivity
 ```   
 ## Usage  
   
-All you need is to add ConnectivityModule to the ``CoreModule``: 
+All you need is to add ConnectivityModule to the ``AppModule``: 
   
 ```ts
 /* app.module.ts file */

@@ -4,34 +4,34 @@
     <img style="margin-top:40px" height="50" src="https://frontegg.com/wp-content/uploads/2020/04/logo_frrontegg.svg" alt="Frontegg logo">  
   </a>  
 </p>  
-<h1 align="center">Authentication Plugin</h1>  
+<h1 align="center">Audits Plugin</h1>  
 <div align="center">  
 
 [Angular](https://angular.io/) pre-built Component for faster and simpler integration with Frontegg services.
 </div>  
   
 ## Installation  
-Frontegg-Ng-Auth is available as an [npm package](https://www.npmjs.com/package/@frontegg/ng-auth).  
+Frontegg-Ng-Audits is available as an [npm package](https://www.npmjs.com/package/@frontegg/ng-audits).  
   
 ```sh  
 // using npm  
-npm install @frontegg/ng-auth  
+npm install @frontegg/ng-audits  
   
 // using yarn  
-yarn add @frontegg/ng-auth  
+yarn add @frontegg/ng-audits  
   
 // NOTE: to get the latest stable use @latest.  
 ```   
 ## Usage  
   
-All you need is to add AuthModule to the ``CoreModule``: 
+All you need is to add AuditsModule to the ``AppModule``: 
   
 ```ts
 /* app.module.ts file */
 
 import { AppComponent } from "./app.component";
 import { CoreModule } from "@frontegg/ng-core";
-import { AuthModule } from '@frontegg/ng-auth';
+import { AuditsModule } from '@frontegg/ng-audits';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,130 +42,13 @@ import { AuthModule } from '@frontegg/ng-auth';
         requestCredentials: "include",
       },
     }),
+    AuditsModule.forRoot(),
     // ...rest modules
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-```
-
-## Auth Components
-
-- [Sso Component](projects/auth/src/lib/sso)
-- [Team Management Component](projects/auth/src/lib/team)
-- [Mfa Component](projects/auth/src/lib/mfa)
-- [Profile Component](projects/auth/src/lib/profile)
-
-## Options and Customizations
-**Frontegg-Ng-Auth** provide the ability to fully customize your components 
-to align it with your App UI design.
-
-- [`header`](#header-ngcomponent) `<Component>`
-- [`backgroundImage`](#backgroundimage-string) `<string>`
-- [`backgroundColor`](#backgroundcolor-csscolor) `<CSSColor>`
-- [`loaderComponent`](#loadercomponent-ngcomponent) `<Component>`
-- [`routes`](#routes-string) `<string[]>`
-
-**Advanced Customizations**
-
-- [`Login Component`](src/login/README.md)
-
-### `header <Component>`
-
-*(optional)* The Ng Component is used to customize your authentication page header
-```ts
-{
-  imports: [
-   AuthPlugin.forRoot({
-    header: MyAuthPageHeader,
-    // ...rest options
-   })
-  ]
-}
-```
-
-### `backgroundImage <string>`
-
-*(optional)* The CSS Color is used to for authentication page background color
-```ts
-{
-  imports: [
-   AuthPlugin.forRoot({
-    backgroundImage: 'https://image_url' | 'data:image/png;base64,...',  
-    // ...rest options
-   })
-  ]
-}
-```
-
-### `backgroundColor <CSSColor>`
-
-*(optional)* The CSS Color is used to for authentication page background color
-```ts
-{
-  imports: [
-   AuthPlugin.forRoot({
-    backgroundColor: '#FAFAFA' | 'red' | 'rgb(200,200,200)',
-    // ...rest options
-   })
-  ]
-}
-```
-
-### `loaderComponent <Component>`
-
-*(optional)* The Ng Component displayed on first load while resolving the verifying the authenticated user, refreshing the token, 
-and to check if the user should be redirected to the login page. 
-```ts
-{
-  imports: [
-   AuthPlugin.forRoot({
-    loaderComponent: <MyLoaderComponent>,  
-    // ...rest options
-   })
-  ]
-}
-```
-
-### `routes <string[]>`
-
-*(optional)* The path routes for the Authentication Components, these pathes are used to redirect
-an user to a specific route depends on the authentication state. 
-```ts
-{
-  imports: [
-    AuthPlugin.forRoot({
-      routes: {
-        /**
-         * redirect to the page when a user is authenticated 
-         */
-        authenticatedUrl: '/',
-        /**
-         * redirect to the page when a user is not authenticated 
-         */      
-        loginUrl: '/account/login',
-        /**
-         * when navigating to this url, AuthProvider will logout and remove cookies 
-         */
-        logoutUrl: '/account/logout',
-        /**
-         * redirect to the page when a user wants to activate their account 
-         */
-        activateUrl: '/account/activate',
-        /**
-         * redirect to the page when a user forgot his account password 
-         */
-        forgetPasswordUrl: '/account/forgot/password',
-        /**
-         * redirect to the page when a user is redirected from the forgot password url 
-         */
-        resetPasswordUrl: '/account/reset/password',
-      },  
-      //...rest options
-    })
-  ];
-}
 ```
 
 ## Contributing
