@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { TeamComponent } from './team/team.component';
 import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
-import { ProfileComponent, SsoPageComponent } from '@frontegg/ng-auth';
+import { ProfileComponent, SsoPageComponent, SsoConfigureIDPComponent } from '@frontegg/ng-auth';
 import { FronteggGuard } from '@frontegg/ng-core';
 import { AuthGuard } from '@frontegg/ng-auth';
 import { AuditsComponent } from '@frontegg/ng-audits';
@@ -13,6 +13,7 @@ import {
   ConnectivityWebhookComponent,
   ConnectivitySMSComponent,
 } from '@frontegg/ng-connectivity';
+import { SsoComponent } from './sso/sso.component';
 
 // 1. all services is loaded
 // 2. all saga actions inserted
@@ -40,7 +41,7 @@ const routes: Routes = [
         children: [
           {
             path: '**',
-            component: SsoPageComponent,
+            component: SsoComponent,
             // path: '**', component: SsoComponent,
           },
         ],
