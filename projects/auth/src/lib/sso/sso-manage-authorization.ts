@@ -6,15 +6,15 @@ import { FronteggBaseComponent } from '@frontegg/ng-core';
   selector: 'fe-auth-sso-manage-authorization',
   template: ` <ng-content></ng-content>`,
 })
-export class SsoManageAuthorization extends FronteggBaseComponent implements AfterViewInit {
+export class SsoManageAuthorizationComponent extends FronteggBaseComponent implements AfterViewInit {
   @Input() rootPath: string;
 
   constructor(protected elem: ElementRef) {
     super(elem);
-    this.name = 'SSO.ManageAuthorizationPage';
+    this.name = 'SSO.ManageAuthorizationComponent';
   }
 
   ngAfterViewInit(): void {
-    this.mountElement('SSO.ManageAuthorizationPage', SSO.ManageAuthorizationPage);
+    this.mountElement('SSO.ManageAuthorizationComponent', SSO.ManageAuthorizationComponent);
   }
 }

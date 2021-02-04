@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SSOProps } from '@frontegg/react-auth/SSO/SSORouter';
 
 @Component({
-  selector: 'fe-auth-sso',
+  selector: 'fe-auth-sso-component',
   template: ` <ng-content></ng-content>`,
 })
 export class SsoAuthComponent extends FronteggBaseComponent implements AfterViewInit {
