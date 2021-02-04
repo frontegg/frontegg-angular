@@ -4,7 +4,7 @@ import {
   SsoAuthComponent,
   SsoClaimDomainComponent,
   SsoConfigureIDPComponent,
-  SsoManageAuthorization,
+  SsoManageAuthorizationComponent,
 } from './sso';
 import { ProfileComponent } from './profile';
 import { TeamHeaderComponent, TeamPageComponent } from './team';
@@ -23,11 +23,8 @@ const components = [
   SsoPageComponent,
   SsoAuthComponent,
   SsoClaimDomainComponent,
-  SsoManageAuthorization,
+  SsoManageAuthorizationComponent,
   SsoConfigureIDPComponent,
-  // SsoHeaderComponent,
-  // SsoRouterComponent,
-  // SsoToggleComponent,
 
   // team
   TeamHeaderComponent,

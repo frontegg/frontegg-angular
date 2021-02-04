@@ -15,6 +15,6 @@ export class SsoConfigureIDPComponent extends FronteggBaseComponent implements A
   }
 
   ngAfterViewInit(): void {
-    this.mountElement('SSO.ConfigureIDPPage', SSO.ConfigureIDPPage);
+    this.mountElement('SSO.ConfigureIDPPage', SSO.ConfigureIDPComponent);
   }
 }

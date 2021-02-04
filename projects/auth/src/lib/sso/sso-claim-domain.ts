@@ -15,6 +15,6 @@ export class SsoClaimDomainComponent extends FronteggBaseComponent implements Af
   }
 
   ngAfterViewInit(): void {
-    this.mountElement('SSO.ClaimDomainPage', SSO.ClaimDomainPage);
+    this.mountElement('SSO.ClaimDomainPage', SSO.ClaimDomainComponent);
   }
 }

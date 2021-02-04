@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { TeamComponent } from './team/team.component';
 import { MfaComponent } from './mfa/mfa.component';
 import { RedirectComponent } from './home/redirect.component';
-import { ProfileComponent, SsoPageComponent, SsoConfigureIDPComponent } from '@frontegg/ng-auth';
+import { ProfileComponent } from '@frontegg/ng-auth';
 import { FronteggGuard } from '@frontegg/ng-core';
 import { AuthGuard } from '@frontegg/ng-auth';
 import { AuditsComponent } from '@frontegg/ng-audits';
@@ -22,8 +22,8 @@ import { SsoComponent } from './sso/sso.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [FronteggGuard],
-    canActivateChild: [FronteggGuard],
+    // canActivate: [FronteggGuard],
+    // canActivateChild: [FronteggGuard],
     children: [
       { path: '', component: HomeComponent },
       {
