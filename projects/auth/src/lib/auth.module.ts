@@ -1,5 +1,11 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { SsoPageComponent } from './sso';
+import {
+  SsoPageComponent,
+  SsoAuthComponent,
+  SsoClaimDomainComponent,
+  SsoConfigureIDPComponent,
+  SsoManageAuthorization,
+} from './sso';
 import { ProfileComponent } from './profile';
 import { TeamHeaderComponent, TeamPageComponent } from './team';
 import { MfaComponent } from './mfa';
@@ -15,6 +21,10 @@ const components = [
 
   // sso
   SsoPageComponent,
+  SsoAuthComponent,
+  SsoClaimDomainComponent,
+  SsoManageAuthorization,
+  SsoConfigureIDPComponent,
   // SsoHeaderComponent,
   // SsoRouterComponent,
   // SsoToggleComponent,
