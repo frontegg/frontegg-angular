@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/frontegg/frontegg-angular/compare/v1.2.0...v1.3.0) (2021-02-04)
+
+
+### Bug Fixes
+
+* links, readme texts ([5fb61f1](https://github.com/frontegg/frontegg-angular/commit/5fb61f14bbe74b68bca460dd38a8560c121b5844))
+
+
+### Features
+
+* Expose SSO as standalone components ([4bdd921](https://github.com/frontegg/frontegg-angular/commit/4bdd9214c79066f9778123be7869426d3139f57c))
+* Update core libraries ([15150b8](https://github.com/frontegg/frontegg-angular/commit/15150b8ec55da49e6e2acc037de430b8710469b2))
+
+
+
+
+
 # [1.2.0](https://github.com/frontegg/frontegg-angular/compare/v1.1.1...v1.2.0) (2021-01-21)
 
 **Note:** Version bump only for package @frontegg/ng-audits
