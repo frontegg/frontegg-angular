@@ -11,3 +11,4 @@ export * from './lib/frontegg.guard';
 export * from './lib/FronteggService';
 export * from './lib/constants';
 export * from './lib/helpers';
+export * from './lib/frontegg-router.component';

@@ -24,7 +24,7 @@ yarn add @frontegg/ng-auth
 ```   
 ## Usage  
   
-All you need is to add AuthModule to the ``CoreModule``: 
+All you need is to add AuthModule to the ``AppModule``: 
   
 ```ts
 /* app.module.ts file */
@@ -42,6 +42,7 @@ import { AuthModule } from '@frontegg/ng-auth';
         requestCredentials: "include",
       },
     }),
+    AuthModule.forRoot()
     // ...rest modules
   ],
   providers: [],
@@ -52,10 +53,10 @@ export class AppModule {}
 
 ## Auth Components
 
-- [Sso Component](projects/auth/src/lib/sso)
-- [Team Management Component](projects/auth/src/lib/team)
-- [Mfa Component](projects/auth/src/lib/mfa)
-- [Profile Component](projects/auth/src/lib/profile)
+- [Sso Component](src/lib/sso)
+- [Team Management Component](src/lib/team)
+- [Mfa Component](src/lib/mfa)
+- [Profile Component](src/lib/profile)
 
 ## Options and Customizations
 **Frontegg-Ng-Auth** provide the ability to fully customize your components 
