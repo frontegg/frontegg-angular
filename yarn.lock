@@ -1287,42 +1287,44 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@frontegg/react-audits@^1.21.1":
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-audits/-/react-audits-1.21.1.tgz#d7fbcdaaf55d9476ae7e47ff868332a8b21b852c"
-  integrity sha512-tyOtz8WKYQ8EcSIyev72phXGV+VHfTDZV0OZPl7DeKUss0AyY4EWsO9V6f9NGE2ZM2tNyjFxSudA3yjvklIKNw==
+"@frontegg/react-audits@^1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-audits/-/react-audits-1.25.0.tgz#59e58d1e856e24564817d6994264d1d89e36aabd"
+  integrity sha512-uFFuzveKAT4536nKEIgTTSPrbQPQw71Qt1B/LUMS0CCr8OybS4z9yQ9EF0nc/kLdnpsePemyE2g6hli/g1f6vQ==
   dependencies:
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
     google-map-react "^2.1.9"
     redux-saga "^1.1.3"
+    ua-parser-js "^0.7.23"
 
-"@frontegg/react-auth@^1.21.1":
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-auth/-/react-auth-1.21.1.tgz#796d83075a5c888cb8b2ce70460110f356c2a7bb"
-  integrity sha512-wSemhMt6KJ8jvX/vP7C9HIVojEfzcX7YkEQ9LXd2osB+F9GNRb6m5phomGH0/7z8yYWoQc8vBIq8JDQrX6Pubw==
+"@frontegg/react-auth@^1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-auth/-/react-auth-1.25.0.tgz#8a00412035f79e6c3fc5b4485c2c7390251ca845"
+  integrity sha512-POzLao2jAlvLgt9vAc65kvbW50qmitnrKkwNDn7Kkk2pQ3jC5LIZYQOBQg5SU+LCRcldsl4LguPSOFJpAFHxYQ==
   dependencies:
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
     clipboard-copy "^3.1.0"
     react-dropzone "^9.0.0"
+    react-recaptcha-v3 "^2.0.1"
     redux-saga "^1.1.3"
 
-"@frontegg/react-connectivity@^1.21.1":
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-connectivity/-/react-connectivity-1.21.1.tgz#8b55493e1cb230c6c36c142b3297a98e37ffc748"
-  integrity sha512-PC4aHMvUV8MDkA6guanDZSKBrEjmHOenBAqP4ieaAT08IUWiyDT8hbk7GCewl39lA+131fU2sT8/o/KAre/L7A==
+"@frontegg/react-connectivity@^1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-connectivity/-/react-connectivity-1.25.0.tgz#4f45aac99be2b97d2590c22690e1a5d08a604fde"
+  integrity sha512-pyJn9LbwcnzEVcu/ZJ3EW4wduaY4aHkArR5p7lIiZs55EaayNk1HR741+KaMxxgYbl1nC4N/EWHpWSRxhkRueQ==
   dependencies:
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
     redux-saga "^1.1.3"
 
-"@frontegg/react-core@^1.21.1":
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-core/-/react-core-1.21.1.tgz#58d91a45d1952222a28fcd30188ca7cee877a617"
-  integrity sha512-8WGyjSALw7R149zYnN34Fg8RQEchgcoRKxLZbq0Debq8chCTeGQ2GqWvsVtJPA3No192DEkD+FnHdPXxRGRvFg==
+"@frontegg/react-core@^1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-core/-/react-core-1.25.0.tgz#ab155ede2a14f3deecd94a98ec5cfb24f440e9e3"
+  integrity sha512-6yVHBkuzvNfaiR6QcPgpUpXZry6Nd3bQaXLY9l5OxEFxSVUQQTNIsCzKAiqdzYZKtx1uWyMq4lKIfXRYwQpu5Q==
   dependencies:
-    "@frontegg/rest-api" "^1.21.1"
+    "@frontegg/rest-api" "^1.25.0"
     "@reduxjs/toolkit" "^1.4.0"
     classnames "^2.2.6"
     formik "^2.1.5"
@@ -1332,7 +1334,7 @@
     moment "^2.27.0"
     owasp-password-strength-test "^1.3.0"
     rc-dialog "^8.4.3"
-    react-i18next "^11.7.0"
+    react-i18next "11.7.0"
     react-popper-tooltip "^3.1.1"
     react-redux "^7.1.1"
     react-select "^3.1.0"
@@ -1341,19 +1343,19 @@
     underscore "^1.10.2"
     yup "^0.28.3"
 
-"@frontegg/react-elements-material-ui@^1.21.1":
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/@frontegg/react-elements-material-ui/-/react-elements-material-ui-1.21.1.tgz#37fc72ecd7b1fdd40de585dc634d90ef2de7b9b6"
-  integrity sha512-9KBeWEwEOpRLzSGB1OIXICcuWuUzAb+dS4FsunUks7jnwwTXh+4CkUFrQlTLR8MCmEY4JfwrW/dur5rsqK0QzQ==
+"@frontegg/react-elements-material-ui@^1.22.1":
+  version "1.22.1"
+  resolved "https://registry.yarnpkg.com/@frontegg/react-elements-material-ui/-/react-elements-material-ui-1.22.1.tgz#d22c9506c17a9f3672725cf3380d8d2ccb59f6b5"
+  integrity sha512-i/fJV4qSgpKgXWSJ/Wg8Wh/S3HZb3YbtIoKSFycfboGIpNjX5/q7burDd04Tw1aATGRfUMF0iI8czYTeaE41XA==
   dependencies:
     classnames "^2.2.6"
     react-popper-tooltip "^3.1.0"
     underscore "^1.10.2"
 
-"@frontegg/rest-api@^1.21.1":
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-1.21.1.tgz#0236397a3ef0a3666ec1c6e920346c30f459204b"
-  integrity sha512-3giX2MtiZvWxyczrU1vMLKZSonaXJROESR92VaT28VLKFMrIZv7efXgZy7h3BZw/zTYvYrYoqkbDx9uE8QQUYQ==
+"@frontegg/rest-api@^1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-1.25.0.tgz#20f0b2d9f0c4090c6005e5b4b1045957ae5ae326"
+  integrity sha512-KAnsI2mk6KFRALHjkZ7OYIlGOz0XfRNTVpwzi0yp0hYf4065Fs+wde75peTmFUJ/f+Off1RNJxKhV4xkQe2DGA==
   dependencies:
     jwt-decode "2.2.0"
 
@@ -9945,10 +9947,10 @@ react-fast-compare@^3.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
-react-i18next@^11.7.0:
-  version "11.7.3"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.7.3.tgz#256461c46baf5b3208c3c6860ca4e569fc7ed053"
-  integrity sha512-7sYZqVZgdaS9Z0ZH6nuJFErCD0zz5wK3jR4/xCrWjZcxHHF3GRu7BXdicbSPprZV4ZYz7LJzxxMHO7dg5Qb70A==
+react-i18next@11.7.0:
+  version "11.7.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-11.7.0.tgz#f27c4c237a274e007a48ac1210db83e33719908b"
+  integrity sha512-8tvVkpuxQlubcszZON+jmoCgiA9gCZ74OAYli9KChPhETtq8pJsANBTe9KRLRLmX3ubumgvidURWr0VvKz1tww==
   dependencies:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
@@ -9998,6 +10000,11 @@ react-popper@^2.2.4:
   dependencies:
     react-fast-compare "^3.0.1"
     warning "^4.0.2"
+
+react-recaptcha-v3@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-recaptcha-v3/-/react-recaptcha-v3-2.0.1.tgz#b8dd391e9e36785f250d5e01aad235dd2fea2285"
+  integrity sha512-ZQ+auotgu+E/6YAbPqk53sf9xgcp8TFvVVfL4bVR7PXj98nQmdaONugdLJEA7g1iTZ4yQqC4mZbcVUGZmwb25Q==
 
 react-redux@^7.1.1:
   version "7.2.1"
@@ -11989,6 +11996,11 @@ ua-parser-js@0.7.21:
   version "0.7.21"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
   integrity sha512-+O8/qh/Qj8CgC6eYBVBykMrNtp5Gebn4dlGD/kKXVkJNDwyrAwSIqwz8CDf+tsAIWVycKcku6gIXJ0qwx/ZXaQ==
+
+ua-parser-js@^0.7.23:
+  version "0.7.24"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.24.tgz#8d3ecea46ed4f1f1d63ec25f17d8568105dc027c"
+  integrity sha512-yo+miGzQx5gakzVK3QFfN0/L9uVhosXBBO7qmnk7c2iw1IhL212wfA3zbnI54B0obGwC/5NWub/iT9sReMx+Fw==
 
 uglify-js@^3.1.4:
   version "3.11.0"
