@@ -42,18 +42,20 @@ export class AppComponent {
 }
 ```
 
-4. Add lib-frontegg-app selector to your app component
+4. Add lib-frontegg-app selector to your app component.
+5. Wrapp your app with lib-frontegg-app selector.
 
 ```
 /app.component.html
 
-<div>
-  <router-outlet></router-outlet>
-  <lib-frontegg-app></lib-frontegg-app>
-</div>
+<lib-frontegg-app>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</lib-frontegg-app>
 ```
 
-5. Add button with click callback to handle Frontegg aplication opening.
+6. Add button with click callback to handle Frontegg aplication opening.
 
 ```
 /app.component.html
@@ -65,7 +67,7 @@ export class AppComponent {
 </div>
 ```
 
-6. Add auth routes to your routing module. By default it /account/**
+7. Add auth routes to your routing module. By default it /account/**
 
 ```
 /app-routing.module.ts
@@ -80,7 +82,7 @@ const routes: Routes = [
 ];
 ```
 
-7. Add FronteggGuard to your routing module to redirect user to login page.
+8. Add FronteggGuard to your routing module to redirect user to login page.
 
 ```
 const routes: Routes = [
@@ -94,7 +96,7 @@ const routes: Routes = [
 ];
 ```
 
-8. Subscribe to FronteggApp state
+9. Subscribe to FronteggApp state
 
 ```
 /app.component.ts
@@ -112,4 +114,4 @@ export class AppComponent implements OnInit {
 }
 ```
 
-9. Enjoy!
+10. Enjoy!
