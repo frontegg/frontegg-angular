@@ -53,7 +53,7 @@ export class AppComponent {
 </div>
 ```
 
-5. Add button with click method to handle Frontegg aplication opening.
+5. Add button with click callback to handle Frontegg aplication opening.
 
 ```
 /app.component.html
@@ -65,18 +65,36 @@ export class AppComponent {
 </div>
 ```
 
-6. Add route \*\* to your routes
+6. Add auth routes to your routing module. By default it /account/**
 
 ```
 /app-routing.module.ts
 
 const routes: Routes = [
-  { path: '', component: Component },
-  { path: '**, component: EmptyComponent },
+  { path: '', component: HomeComponent },
+  {
+    path: 'account', children: [
+      { path: '**', component: EmptyAppComponent }
+    ], component: EmptyAppComponent
+  },
 ];
 ```
 
-7. Subscribe to FronteggApp state
+7. Add FronteggGuard to your routing module to redirect user to login page.
+
+```
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'private-route', canActivate: [FronteggAuthGuard], component: PrivateComponent },
+  {
+    path: 'account', children: [
+      { path: '**', component: EmptyAppComponent }
+    ], component: EmptyAppComponent
+  },
+];
+```
+
+8. Subscribe to FronteggApp state
 
 ```
 /app.component.ts
@@ -92,20 +110,6 @@ export class AppComponent implements OnInit {
     })
   }
 }
-```
-
-8. Add FronteggGuard to redirect to login page if user not authenticated
-
-```
-  const routes: Routes = [
-    { path: '', component: HomeComponent },
-    {
-      path: 'private-path',
-      canActivate: [FronteggAuthGuard],
-      component: PrivateComponent
-    },
-    { path: '**', component: EmptyAppComponent },
-  ];
 ```
 
 9. Enjoy!
