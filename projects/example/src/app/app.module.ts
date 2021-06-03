@@ -22,22 +22,23 @@ const palette: any = {
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    FronteggAppModule.forRoot({
-      version: 'next',
-      contextOptions: {
-        baseUrl: 'https://max.frontegg.com'
-      },
-      metadata: {
-        navigation: {
-          users: {
-            visibility: 'hidden',
+    FronteggAppModule.forRoot(
+      {
+        contextOptions: {
+          baseUrl: 'https://max.frontegg.com'
+        },
+        metadata: {
+          navigation: {
+            users: {
+              visibility: 'hidden',
+            },
+          },
+          theme: {
+            palette
           },
         },
-        theme: {
-          palette
-        },
-      },
-    }),
+      }
+    ),
   ],
   bootstrap: [AppComponent],
 })

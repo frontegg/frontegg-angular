@@ -94,4 +94,18 @@ export class AppComponent implements OnInit {
 }
 ```
 
-8. Enjoy!
+8. Add FronteggGuard to redirect to login page if user not authenticated
+
+```
+  const routes: Routes = [
+    { path: '', component: HomeComponent },
+    {
+      path: 'private-path',
+      canActivate: [FronteggAuthGuard],
+      component: PrivateComponent
+    },
+    { path: '**', component: EmptyAppComponent },
+  ];
+```
+
+9. Enjoy!

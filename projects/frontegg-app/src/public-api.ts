@@ -5,3 +5,4 @@
 export * from './lib/frontegg-app.service';
 export * from './lib/frontegg-app.component';
 export * from './lib/frontegg-app.module';
+export * from './lib/frontegg-guards.guard';
