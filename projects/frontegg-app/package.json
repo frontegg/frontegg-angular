@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^11.0.9",
-    "@angular/core": "^11.0.9",
-    "@frontegg/admin-portal": "^1.0.2"
+    "@angular/core": "^11.0.9"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "@frontegg/admin-portal": "^1.0.2",
+    "@frontegg/redux-store": "^2.7.0-alpha.899223383"
   }
 }
