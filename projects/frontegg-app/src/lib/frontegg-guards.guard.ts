@@ -9,11 +9,10 @@ export class FronteggAuthGuard implements CanActivate {
 
   canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve) => {
-      const sub = this.fronteggAppService.isAuthenticated$.pipe(filter(() => !!this.fronteggAppService.fronteggAppLoaded))
+      this.fronteggAppService.isAuthenticated$.pipe(filter(() => !!this.fronteggAppService.fronteggAppLoaded), take(1))
         .subscribe((isAuthenticated) => {
           if (isAuthenticated != null) {
             resolve(isAuthenticated);
-            setTimeout(() => sub.unsubscribe(), 0);
             if (!isAuthenticated) {
               this.fronteggAppService.fronteggAppAuthState$.pipe(take(1)).subscribe(({ routes }) => {
                 window.localStorage.setItem('FRONTEGG_AFTER_AUTH_REDIRECT_URL', state.url);

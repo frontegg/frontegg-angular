@@ -59,19 +59,17 @@ export class FronteggAppService {
 
     // Subscribe on fronteggApp store to change state subjects
     this.fronteggApp.store?.subscribe(() => {
-      if (!!this.fronteggAppLoaded) {
-        const fronteggStore = this.fronteggApp.store?.getState()
-        if (this.isLoadingSubject$.getValue() !== fronteggStore?.auth.isLoading) {
-          this.isLoadingSubject$.next(fronteggStore?.auth.isLoading);
-        }
-        if (this.isAuthenticatedSubject$.getValue() !== fronteggStore?.auth.isAuthenticated) {
-          this.isAuthenticatedSubject$.next(fronteggStore?.auth.isAuthenticated);
-        }
-
-        this.fronteggAppStateSubject$.next(fronteggStore)
-        this.fronteggAppAuthStateSubject$.next(fronteggStore?.auth)
-        this.fronteggAppAuditsStateSubject$.next(fronteggStore?.audits)
+      const fronteggStore = this.fronteggApp.store?.getState()
+      if (this.isLoadingSubject$.getValue() !== fronteggStore?.auth.isLoading) {
+        this.isLoadingSubject$.next(fronteggStore?.auth.isLoading);
       }
+      if (this.isAuthenticatedSubject$.getValue() !== fronteggStore?.auth.isAuthenticated) {
+        this.isAuthenticatedSubject$.next(fronteggStore?.auth.isAuthenticated);
+      }
+
+      this.fronteggAppStateSubject$.next(fronteggStore)
+      this.fronteggAppAuthStateSubject$.next(fronteggStore?.auth)
+      this.fronteggAppAuditsStateSubject$.next(fronteggStore?.audits)
     })
 
     // To check auth route
@@ -95,7 +93,7 @@ export class FronteggAppService {
     this.fronteggAppAuthState$.pipe(filter((authState) => !!authState?.routes), take(1)).subscribe((authState) => {
       const authRoutes = Object.values(authState.routes).filter((route: any) => route.includes('account'))
 
-      if (authRoutes.includes(this.router.url) && this.isAuthRouteSubject$.getValue() === false) {
+      if (authRoutes.includes(this.router.url)) {
         this.isAuthRouteSubject$.next(true)
       }
     })
