@@ -9,6 +9,7 @@ import { FronteggAppService } from 'frontegg-app';
 export class AppComponent implements OnInit {
   private fronteggAppState: any;
   private fronteggAppAuthState: any;
+  private fronteggAppAuditsState: any;
   authenticated!: string;
 
   constructor(private fronteggAppService: FronteggAppService) { }
@@ -21,18 +22,19 @@ export class AppComponent implements OnInit {
       this.fronteggAppAuthState = authState
       this.authenticated = authState?.isAuthenticated
     })
+    this.fronteggAppService?.fronteggAppAuditsState$.subscribe((auditsState) => {
+      this.fronteggAppAuditsState = auditsState
+    })
   }
 
   showApp(): void {
-    const fronteggState = this.fronteggAppState
-    if (!!fronteggState && !!fronteggState?.auth?.isAuthenticated) {
-      this.fronteggAppService?.showFronteggApp()
-    }
+    this.fronteggAppService?.showFronteggApp()
   }
 
   showState(): void {
     console.log('STATE', this.fronteggAppState);
     console.log('AUTH STATE', this.fronteggAppAuthState);
     console.log('AUTHENTICATED', this.authenticated);
+    console.log('AUDITS', this.fronteggAppAuditsState);
   }
 }

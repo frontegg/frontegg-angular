@@ -18,6 +18,8 @@ export class FronteggAppService {
   private fronteggAppStateSubject$ = new BehaviorSubject<any>(null);
   //TODO: types
   private fronteggAppAuthStateSubject$ = new BehaviorSubject<any>(null);
+  //TODO: types
+  private fronteggAppAuditsStateSubject$ = new BehaviorSubject<any>(null);
 
   private isLoadingSubject$ = new BehaviorSubject<boolean>(true);
   private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(false);
@@ -25,19 +27,18 @@ export class FronteggAppService {
 
   readonly fronteggAppState$ = this.fronteggAppStateSubject$.asObservable();
   readonly fronteggAppAuthState$ = this.fronteggAppAuthStateSubject$.asObservable();
+  readonly fronteggAppAuditsState$ = this.fronteggAppAuditsStateSubject$.asObservable();
 
   readonly isLoading$ = this.isLoadingSubject$.asObservable();
   readonly isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
   readonly isAuthRoute$ = this.isAuthRouteSubject$.asObservable();
 
   constructor(@Inject(FE_PROVIDER_CONFIG) private config: FronteggConfigOptions, private router: Router) {
-
     if (!this.config) {
       throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)')
     }
 
     const _config = { version: 'latest', ...this.config }
-
     const fronteggApp = initialize(_config)
     const store = createFronteggStore({
       context: {
@@ -46,11 +47,34 @@ export class FronteggAppService {
       }
     })
     fronteggApp.store = store
-
     this.fronteggApp = fronteggApp
     this.fronteggAppLoaded = false
 
+    // To know if frontegg app loaded
+    this.fronteggApp.onLoad(() => {
+      if (this.fronteggAppLoaded !== this.fronteggApp.loaded) {
+        this.fronteggAppLoaded = this.fronteggApp.loaded
+      }
+    })
 
+    // Subscribe on fronteggApp store to change state subjects
+    this.fronteggApp.store?.subscribe(() => {
+      if (!!this.fronteggAppLoaded) {
+        const fronteggStore = this.fronteggApp.store?.getState()
+        if (this.isLoadingSubject$.getValue() !== fronteggStore?.auth.isLoading) {
+          this.isLoadingSubject$.next(fronteggStore?.auth.isLoading);
+        }
+        if (this.isAuthenticatedSubject$.getValue() !== fronteggStore?.auth.isAuthenticated) {
+          this.isAuthenticatedSubject$.next(fronteggStore?.auth.isAuthenticated);
+        }
+
+        this.fronteggAppStateSubject$.next(fronteggStore)
+        this.fronteggAppAuthStateSubject$.next(fronteggStore?.auth)
+        this.fronteggAppAuditsStateSubject$.next(fronteggStore?.audits)
+      }
+    })
+
+    // To check auth route
     this.router.events.subscribe((r) => {
       const route = r as RouterEvent
       const store = this.fronteggAppStateSubject$.getValue() ?? {}
@@ -67,27 +91,7 @@ export class FronteggAppService {
       }
     })
 
-    this.fronteggApp.onLoad(() => {
-      if (this.fronteggAppLoaded !== this.fronteggApp.loaded) {
-        this.fronteggAppLoaded = this.fronteggApp.loaded
-      }
-    })
-
-    this.fronteggApp.store?.subscribe(() => {
-      const fronteggStore = this.fronteggApp.store?.getState()
-
-      if (this.isLoadingSubject$.getValue() !== fronteggStore?.auth.isLoading) {
-        this.isLoadingSubject$.next(fronteggStore?.auth.isLoading);
-      }
-
-      if (this.isAuthenticatedSubject$.getValue() !== fronteggStore?.auth.isAuthenticated) {
-        this.isAuthenticatedSubject$.next(fronteggStore?.auth.isAuthenticated);
-      }
-
-      this.fronteggAppStateSubject$.next(fronteggStore)
-      this.fronteggAppAuthStateSubject$.next(fronteggStore?.auth)
-    })
-
+    // Check auth route on first load
     this.fronteggAppAuthState$.pipe(filter((authState) => !!authState?.routes), take(1)).subscribe((authState) => {
       const authRoutes = Object.values(authState.routes).filter((route: any) => route.includes('account'))
 
@@ -97,8 +101,9 @@ export class FronteggAppService {
     })
   }
 
+  // Open admin portal
   showFronteggApp(): void {
-    if (this.fronteggAppLoaded) {
+    if (!!this.fronteggAppLoaded) {
       this.fronteggApp?.mountAdminPortal()
     }
   }
