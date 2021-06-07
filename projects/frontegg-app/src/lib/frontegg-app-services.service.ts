@@ -120,14 +120,14 @@ export class FronteggAppAuthService {
   private mfaStateSubject$ = new BehaviorSubject<any>(null);
   private profileStateSubject$ = new BehaviorSubject<any>(null);
   private rolesStateSubject$ = new BehaviorSubject<any>(null);
-  private routesStateSubject$ = new BehaviorSubject<any>(null);
+  private routesSubject$ = new BehaviorSubject<any>(null);
   private securityPolicyStateSubject$ = new BehaviorSubject<any>(null);
   private signUpStateSubject$ = new BehaviorSubject<any>(null);
   private socialLoginStateSubject$ = new BehaviorSubject<any>(null);
   private ssoStateSubject$ = new BehaviorSubject<any>(null);
   private teamStateSubject$ = new BehaviorSubject<any>(null);
   private tenantsStateSubject$ = new BehaviorSubject<any>(null);
-  private userStateSubject$ = new BehaviorSubject<any>(null);
+  private userSubject$ = new BehaviorSubject<any>(null);
 
   readonly acceptInvitationState$ = this.acceptInvitationStateSubject$.asObservable()
   readonly accountSettingsState$ = this.accountSettingsStateSubject$.asObservable()
@@ -138,75 +138,35 @@ export class FronteggAppAuthService {
   readonly mfaState$ = this.mfaStateSubject$.asObservable()
   readonly profileState$ = this.profileStateSubject$.asObservable()
   readonly rolesState$ = this.rolesStateSubject$.asObservable()
-  readonly routesState$ = this.routesStateSubject$.asObservable()
+  readonly routesState$ = this.routesSubject$.asObservable()
   readonly securityPolicyState$ = this.securityPolicyStateSubject$.asObservable()
   readonly signUpState$ = this.signUpStateSubject$.asObservable()
   readonly socialLoginState$ = this.socialLoginStateSubject$.asObservable()
   readonly ssoState$ = this.ssoStateSubject$.asObservable()
   readonly teamState$ = this.teamStateSubject$.asObservable()
   readonly tenantsState$ = this.tenantsStateSubject$.asObservable()
-  readonly userState$ = this.userStateSubject$.asObservable()
-
+  readonly userState$ = this.userSubject$.asObservable()
 
   constructor(private fronteggAppService: FronteggAppService) {
+    const authSubjects = [
+      this.acceptInvitationStateSubject$, this.accountSettingsStateSubject$, this.activateStateSubject$, this.apiTokensStateSubject$,
+      this.forgotPasswordStateSubject$, this.loginStateSubject$, this.mfaStateSubject$, this.profileStateSubject$,
+      this.rolesStateSubject$, this.routesSubject$, this.securityPolicyStateSubject$, this.signUpStateSubject$,
+      this.socialLoginStateSubject$, this.ssoStateSubject$, this.teamStateSubject$, this.userSubject$]
+
+    const authSubStates = [
+      'acceptInvitationState', 'accountSettingsState', 'activateState', 'apiTokensState',
+      'forgotPasswordState', 'loginState', 'mfaState', 'profileState', 'rolesState', 'routes',
+      'securityPolicyState', 'signUpState', 'socialLoginState', 'ssoState', 'teamState', 'user']
+
+
     // Memoized Auth State
     this.fronteggAppService.fronteggAppAuthState$.pipe(filter((state) => !!state)).subscribe((authState) => {
-      if (!equal(this.acceptInvitationStateSubject$.getValue(), authState.acceptInvitationState)) {
-        this.acceptInvitationStateSubject$.next(authState.acceptInvitationState)
-      }
-      if (!equal(this.accountSettingsStateSubject$.getValue(), authState.accountSettingsState)) {
-        this.accountSettingsStateSubject$.next(authState.accountSettingsState)
-      }
-      if (!equal(this.activateStateSubject$.getValue(), authState.activateState)) {
-        this.activateStateSubject$.next(authState.activateState)
-      }
-      if (!equal(this.apiTokensStateSubject$.getValue(), authState.apiTokensState)) {
-        this.apiTokensStateSubject$.next(authState.apiTokensState)
-      }
-      if (!equal(this.forgotPasswordStateSubject$.getValue(), authState.forgotPasswordState)) {
-        this.forgotPasswordStateSubject$.next(authState.forgotPasswordState)
-      }
-      if (!equal(this.loginStateSubject$.getValue(), authState.loginState)) {
-        this.loginStateSubject$.next(authState.loginState)
-      }
-      if (!equal(this.mfaStateSubject$.getValue(), authState.mfaState)) {
-        this.mfaStateSubject$.next(authState.mfaState)
-      }
-      if (!equal(this.profileStateSubject$.getValue(), authState.profileState)) {
-        this.profileStateSubject$.next(authState.profileState)
-      }
-      if (!equal(this.rolesStateSubject$.getValue(), authState.rolesState)) {
-        this.rolesStateSubject$.next(authState.rolesState)
-      }
-      if (!equal(this.routesStateSubject$.getValue(), authState.routes)) {
-        this.routesStateSubject$.next(authState.routes)
-      }
-      if (!equal(this.securityPolicyStateSubject$.getValue(), authState.securityPolicyState)) {
-        this.securityPolicyStateSubject$.next(authState.securityPolicyState)
-      }
-      if (!equal(this.signUpStateSubject$.getValue(), authState.signUpState)) {
-        this.signUpStateSubject$.next(authState.signUpState)
-      }
-      if (!equal(this.socialLoginStateSubject$.getValue(), authState.socialLoginState)) {
-        this.socialLoginStateSubject$.next(authState.socialLoginState)
-      }
-      if (!equal(this.socialLoginStateSubject$.getValue(), authState.socialLoginState)) {
-        this.socialLoginStateSubject$.next(authState.socialLoginState)
-      }
-      if (!equal(this.ssoStateSubject$.getValue(), authState.ssoState)) {
-        this.ssoStateSubject$.next(authState.ssoState)
-      }
-      if (!equal(this.teamStateSubject$.getValue(), authState.teamState)) {
-        this.teamStateSubject$.next(authState.teamState)
-      }
-      if (!equal(this.tenantsStateSubject$.getValue(), authState.tenantsState)) {
-        this.tenantsStateSubject$.next(authState.tenantsState)
-      }
-      if (!equal(this.userStateSubject$.getValue(), authState.user)) {
-        this.userStateSubject$.next(authState.user)
+      for (const subjectIndex in authSubjects) {
+        if (!equal(authSubjects[subjectIndex].getValue(), authState[authSubStates[subjectIndex]])) {
+          authSubjects[subjectIndex].next(authState[authSubStates[subjectIndex]])
+        }
       }
     })
-
-
   }
 }
