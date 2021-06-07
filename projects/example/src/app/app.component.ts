@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   }
 
   showApp(): void {
-    this.fronteggAppService?.showFronteggApp()
+    this.fronteggAppService?.showAdminPortal()
   }
 
   showState(): void {

@@ -1,6 +1,6 @@
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router'; import { Injectable, NgZone } from '@angular/core';
 import { take, filter } from 'rxjs/operators';
-import { FronteggAppService } from './frontegg-app.service';
+import { FronteggAppService } from './frontegg-app-services.service';
 
 @Injectable()
 export class FronteggAuthGuard implements CanActivate {
