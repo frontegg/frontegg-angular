@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   private fronteggAppState: any;
   private fronteggAppAuthState: any;
   private fronteggAppAuditsState: any;
-  authenticated!: string;
+  authenticated?: boolean;
 
   constructor(private fronteggAppService: FronteggAppService, private froonteggAppAuthService: FronteggAppAuthService) { }
 

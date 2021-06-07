@@ -14,10 +14,11 @@ export class FronteggAuthGuard implements CanActivate {
           if (isAuthenticated != null) {
             resolve(isAuthenticated);
             if (!isAuthenticated) {
-              this.fronteggAppService.fronteggAppAuthState$.pipe(take(1)).subscribe(({ routes }) => {
+              this.fronteggAppService.fronteggAppAuthState$.pipe(take(1)).subscribe((authState) => {
+                const routes = authState?.routes
                 window.localStorage.setItem('FRONTEGG_AFTER_AUTH_REDIRECT_URL', state.url);
                 this.zone.run(() => {
-                  this.router.navigateByUrl(routes?.loginUrl);
+                  this.router.navigateByUrl(routes?.loginUrl ?? '/');
                 })
               });
             }

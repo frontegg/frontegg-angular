@@ -4,21 +4,25 @@ import { initialize } from "@frontegg/admin-portal";
 import { BehaviorSubject } from 'rxjs';
 import { FE_PROVIDER_CONFIG } from './constants';
 import { FronteggConfigOptions } from './frontegg-app.module';
-import { createFronteggStore } from '@frontegg/redux-store';
+import { createFronteggStore, AuthState, AuditsState, RootState } from '@frontegg/redux-store';
 import { take, filter } from 'rxjs/operators';
 import * as equal from 'fast-deep-equal';
 
 type FronteggApp = ReturnType<typeof initialize>;
+interface FronteggState {
+  root: RootState;
+  auth: AuthState;
+  audits: AuditsState;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class FronteggAppService {
   fronteggApp: FronteggApp;
   fronteggAppLoaded: boolean;
-  //TODO: types
-  private fronteggAppStateSubject$ = new BehaviorSubject<any>(null);
-  private fronteggAppAuthStateSubject$ = new BehaviorSubject<any>(null);
-  private fronteggAppAuditsStateSubject$ = new BehaviorSubject<any>(null);
+  private fronteggAppStateSubject$ = new BehaviorSubject<FronteggState | null>(null);
+  private fronteggAppAuthStateSubject$ = new BehaviorSubject<FronteggState['auth'] | null>(null);
+  private fronteggAppAuditsStateSubject$ = new BehaviorSubject<FronteggState['audits'] | null>(null);
 
   private isLoadingSubject$ = new BehaviorSubject<boolean>(true);
   private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(false);
@@ -74,9 +78,9 @@ export class FronteggAppService {
     // To check auth route
     this.router.events.subscribe((r) => {
       const route = r as RouterEvent
-      const store = this.fronteggAppStateSubject$.getValue() ?? {}
+      const store = this.fronteggAppStateSubject$?.getValue()
 
-      if (!!route.url && !!store.auth) {
+      if (!!route.url && !!store?.auth) {
         const authRoutes = Object.values(store.auth.routes).filter((route: any) => route.includes('account'))
         const prevIsAuthRoute = this.isAuthRouteSubject$.getValue()
 
@@ -90,7 +94,7 @@ export class FronteggAppService {
 
     // Check auth route on first load
     this.fronteggAppAuthState$.pipe(filter((authState) => !!authState?.routes), take(1)).subscribe((authState) => {
-      const authRoutes = Object.values(authState.routes).filter((route: any) => route.includes('account'))
+      const authRoutes = Object.values(authState?.routes ?? {}).filter((route: any) => route.includes('account'))
 
       if (authRoutes.includes(this.router.url)) {
         this.isAuthRouteSubject$.next(true)
@@ -106,28 +110,32 @@ export class FronteggAppService {
   }
 }
 
+
+interface AuthSubStates {
+  field: Partial<keyof AuthState>,
+  subject: BehaviorSubject<any>
+}
 @Injectable({
   providedIn: 'root'
 })
 export class FronteggAppAuthService {
-  //TODO: types
-  private acceptInvitationStateSubject$ = new BehaviorSubject<any>(null);
-  private accountSettingsStateSubject$ = new BehaviorSubject<any>(null);
-  private activateStateSubject$ = new BehaviorSubject<any>(null);
-  private apiTokensStateSubject$ = new BehaviorSubject<any>(null);
-  private forgotPasswordStateSubject$ = new BehaviorSubject<any>(null);
-  private loginStateSubject$ = new BehaviorSubject<any>(null);
-  private mfaStateSubject$ = new BehaviorSubject<any>(null);
-  private profileStateSubject$ = new BehaviorSubject<any>(null);
-  private rolesStateSubject$ = new BehaviorSubject<any>(null);
-  private routesSubject$ = new BehaviorSubject<any>(null);
-  private securityPolicyStateSubject$ = new BehaviorSubject<any>(null);
-  private signUpStateSubject$ = new BehaviorSubject<any>(null);
-  private socialLoginStateSubject$ = new BehaviorSubject<any>(null);
-  private ssoStateSubject$ = new BehaviorSubject<any>(null);
-  private teamStateSubject$ = new BehaviorSubject<any>(null);
-  private tenantsStateSubject$ = new BehaviorSubject<any>(null);
-  private userSubject$ = new BehaviorSubject<any>(null);
+  private acceptInvitationStateSubject$ = new BehaviorSubject<AuthState['acceptInvitationState'] | null>(null);
+  private accountSettingsStateSubject$ = new BehaviorSubject<AuthState['accountSettingsState'] | null>(null);
+  private activateStateSubject$ = new BehaviorSubject<AuthState['activateState'] | null>(null);
+  private apiTokensStateSubject$ = new BehaviorSubject<AuthState['apiTokensState'] | null>(null);
+  private forgotPasswordStateSubject$ = new BehaviorSubject<AuthState['forgotPasswordState'] | null>(null);
+  private loginStateSubject$ = new BehaviorSubject<AuthState['loginState'] | null>(null);
+  private mfaStateSubject$ = new BehaviorSubject<AuthState['mfaState'] | null>(null);
+  private profileStateSubject$ = new BehaviorSubject<AuthState['profileState'] | null>(null);
+  private rolesStateSubject$ = new BehaviorSubject<AuthState['rolesState'] | null>(null);
+  private routesSubject$ = new BehaviorSubject<AuthState['routes'] | null>(null);
+  private securityPolicyStateSubject$ = new BehaviorSubject<AuthState['securityPolicyState'] | null>(null);
+  private signUpStateSubject$ = new BehaviorSubject<AuthState['signUpState'] | null>(null);
+  private socialLoginStateSubject$ = new BehaviorSubject<AuthState['socialLoginState'] | null>(null);
+  private ssoStateSubject$ = new BehaviorSubject<AuthState['ssoState'] | null>(null);
+  private teamStateSubject$ = new BehaviorSubject<AuthState['teamState'] | null>(null);
+  private tenantsStateSubject$ = new BehaviorSubject<AuthState['tenantsState'] | null>(null);
+  private userSubject$ = new BehaviorSubject<AuthState['user'] | null>(null);
 
   readonly acceptInvitationState$ = this.acceptInvitationStateSubject$.asObservable()
   readonly accountSettingsState$ = this.accountSettingsStateSubject$.asObservable()
@@ -148,7 +156,7 @@ export class FronteggAppAuthService {
   readonly userState$ = this.userSubject$.asObservable()
 
   constructor(private fronteggAppService: FronteggAppService) {
-    const authSubStates = [
+    const authSubStates: AuthSubStates[] = [
       { field: 'acceptInvitationState', subject: this.acceptInvitationStateSubject$ },
       { field: 'accountSettingsState', subject: this.accountSettingsStateSubject$ },
       { field: 'activateState', subject: this.activateStateSubject$ },
@@ -169,9 +177,11 @@ export class FronteggAppAuthService {
 
     // Memoized Auth State
     this.fronteggAppService.fronteggAppAuthState$.pipe(filter((state) => !!state)).subscribe((authState) => {
-      for (const authSubState of authSubStates) {
-        if (!equal(authSubState.subject.getValue(), authState[authSubState.field])) {
-          authSubState.subject.next(authState[authSubState.field])
+      if (authState != null) {
+        for (const authSubState of authSubStates) {
+          if (!equal(authSubState.subject.getValue(), authState[authSubState.field])) {
+            authSubState.subject.next(authState[authSubState.field])
+          }
         }
       }
     })
