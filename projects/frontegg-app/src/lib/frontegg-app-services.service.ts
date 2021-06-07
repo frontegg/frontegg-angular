@@ -148,23 +148,30 @@ export class FronteggAppAuthService {
   readonly userState$ = this.userSubject$.asObservable()
 
   constructor(private fronteggAppService: FronteggAppService) {
-    const authSubjects = [
-      this.acceptInvitationStateSubject$, this.accountSettingsStateSubject$, this.activateStateSubject$, this.apiTokensStateSubject$,
-      this.forgotPasswordStateSubject$, this.loginStateSubject$, this.mfaStateSubject$, this.profileStateSubject$,
-      this.rolesStateSubject$, this.routesSubject$, this.securityPolicyStateSubject$, this.signUpStateSubject$,
-      this.socialLoginStateSubject$, this.ssoStateSubject$, this.teamStateSubject$, this.userSubject$]
-
     const authSubStates = [
-      'acceptInvitationState', 'accountSettingsState', 'activateState', 'apiTokensState',
-      'forgotPasswordState', 'loginState', 'mfaState', 'profileState', 'rolesState', 'routes',
-      'securityPolicyState', 'signUpState', 'socialLoginState', 'ssoState', 'teamState', 'user']
-
+      { field: 'acceptInvitationState', subject: this.acceptInvitationStateSubject$ },
+      { field: 'accountSettingsState', subject: this.accountSettingsStateSubject$ },
+      { field: 'activateState', subject: this.activateStateSubject$ },
+      { field: 'apiTokensState', subject: this.apiTokensStateSubject$ },
+      { field: 'forgotPasswordState', subject: this.forgotPasswordStateSubject$ },
+      { field: 'loginState', subject: this.loginStateSubject$ },
+      { field: 'mfaState', subject: this.mfaStateSubject$ },
+      { field: 'profileState', subject: this.profileStateSubject$ },
+      { field: 'rolesState', subject: this.rolesStateSubject$ },
+      { field: 'routes', subject: this.routesSubject$ },
+      { field: 'securityPolicyState', subject: this.securityPolicyStateSubject$ },
+      { field: 'signUpState', subject: this.signUpStateSubject$ },
+      { field: 'socialLoginState', subject: this.socialLoginStateSubject$ },
+      { field: 'ssoState', subject: this.ssoStateSubject$ },
+      { field: 'teamState', subject: this.teamStateSubject$ },
+      { field: 'user', subject: this.userSubject$ },
+    ]
 
     // Memoized Auth State
     this.fronteggAppService.fronteggAppAuthState$.pipe(filter((state) => !!state)).subscribe((authState) => {
-      for (const subjectIndex in authSubjects) {
-        if (!equal(authSubjects[subjectIndex].getValue(), authState[authSubStates[subjectIndex]])) {
-          authSubjects[subjectIndex].next(authState[authSubStates[subjectIndex]])
+      for (const authSubState of authSubStates) {
+        if (!equal(authSubState.subject.getValue(), authState[authSubState.field])) {
+          authSubState.subject.next(authState[authSubState.field])
         }
       }
     })
