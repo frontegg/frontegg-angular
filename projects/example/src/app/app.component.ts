@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FronteggAppService } from 'frontegg-app';
+import { FronteggAppService, FronteggAppAuthService } from 'frontegg-app';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   private fronteggAppAuditsState: any;
   authenticated!: string;
 
-  constructor(private fronteggAppService: FronteggAppService) { }
+  constructor(private fronteggAppService: FronteggAppService, private froonteggAppAuthService: FronteggAppAuthService) { }
 
   ngOnInit(): void {
     this.fronteggAppService?.fronteggAppState$.subscribe((s) => {
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
     this.fronteggAppService?.fronteggAppAuditsState$.subscribe((auditsState) => {
       this.fronteggAppAuditsState = auditsState
     })
+    this.froonteggAppAuthService?.loginState$.subscribe((s) => console.log(s, 'auth service memoized login state'))
   }
 
   showApp(): void {
