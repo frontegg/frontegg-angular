@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FronteggAppService, FronteggAppAuthService } from './frontegg-app-services.service';
+import { FronteggAppService } from './frontegg-app.service';
+import { FronteggAppAuthService } from './frontegg-app-auth.service';
 @Component({
   selector: 'frontegg-app',
   template: `<div *ngIf="!loading && !isAuthRoute"><ng-content></ng-content></div>`,

@@ -4,7 +4,8 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FronteggAppComponent } from './frontegg-app.component';
 import { FE_PROVIDER_CONFIG } from "./constants";
 import { AdminBoxMetadata } from '@frontegg/admin-portal';
-import { FronteggAppAuthService, FronteggAppService } from './frontegg-app-services.service';
+import { FronteggAppService } from './frontegg-app.service';
+import { FronteggAppAuthService } from './frontegg-app-auth.service';
 //TODO: export this type from admin-portal
 export interface FronteggConfigOptions {
   version?: string | 'latest' | 'stable' | 'next';
