@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FronteggAppService } from './frontegg-app.service';
-import { FronteggAppAuthService } from './frontegg-app-auth.service';
+
 @Component({
   selector: 'frontegg-app',
   template: `<div *ngIf="!loading && !isAuthRoute"><ng-content></ng-content></div>`,
@@ -10,7 +10,7 @@ export class FronteggAppComponent implements OnInit, OnDestroy {
   loading: boolean;
   isAuthRoute: boolean;
 
-  constructor(private fronteggAppService: FronteggAppService, private fronteggAppAuthService: FronteggAppAuthService) {
+  constructor(private fronteggAppService: FronteggAppService) {
     this.name = 'FronteggApp';
     this.loading = false;
     this.isAuthRoute = false;
