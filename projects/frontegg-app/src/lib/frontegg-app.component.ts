@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FronteggAppService } from './frontegg-app.service';
 @Component({
-  selector: 'lib-frontegg-app',
+  selector: 'frontegg-app',
   template: `<div *ngIf="!loading && !isAuthRoute"><ng-content></ng-content></div>`,
 })
 export class FronteggAppComponent implements OnInit, OnDestroy {
