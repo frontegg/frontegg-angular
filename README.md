@@ -42,41 +42,63 @@ export class AppComponent {
 }
 ```
 
-4. Add lib-frontegg-app selector to your app component
+4. Add frontegg-app selector to your app component.
+5. Wrapp your app with frontegg-app selector.
 
 ```
 /app.component.html
 
-<div>
-  <router-outlet></router-outlet>
-  <lib-frontegg-app></lib-frontegg-app>
-</div>
+<frontegg-app>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</frontegg-app>
 ```
 
-5. Add button with click method to handle Frontegg aplication opening.
+6. Add button with click callback to handle Frontegg aplication opening.
 
 ```
 /app.component.html
 
-<div>
-  <router-outlet></router-outlet>
-  <lib-frontegg-app></lib-frontegg-app>
-  <button (click)="showApp()"><h2>Open Frontegg app</h2></button>
-</div>
+<frontegg-app>
+  <div>
+    <router-outlet></router-outlet>
+    <button (click)="showApp()"><h2>Open Frontegg app</h2></button>
+  </div>
+</frontegg-app>
+
 ```
 
-6. Add route \*\* to your routes
+7. Add auth routes to your routing module. By default it /account/**
 
 ```
 /app-routing.module.ts
 
 const routes: Routes = [
-  { path: '', component: Component },
-  { path: '**, component: EmptyComponent },
+  { path: '', component: HomeComponent },
+  {
+    path: 'account', children: [
+      { path: '**', component: EmptyAppComponent }
+    ], component: EmptyAppComponent
+  },
 ];
 ```
 
-7. Subscribe to FronteggApp state
+8. Add FronteggGuard to your routing module to redirect user to login page.
+
+```
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'private-route', canActivate: [FronteggAuthGuard], component: PrivateComponent },
+  {
+    path: 'account', children: [
+      { path: '**', component: EmptyAppComponent }
+    ], component: EmptyAppComponent
+  },
+];
+```
+
+9. Subscribe to FronteggApp state
 
 ```
 /app.component.ts
@@ -94,4 +116,21 @@ export class AppComponent implements OnInit {
 }
 ```
 
-8. Enjoy!
+10. Subscribe to FronteggApp auth state with FronteggAppAuthService
+
+```
+/app.component.ts
+
+export class AppComponent implements OnInit {
+
+  constructor(private fronteggAppAuthService: FronteggAppAuthService) { }
+
+  ngOnInit(): void {
+    this.fronteggAppAuthService?.profileState$.subscribe((profileState) => {
+      console.log(profileState)
+    })
+  }
+}
+```
+
+11. Enjoy!

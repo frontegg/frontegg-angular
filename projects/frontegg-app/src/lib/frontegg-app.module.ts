@@ -1,10 +1,11 @@
+import { FronteggAuthGuard } from './frontegg-app-guards.guard';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FronteggAppComponent } from './frontegg-app.component';
 import { FE_PROVIDER_CONFIG } from "./constants";
 import { AdminBoxMetadata } from '@frontegg/admin-portal';
 import { FronteggAppService } from './frontegg-app.service';
-
+import { FronteggAppAuthService } from './frontegg-app-auth.service';
 //TODO: export this type from admin-portal
 export interface FronteggConfigOptions {
   version?: string | 'latest' | 'stable' | 'next';
@@ -26,12 +27,15 @@ export interface FronteggConfigOptions {
   exports: [FronteggAppComponent]
 })
 export class FronteggAppModule {
-  static forRoot(config?: FronteggConfigOptions): ModuleWithProviders<FronteggAppModule> {
+  public constructor() { }
+  static forRoot(config: FronteggConfigOptions): ModuleWithProviders<FronteggAppModule> {
 
     return {
       ngModule: FronteggAppModule,
       providers: [
+        FronteggAuthGuard,
         FronteggAppService,
+        FronteggAppAuthService,
         {
           provide: FE_PROVIDER_CONFIG,
           useValue: config

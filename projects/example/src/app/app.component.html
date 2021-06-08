@@ -1,17 +1,19 @@
-<div>
-  <router-outlet></router-outlet>
-  <lib-frontegg-app></lib-frontegg-app>
-  <h1>Frontegg App</h1>
-  <br/>
-  <button (click)="showApp()"><h2>Open Frontegg app</h2></button>
-  <br/>
-  <br/>
-  <p>Authenticated: {{authenticated}}</p>
-  <a routerLink="/account/login"><b>Login</b></a> ---
-  <a routerLink="/account/logout"><b>Logout</b></a>
-  <br/>
-  <br/>
-  <br/>
+<frontegg-app>
+    <router-outlet></router-outlet>
+    <div>
+        <h1>Frontegg App</h1>
+        <br/>
+        <button (click)="showApp()"><h2>Open Frontegg app</h2></button>
+        <br/>
+        <br/>
+        <p>Authenticated: {{authenticated}}</p>
+        <a routerLink="/account/login"><b>Login</b></a> ---
+        <a routerLink="/account/logout"><b>Logout</b></a> ---
+        <a routerLink="/test-private-route"><b>private-route</b></a>
+        <br/>
+        <br/>
+        <br/>
 
-  <button (click)="showState()"><h2>Console log state</h2></button>
-</div>
+        <button (click)="showState()"><h2>Console log state</h2></button>
+    </div>
+</frontegg-app>
