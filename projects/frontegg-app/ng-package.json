@@ -1,0 +1,8 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "allowedNonPeerDependencies": ["@frontegg/admin-portal", "@frontegg/redux-store", "fast-deep-equal"],
+  "dest": "../../dist/frontegg-app",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  }
+}

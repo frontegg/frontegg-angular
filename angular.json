@@ -3,36 +3,36 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "demo-saas": {
+    "example": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/demo-saas",
-      "sourceRoot": "projects/demo-saas/src",
+      "root": "projects/example",
+      "sourceRoot": "projects/example/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/demo-saas",
-            "index": "projects/demo-saas/src/index.html",
-            "main": "projects/demo-saas/src/main.ts",
-            "polyfills": "projects/demo-saas/src/polyfills.ts",
-            "tsConfig": "projects/demo-saas/tsconfig.app.json",
+            "outputPath": "dist/example",
+            "index": "projects/example/src/index.html",
+            "main": "projects/example/src/main.ts",
+            "polyfills": "projects/example/src/polyfills.ts",
+            "tsConfig": "projects/example/tsconfig.app.json",
             "aot": true,
-            "assets": ["projects/demo-saas/src/favicon.ico", "projects/demo-saas/src/assets"],
-            "styles": ["projects/demo-saas/src/styles.scss"],
+            "assets": ["projects/example/src/favicon.ico", "projects/example/src/assets"],
+            "styles": ["projects/example/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/demo-saas/src/environments/environment.ts",
-                  "with": "projects/demo-saas/src/environments/environment.prod.ts"
+                  "replace": "projects/example/src/environments/environment.ts",
+                  "with": "projects/example/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -61,29 +61,29 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo-saas:build"
+            "browserTarget": "example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo-saas:build:production"
+              "browserTarget": "example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo-saas:build"
+            "browserTarget": "example:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/demo-saas/src/test.ts",
-            "polyfills": "projects/demo-saas/src/polyfills.ts",
-            "tsConfig": "projects/demo-saas/tsconfig.spec.json",
-            "karmaConfig": "projects/demo-saas/karma.conf.js",
-            "assets": ["projects/demo-saas/src/favicon.ico", "projects/demo-saas/src/assets"],
-            "styles": ["projects/demo-saas/src/styles.scss"],
+            "main": "projects/example/src/test.ts",
+            "polyfills": "projects/example/src/polyfills.ts",
+            "tsConfig": "projects/example/tsconfig.spec.json",
+            "karmaConfig": "projects/example/karma.conf.js",
+            "assets": ["projects/example/src/favicon.ico", "projects/example/src/assets"],
+            "styles": ["projects/example/src/styles.scss"],
             "scripts": []
           }
         },
@@ -91,9 +91,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/demo-saas/tsconfig.app.json",
-              "projects/demo-saas/tsconfig.spec.json",
-              "projects/demo-saas/e2e/tsconfig.json"
+              "projects/example/tsconfig.app.json",
+              "projects/example/tsconfig.spec.json",
+              "projects/example/e2e/tsconfig.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -101,157 +101,57 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/demo-saas/e2e/protractor.conf.js",
-            "devServerTarget": "demo-saas:serve"
+            "protractorConfig": "projects/example/e2e/protractor.conf.js",
+            "devServerTarget": "example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "demo-saas:serve:production"
+              "devServerTarget": "example:serve:production"
             }
           }
         }
       }
     },
-    "core": {
+    "frontegg-app": {
       "projectType": "library",
-      "root": "projects/core",
-      "sourceRoot": "projects/core/src",
+      "root": "projects/frontegg-app",
+      "sourceRoot": "projects/frontegg-app/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/core/tsconfig.lib.json",
-            "project": "projects/core/ng-package.json"
+            "tsConfig": "projects/frontegg-app/tsconfig.lib.json",
+            "project": "projects/frontegg-app/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/core/tsconfig.lib.prod.json"
+              "tsConfig": "projects/frontegg-app/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/core/src/test.ts",
-            "tsConfig": "projects/core/tsconfig.spec.json",
-            "karmaConfig": "projects/core/karma.conf.js"
+            "main": "projects/frontegg-app/src/test.ts",
+            "tsConfig": "projects/frontegg-app/tsconfig.spec.json",
+            "karmaConfig": "projects/frontegg-app/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/core/tsconfig.lib.json", "projects/core/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    },
-    "auth": {
-      "projectType": "library",
-      "root": "projects/auth",
-      "sourceRoot": "projects/auth/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/auth/tsconfig.lib.json",
-            "project": "projects/auth/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/auth/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/auth/src/test.ts",
-            "tsConfig": "projects/auth/tsconfig.spec.json",
-            "karmaConfig": "projects/auth/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["projects/auth/tsconfig.lib.json", "projects/auth/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    },
-    "audits": {
-      "projectType": "library",
-      "root": "projects/audits",
-      "sourceRoot": "projects/audits/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/audits/tsconfig.lib.json",
-            "project": "projects/audits/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/audits/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/audits/src/test.ts",
-            "tsConfig": "projects/audits/tsconfig.spec.json",
-            "karmaConfig": "projects/audits/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["projects/audits/tsconfig.lib.json", "projects/audits/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    },
-    "connectivity": {
-      "projectType": "library",
-      "root": "projects/connectivity",
-      "sourceRoot": "projects/connectivity/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/connectivity/tsconfig.lib.json",
-            "project": "projects/connectivity/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/connectivity/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/connectivity/src/test.ts",
-            "tsConfig": "projects/connectivity/tsconfig.spec.json",
-            "karmaConfig": "projects/connectivity/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["projects/connectivity/tsconfig.lib.json", "projects/connectivity/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/frontegg-app/tsconfig.lib.json",
+              "projects/frontegg-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "demo-saas"
+  "defaultProject": "frontegg-app"
 }

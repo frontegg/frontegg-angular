@@ -1,138 +1,136 @@
-<p align="center">
-  <a href="https://www.frontegg.com/" rel="noopener" target="_blank">
-    <img style="margin-top:40px" height="50" src="https://frontegg.com/wp-content/uploads/2020/04/logo_frrontegg.svg" alt="Frontegg logo">
-  </a>
-</p>
-<h1 align="center">Frontegg-Angular</h1>
-<div align="center">
+# FronteggAngular
 
-[Angular](https://angular.io/) pre-built `hybrid` components wrapped by `Angular` components for faster and simpler integration with Frontegg services.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
 
-</div>
+## How to use
 
-## Installation
-
-Frontegg-Angular is available as an [npm package](https://www.npmjs.com/package/@frontegg/ng-core).
-
-<font color='red'>**NOTE!**:</font> **For typescript project make sure you are using typescript with version > 3.9.0**
-
-## Installation
-
-using **YARN**:
+1.  Add FronteggAppModule to imports.
+2.  Use forRoot method to pass properties.
 
 ```
-/* install frontegg-core */
-yarn add @frontegg/ng-core
+/app.module.ts
 
-yarn add @frontegg/ng-{plugin-name}
-
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    AppRoutingModule,
+    FronteggAppModule.forRoot({
+      version: 'next',
+      contextOptions: {
+        baseUrl: 'https://max.frontegg.com'
+      }
+    }),
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule { }
 ```
 
-using **NPM**:
+3.  Add method to handle showing Frontegg application with FronteggAppService
 
 ```
-/* install frontegg-core */
-npm install --save @frontegg/ng-core
+/app.component.ts
 
-npm install --save @frontegg/ng-{plugin-name}
-```
+export class AppComponent {
+ constructor(private fronteggAppService: FronteggAppService) { }
 
-## Usage
-
-1. Import the CoreModule to your app.module file.
-
-    ```ts
-    /* app.module.ts file */
-
-    import { AppComponent } from "./app.component";
-    import { CoreModule } from "@frontegg/ng-core";
-    import { AppRoutingModule } from './app-routing.module';
-
-    @NgModule({
-      declarations: [AppComponent],
-      imports: [
-        AppRoutingModule, // CoreModule inject routes and gaurds into application routes
-        CoreModule.forRoot({
-          context: {
-            baseUrl: `${window.location.protocol}/${host}`,
-            requestCredentials: "include",
-          },
-        }),
-        // ...rest modules
-      ],
-      providers: [],
-      bootstrap: [AppComponent],
-    })
-    export class AppModule {}
-    ```
-
-2. Add the AppRoutingModule to your root folder.
-
-    ```ts
-    /* app-routing.module.ts file */
-    import { NgModule } from '@angular/core';
-    import { Routes, RouterModule } from '@angular/router';
-    import { withFronteggRoutes } from '@frontegg/ng-core';
-
-    const routes: Routes = withFronteggRoutes([
-
-      /* here you can add your own routes */
-
-    ])
-
-    @NgModule({
-      imports: [RouterModule.forRoot(routes)],
-      exports: [RouterModule],
-    })
-    export class AppRoutingModule {
-    }
-    ```
-
-3. Wrapp your app in `frontegg-provider` selector in `app.component.html`.
-
-    ```html
-    /* app.component.html file */
-
-    <frontegg-provider>
-      <router-outlet></router-outlet>
-    </frontegg-provider>
-    ```
-
-`context` property uses:
-
-- Communication Settings
-- Theme Customization
-- Component Configurations
-
-```ts
-interface context {
-  baseUrl: string; // required
-  urlPrefix?: string;
-  requestCredentials?: RequestCredentials;
-  tokenResolver?: () => Promise<string> | string;
-  additionalHeadersResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
-  additionalQueryParamsResolver?: () => Promise<KeyValuePair[]> | KeyValuePair[];
+ showApp(): void {
+   this.fronteggAppService?.openFronteggApp()
+ }
 }
 ```
 
-## Plugins
+4. Add frontegg-app selector to your app component.
+5. Wrapp your app with frontegg-app selector.
 
-**Frontegg-Angular** provides components per plugins for faster and simpler integration
+```
+/app.component.html
 
-- [Authentication Plugin](projects/auth)
-- [Audits Plugin](projects/audits)
-- [Team Management Plugin](projects/auth/src/lib/team)
-- [Integrations Plugin](projects/connectivity)
-- [Notifications Plugin](projects/notifications) (coming soon)
-- [Reports Plugin](projects/reports) (coming soon)
+<frontegg-app>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</frontegg-app>
+```
 
-## Contributing
+6. Add button with click callback to handle Frontegg aplication opening.
 
-The main purpose of this repository is to continue developing Frontend Angular to make it faster and easier to use.
-Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process.
+```
+/app.component.html
 
-**Notice** that contributions go far beyond pull requests and commits.
+<frontegg-app>
+  <div>
+    <router-outlet></router-outlet>
+    <button (click)="showApp()"><h2>Open Frontegg app</h2></button>
+  </div>
+</frontegg-app>
 
-## License
+```
 
-This project is licensed under the terms of the [MIT license](/LICENSE).
+7. Add auth routes to your routing module. By default it /account/**
+
+```
+/app-routing.module.ts
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  {
+    path: 'account', children: [
+      { path: '**', component: EmptyAppComponent }
+    ], component: EmptyAppComponent
+  },
+];
+```
+
+8. Add FronteggGuard to your routing module to redirect user to login page.
+
+```
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'private-route', canActivate: [FronteggAuthGuard], component: PrivateComponent },
+  {
+    path: 'account', children: [
+      { path: '**', component: EmptyAppComponent }
+    ], component: EmptyAppComponent
+  },
+];
+```
+
+9. Subscribe to FronteggApp state
+
+```
+/app.component.ts
+
+export class AppComponent implements OnInit {
+  private fronteggAppStateSubject$ = new BehaviorSubject<FronteggAppState>(null);
+
+  constructor(private fronteggAppService: FronteggAppService) { }
+
+  ngOnInit(): void {
+    this.fronteggAppService?.fronteggAppState$.subscribe((s) => {
+      this.fronteggAppStateSubject$.next(s)
+    })
+  }
+}
+```
+
+10. Subscribe to FronteggApp auth state with FronteggAppAuthService
+
+```
+/app.component.ts
+
+export class AppComponent implements OnInit {
+
+  constructor(private fronteggAppAuthService: FronteggAppAuthService) { }
+
+  ngOnInit(): void {
+    this.fronteggAppAuthService?.profileState$.subscribe((profileState) => {
+      console.log(profileState)
+    })
+  }
+}
+```
+
+11. Enjoy!
