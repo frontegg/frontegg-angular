@@ -4,14 +4,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 //TODO: finilize
 ## How to use
 
-1. Install Frontegg Libraries
+1. Install Frontegg Libraries  
 Run the following command to Install frontegg Angular library.
 
 ```
 npm install @frontegg/angular
 ```
 
-2. Configuration
+2. Configuration  
 Add `FronteggAppModule` to `AppModule`
 
 ```
@@ -55,11 +55,11 @@ And wrap your application with `frontegg-app` selector to make sure you have the
 </frontegg-app>
 ```
 
-3. Getting the user context
-Frontegg exposes the user context and the authentication state via a `FronteggAppService`.
-You can access the whole authentication state via the `FronteggAppService`.
-To have an access to memoized authentication substates like user state, SSO state, MFA state, etc.
-use `FronteggAppAuthService` as in the following sample:
+3. Getting the user context  
+Frontegg exposes the user context and the authentication state via a `FronteggAppService`.  
+You can access the whole authentication state via the `FronteggAppService`.  
+To have an access to memoized authentication substates like user state, SSO state, MFA state, etc.  
+use `FronteggAppAuthService` as in the following sample:  
 
 ```
 import { Component, OnInit } from '@angular/core';
@@ -92,9 +92,9 @@ export class AppComponent implements OnInit {
 }
 ```
 
-4. Add auth routes to your routing module. By default it `/account/**`
-Also, you can add FronteggGuard to your routing module to redirect the user to the login page if the user not
-authenticated and trying to reach a private route.
+4. Add auth routes to your routing module. By default it `/account/**`  
+Also, you can add FronteggGuard to your routing module to redirect the user to the login page if the user not  
+authenticated and trying to reach a private route.  
 
 ```
 import { NgModule } from '@angular/core';
@@ -119,7 +119,7 @@ const routes: Routes = [
 export class AppRoutingModule {}
 ```
 
-5.  Run the App, Signup & Login
+5.  Run the App, Signup & Login  
 
 We are all set. Let's run the application and see Frontegg in action.
 
@@ -127,24 +127,25 @@ We are all set. Let's run the application and see Frontegg in action.
 npm run serve
 ```
 
-Great, Frontegg is now integrated with your app!
+Great, Frontegg is now integrated with your app!  
 
-Login and logout routes have been added to your app:
+Login and logout routes have been added to your app:  
 
-Signup screen will be at http://localhost:8080/account/sign-up
+Signup screen will be at http://localhost:8080/account/sign-up  
 
-Login screen will be at http://localhost:8080/account/login
+Login screen will be at http://localhost:8080/account/login  
 
-If you are already logged in, go to http://localhost:8080/account/logout and log out.
+If you are already logged in, go to http://localhost:8080/account/logout and log out.  
 
-Give it a try by now by signing up & logging in.
+Give it a try by now by signing up & logging in.  
 
-Give it a try now!
+Give it a try now!  
 Open http://localhost:8080/account/sign-up and sign up with your first user.
 
 # Frontegg Admin Portal Integration
 
-For Frontegg admin portal integration we will import the`FronteggAppService` from the `frontegg-app` package and use `showAdminPortal` method when clicking on the relevant button.
+For Frontegg admin portal integration we will import the`FronteggAppService` from the `frontegg-app` package and use `showAdminPortal`  
+method when clicking on the relevant button.
 
 
 ```
