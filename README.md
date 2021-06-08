@@ -42,17 +42,17 @@ export class AppComponent {
 }
 ```
 
-4. Add lib-frontegg-app selector to your app component.
-5. Wrapp your app with lib-frontegg-app selector.
+4. Add frontegg-app selector to your app component.
+5. Wrapp your app with frontegg-app selector.
 
 ```
 /app.component.html
 
-<lib-frontegg-app>
+<frontegg-app>
   <div>
     <router-outlet></router-outlet>
   </div>
-</lib-frontegg-app>
+</frontegg-app>
 ```
 
 6. Add button with click callback to handle Frontegg aplication opening.
@@ -60,11 +60,13 @@ export class AppComponent {
 ```
 /app.component.html
 
-<div>
-  <router-outlet></router-outlet>
-  <lib-frontegg-app></lib-frontegg-app>
-  <button (click)="showApp()"><h2>Open Frontegg app</h2></button>
-</div>
+<frontegg-app>
+  <div>
+    <router-outlet></router-outlet>
+    <button (click)="showApp()"><h2>Open Frontegg app</h2></button>
+  </div>
+</frontegg-app>
+
 ```
 
 7. Add auth routes to your routing module. By default it /account/**
@@ -114,4 +116,21 @@ export class AppComponent implements OnInit {
 }
 ```
 
-10. Enjoy!
+10. Subscribe to FronteggApp auth state with FronteggAppAuthService
+
+```
+/app.component.ts
+
+export class AppComponent implements OnInit {
+
+  constructor(private fronteggAppAuthService: FronteggAppAuthService) { }
+
+  ngOnInit(): void {
+    this.fronteggAppAuthService?.profileState$.subscribe((profileState) => {
+      console.log(profileState)
+    })
+  }
+}
+```
+
+11. Enjoy!

@@ -27,6 +27,7 @@ export interface FronteggConfigOptions {
   exports: [FronteggAppComponent]
 })
 export class FronteggAppModule {
+  public constructor() { }
   static forRoot(config: FronteggConfigOptions): ModuleWithProviders<FronteggAppModule> {
 
     return {
