@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
 import { initialize } from '@frontegg/admin-portal';
 import { BehaviorSubject } from 'rxjs';
@@ -36,7 +36,7 @@ export class FronteggAppService {
   readonly isLoading$ = this.isLoadingSubject$.asObservable();
   readonly isAuthRoute$ = this.isAuthRouteSubject$.asObservable();
 
-  constructor(@Inject(FE_PROVIDER_CONFIG) private config: FronteggConfigOptions, private router: Router) {
+  constructor(@Inject(FE_PROVIDER_CONFIG) private config: FronteggConfigOptions, private router: Router, private ngZone: NgZone) {
     if (!this.config) {
       throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)');
     }
@@ -51,11 +51,13 @@ export class FronteggAppService {
       if (opts?.refresh) {
         window.location.href = path
       } else {
-        if (opts?.replace) {
-          this.router.navigate([path], { replaceUrl: true });
-        } else {
-          this.router.navigate([path]);
-        }
+        ngZone.run(() => {
+          if (opts?.replace) {
+            this.router.navigate([path], { replaceUrl: true });
+          } else {
+            this.router.navigate([path]);
+          }
+        })
       }
     };
     ContextHolder.setOnRedirectTo(onRedirectTo);
