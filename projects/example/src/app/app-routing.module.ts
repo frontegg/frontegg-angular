@@ -8,7 +8,6 @@ import { NotFoundComponent } from './not-found.component';
 const routes: Routes = connectFronteggRouter([
   { path: '', component: EmptyAppComponent },
   { path: 'test-private-route', canActivate: [FronteggAuthGuard], component: EmptyAppComponent },
-  // { path: '**', component: RedirectHome },
   { path: '**', component: NotFoundComponent },
 ]);
 

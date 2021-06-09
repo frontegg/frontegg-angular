@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FronteggAppService, FronteggAppAuthService } from 'frontegg-app';
 
 @Component({
   selector: 'app-not-fpund',
