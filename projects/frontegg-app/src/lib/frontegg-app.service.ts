@@ -43,17 +43,23 @@ export class FronteggAppService {
       throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)');
     }
 
-
-    // 1. get the router from constructor
-    // 2. create new onRedirectTo that uses the angular router to navigate
-    // 3. pass the new onRedirectTo to initialize method
-    // 4. update ContextHolder in redux-store library
-
     const onRedirectTo = (path: string, opts?: RedirectOptions) => {
+      const baseName = window.location.origin
 
-      // use router to navigate to path
+      if (path.startsWith(baseName) && baseName !== '/') {
+        path = path.substring(baseName.length - 1)
+      }
 
-      this.router.navigate([path]);
+      if (opts?.refresh) {
+        window.location.href = path
+      } else {
+        if (opts?.replace) {
+          this.router.navigate([path], { replaceUrl: true });
+        } else {
+          this.router.navigate([path]);
+        }
+      }
+
     };
     ContextHolder.setOnRedirectTo(onRedirectTo);
 
