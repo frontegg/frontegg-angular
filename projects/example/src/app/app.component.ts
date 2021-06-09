@@ -20,12 +20,14 @@ export class AppComponent implements OnInit {
     });
     this.fronteggAppService?.fronteggAppAuthState$.subscribe((authState: any) => {
       this.fronteggAppAuthState = authState;
-      this.authenticated = authState?.isAuthenticated;
     });
     this.fronteggAppService?.fronteggAppAuditsState$.subscribe((auditsState: any) => {
       this.fronteggAppAuditsState = auditsState;
     });
     this.froonteggAppAuthService?.loginState$.subscribe((s: any) => console.log(s, 'auth service memoized login state'));
+    this.froonteggAppAuthService?.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
+      this.authenticated = isAuthenticated
+    });
   }
 
   showApp(): void {

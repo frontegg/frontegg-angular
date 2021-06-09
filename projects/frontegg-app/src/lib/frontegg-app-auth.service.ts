@@ -30,6 +30,9 @@ export class FronteggAppAuthService {
   private teamStateSubject$ = new BehaviorSubject<AuthState['teamState'] | null>(null);
   private tenantsStateSubject$ = new BehaviorSubject<AuthState['tenantsState'] | null>(null);
   private userSubject$ = new BehaviorSubject<AuthState['user'] | null>(null);
+  private isAuthenticatedSubject$ = new BehaviorSubject<AuthState['isAuthenticated']>(false);
+  private isSSOAuthSubject$ = new BehaviorSubject<AuthState['isSSOAuth']>(false);
+  private ssoACSSubject$ = new BehaviorSubject<AuthState['ssoACS']>('');
 
   readonly acceptInvitationState$ = this.acceptInvitationStateSubject$.asObservable()
   readonly accountSettingsState$ = this.accountSettingsStateSubject$.asObservable()
@@ -48,6 +51,10 @@ export class FronteggAppAuthService {
   readonly teamState$ = this.teamStateSubject$.asObservable()
   readonly tenantsState$ = this.tenantsStateSubject$.asObservable()
   readonly userState$ = this.userSubject$.asObservable()
+  readonly isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
+  readonly isSSOAuth$ = this.isSSOAuthSubject$.asObservable();
+  readonly ssoACS$ = this.ssoACSSubject$.asObservable();
+
 
   constructor(private fronteggAppService: FronteggAppService) {
     const authSubStates: AuthSubStates[] = [
@@ -67,6 +74,9 @@ export class FronteggAppAuthService {
       { field: 'ssoState', subject: this.ssoStateSubject$ },
       { field: 'teamState', subject: this.teamStateSubject$ },
       { field: 'user', subject: this.userSubject$ },
+      { field: 'isAuthenticated', subject: this.isAuthenticatedSubject$ },
+      { field: 'isSSOAuth', subject: this.isSSOAuthSubject$ },
+      { field: 'ssoACS', subject: this.ssoACSSubject$ },
     ]
 
     // Memoized Auth State

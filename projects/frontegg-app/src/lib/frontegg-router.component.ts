@@ -9,7 +9,7 @@ import { Routes } from '@angular/router';
       <router-outlet></router-outlet>
     </div>`,
 })
-export class FronteggRouterComponent implements OnInit, OnDestroy {
+export class FronteggRouterComponent implements OnInit {
   name: string;
   loading: boolean;
   isAuthRoute: boolean;
@@ -20,9 +20,6 @@ export class FronteggRouterComponent implements OnInit, OnDestroy {
     this.isAuthRoute = false;
   }
 
-  ngOnDestroy(): void {
-    this.fronteggAppService?.fronteggApp?.unmountAdminPortal();
-  }
 
   ngOnInit(): void {
     this.fronteggAppService.isLoading$.subscribe((loading) => {

@@ -27,7 +27,6 @@ export class FronteggAppService {
   private fronteggAppAuditsStateSubject$ = new BehaviorSubject<FronteggState['audits'] | null>(null);
 
   private isLoadingSubject$ = new BehaviorSubject<boolean>(true);
-  private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(false);
   private isAuthRouteSubject$ = new BehaviorSubject<boolean>(false);
 
   readonly fronteggAppState$ = this.fronteggAppStateSubject$.asObservable();
@@ -35,7 +34,6 @@ export class FronteggAppService {
   readonly fronteggAppAuditsState$ = this.fronteggAppAuditsStateSubject$.asObservable();
 
   readonly isLoading$ = this.isLoadingSubject$.asObservable();
-  readonly isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
   readonly isAuthRoute$ = this.isAuthRouteSubject$.asObservable();
 
   constructor(@Inject(FE_PROVIDER_CONFIG) private config: FronteggConfigOptions, private router: Router) {
@@ -59,7 +57,6 @@ export class FronteggAppService {
           this.router.navigate([path]);
         }
       }
-
     };
     ContextHolder.setOnRedirectTo(onRedirectTo);
 
@@ -91,9 +88,6 @@ export class FronteggAppService {
       const fronteggStore = this.fronteggApp.store?.getState();
       if (this.isLoadingSubject$.getValue() !== fronteggStore?.auth.isLoading) {
         this.isLoadingSubject$.next(fronteggStore?.auth.isLoading);
-      }
-      if (this.isAuthenticatedSubject$.getValue() !== fronteggStore?.auth.isAuthenticated) {
-        this.isAuthenticatedSubject$.next(fronteggStore?.auth.isAuthenticated);
       }
 
       this.fronteggAppStateSubject$.next(fronteggStore);
@@ -127,6 +121,7 @@ export class FronteggAppService {
     });
   }
 
+  //helper method
   private getAuthRoutes(authRoutes: Partial<AuthPageRoutes>): string[] {
     return Object.keys(authRoutes)
       .filter((key: string) => key !== 'authenticatedUrl')
