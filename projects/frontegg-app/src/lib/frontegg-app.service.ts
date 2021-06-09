@@ -1,20 +1,23 @@
 import { Inject, Injectable } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
-import { initialize } from "@frontegg/admin-portal";
+import { initialize } from '@frontegg/admin-portal';
 import { BehaviorSubject } from 'rxjs';
 import { FE_PROVIDER_CONFIG } from './constants';
 import { FronteggConfigOptions } from './frontegg-app.module';
-import { createFronteggStore, AuthState, AuditsState, RootState } from '@frontegg/redux-store';
-import { take, filter } from 'rxjs/operators';
+import { AuditsState, AuthPageRoutes, AuthState, createFronteggStore, RootState } from '@frontegg/redux-store';
+import { ContextHolder, RedirectOptions } from '@frontegg/rest-api';
+import { filter, take } from 'rxjs/operators';
 
 type FronteggApp = ReturnType<typeof initialize>;
+
 interface FronteggState {
   root: RootState;
   auth: AuthState;
   audits: AuditsState;
 }
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FronteggAppService {
   fronteggApp: FronteggApp;
@@ -37,31 +40,49 @@ export class FronteggAppService {
 
   constructor(@Inject(FE_PROVIDER_CONFIG) private config: FronteggConfigOptions, private router: Router) {
     if (!this.config) {
-      throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)')
+      throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)');
     }
 
-    const _config = { version: 'latest', ...this.config }
-    const fronteggApp = initialize(_config)
-    const store = createFronteggStore({
+
+    // 1. get the router from constructor
+    // 2. create new onRedirectTo that uses the angular router to navigate
+    // 3. pass the new onRedirectTo to initialize method
+    // 4. update ContextHolder in redux-store library
+
+    const onRedirectTo = (path: string, opts?: RedirectOptions) => {
+
+      // use router to navigate to path
+
+      this.router.navigate([path]);
+    };
+    ContextHolder.setOnRedirectTo(onRedirectTo);
+
+    // tslint:disable-next-line:variable-name
+    const _config = {
+      version: 'latest',
+      onRedirectTo,
+      ...this.config,
+    };
+    const fronteggApp = initialize(_config);
+    fronteggApp.store = createFronteggStore({
       context: {
         baseUrl: this.config?.contextOptions?.baseUrl,
-        requestCredentials: this.config?.contextOptions?.requestCredentials ?? 'include'
-      }
-    })
-    fronteggApp.store = store
-    this.fronteggApp = fronteggApp
-    this.fronteggAppLoaded = false
+        requestCredentials: this.config?.contextOptions?.requestCredentials ?? 'include',
+      },
+    });
+    this.fronteggApp = fronteggApp;
+    this.fronteggAppLoaded = false;
 
     // To know if frontegg app loaded
     this.fronteggApp.onLoad(() => {
       if (this.fronteggAppLoaded !== this.fronteggApp.loaded) {
-        this.fronteggAppLoaded = this.fronteggApp.loaded
+        this.fronteggAppLoaded = this.fronteggApp.loaded;
       }
-    })
+    });
 
     // Subscribe on fronteggApp store to change state subjects
     this.fronteggApp.store?.subscribe(() => {
-      const fronteggStore = this.fronteggApp.store?.getState()
+      const fronteggStore = this.fronteggApp.store?.getState();
       if (this.isLoadingSubject$.getValue() !== fronteggStore?.auth.isLoading) {
         this.isLoadingSubject$.next(fronteggStore?.auth.isLoading);
       }
@@ -69,42 +90,54 @@ export class FronteggAppService {
         this.isAuthenticatedSubject$.next(fronteggStore?.auth.isAuthenticated);
       }
 
-      this.fronteggAppStateSubject$.next(fronteggStore)
-      this.fronteggAppAuthStateSubject$.next(fronteggStore?.auth)
-      this.fronteggAppAuditsStateSubject$.next(fronteggStore?.audits)
-    })
+      this.fronteggAppStateSubject$.next(fronteggStore);
+      this.fronteggAppAuthStateSubject$.next(fronteggStore?.auth);
+      this.fronteggAppAuditsStateSubject$.next(fronteggStore?.audits);
+    });
 
     // To check auth route
     this.router.events.subscribe((r) => {
-      const route = r as RouterEvent
-      const store = this.fronteggAppStateSubject$?.getValue()
+      const route = r as RouterEvent;
+      const storeState = this.fronteggAppStateSubject$?.getValue();
 
-      if (!!route.url && !!store?.auth) {
-        const authRoutes = Object.values(store.auth.routes).filter((route: any) => route.includes('account'))
-        const prevIsAuthRoute = this.isAuthRouteSubject$.getValue()
+      if (!!route.url && !!storeState?.auth) {
+        const authRoutes = this.getAuthRoutes(storeState.auth.routes ?? {});
+        const prevIsAuthRoute = Boolean(this.isAuthRouteSubject$.getValue());
 
-        if (authRoutes.includes(route.url) && prevIsAuthRoute === false) {
-          this.isAuthRouteSubject$.next(true)
-        } else if (!authRoutes.includes(route.url) && prevIsAuthRoute === true) {
-          this.isAuthRouteSubject$.next(false)
+        if (authRoutes.includes(route.url) && !prevIsAuthRoute) {
+          this.isAuthRouteSubject$.next(true);
+        } else if (!authRoutes.includes(route.url) && prevIsAuthRoute) {
+          this.isAuthRouteSubject$.next(false);
         }
       }
-    })
+    });
 
     // Check auth route on first load
     this.fronteggAppAuthState$.pipe(filter((authState) => !!authState?.routes), take(1)).subscribe((authState) => {
-      const authRoutes = Object.values(authState?.routes ?? {}).filter((route: any) => route.includes('account'))
-
+      const authRoutes = this.getAuthRoutes(authState?.routes ?? {});
       if (authRoutes.includes(this.router.url)) {
-        this.isAuthRouteSubject$.next(true)
+        this.isAuthRouteSubject$.next(true);
       }
-    })
+    });
+  }
+
+  private getAuthRoutes(authRoutes: Partial<AuthPageRoutes>): string[] {
+    return Object.keys(authRoutes)
+      .filter((key: string) => key !== 'authenticatedUrl')
+      .map((key: string) => (authRoutes[key as keyof AuthPageRoutes]) as string);
   }
 
   // Open admin portal
   showAdminPortal(): void {
-    if (!!this.fronteggAppLoaded) {
-      this.fronteggApp?.mountAdminPortal()
+    if (this.fronteggAppLoaded) {
+      this.fronteggApp?.mountAdminPortal();
+    }
+  }
+
+  // Open admin portal
+  hideAdminPortal(): void {
+    if (this.fronteggAppLoaded) {
+      this.fronteggApp?.unmountAdminPortal();
     }
   }
 }

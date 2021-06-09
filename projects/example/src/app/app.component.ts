@@ -15,21 +15,21 @@ export class AppComponent implements OnInit {
   constructor(private fronteggAppService: FronteggAppService, private froonteggAppAuthService: FronteggAppAuthService) { }
 
   ngOnInit(): void {
-    this.fronteggAppService?.fronteggAppState$.subscribe((s) => {
-      this.fronteggAppState = s
-    })
-    this.fronteggAppService?.fronteggAppAuthState$.subscribe((authState) => {
-      this.fronteggAppAuthState = authState
-      this.authenticated = authState?.isAuthenticated
-    })
-    this.fronteggAppService?.fronteggAppAuditsState$.subscribe((auditsState) => {
-      this.fronteggAppAuditsState = auditsState
-    })
-    this.froonteggAppAuthService?.loginState$.subscribe((s) => console.log(s, 'auth service memoized login state'))
+    this.fronteggAppService?.fronteggAppState$.subscribe((s: any) => {
+      this.fronteggAppState = s;
+    });
+    this.fronteggAppService?.fronteggAppAuthState$.subscribe((authState: any) => {
+      this.fronteggAppAuthState = authState;
+      this.authenticated = authState?.isAuthenticated;
+    });
+    this.fronteggAppService?.fronteggAppAuditsState$.subscribe((auditsState: any) => {
+      this.fronteggAppAuditsState = auditsState;
+    });
+    this.froonteggAppAuthService?.loginState$.subscribe((s: any) => console.log(s, 'auth service memoized login state'));
   }
 
   showApp(): void {
-    this.fronteggAppService?.showAdminPortal()
+    this.fronteggAppService?.showAdminPortal();
   }
 
   showState(): void {

@@ -3,7 +3,9 @@ import { FronteggAppService } from './frontegg-app.service';
 
 @Component({
   selector: 'frontegg-app',
-  template: `<div *ngIf="!loading && !isAuthRoute"><ng-content></ng-content></div>`,
+  template: `<div *ngIf="!loading && !isAuthRoute">
+    <ng-content></ng-content>
+  </div>`,
 })
 export class FronteggAppComponent implements OnInit, OnDestroy {
   name: string;
