@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { FronteggAppModule } from 'frontegg-app';
+import { NotFoundComponent } from './not-found.component';
 
 const palette: any = {
   'primary': '#CF323B',
@@ -14,10 +15,10 @@ const palette: any = {
   'success': '#27CD41',
   'warning': '#FDC234',
   'error': '#FF6058',
-}
+};
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NotFoundComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -25,7 +26,7 @@ const palette: any = {
     FronteggAppModule.forRoot(
       {
         contextOptions: {
-          baseUrl: 'https://max.frontegg.com'
+          baseUrl: 'https://max.frontegg.com',
         },
         metadata: {
           navigation: {
@@ -34,12 +35,13 @@ const palette: any = {
             },
           },
           theme: {
-            palette
+            palette,
           },
         },
-      }
+      },
     ),
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -6,6 +6,8 @@ import { FE_PROVIDER_CONFIG } from "./constants";
 import { AdminBoxMetadata } from '@frontegg/admin-portal';
 import { FronteggAppService } from './frontegg-app.service';
 import { FronteggAppAuthService } from './frontegg-app-auth.service';
+import { RouterModule } from '@angular/router';
+import { FronteggRouterComponent } from './frontegg-router.component';
 //TODO: export this type from admin-portal
 export interface FronteggConfigOptions {
   version?: string | 'latest' | 'stable' | 'next';
@@ -22,9 +24,9 @@ export interface FronteggConfigOptions {
 }
 
 @NgModule({
-  declarations: [FronteggAppComponent],
-  imports: [CommonModule],
-  exports: [FronteggAppComponent]
+  declarations: [FronteggAppComponent, FronteggRouterComponent],
+  imports: [CommonModule, RouterModule],
+  exports: [FronteggAppComponent, FronteggRouterComponent]
 })
 export class FronteggAppModule {
   public constructor() { }

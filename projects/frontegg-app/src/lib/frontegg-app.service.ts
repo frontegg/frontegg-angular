@@ -1,20 +1,23 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, NgZone } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
-import { initialize } from "@frontegg/admin-portal";
+import { initialize } from '@frontegg/admin-portal';
 import { BehaviorSubject } from 'rxjs';
 import { FE_PROVIDER_CONFIG } from './constants';
 import { FronteggConfigOptions } from './frontegg-app.module';
-import { createFronteggStore, AuthState, AuditsState, RootState } from '@frontegg/redux-store';
-import { take, filter } from 'rxjs/operators';
+import { AuditsState, AuthPageRoutes, AuthState, createFronteggStore, RootState } from '@frontegg/redux-store';
+import { ContextHolder, RedirectOptions } from '@frontegg/rest-api';
+import { filter, take } from 'rxjs/operators';
 
 type FronteggApp = ReturnType<typeof initialize>;
+
 interface FronteggState {
   root: RootState;
   auth: AuthState;
   audits: AuditsState;
 }
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FronteggAppService {
   fronteggApp: FronteggApp;
@@ -24,7 +27,6 @@ export class FronteggAppService {
   private fronteggAppAuditsStateSubject$ = new BehaviorSubject<FronteggState['audits'] | null>(null);
 
   private isLoadingSubject$ = new BehaviorSubject<boolean>(true);
-  private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(false);
   private isAuthRouteSubject$ = new BehaviorSubject<boolean>(false);
 
   readonly fronteggAppState$ = this.fronteggAppStateSubject$.asObservable();
@@ -32,79 +34,113 @@ export class FronteggAppService {
   readonly fronteggAppAuditsState$ = this.fronteggAppAuditsStateSubject$.asObservable();
 
   readonly isLoading$ = this.isLoadingSubject$.asObservable();
-  readonly isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
   readonly isAuthRoute$ = this.isAuthRouteSubject$.asObservable();
 
-  constructor(@Inject(FE_PROVIDER_CONFIG) private config: FronteggConfigOptions, private router: Router) {
+  constructor(@Inject(FE_PROVIDER_CONFIG) private config: FronteggConfigOptions, private router: Router, private ngZone: NgZone) {
     if (!this.config) {
-      throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)')
+      throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)');
     }
 
-    const _config = { version: 'latest', ...this.config }
-    const fronteggApp = initialize(_config)
-    const store = createFronteggStore({
+    const onRedirectTo = (path: string, opts?: RedirectOptions) => {
+      const baseName = window.location.origin
+
+      if (path.startsWith(baseName) && baseName !== '/') {
+        path = path.substring(baseName.length - 1)
+      }
+
+      if (opts?.refresh) {
+        window.location.href = path
+      } else {
+        ngZone.run(() => {
+          if (opts?.replace) {
+            this.router.navigate([path], { replaceUrl: true });
+          } else {
+            this.router.navigate([path]);
+          }
+        })
+      }
+    };
+    ContextHolder.setOnRedirectTo(onRedirectTo);
+
+    // tslint:disable-next-line:variable-name
+    const _config = {
+      version: 'latest',
+      onRedirectTo,
+      ...this.config,
+    };
+    const fronteggApp = initialize(_config);
+    fronteggApp.store = createFronteggStore({
       context: {
         baseUrl: this.config?.contextOptions?.baseUrl,
-        requestCredentials: this.config?.contextOptions?.requestCredentials ?? 'include'
-      }
-    })
-    fronteggApp.store = store
-    this.fronteggApp = fronteggApp
-    this.fronteggAppLoaded = false
+        requestCredentials: this.config?.contextOptions?.requestCredentials ?? 'include',
+      },
+    });
+    this.fronteggApp = fronteggApp;
+    this.fronteggAppLoaded = false;
 
     // To know if frontegg app loaded
     this.fronteggApp.onLoad(() => {
       if (this.fronteggAppLoaded !== this.fronteggApp.loaded) {
-        this.fronteggAppLoaded = this.fronteggApp.loaded
+        this.fronteggAppLoaded = this.fronteggApp.loaded;
       }
-    })
+    });
 
     // Subscribe on fronteggApp store to change state subjects
     this.fronteggApp.store?.subscribe(() => {
-      const fronteggStore = this.fronteggApp.store?.getState()
+      const fronteggStore = this.fronteggApp.store?.getState();
       if (this.isLoadingSubject$.getValue() !== fronteggStore?.auth.isLoading) {
         this.isLoadingSubject$.next(fronteggStore?.auth.isLoading);
       }
-      if (this.isAuthenticatedSubject$.getValue() !== fronteggStore?.auth.isAuthenticated) {
-        this.isAuthenticatedSubject$.next(fronteggStore?.auth.isAuthenticated);
-      }
 
-      this.fronteggAppStateSubject$.next(fronteggStore)
-      this.fronteggAppAuthStateSubject$.next(fronteggStore?.auth)
-      this.fronteggAppAuditsStateSubject$.next(fronteggStore?.audits)
-    })
+      this.fronteggAppStateSubject$.next(fronteggStore);
+      this.fronteggAppAuthStateSubject$.next(fronteggStore?.auth);
+      this.fronteggAppAuditsStateSubject$.next(fronteggStore?.audits);
+    });
 
     // To check auth route
     this.router.events.subscribe((r) => {
-      const route = r as RouterEvent
-      const store = this.fronteggAppStateSubject$?.getValue()
+      const route = r as RouterEvent;
+      const storeState = this.fronteggAppStateSubject$?.getValue();
 
-      if (!!route.url && !!store?.auth) {
-        const authRoutes = Object.values(store.auth.routes).filter((route: any) => route.includes('account'))
-        const prevIsAuthRoute = this.isAuthRouteSubject$.getValue()
+      if (!!route.url && !!storeState?.auth) {
+        const authRoutes = this.getAuthRoutes(storeState.auth.routes ?? {});
+        const prevIsAuthRoute = Boolean(this.isAuthRouteSubject$.getValue());
 
-        if (authRoutes.includes(route.url) && prevIsAuthRoute === false) {
-          this.isAuthRouteSubject$.next(true)
-        } else if (!authRoutes.includes(route.url) && prevIsAuthRoute === true) {
-          this.isAuthRouteSubject$.next(false)
+        if (authRoutes.includes(route.url) && !prevIsAuthRoute) {
+          this.isAuthRouteSubject$.next(true);
+        } else if (!authRoutes.includes(route.url) && prevIsAuthRoute) {
+          this.isAuthRouteSubject$.next(false);
         }
       }
-    })
+    });
 
     // Check auth route on first load
     this.fronteggAppAuthState$.pipe(filter((authState) => !!authState?.routes), take(1)).subscribe((authState) => {
-      const authRoutes = Object.values(authState?.routes ?? {}).filter((route: any) => route.includes('account'))
-
+      const authRoutes = this.getAuthRoutes(authState?.routes ?? {});
       if (authRoutes.includes(this.router.url)) {
-        this.isAuthRouteSubject$.next(true)
+        this.isAuthRouteSubject$.next(true);
       }
-    })
+    });
+  }
+
+  //helper method
+  private getAuthRoutes(authRoutes: Partial<AuthPageRoutes>): string[] {
+    return Object.keys(authRoutes)
+      .filter((key: string) => key !== 'authenticatedUrl')
+      .map((key: string) => (authRoutes[key as keyof AuthPageRoutes]) as string);
   }
 
   // Open admin portal
   showAdminPortal(): void {
-    if (!!this.fronteggAppLoaded) {
-      this.fronteggApp?.mountAdminPortal()
+    if (this.fronteggAppLoaded) {
+      this.fronteggApp?.mountAdminPortal();
+    }
+  }
+
+  // Open admin portal
+  hideAdminPortal(): void {
+    if (this.fronteggAppLoaded) {
+      this.fronteggApp?.unmountAdminPortal();
     }
   }
 }

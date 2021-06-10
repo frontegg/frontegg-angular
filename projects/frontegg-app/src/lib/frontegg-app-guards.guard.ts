@@ -2,15 +2,16 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { Injectable, NgZone } from '@angular/core';
 import { take, filter } from 'rxjs/operators';
 import { FronteggAppService } from './frontegg-app.service';
+import { FronteggAppAuthService } from './frontegg-app-auth.service';
 
 @Injectable()
 export class FronteggAuthGuard implements CanActivate {
 
-  constructor(private fronteggAppService: FronteggAppService, private router: Router, private zone: NgZone) { }
+  constructor(private fronteggAppService: FronteggAppService, private fronteggAppAuthService: FronteggAppAuthService, private router: Router, private zone: NgZone) { }
 
   canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve) => {
-      this.fronteggAppService.isAuthenticated$.pipe(filter(() => !!this.fronteggAppService.fronteggAppLoaded), take(1))
+      this.fronteggAppAuthService.isAuthenticated$.pipe(filter(() => !!this.fronteggAppService.fronteggAppLoaded), take(1))
         .subscribe((isAuthenticated) => {
           if (isAuthenticated != null) {
             resolve(isAuthenticated);
