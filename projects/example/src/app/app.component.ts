@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FronteggAppService, FronteggAppAuthService } from 'frontegg-app';
+import { FronteggAppService, FronteggAppAuthService } from '@frontegg/angular';
 
 @Component({
   selector: 'app-root',
