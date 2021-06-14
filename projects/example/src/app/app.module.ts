@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { FronteggAppModule } from 'frontegg-app';
+import { FronteggAppModule } from '@frontegg/angular';
 import { NotFoundComponent } from './not-found.component';
 
 const palette: any = {

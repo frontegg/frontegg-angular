@@ -20,15 +20,15 @@
       "dom"
     ],
     "paths": {
-      "frontegg-app": [
-        "dist/frontegg-app/frontegg-app",
-        "dist/frontegg-app"
+      "@frontegg/angular": [
+        "dist/@frontegg/angular"
       ]
     }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "enableIvy": false
   }
 }

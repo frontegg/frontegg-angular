@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmptyAppComponent } from './empty/empty.component';
-import { FronteggAuthGuard, connectFronteggRouter } from 'frontegg-app';
+import { FronteggAuthGuard, connectFronteggRouter } from '@frontegg/angular';
 import { NotFoundComponent } from './not-found.component';
 
 

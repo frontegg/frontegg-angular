@@ -61,14 +61,13 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
       - name: Commit Version UP
         run: |
-          yarn lerna version --conventional-commits --conventional-graduate --no-git-tag-version --yes --no-push
-          yarn prettier-hook
-          git add . && git commit -m "chore(release): publish `node -p 'require("./lerna.json").version'`"
+          
+          git add . && git commit -m "chore(release): publish `node -p 'require("./projects/frontegg-app/package.json").version'`"
       - name: Set current CHANGELOG to output
         id: changelog
         shell: bash -ex {0}
         run: |
-          version=$(node -p 'require("./lerna.json").version')
+          version=$(node -p 'require("./projects/frontegg-app/package.json").version')
           changelog=$(node -p "(function(){var changelog = require('fs').readFileSync('./CHANGELOG.md', {encoding: 'utf8'}); changelog = changelog.substring(changelog.indexOf('## [')); return changelog.substring(0, changelog.indexOf('\n## ['))})()")
           echo "::set-output name=version::${version}"
           echo "::set-output name=changelog::${changelog}"
