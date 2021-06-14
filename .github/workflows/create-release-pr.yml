@@ -37,7 +37,9 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
       - name: Install Dependencies and Build Packages
-        run: make init
+        run: yarn
+      - name: Build Packages
+        run: yarn build
       - name: Git Identity
         run: |
           git config --global user.name 'frontegg'
@@ -61,7 +63,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
       - name: Commit Version UP
         run: |
-          
+          cd ./projects/frontegg-app && npm version patch
           git add . && git commit -m "chore(release): publish `node -p 'require("./projects/frontegg-app/package.json").version'`"
       - name: Set current CHANGELOG to output
         id: changelog
