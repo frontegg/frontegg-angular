@@ -1,18 +1,16 @@
-# FronteggAngular
+# Frontegg Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
-//TODO: finilize
 ## How to use
 
 1. Install Frontegg Libraries
-Run the following command to Install frontegg Angular library.
+   Run the following command to Install Frontegg Angular library.
 
 ```
 npm install @frontegg/angular
 ```
 
 2. Configuration
-Add `FronteggAppModule` to `AppModule`
+   Add `FronteggAppModule` to `AppModule`
 
 ```
 import { BrowserModule } from '@angular/platform-browser';
@@ -56,10 +54,10 @@ And wrap your application with `frontegg-app` selector to make sure you have the
 ```
 
 3. Getting the user context
-Frontegg exposes the user context and the authentication state via a `FronteggAppService`.
-You can access the whole authentication state via the `FronteggAppService`.
-To have an access to memoized authentication substates like user state, SSO state, MFA state, etc.
-use `FronteggAppAuthService` as in the following sample:
+   Frontegg exposes the user context and the authentication state via a `FronteggAppService`.
+   You can access the whole authentication state via the `FronteggAppService`.
+   To have an access to memoized authentication substates like user state, SSO state, MFA state, etc.
+   use `FronteggAppAuthService` as in the following sample:
 
 ```
 import { Component, OnInit } from '@angular/core';
@@ -93,8 +91,8 @@ export class AppComponent implements OnInit {
 ```
 
 4. Wrapp your routes with connectFronteggRouter. Note that path: '**' should be predefined.
-Also, you can add FronteggGuard to your routing module to redirect the user to the login page if the user not
-authenticated and trying to reach a private route.
+   Also, you can add FronteggGuard to your routing module to redirect the user to the login page if the user not
+   authenticated and trying to reach a private route.
 
 ```
 import { NgModule } from '@angular/core';
@@ -141,6 +139,8 @@ Give it a try now!
 Open http://localhost:8080/account/sign-up and sign up with your first user.
 
 # Frontegg Admin Portal Integration
+
+In order to allow your end users to control the Security Settings, Profile, Team Management and more, the next step will be to embed the `Admin Portal` into your application.
 
 For Frontegg admin portal integration we will import the`FronteggAppService` from the `frontegg-app` package and use `showAdminPortal`
 method when clicking on the relevant button.
