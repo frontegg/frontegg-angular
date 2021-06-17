@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { FronteggAppModule } from '@frontegg/angular';
 import { NotFoundComponent } from './not-found.component';
+import { EmptyAppComponent } from './empty/empty.component';
 
 const palette: any = {
   'primary': '#CF323B',
@@ -18,7 +19,7 @@ const palette: any = {
 };
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent],
+  declarations: [AppComponent, NotFoundComponent, EmptyAppComponent],
   imports: [
     CommonModule,
     BrowserModule,
