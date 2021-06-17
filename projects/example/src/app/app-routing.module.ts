@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmptyAppComponent } from './empty/empty.component';
-import { FronteggAuthGuard, connectFronteggRouter } from '@frontegg/angular';
+import { FronteggAuthGuard } from '@frontegg/angular';
 import { NotFoundComponent } from './not-found.component';
+import { FronteggRouterComponent } from '../../../frontegg-app/src/lib/frontegg-router.component';
 
 
-const routes: Routes = connectFronteggRouter([
+const routes: Routes = [
   { path: '', component: EmptyAppComponent },
   { path: 'test-private-route', canActivate: [FronteggAuthGuard], component: EmptyAppComponent },
-  { path: '**', component: NotFoundComponent },
-]);
+
+
+  // { path: '**', component: NotFoundComponent },
+  {
+    path: '**', component: FronteggRouterComponent,
+    children: [{ path: '**', component: NotFoundComponent }],
+  },
+];
 
 @NgModule({
+  declarations: [EmptyAppComponent],
   imports: [RouterModule.forRoot(routes)],
   providers: [],
   exports: [RouterModule],
