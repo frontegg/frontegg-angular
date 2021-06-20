@@ -44,7 +44,6 @@ export class AppModule { }
 
 3. Wrapp your routes with connectFronteggRouter.
 
-   Note that path: '**' should be predefined.
    Note that you must wrapp your wildcard route with our FronteggRouterComponent as in example.
 
    Also, you can add FronteggAuthGuard to your routing module to redirect the user to the login page if the user is not authenticated and tries to reach a private route.
