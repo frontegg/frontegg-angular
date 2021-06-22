@@ -16,6 +16,8 @@ interface FronteggState {
   audits: AuditsState;
 }
 
+export { AuthState };
+
 @Injectable({
   providedIn: 'root',
 })

@@ -20,9 +20,11 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { FronteggAppModule } from '@frontegg/angular';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found.component';
+import { EmptyAppComponent } from './empty/empty.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, EmptyAppComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -42,9 +44,7 @@ import { HomeComponent } from './home/home.component';
 export class AppModule { }
 ```
 
-3. Wrapp your routes with connectFronteggRouter.
-
-   Note that you must wrapp your wildcard route with our FronteggRouterComponent as in example.
+3. Wrapp your wildcard route with our FronteggRouterComponent as in example.
 
    Also, you can add FronteggAuthGuard to your routing module to redirect the user to the login page if the user is not authenticated and tries to reach a private route.
 
@@ -66,7 +66,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [EmptyAppComponent],
   imports: [RouterModule.forRoot(routes)],
   providers: [],
   exports: [RouterModule],
