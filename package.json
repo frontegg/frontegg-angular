@@ -10,14 +10,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~11.0.5",
-    "@angular/common": "~11.0.5",
-    "@angular/compiler": "~11.0.5",
-    "@angular/core": "~11.0.5",
-    "@angular/forms": "~11.0.5",
-    "@angular/platform-browser": "~11.0.5",
-    "@angular/platform-browser-dynamic": "~11.0.5",
-    "@angular/router": "~11.0.5",
+    "@angular/animations": "~12.0.5",
+    "@angular/common": "~12.0.5",
+    "@angular/compiler": "~12.0.5",
+    "@angular/core": "~12.0.5",
+    "@angular/forms": "~12.0.5",
+    "@angular/platform-browser": "~12.0.5",
+    "@angular/platform-browser-dynamic": "~12.0.5",
+    "@angular/router": "~12.0.5",
     "@frontegg/admin-portal": "^1.0.2",
     "@frontegg/redux-store": "^2.7.0-alpha.899223383",
     "rxjs": "~6.6.0",
@@ -26,8 +26,8 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.7",
-    "@angular/cli": "~11.0.5",
-    "@angular/compiler-cli": "~11.0.5",
+    "@angular/cli": "~12.0.5",
+    "@angular/compiler-cli": "~12.0.5",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
@@ -42,6 +42,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "~4.2.3"
   }
 }
