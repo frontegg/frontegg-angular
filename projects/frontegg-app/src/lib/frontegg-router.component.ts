@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FronteggAppService } from './frontegg-app.service';
-import { Routes } from '@angular/router';
 
 @Component({
   selector: 'frontegg-router',
@@ -31,21 +30,3 @@ export class FronteggRouterComponent implements OnInit {
   }
 
 }
-
-
-export const connectFronteggRouter = (vendorRoutes: Routes): Routes => {
-  const defaultRoute = vendorRoutes.find(s => s.path === '**');
-
-  return [
-    ...vendorRoutes.filter(s => s.path !== '**'),
-    {
-      path: '**',
-      component: FronteggRouterComponent,
-      children: [{
-        ...defaultRoute,
-      }],
-    },
-  ];
-};
-
-
