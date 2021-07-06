@@ -29,6 +29,7 @@ export class FronteggAppComponent implements OnInit, OnDestroy {
     })
     this.fronteggAppService.isAuthRoute$.subscribe((isAuthRoute) => {
       this.isAuthRoute = isAuthRoute
+      this.cdr.detectChanges();
     })
   }
 

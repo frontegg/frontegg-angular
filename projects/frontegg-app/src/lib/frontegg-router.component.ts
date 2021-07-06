@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FronteggAppService } from './frontegg-app.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class FronteggRouterComponent implements OnInit {
   loading: boolean;
   isAuthRoute: boolean;
 
-  constructor(private fronteggAppService: FronteggAppService) {
+  constructor(private fronteggAppService: FronteggAppService, private cdr: ChangeDetectorRef) {
     this.name = 'FronteggRouter';
     this.loading = false;
     this.isAuthRoute = false;
@@ -23,9 +23,11 @@ export class FronteggRouterComponent implements OnInit {
   ngOnInit(): void {
     this.fronteggAppService.isLoading$.subscribe((loading) => {
       this.loading = loading;
+      this.cdr.detectChanges();
     });
     this.fronteggAppService.isAuthRoute$.subscribe((isAuthRoute) => {
       this.isAuthRoute = isAuthRoute;
+      this.cdr.detectChanges();
     });
   }
 
