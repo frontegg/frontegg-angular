@@ -53,7 +53,7 @@ export class FronteggAppService {
       if (opts?.refresh) {
         window.location.href = path
       } else {
-        ngZone.run(() => {
+        this.ngZone.run(() => {
           if (opts?.replace) {
             this.router.navigate([path], { replaceUrl: true });
           } else {

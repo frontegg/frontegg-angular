@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FronteggAppService, FronteggAppAuthService } from '@frontegg/angular';
 
 @Component({
@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   private fronteggAppAuditsState: any;
   authenticated?: boolean;
 
-  constructor(private fronteggAppService: FronteggAppService, private froonteggAppAuthService: FronteggAppAuthService) { }
+  constructor(private fronteggAppService: FronteggAppService, private froonteggAppAuthService: FronteggAppAuthService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.fronteggAppService?.fronteggAppState$.subscribe((s: any) => {
@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
     this.froonteggAppAuthService?.loginState$.subscribe((s: any) => console.log(s, 'auth service memoized login state'));
     this.froonteggAppAuthService?.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
       this.authenticated = isAuthenticated
+      this.cdr.detectChanges()
     });
   }
 
