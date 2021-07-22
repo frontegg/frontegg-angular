@@ -6,20 +6,21 @@ import { CommonModule } from '@angular/common';
 import { FronteggAppModule } from '@frontegg/angular';
 import { NotFoundComponent } from './not-found.component';
 import { EmptyAppComponent } from './empty/empty.component';
+import { PrivateRouteComponent } from './empty/private-route.component';
 
 const palette: any = {
-  'primary': '#CF323B',
-  'primaryText': '#FFF',
-  'secondary': '#EBECED',
-  'secondaryText': '#87888E',
-  'info': '#8CCADC',
-  'success': '#27CD41',
-  'warning': '#FDC234',
-  'error': '#FF6058',
+  primary: '#CF323B',
+  primaryText: '#FFF',
+  secondary: '#EBECED',
+  secondaryText: '#87888E',
+  info: '#8CCADC',
+  success: '#27CD41',
+  warning: '#FDC234',
+  error: '#FF6058',
 };
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, EmptyAppComponent],
+  declarations: [AppComponent, NotFoundComponent, EmptyAppComponent, PrivateRouteComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -27,7 +28,7 @@ const palette: any = {
     FronteggAppModule.forRoot(
       {
         contextOptions: {
-          baseUrl: 'https://max.frontegg.com',
+          baseUrl: 'https://david.frontegg.com',
         },
         metadata: {
           navigation: {
