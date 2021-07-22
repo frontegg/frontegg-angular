@@ -1117,31 +1117,36 @@
     "@babel/helper-validator-identifier" "^7.14.0"
     to-fast-properties "^2.0.0"
 
-"@frontegg/admin-portal@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@frontegg/admin-portal/-/admin-portal-1.0.2.tgz#780516ad2dfeebe787ecf43c5c00d5ec39498edc"
-  integrity sha512-DARY6xi6WrT3+OvtbiGn2qQfJkEfdz4rEZU8D51JLWa/Rp8ZhOKyLy3mpKTDiB4PpsbwrVw7CZHttouQOpvhKg==
+"@frontegg/admin-portal@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/admin-portal/-/admin-portal-3.3.0.tgz#40b637b626086031138e8eee47d9d2c31e994d23"
+  integrity sha512-4p3Girjcct2FBr/HHNzqBugdS4AnoYJYe8/lH4n4HZmj20bfTMY49H3B2pP4Mh/hazxG1y091kEvoDJ1s4VzJQ==
   dependencies:
-    "@frontegg/injector" "^0.0.23"
+    "@frontegg/injector" "0.0.26"
+    uuid "^8.3.0"
 
-"@frontegg/injector@^0.0.23":
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/@frontegg/injector/-/injector-0.0.23.tgz#d4fca57659c6b5fec913b801f0196a8c8e77512f"
-  integrity sha512-aZNZCIHuZwPpkPkXTmBpJS3Ot8ID00vMuN8z1YGCvBKHzA6PhaitJV6ZxAUQweUG7suv872iNdNJFr85ObPOLg==
+"@frontegg/injector@0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@frontegg/injector/-/injector-0.0.26.tgz#771c96da1f930d732d5d286ed1067697c7e239eb"
+  integrity sha512-Y0a2QKihNi7l4jdT5mez7ecIEZCaKW5ga+RzpD5JvrpX5N6ZM7bsSCaKoyAXJgMdU1mWy/2ZNjp9vY8Z2OQdKA==
 
-"@frontegg/redux-store@^2.7.0-alpha.899223383":
-  version "2.7.0-alpha.899223383"
-  resolved "https://registry.yarnpkg.com/@frontegg/redux-store/-/redux-store-2.7.0-alpha.899223383.tgz#5abd20e00d9940644afbd123dede5bb243ec2cb2"
-  integrity sha512-PmgEhBbXDQSJyFeUKWBJVzFbcP+8qoDMinltV4SDV822wehQcMtcPWlBX273RpfnL+dFc70OXDqYtrKbBbX7kg==
+"@frontegg/redux-store@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/redux-store/-/redux-store-3.3.0.tgz#56b11acbd38371e81b2204dd2069b28256d52b13"
+  integrity sha512-mIGunavITgO3Ho8mdnsYeMCAMexW1hp8hj1PS2RolLdIOfRP3goFRypO/dlqtIVwDIqzYpUp21OXi0MZSrxi0A==
   dependencies:
-    "@frontegg/rest-api" "2.7.0-alpha.899223383"
+    "@frontegg/rest-api" "^2.10.1"
     "@reduxjs/toolkit" "^1.5.0"
     redux-saga "^1.1.0"
+    tslib "^2.1.0"
+    uuid "^8.3.0"
 
-"@frontegg/rest-api@2.7.0-alpha.899223383":
-  version "2.7.0-alpha.899223383"
-  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-2.7.0-alpha.899223383.tgz#15ffb64b354a6234b4494408f4c32faf5a45eac9"
-  integrity sha512-iI6aVlTRCG2JUYoGVEmspAeQYUj5KGkbGQDcPiMNlRuNfOwEvSDJuZoV4QXhkI0VqdQM0MeG2qoLEZgRd4J/FA==
+"@frontegg/rest-api@^2.10.1":
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-2.10.1.tgz#fef76904ff9f18949ee0d21c35bb113efc1de62d"
+  integrity sha512-GHEIvMAD7mjlMDOwCCGk0EgDrrutJTHTe1Hi1qSbhM6TamWXTqKglXZnBzs2VVPeSccobAZBxjE4xqQZYj5axg==
+  dependencies:
+    tslib "^2.3.0"
 
 "@istanbuljs/schema@^0.1.2":
   version "0.1.3"
@@ -8906,7 +8911,7 @@ tslib@^2.0.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.2.0.tgz#fb2c475977e35e241311ede2693cee1ec6698f5c"
   integrity sha512-gS9GVHRU+RGn5KQM2rllAlR3dU6m7AcpJKdtH8gFvQiC4Otgk98XnmMU+nZenHt/+VhnBPWwgrJsyrdcw6i23w==
 
-tslib@^2.1.0:
+tslib@^2.1.0, tslib@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
   integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
@@ -9178,7 +9183,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@8.3.2:
+uuid@8.3.2, uuid@^8.3.0:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
