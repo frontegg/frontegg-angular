@@ -66,7 +66,6 @@ export class FronteggAppService {
 
     // tslint:disable-next-line:variable-name
     const _config = {
-      version: 'latest',
       onRedirectTo,
       ...this.config,
     };

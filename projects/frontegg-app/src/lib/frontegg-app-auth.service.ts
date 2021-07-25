@@ -31,6 +31,7 @@ export class FronteggAppAuthService {
   private tenantsStateSubject$ = new BehaviorSubject<AuthState['tenantsState'] | null>(null);
   private userSubject$ = new BehaviorSubject<AuthState['user'] | null>(null);
   private isAuthenticatedSubject$ = new BehaviorSubject<AuthState['isAuthenticated']>(false);
+  private isLoadingSubject$ = new BehaviorSubject<AuthState['isLoading']>(true);
   private isSSOAuthSubject$ = new BehaviorSubject<AuthState['isSSOAuth']>(false);
   private ssoACSSubject$ = new BehaviorSubject<AuthState['ssoACS']>('');
 
@@ -52,6 +53,7 @@ export class FronteggAppAuthService {
   readonly tenantsState$ = this.tenantsStateSubject$.asObservable()
   readonly userState$ = this.userSubject$.asObservable()
   readonly isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
+  readonly isLoading$ = this.isLoadingSubject$.asObservable();
   readonly isSSOAuth$ = this.isSSOAuthSubject$.asObservable();
   readonly ssoACS$ = this.ssoACSSubject$.asObservable();
 
@@ -74,20 +76,22 @@ export class FronteggAppAuthService {
       { field: 'ssoState', subject: this.ssoStateSubject$ },
       { field: 'teamState', subject: this.teamStateSubject$ },
       { field: 'user', subject: this.userSubject$ },
-      { field: 'isAuthenticated', subject: this.isAuthenticatedSubject$ },
       { field: 'isSSOAuth', subject: this.isSSOAuthSubject$ },
       { field: 'ssoACS', subject: this.ssoACSSubject$ },
     ]
 
     // Memoized Auth State
-    this.fronteggAppService.fronteggAppAuthState$.pipe(filter((state) => !!state)).subscribe((authState) => {
+    this.fronteggAppService.fronteggAppAuthState$.pipe(filter((state) => !!state))
+      .subscribe((authState) => {
       if (authState != null) {
         for (const authSubState of authSubStates) {
           if (!equal(authSubState.subject.getValue(), authState[authSubState.field])) {
             authSubState.subject.next(authState[authSubState.field])
           }
         }
+        this.isAuthenticatedSubject$.next(authState.isAuthenticated);
+        this.isLoadingSubject$.next(authState.isLoading);
       }
-    })
+    });
   }
 }
