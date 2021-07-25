@@ -11,20 +11,31 @@ export class FronteggAuthGuard implements CanActivate {
 
   canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve) => {
-      this.fronteggAppAuthService.isAuthenticated$.pipe(filter(() => !!this.fronteggAppService.fronteggAppLoaded), take(1))
-        .subscribe((isAuthenticated) => {
-          if (isAuthenticated != null) {
-            resolve(isAuthenticated);
-            if (!isAuthenticated) {
-              this.fronteggAppService.fronteggAppAuthState$.pipe(take(1)).subscribe((authState) => {
-                const routes = authState?.routes
-                window.localStorage.setItem('FRONTEGG_AFTER_AUTH_REDIRECT_URL', state.url);
-                this.zone.run(() => {
-                  this.router.navigateByUrl(routes?.loginUrl ?? '/');
-                })
-              });
-            }
+      this.fronteggAppAuthService.isLoading$.pipe(filter(() => this.fronteggAppService.fronteggAppLoaded))
+        .subscribe((isLoading) => {
+          if (isLoading) {
+            return;
           }
+
+          this.fronteggAppAuthService.isAuthenticated$.pipe(take(1))
+          .subscribe((isAuthenticated) => {
+            if (isAuthenticated != null) {
+              resolve(isAuthenticated);
+              if (!isAuthenticated) {
+                this.fronteggAppService.fronteggAppAuthState$.pipe(take(1)).subscribe((authState) => {
+                  if (authState == null){
+                    return;
+                  }
+
+                  const routes = authState.routes;
+                  this.zone.run(() => {
+                    const loginUrl = routes.loginUrl || '/';
+                    this.router.navigateByUrl(`${loginUrl}?redirectUrl=${encodeURIComponent(state.url)}`);
+                  });
+                });
+              }
+            }
+          });
         });
     });
   }

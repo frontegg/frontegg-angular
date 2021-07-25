@@ -23,11 +23,11 @@ export class FronteggRouterComponent implements OnInit {
   ngOnInit(): void {
     this.fronteggAppService.isLoading$.subscribe((loading) => {
       this.loading = loading;
-      this.cdr.detectChanges();
+      this.cdr?.detectChanges();
     });
     this.fronteggAppService.isAuthRoute$.subscribe((isAuthRoute) => {
       this.isAuthRoute = isAuthRoute;
-      this.cdr.detectChanges();
+      this.cdr?.detectChanges();
     });
   }
 
