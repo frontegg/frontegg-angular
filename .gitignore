@@ -45,8 +45,6 @@ testem.log
 .DS_Store
 Thumbs.db
 projects/*/dist
-lerna-debug.log
-
 
 # dependencies
 node_modules
@@ -81,7 +79,6 @@ pids
 coverage
 *.lcov
 
-lerna-changed.json
 .npmrc
 cypress/videos
 .nyc_output

@@ -53,14 +53,8 @@ jobs:
         id: changelog
         shell: bash -ex {0}
         run: |
-          version=$(node -p 'require("./lerna.json").version')
-          changelog=$(node -p "(function(){var changelog = require('fs').readFileSync('./CHANGELOG.md', {encoding: 'utf8'}); changelog = changelog.substring(changelog.indexOf('# [')); changelog = changelog.substring(changelog.indexOf('\n')).trim();  return changelog.substring(0, changelog.indexOf('# [') - 2)})()")
-          changelog="${changelog//'%'/'%25'}"
-          changelog="${changelog//$'\n'/'%0A'}"
-          changelog="${changelog//$'\r'/'%0D'}"
-          echo $changelog
+          version=$(node -p 'require("./projects/frontegg-app/package.json").version')
           echo "::set-output name=version::${version}"
-          echo "::set-output name=changelog::${changelog}"
       - name: Create Release Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3.5.1
@@ -73,8 +67,6 @@ jobs:
           title: 'v${{ steps.changelog.outputs.version }}'
           body: |
             # v${{ steps.changelog.outputs.version }}
-
-            ${{steps.changelog.outputs.changelog}}
 
           labels: "Type: Release"
           branch: "release/next"
