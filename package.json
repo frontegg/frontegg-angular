@@ -1,12 +1,13 @@
 {
   "name": "frontegg-angular",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "increment-version": "node scripts/increment-version.js"
   },
   "private": true,
   "dependencies": {
@@ -18,8 +19,8 @@
     "@angular/platform-browser": "~12.0.5",
     "@angular/platform-browser-dynamic": "~12.0.5",
     "@angular/router": "~12.0.5",
-    "@frontegg/admin-portal": "^3.3.0",
-    "@frontegg/redux-store": "^3.3.0",
+    "@frontegg/admin-portal": "^3.6.0",
+    "@frontegg/redux-store": "^3.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
