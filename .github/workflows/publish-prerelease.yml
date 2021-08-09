@@ -78,6 +78,6 @@ jobs:
           node -p "(function(){var fs = require('fs'); var pkg = JSON.parse(fs.readFileSync('./dist/@frontegg/angular/package.json', {encoding: 'utf8'})); pkg.version = '${version}-alpha.${{ github.run_id }}'; fs.writeFileSync('./dist/@frontegg/angular/package.json', JSON.stringify(pkg, null, 2),  {encoding: 'utf8'})})()"
           cp .npmrc ./dist/@frontegg/angular/
           cp .npmignore ./dist/@frontegg/angular/
-          cd ./dist/@frontegg/angular && npm publish
+          cd ./dist/@frontegg/angular && npm publish --tag next
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
