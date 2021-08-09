@@ -48,7 +48,7 @@ jobs:
       - name: Commit Version UP
         run: |
           yarn increment-version
-          git add . && git commit -m "chore(release): publish `node -p 'require("./lerna.json").version'`"
+          git add . && git commit -m "chore(release): publish `node -p 'require("./projects/frontegg-app/package.json").version'`"
       - name: Set current CHANGELOG to output
         id: changelog
         shell: bash -ex {0}
