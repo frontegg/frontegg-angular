@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { AuthState } from '@frontegg/redux-store';
 import { filter } from 'rxjs/operators';
 import { FronteggAppService } from './frontegg-app.service';
-import * as equal from 'fast-deep-equal';
+import FastDeepEqual from 'fast-deep-equal';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>,
@@ -85,7 +85,7 @@ export class FronteggAppAuthService {
       .subscribe((authState) => {
       if (authState != null) {
         for (const authSubState of authSubStates) {
-          if (!equal(authSubState.subject.getValue(), authState[authSubState.field])) {
+          if (!FastDeepEqual(authSubState.subject.getValue(), authState[authSubState.field])) {
             authSubState.subject.next(authState[authSubState.field])
           }
         }

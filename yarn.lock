@@ -1117,10 +1117,10 @@
     "@babel/helper-validator-identifier" "^7.14.0"
     to-fast-properties "^2.0.0"
 
-"@frontegg/admin-portal@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/admin-portal/-/admin-portal-3.3.0.tgz#40b637b626086031138e8eee47d9d2c31e994d23"
-  integrity sha512-4p3Girjcct2FBr/HHNzqBugdS4AnoYJYe8/lH4n4HZmj20bfTMY49H3B2pP4Mh/hazxG1y091kEvoDJ1s4VzJQ==
+"@frontegg/admin-portal@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/admin-portal/-/admin-portal-3.6.0.tgz#4a88a2d88be352970f93ddc5976db3a88dabed0b"
+  integrity sha512-+SvH4OkkhtWoN7JkoSPGRStDNagzzlqOn8Qj5OGmXAzZBXIm5QepYLQe3tPLkwNmUFc7WKDeZq1jLyMJB4fvRA==
   dependencies:
     "@frontegg/injector" "0.0.26"
     uuid "^8.3.0"
@@ -1130,21 +1130,21 @@
   resolved "https://registry.yarnpkg.com/@frontegg/injector/-/injector-0.0.26.tgz#771c96da1f930d732d5d286ed1067697c7e239eb"
   integrity sha512-Y0a2QKihNi7l4jdT5mez7ecIEZCaKW5ga+RzpD5JvrpX5N6ZM7bsSCaKoyAXJgMdU1mWy/2ZNjp9vY8Z2OQdKA==
 
-"@frontegg/redux-store@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/redux-store/-/redux-store-3.3.0.tgz#56b11acbd38371e81b2204dd2069b28256d52b13"
-  integrity sha512-mIGunavITgO3Ho8mdnsYeMCAMexW1hp8hj1PS2RolLdIOfRP3goFRypO/dlqtIVwDIqzYpUp21OXi0MZSrxi0A==
+"@frontegg/redux-store@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/redux-store/-/redux-store-3.6.0.tgz#d4fb1a622a968995fb53780942c27418bef06658"
+  integrity sha512-I8yLnPLyAsd4TcybPEFfCSaKb5ocUr0CncZlwrpQCJGccYR+IE+Hlz/c/hLdPSTX/LmDcqQso7FEQYAMwxv2Jg==
   dependencies:
-    "@frontegg/rest-api" "^2.10.1"
+    "@frontegg/rest-api" "^2.10.8"
     "@reduxjs/toolkit" "^1.5.0"
     redux-saga "^1.1.0"
     tslib "^2.1.0"
     uuid "^8.3.0"
 
-"@frontegg/rest-api@^2.10.1":
-  version "2.10.1"
-  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-2.10.1.tgz#fef76904ff9f18949ee0d21c35bb113efc1de62d"
-  integrity sha512-GHEIvMAD7mjlMDOwCCGk0EgDrrutJTHTe1Hi1qSbhM6TamWXTqKglXZnBzs2VVPeSccobAZBxjE4xqQZYj5axg==
+"@frontegg/rest-api@^2.10.8":
+  version "2.10.10"
+  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-2.10.10.tgz#f28e945a3364c94bb9fa07f364efe4e86fcf49a9"
+  integrity sha512-AtjrhxYtoYljrKHQddYWf5q6Zdrt3spcgUb4qb02HxnZnW+5UVyDdFPumNG8XCwJvyu0mDxBaaKGwtGHmXBE4Q==
   dependencies:
     tslib "^2.3.0"
 
