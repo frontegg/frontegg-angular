@@ -95,8 +95,8 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
       - name: Publish
         run: |
-          cp ./npmrc ./dist/@frontegg/angular/
-          cp ./npmignore ./dist/@frontegg/angular/
+          cp .npmrc ./dist/@frontegg/angular/
+          cp .npmignore ./dist/@frontegg/angular/
           cd ./dist/@frontegg/angular && npm publish --tag latest
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
