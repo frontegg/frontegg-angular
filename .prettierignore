@@ -8,7 +8,5 @@ scripts
 tsconfig.json
 tslint.json
 .*
-lerna.json
-lerna-debug.log
 yarn.lock
 node_modules
