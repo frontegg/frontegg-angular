@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AuthState } from '@frontegg/redux-store';
 import { filter } from 'rxjs/operators';
 import { FronteggAppService } from './frontegg-app.service';
 import FastDeepEqual from 'fast-deep-equal';
+import { AuthState, User, authStoreName, LoginState } from '@frontegg/redux-store';
+import { ILogin, ILoginWithMfa, IPostLogin, IPreLogin, IRecoverMFAToken } from '@frontegg/rest-api';
 
 interface AuthSubStates {
-  field: Partial<keyof AuthState>,
-  subject: BehaviorSubject<any>
+  field: Partial<keyof AuthState>;
+  subject: BehaviorSubject<any>;
 }
+
+export type WithCallback<T = {}, R = boolean> = T & {
+  callback?: (data: R | null, error?: string) => void;
+};
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FronteggAppAuthService {
   private acceptInvitationStateSubject$ = new BehaviorSubject<AuthState['acceptInvitationState'] | null>(null);
@@ -35,28 +41,27 @@ export class FronteggAppAuthService {
   private isSSOAuthSubject$ = new BehaviorSubject<AuthState['isSSOAuth']>(false);
   private ssoACSSubject$ = new BehaviorSubject<AuthState['ssoACS']>('');
 
-  readonly acceptInvitationState$ = this.acceptInvitationStateSubject$.asObservable()
-  readonly accountSettingsState$ = this.accountSettingsStateSubject$.asObservable()
-  readonly activateState$ = this.activateStateSubject$.asObservable()
-  readonly apiTokensState$ = this.apiTokensStateSubject$.asObservable()
-  readonly forgotPasswordState$ = this.forgotPasswordStateSubject$.asObservable()
-  readonly loginState$ = this.loginStateSubject$.asObservable()
-  readonly mfaState$ = this.mfaStateSubject$.asObservable()
-  readonly profileState$ = this.profileStateSubject$.asObservable()
-  readonly rolesState$ = this.rolesStateSubject$.asObservable()
-  readonly routesState$ = this.routesSubject$.asObservable()
-  readonly securityPolicyState$ = this.securityPolicyStateSubject$.asObservable()
-  readonly signUpState$ = this.signUpStateSubject$.asObservable()
-  readonly socialLoginState$ = this.socialLoginStateSubject$.asObservable()
-  readonly ssoState$ = this.ssoStateSubject$.asObservable()
-  readonly teamState$ = this.teamStateSubject$.asObservable()
-  readonly tenantsState$ = this.tenantsStateSubject$.asObservable()
-  readonly userState$ = this.userSubject$.asObservable()
+  readonly acceptInvitationState$ = this.acceptInvitationStateSubject$.asObservable();
+  readonly accountSettingsState$ = this.accountSettingsStateSubject$.asObservable();
+  readonly activateState$ = this.activateStateSubject$.asObservable();
+  readonly apiTokensState$ = this.apiTokensStateSubject$.asObservable();
+  readonly forgotPasswordState$ = this.forgotPasswordStateSubject$.asObservable();
+  readonly loginState$ = this.loginStateSubject$.asObservable();
+  readonly mfaState$ = this.mfaStateSubject$.asObservable();
+  readonly profileState$ = this.profileStateSubject$.asObservable();
+  readonly rolesState$ = this.rolesStateSubject$.asObservable();
+  readonly routesState$ = this.routesSubject$.asObservable();
+  readonly securityPolicyState$ = this.securityPolicyStateSubject$.asObservable();
+  readonly signUpState$ = this.signUpStateSubject$.asObservable();
+  readonly socialLoginState$ = this.socialLoginStateSubject$.asObservable();
+  readonly ssoState$ = this.ssoStateSubject$.asObservable();
+  readonly teamState$ = this.teamStateSubject$.asObservable();
+  readonly tenantsState$ = this.tenantsStateSubject$.asObservable();
+  readonly userState$ = this.userSubject$.asObservable();
   readonly isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
   readonly isLoading$ = this.isLoadingSubject$.asObservable();
   readonly isSSOAuth$ = this.isSSOAuthSubject$.asObservable();
   readonly ssoACS$ = this.ssoACSSubject$.asObservable();
-
 
   constructor(private fronteggAppService: FronteggAppService) {
     const authSubStates: AuthSubStates[] = [
@@ -78,20 +83,44 @@ export class FronteggAppAuthService {
       { field: 'user', subject: this.userSubject$ },
       { field: 'isSSOAuth', subject: this.isSSOAuthSubject$ },
       { field: 'ssoACS', subject: this.ssoACSSubject$ },
-    ]
+    ];
 
     // Memoized Auth State
     this.fronteggAppService.fronteggAppAuthState$.pipe(filter((state) => !!state))
       .subscribe((authState) => {
-      if (authState != null) {
-        for (const authSubState of authSubStates) {
-          if (!FastDeepEqual(authSubState.subject.getValue(), authState[authSubState.field])) {
-            authSubState.subject.next(authState[authSubState.field])
+        if (authState != null) {
+          for (const authSubState of authSubStates) {
+            if (!FastDeepEqual(authSubState.subject.getValue(), authState[authSubState.field])) {
+              authSubState.subject.next(authState[authSubState.field]);
+            }
           }
+          this.isAuthenticatedSubject$.next(authState.isAuthenticated);
+          this.isLoadingSubject$.next(authState.isLoading);
         }
-        this.isAuthenticatedSubject$.next(authState.isAuthenticated);
-        this.isLoadingSubject$.next(authState.isLoading);
-      }
-    });
+      });
   }
+
+
+  private dispatchAction(type: string, payload?: any): void {
+    const store: any = this.fronteggAppService.fronteggApp.store;
+    store.dispatch({ type: `${authStoreName}/${type}`, payload });
+  }
+
+  // Root Actions
+  setState = (state: Partial<AuthState>) => this.dispatchAction('setState', state);
+  resetState = () => this.dispatchAction('resetState');
+  setUser = (user: User) => this.dispatchAction('setUser', user);
+
+  // Login Actions
+  setLoginState = (state: Partial<LoginState>) => this.dispatchAction('setLoginState', state);
+  resetLoginState = () => this.dispatchAction('resetLoginState');
+  requestAuthorize = (firstTime?: boolean) => this.dispatchAction('requestAuthorize', firstTime);
+  preLogin = (payload: IPreLogin) => this.dispatchAction('preLogin', payload);
+  postLogin = (payload: IPostLogin) => this.dispatchAction('postLogin', payload);
+  login = (payload: ILogin) => this.dispatchAction('login', payload);
+  loginWithMfa = (payload: WithCallback<ILoginWithMfa>) => this.dispatchAction('loginWithMfa', payload);
+  recoverMfa = (payload: IRecoverMFAToken) => this.dispatchAction('recoverMfa', payload);
+  logout = (callback?: () => void) => this.dispatchAction('logout', callback);
+  silentLogout = (callback?: () => void) => this.dispatchAction('silentLogout', callback);
+  checkIfAllowToRememberMfaDevice = (payload: { mfaToken: string }) => this.dispatchAction('checkIfAllowToRememberMfaDevice', payload);
 }
