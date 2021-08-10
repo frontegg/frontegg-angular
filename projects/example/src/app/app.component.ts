@@ -41,4 +41,9 @@ export class AppComponent implements OnInit {
     console.log('AUTHENTICATED', this.authenticated);
     console.log('AUDITS', this.fronteggAppAuditsState);
   }
+
+  doLogout(): void {
+    console.log('this.froonteggAppAuthService?.logout()')
+    this.froonteggAppAuthService?.logout()
+  }
 }

@@ -124,7 +124,7 @@ export class FronteggAppService {
     });
   }
 
-  //helper method
+  // helper method
   private getAuthRoutes(authRoutes: Partial<AuthPageRoutes>): string[] {
     return Object.keys(authRoutes)
       .filter((key: string) => key !== 'authenticatedUrl')
