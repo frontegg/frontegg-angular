@@ -6,10 +6,45 @@ import FastDeepEqual from 'fast-deep-equal';
 import {
   RolesState,
   TenantsState,
-  AccountSettingsState, SaveSecurityPolicyPasswordHistoryPayload, SaveSecurityPolicyLockoutPayload, SaveSecurityPolicyMfaPayload, PasswordPolicyState, PasswordHistoryPolicyState, MfaPolicyState, CaptchaPolicyState, LockoutPolicyState, PublicPolicyState, GlobalPolicyState, SecurityPolicyState, AddUserApiTokenPayload, AddTenantApiTokenPayload, ApiTokenType, ApiTokensState, ApiStateIndicator, ISetDeleteUserDialog, ISetAddUserDialog, LoadRolesAndPermissionsPayload, TeamState, TeamStateIndicator, MFAState, SaveSSOConfigurationPayload, SSOState, ProfileState, SaveSSOConfigurationFilePayload,
+  AccountSettingsState,
+  SaveSecurityPolicyPasswordHistoryPayload,
+  SaveSecurityPolicyLockoutPayload,
+  SaveSecurityPolicyMfaPayload,
+  PasswordPolicyState,
+  PasswordHistoryPolicyState,
+  MfaPolicyState,
+  CaptchaPolicyState,
+  LockoutPolicyState,
+  PublicPolicyState,
+  GlobalPolicyState,
+  SecurityPolicyState,
+  AddUserApiTokenPayload,
+  AddTenantApiTokenPayload,
+  ApiTokenType,
+  ApiTokensState,
+  ApiStateIndicator,
+  ISetDeleteUserDialog,
+  ISetAddUserDialog,
+  LoadRolesAndPermissionsPayload,
+  TeamState,
+  TeamStateIndicator,
+  MFAState,
+  SaveSSOConfigurationPayload,
+  SSOState,
+  ProfileState,
+  SaveSSOConfigurationFilePayload,
   UpdateSSOAuthorizationRolesPayload,
   DeleteSamlGroupPayload,
-  CreateSamlGroupPayload, SaveProfilePayload, SignUpState, ForgotPasswordState, AcceptInvitationState, AuthState, User, authStoreName, LoginState, ActivateAccountStrategyState
+  CreateSamlGroupPayload,
+  SaveProfilePayload,
+  SignUpState,
+  ForgotPasswordState,
+  AcceptInvitationState,
+  AuthState,
+  User,
+  authStoreName,
+  LoginState,
+  ActivateAccountStrategyState,
 } from '@frontegg/redux-store';
 import {
   ILogin,
@@ -47,7 +82,7 @@ import {
   IDeleteRole,
   IAttachPermissionsToRole,
   IResendInvitationLink,
-  IRolePermission
+  IRolePermission,
 } from '@frontegg/rest-api';
 import { ActivateAccountState, SocialLoginState } from '@frontegg/redux-store/auth';
 
@@ -331,9 +366,13 @@ export class FronteggAppAuthService {
   deleteRole = (payload: WithCallback<IDeleteRole>) => this.dispatchAction('deleteRole', payload);
   attachPermissionsToRole = (payload: WithCallback<IAttachPermissionsToRole, IRole>) =>
     this.dispatchAction('attachPermissionsToRole', payload);
-  attachPermissionToRoles = (payload: WithCallback<{
-    permissionId: string;
-    roleIds: string[];
-  }, IRolePermission>) =>
-    this.dispatchAction('attachPermissionToRoles', payload);
+  attachPermissionToRoles = (
+    payload: WithCallback<
+      {
+        permissionId: string;
+        roleIds: string[];
+      },
+      IRolePermission
+    >
+  ) => this.dispatchAction('attachPermissionToRoles', payload);
 }
