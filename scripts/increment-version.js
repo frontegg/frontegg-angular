@@ -1,5 +1,5 @@
 const { execSync } = require('child_process');
-const { writeFileSync, readFileSync } = require('fs');
+const { writeFileSync } = require('fs');
 const path = require('path');
 
 function getCurrentVersion() {

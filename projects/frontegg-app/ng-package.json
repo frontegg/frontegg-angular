@@ -3,7 +3,9 @@
   "allowedNonPeerDependencies": [
     "@frontegg/admin-portal",
     "@frontegg/redux-store",
-    "fast-deep-equal"
+    "fast-deep-equal",
+    "csstype",
+    "stream"
   ],
   "dest": "../../dist/@frontegg/angular",
   "lib": {

@@ -24,10 +24,8 @@ export class AppComponent implements OnInit {
     this.fronteggAppService?.fronteggAppAuditsState$.subscribe((auditsState: any) => {
       this.fronteggAppAuditsState = auditsState;
     });
-    this.froonteggAppAuthService?.loginState$.subscribe((s: any) => console.log(s, 'auth service memoized login state'));
     this.froonteggAppAuthService?.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
       this.authenticated = isAuthenticated
-      this.cdr.detectChanges()
     });
   }
 
@@ -43,7 +41,6 @@ export class AppComponent implements OnInit {
   }
 
   doLogout(): void {
-    console.log('this.froonteggAppAuthService?.logout()')
     this.froonteggAppAuthService?.logout()
   }
 }
