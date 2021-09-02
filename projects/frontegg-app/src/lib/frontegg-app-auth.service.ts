@@ -99,6 +99,7 @@ export type WithSilentLoad<T> = T & {
   silentLoading?: boolean;
 };
 
+// noinspection JSUnusedGlobalSymbols
 @Injectable({
   providedIn: 'root',
 })
@@ -222,7 +223,7 @@ export class FronteggAppAuthService {
   activateAccount = (payload: IActivateAccount) => this.dispatchAction('activateAccount', payload);
   resendActivationEmail = (payload: IResendActivationEmail) => this.dispatchAction('resendActivationEmail', payload);
   getActivateAccountStrategy = (
-    payload: WithCallback<IGetActivateAccountStrategy, IGetActivateAccountStrategyResponse>
+    payload: WithCallback<IGetActivateAccountStrategy, IGetActivateAccountStrategyResponse>,
   ) => this.dispatchAction('getActivateAccountStrategy', payload);
 
   // Accept Invitation Actions
@@ -367,12 +368,10 @@ export class FronteggAppAuthService {
   attachPermissionsToRole = (payload: WithCallback<IAttachPermissionsToRole, IRole>) =>
     this.dispatchAction('attachPermissionsToRole', payload);
   attachPermissionToRoles = (
-    payload: WithCallback<
-      {
-        permissionId: string;
-        roleIds: string[];
-      },
-      IRolePermission
-    >
+    payload: WithCallback<{
+      permissionId: string;
+      roleIds: string[];
+    },
+      IRolePermission>,
   ) => this.dispatchAction('attachPermissionToRoles', payload);
 }

@@ -19,8 +19,10 @@
     "@angular/platform-browser": "~12.0.5",
     "@angular/platform-browser-dynamic": "~12.0.5",
     "@angular/router": "~12.0.5",
-    "@frontegg/admin-portal": "^3.6.0",
-    "@frontegg/redux-store": "^3.6.0",
+    "@frontegg/admin-portal": "4.5.0",
+    "@frontegg/redux-store": "4.5.0",
+    "csstype": "^3.0.8",
+    "stream": "^0.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

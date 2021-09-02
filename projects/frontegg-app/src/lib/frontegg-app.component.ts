@@ -19,7 +19,7 @@ export class FronteggAppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.fronteggAppService?.fronteggApp?.unmountAdminPortal()
+    this.fronteggAppService.fronteggApp.showAdminPortal()
   }
 
   ngOnInit(): void {

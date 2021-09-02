@@ -7,6 +7,7 @@ import { FronteggAppModule } from '@frontegg/angular';
 import { NotFoundComponent } from './not-found.component';
 import { EmptyAppComponent } from './empty/empty.component';
 import { PrivateRouteComponent } from './empty/private-route.component';
+import { FronteggRouterComponent } from '../../../frontegg-app/src/lib/frontegg-router.component';
 
 const palette: any = {
   primary: '#CF323B',
@@ -20,7 +21,7 @@ const palette: any = {
 };
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, EmptyAppComponent, PrivateRouteComponent],
+  declarations: [AppComponent, NotFoundComponent, EmptyAppComponent, PrivateRouteComponent, FronteggRouterComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -29,17 +30,7 @@ const palette: any = {
       {
         contextOptions: {
           baseUrl: 'https://david.frontegg.com',
-        },
-        metadata: {
-          navigation: {
-            users: {
-              visibility: 'hidden',
-            },
-          },
-          theme: {
-            palette,
-          },
-        },
+        }
       },
     ),
   ],
