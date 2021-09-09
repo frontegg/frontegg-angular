@@ -21,8 +21,8 @@ export class FronteggAppModule {
     return {
       ngModule: FronteggAppModule,
       providers: [
-        FronteggAuthGuard,
         FronteggAppService,
+        FronteggAuthGuard,
         FronteggAppAuthService,
         {
           provide: FE_PROVIDER_CONFIG,

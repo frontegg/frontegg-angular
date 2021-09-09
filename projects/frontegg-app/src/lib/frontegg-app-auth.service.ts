@@ -171,7 +171,7 @@ export class FronteggAppAuthService {
     ];
 
     // Memoized Auth State
-    this.fronteggAppService.fronteggAppAuthState$.pipe(filter((state) => !!state)).subscribe((authState) => {
+    this.fronteggAppService.fronteggAppAuthState$.subscribe((authState) => {
       if (authState != null) {
         for (const authSubState of authSubStates) {
           if (!FastDeepEqual(authSubState.subject.getValue(), authState[authSubState.field])) {

@@ -46,7 +46,6 @@ export class FronteggAppService {
     }
 
     const onRedirectTo = (path: string, opts?: RedirectOptions) => {
-      debugger;
       const baseName = window.location.origin;
 
       if (path.startsWith(baseName) && baseName !== '/') {
@@ -66,7 +65,6 @@ export class FronteggAppService {
       }
     };
     ContextHolder.setOnRedirectTo(onRedirectTo);
-
     this.fronteggApp = initialize({
       onRedirectTo,
       ...this.config,
@@ -87,9 +85,7 @@ export class FronteggAppService {
     // To check auth route
     this.router.events.subscribe((r) => {
       const route = r as RouterEvent;
-      const storeState = this.fronteggApp.store.getState();
-
-      if (!!route.url && !!storeState?.auth) {
+      if (!!route.url) {
         const authRoutes = this.getAuthRoutes();
         const prevIsAuthRoute = Boolean(this.isAuthRouteSubject$.getValue());
         if (authRoutes.includes(route.url) && !prevIsAuthRoute) {
@@ -97,11 +93,22 @@ export class FronteggAppService {
         } else if (!authRoutes.includes(route.url) && prevIsAuthRoute) {
           this.isAuthRouteSubject$.next(false);
         }
+      } else {
+        this.isAuthRouteSubject$.next(false);
+      }
+    });
+
+
+    document.addEventListener('frontegg_onRedirectTo_fired', () => {
+      if (window.location.pathname !== this.router.url) {
+        this.router.navigateByUrl(window.location.pathname);
       }
     });
 
     if (this.getAuthRoutes().includes(this.router.url)) {
       this.isAuthRouteSubject$.next(true);
+    } else {
+      this.isAuthRouteSubject$.next(false);
     }
   }
 
