@@ -1124,18 +1124,18 @@
     "@babel/helper-validator-identifier" "^7.14.0"
     to-fast-properties "^2.0.0"
 
-"@frontegg/admin-portal@4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/admin-portal/-/admin-portal-4.13.0.tgz#26e4d3b652047b56ea7138efc539420689ee5895"
-  integrity sha512-qdGeWxWot8FGwGy4qPXlhQCzoNxkZ4EzKPTOPtUdL3sfNAN4i1LBhPT9woEhM4DuIYc++BM9uTT6ZA6xq7te0A==
+"@frontegg/admin-portal@4.15.0":
+  version "4.15.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/admin-portal/-/admin-portal-4.15.0.tgz#0b67684ac6604d032557988967691a56cb9178de"
+  integrity sha512-QcUBqraZxMkaDO2KtIuJ7sO35r6dbmrtnL8Byb8eQPoI2+plFWpyAgvEvXeInuVVMML/1fs0aX8SDnnQNRTtTw==
   dependencies:
-    "@frontegg/redux-store" "4.13.0"
-    "@frontegg/types" "4.13.0"
+    "@frontegg/redux-store" "4.15.0"
+    "@frontegg/types" "4.15.0"
 
-"@frontegg/redux-store@4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/redux-store/-/redux-store-4.13.0.tgz#dc3544ffd163011d942f6813d895e3f33d982580"
-  integrity sha512-LRMAwa8lMouIHE25lmB17H6299tqmwyYgSJaTbX1eHBpVgKrdVkS1RO9Uy8QChy7+pfPhnPF8d3p9vLkNMqo/w==
+"@frontegg/redux-store@4.15.0":
+  version "4.15.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/redux-store/-/redux-store-4.15.0.tgz#599265cc94beb2e02b170615db593579aaec935e"
+  integrity sha512-9zYIm/TFbGKcdjFTkXmm124ADfk6OEwKUSHXN0rei6HtGghxjUhOB1GrOfSlSEe39561u5EoN0Trcsnank2+jA==
   dependencies:
     "@frontegg/rest-api" "^2.10.21"
     "@reduxjs/toolkit" "^1.5.0"
@@ -1150,10 +1150,10 @@
   dependencies:
     tslib "^2.3.0"
 
-"@frontegg/types@4.13.0":
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/@frontegg/types/-/types-4.13.0.tgz#8d5a13127dbaf83480822aad25fe151921aab1b2"
-  integrity sha512-5EiBys20m5G0zccdQcoEHmst/ym1HEG1UlGYQN5Zm2F0Z9daMYxqOJ+gXrTfv/uUopIVcDxUGbBpWZrYAj3e8Q==
+"@frontegg/types@4.15.0":
+  version "4.15.0"
+  resolved "https://registry.yarnpkg.com/@frontegg/types/-/types-4.15.0.tgz#f630c88ce07292925ad63273c93117000fcd5e08"
+  integrity sha512-IniEno3+rdFGLVkaTMN0o386uTkpwQucx55z4EikJYd7zPzwH8hywSlBQfApGmmHE1o3TgJIdFSYBdnC/cRCXg==
   dependencies:
     csstype "^3.0.8"
 

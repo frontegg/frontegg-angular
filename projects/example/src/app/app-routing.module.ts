@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmptyAppComponent } from './empty/empty.component';
-import { FronteggAuthGuard } from '@frontegg/angular';
-import { NotFoundComponent } from './not-found.component';
-import { FronteggRouterComponent } from '../../../frontegg-app/src/lib/frontegg-router.component';
+import { FronteggAuthGuard, FronteggRouterComponent } from '@frontegg/angular';
 import { PrivateRouteComponent } from './empty/private-route.component';
+import { NotFoundComponent } from './not-found.component';
 
 
 const routes: Routes = [
