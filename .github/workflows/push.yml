@@ -11,7 +11,7 @@ jobs:
   init:
     name: 'Install, Build and Test'
     runs-on: ubuntu-latest
-    container: cypress/browsers:node12.13.0-chrome80-ff74
+    container: cypress/browsers:node14.17.0-chrome88-ff89
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
