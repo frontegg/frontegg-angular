@@ -9,17 +9,19 @@ jobs:
   createReleasePullRequest:
     if: "!contains(join(github.event.pull_request.labels.*.name, ','), 'Release') && github.event.pull_request.merged == true"
     runs-on: ubuntu-latest
-    container: cypress/browsers:node12.13.0-chrome80-ff74
+    container: cypress/browsers:node14.17.0-chrome88-ff89
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: "0"
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: 'https://npm.pkg.github.com'
+      - name: Git Identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Dependencies and Build Packages
         run: |
           yarn install

@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FronteggAppService } from './frontegg-app.service';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'frontegg-router',
@@ -18,6 +18,14 @@ export class FronteggRouterComponent implements OnInit {
     this.name = 'FronteggRouter';
     this.loading = false;
     this.isAuthRoute = false;
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        if (!!event.url && (/%[0-9A-F]{2}/i).test(event.url)) {
+           this.router.navigateByUrl(decodeURIComponent(event.url));
+        }
+      }
+    });
   }
 
 
@@ -31,5 +39,4 @@ export class FronteggRouterComponent implements OnInit {
       this.cdr?.detectChanges();
     });
   }
-
 }
