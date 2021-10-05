@@ -155,6 +155,7 @@ export class FronteggAppAuthService {
       { field: 'activateState', subject: this.activateStateSubject$ },
       { field: 'apiTokensState', subject: this.apiTokensStateSubject$ },
       { field: 'forgotPasswordState', subject: this.forgotPasswordStateSubject$ },
+      { field: 'tenantsState', subject: this.tenantsStateSubject$ },
       { field: 'loginState', subject: this.loginStateSubject$ },
       { field: 'mfaState', subject: this.mfaStateSubject$ },
       { field: 'profileState', subject: this.profileStateSubject$ },
