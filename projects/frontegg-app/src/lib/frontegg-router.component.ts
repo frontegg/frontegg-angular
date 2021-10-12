@@ -18,14 +18,6 @@ export class FronteggRouterComponent implements OnInit {
     this.name = 'FronteggRouter';
     this.loading = false;
     this.isAuthRoute = false;
-
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        if (!!event.url && (/%[0-9A-F]{2}/i).test(event.url)) {
-           this.router.navigateByUrl(decodeURIComponent(event.url));
-        }
-      }
-    });
   }
 
 
