@@ -8,7 +8,6 @@ import { FronteggAppService } from './frontegg-app.service';
 import { FronteggAppAuthService } from './frontegg-app-auth.service';
 import { RouterModule, UrlSerializer } from '@angular/router';
 import { FronteggRouterComponent } from './frontegg-router.component';
-//@ts-ignore
 import { CustomUrlSerializer } from './custom-url-serializer.module';
 
 @NgModule({
