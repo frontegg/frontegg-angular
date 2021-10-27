@@ -7,7 +7,6 @@ import { FE_PROVIDER_CONFIG } from './constants';
 import { AuditsState, AuthPageRoutes, AuthState, RootState } from '@frontegg/redux-store';
 import { ContextHolder, RedirectOptions } from '@frontegg/rest-api';
 
-
 interface FronteggState {
   root: RootState;
   auth: AuthState;
@@ -19,7 +18,7 @@ export { AuthState };
 type FronteggApp = FronteggAppInstance & {
   showAdminPortal(): void;
   hideAdminPortal(): void;
-}
+};
 
 @Injectable({
   providedIn: 'root',
@@ -40,14 +39,18 @@ export class FronteggAppService {
   readonly isLoading$ = this.isLoadingSubject$.asObservable();
   readonly isAuthRoute$ = this.isAuthRouteSubject$.asObservable();
 
-  constructor(@Inject(FE_PROVIDER_CONFIG) private config: FronteggAppOptions, private router: Router, private ngZone: NgZone) {
+  constructor(
+    @Inject(FE_PROVIDER_CONFIG) private config: FronteggAppOptions,
+    private router: Router,
+    private ngZone: NgZone
+  ) {
     if (!this.config) {
       throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)');
     }
 
-    const onRedirectTo = (path: string, opts?: RedirectOptions) => {
+    const onRedirectTo = (_path: string, opts?: RedirectOptions) => {
       const baseName = window.location.origin;
-
+      let path = _path;
       if (path.startsWith(baseName) && baseName !== '/') {
         path = path.substring(baseName.length - 1);
       }
@@ -84,28 +87,30 @@ export class FronteggAppService {
 
     // To check auth route
     this.router.events.subscribe((r) => {
-      const route = r as RouterEvent;
-      if (!!route.url) {
+      const routeObject = r as RouterEvent;
+      if (!!routeObject.url) {
+        const queryParamIndex = routeObject.url.indexOf('?');
+        let route = routeObject.url;
+        if (queryParamIndex !== -1) {
+          route = route.substring(0, queryParamIndex);
+        }
         const authRoutes = this.getAuthRoutes();
         const prevIsAuthRoute = Boolean(this.isAuthRouteSubject$.getValue());
-        if (authRoutes.includes(route.url) && !prevIsAuthRoute) {
+
+        if (authRoutes.includes(route) && !prevIsAuthRoute) {
           this.isAuthRouteSubject$.next(true);
-        } else if (!authRoutes.includes(route.url) && prevIsAuthRoute) {
+        } else if (!authRoutes.includes(route) && prevIsAuthRoute) {
           this.isAuthRouteSubject$.next(false);
         }
-      } else {
-        this.isAuthRouteSubject$.next(false);
       }
     });
 
-
-    document.addEventListener('frontegg_onRedirectTo_fired', () => {
-      if (window.location.pathname !== this.router.url) {
-        this.router.navigateByUrl(window.location.pathname);
-      }
-    });
-
-    if (this.getAuthRoutes().includes(this.router.url)) {
+    const queryParamIndex = this.router.url.indexOf('?');
+    let route = this.router.url;
+    if (queryParamIndex !== -1) {
+      route = route.substring(0, queryParamIndex);
+    }
+    if (this.getAuthRoutes().includes(route)) {
       this.isAuthRouteSubject$.next(true);
     } else {
       this.isAuthRouteSubject$.next(false);
@@ -117,7 +122,7 @@ export class FronteggAppService {
     const authRoutes = this.fronteggApp.store.getState().auth.routes ?? {};
     return Object.keys(authRoutes)
       .filter((key: string) => key !== 'authenticatedUrl')
-      .map((key: string) => (authRoutes[key as keyof AuthPageRoutes]) as string);
+      .map((key: string) => authRoutes[key as keyof AuthPageRoutes] as string);
   }
 
   public getAuthPageRoutes(): AuthPageRoutes {
@@ -134,5 +139,3 @@ export class FronteggAppService {
     this.fronteggApp?.hideAdminPortal();
   }
 }
-
-
