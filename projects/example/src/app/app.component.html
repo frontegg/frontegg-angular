@@ -1,22 +1,3 @@
-<frontegg-app>
-    <div>
-        <router-outlet></router-outlet>
-        <hr/>
-        <br/>
-        <br/>
-        <br/>
-        <h1>Toolbar Frontegg App</h1>
-        <br/>
-        <button (click)="showApp()"><h2>Open Frontegg app</h2></button>
-        <br/>
-        <br/>
-        <p>Authenticated: {{authenticated}}</p>
-        <a routerLink="/account/login"><b>Login</b></a> ---
-        <span (click)="doLogout()"><b>Logout</b></span> ---
-        <a routerLink="/test-private-route"><b>private-route</b></a>
-        <br/>
-        <br/>
-        <br/>
-        <button (click)="showState()"><h2>Console log state</h2></button>
-    </div>
-</frontegg-app>
+<div *ngIf="!isLoading">
+    <router-outlet></router-outlet>
+</div>
