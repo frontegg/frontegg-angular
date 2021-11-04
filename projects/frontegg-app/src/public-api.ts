@@ -2,9 +2,9 @@
  * Public API Surface of frontegg-app
  */
 
-export { FronteggAppService, AuthState } from './lib/frontegg-app.service';
-export { FronteggAppAuthService } from './lib/frontegg-app-auth.service';
-export * from './lib/frontegg-app.component';
-export * from './lib/frontegg-router.component';
-export * from './lib/frontegg-app.module';
-export * from './lib/frontegg-app-guards.guard';
+export { FronteggAppService } from './lib/frontegg-app.service';
+export { FronteggAuthService } from './lib/frontegg-auth.service';
+export { FronteggComponent } from './lib/frontegg.component';
+export { FronteggAppModule } from './lib/frontegg-app.module';
+export * from './lib/guards/frontegg-auth.guard';
+export * from './lib/guards/frontegg-load.guard';
