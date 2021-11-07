@@ -2,13 +2,13 @@
 
 ## How to use
 
-1. Install Frontegg Libraries Run the following command to Install Frontegg Angular library.
+### 1. Install Frontegg Libraries Run the following command to Install Frontegg Angular library.
 
 ```
 npm install @frontegg/angular
 ```
 
-2. Configuration
+### 2. Configuration
   1. Add `FronteggAppModule` to `AppModule.imports[]`
   2. Add `FronteggComponent` to `AppModule.entryComponents[]`
 
@@ -47,7 +47,7 @@ import { FronteggAppModule } from '@frontegg/angular';
 export class AppModule { }
 ```
 
-Connect your application bootstrap component with `fronteggService` to listen for frontegg loading state
+#### Connect your application bootstrap component with `fronteggService` to listen for frontegg loading state
 
 ```
 /app.component.ts
@@ -70,7 +70,7 @@ export class AppComponent implements OnDistory {
 }
 ```
 
-And wrap your application with `*ngIf="!isLoading"` selector to make sure you have the right context
+#### And wrap your application with `*ngIf="!isLoading"` selector to make sure you have the right context
 
 ```
 /app.component.html
@@ -80,8 +80,7 @@ And wrap your application with `*ngIf="!isLoading"` selector to make sure you ha
 </div>
 ```
 
-3. Getting the user context Frontegg exposes the user context and the authentication state via a `FronteggAppService`.
-   You can access the whole authentication state via the `FronteggAppService`. To have an access to memoized
+### 3. Getting the user context Frontegg exposes the user context and the authentication state via a `FronteggAppService`. You can access the whole authentication state via the `FronteggAppService`. To have an access to memoized
    authentication substates like user state, SSO state, MFA state, etc. use `FronteggAppAuthService` as in the following
    sample:
 
@@ -111,8 +110,7 @@ export class AppComponent implements OnInit {
 }
 ```
 
-4. Tou can add FronteggAuthGuard to your routing module to redirect the user to the login page
-   if the user not authenticated and trying to reach a private route.
+### 4. Tou can add FronteggAuthGuard to your routing module to redirect the user to the login page if the user not authenticated and trying to reach a private route.
 
 ```
 import { NgModule } from '@angular/core';
@@ -149,7 +147,7 @@ const routes: Routes = [
 export class AppRoutingModule {}
 ```
 
-5. Run the App, Signup & Login
+### 5. Run the App, Signup & Login
 
 We are all set. Let's run the application and see Frontegg in action.
 
