@@ -1,9 +1,7 @@
 import { ActivatedRouteSnapshot, CanActivate, DefaultUrlSerializer, Router, RouterStateSnapshot, UrlSerializer, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { FronteggAppService } from '../frontegg-app.service';
 
 export abstract class FronteggBaseGuard implements UrlSerializer, CanActivate {
-  constructor(protected fronteggAppService: FronteggAppService, protected router: Router) {}
 
   abstract canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     : Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree;
