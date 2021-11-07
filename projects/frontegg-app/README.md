@@ -2,15 +2,15 @@
 
 ## How to use
 
-1. Install Frontegg Libraries
-   Run the following command to Install Frontegg Angular library.
+1. Install Frontegg Libraries Run the following command to Install Frontegg Angular library.
 
 ```
 npm install @frontegg/angular
 ```
 
 2. Configuration
-   Add `FronteggAppModule` to `AppModule`
+  1. Add `FronteggAppModule` to `AppModule.imports[]`
+  2. Add `FronteggComponent` to `AppModule.entryComponents[]`
 
 ```
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,6 +26,8 @@ import { FronteggAppModule } from '@frontegg/angular';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
+
+    /** 1. Import Frontegg Module **/
     FronteggAppModule.forRoot(
       {
         contextOptions: {
@@ -36,32 +38,56 @@ import { FronteggAppModule } from '@frontegg/angular';
       }
     ),
   ],
+
+  /** 2. Add Frontetgg Component to your entryComponents **/
+  entryComponents: [FronteggComponent],
+
   bootstrap: [AppComponent],
 })
 export class AppModule { }
 ```
 
-And wrap your application with `frontegg-app` selector to make sure you have the right context
+Connect your application bootstrap component with `fronteggService` to listen for frontegg loading state
+
+```
+/app.component.ts
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+})
+export class AppComponent implements OnDistory {
+  isLoading = true;
+  loadingSubscription: Subscription;
+
+  constructor(private fronteggAppService: FronteggAppService) {
+    this.loadingSubscription = fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading);
+  }
+
+  ngOnDistory(): void {
+    this.loadingSubscription.unsubscribe()
+  }
+}
+```
+
+And wrap your application with `*ngIf="!isLoading"` selector to make sure you have the right context
 
 ```
 /app.component.html
 
-<frontegg-app>
-  <div>
+<div *ngIf="!isLoading">
     <router-outlet></router-outlet>
-  </div>
-</frontegg-app>
+</div>
 ```
 
-3. Getting the user context
-   Frontegg exposes the user context and the authentication state via a `FronteggAppService`.
-   You can access the whole authentication state via the `FronteggAppService`.
-   To have an access to memoized authentication substates like user state, SSO state, MFA state, etc.
-   use `FronteggAppAuthService` as in the following sample:
+3. Getting the user context Frontegg exposes the user context and the authentication state via a `FronteggAppService`.
+   You can access the whole authentication state via the `FronteggAppService`. To have an access to memoized
+   authentication substates like user state, SSO state, MFA state, etc. use `FronteggAppAuthService` as in the following
+   sample:
 
 ```
 import { Component, OnInit } from '@angular/core';
-import { FronteggAppAuthService, AuthState } from '@frontegg/angular';
+import { FronteggAuthService, AuthState } from '@frontegg/angular';
 
 @Component({
   selector: 'app-root',
@@ -72,17 +98,12 @@ import { FronteggAppAuthService, AuthState } from '@frontegg/angular';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  authenticated?: boolean;
   user?: AuthState['user'] | null;
 
-  constructor(private fronteggAppAuthService: FronteggAppAuthService) {
-    this.user
+  constructor(private fronteggAuthService: FronteggAuthService) {
   }
 
   ngOnInit(): void {
-    this.fronteggAppAuthService?.isAuthenticated$.subscribe((isAuthenticated) => {
-      this.authenticated = isAuthenticated
-    })
     this.fronteggAppAuthService?.userState$.subscribe((user) => {
       this.user = user
     })
@@ -90,22 +111,35 @@ export class AppComponent implements OnInit {
 }
 ```
 
-4. Wrapp your routes with connectFronteggRouter. Note that path: '**' should be predefined.
-   Also, you can add FronteggGuard to your routing module to redirect the user to the login page if the user not
-   authenticated and trying to reach a private route.
+4. Tou can add FronteggAuthGuard to your routing module to redirect the user to the login page
+   if the user not authenticated and trying to reach a private route.
 
 ```
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EmptyAppComponent } from './empty/empty.component';
-import { FronteggAuthGuard, connectFronteggRouter } from '@frontegg/angular';
+import { ProtectedAppComponent } from './components/protected.component';
+import { NotFoundComponent } from './components/not-found.component';
+import { FronteggAuthGuard } from '@frontegg/angular';
 
-
-const routes: Routes = connectFronteggRouter([
+/** Option to protect a specific route **/
+const routes: Routes = [
   { path: '', component: EmptyAppComponent },
-  { path: 'test-private-route', canActivate: [FronteggAuthGuard], component: EmptyAppComponent },
+  { path: 'test-private-route', canActivate: [FronteggAuthGuard], component: ProtectedAppComponent },
   { path: '**', component: NotFoundComponent },
-]);
+]
+
+/** Option to protect all routes **/
+const routes: Routes = [
+  {
+    path: '',
+    canActivate: [FronteggAuthGuard],
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'users', component: UsersComponent },
+      { path: '**', component: NotFoundComponent },
+    ]
+  },
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -115,7 +149,7 @@ const routes: Routes = connectFronteggRouter([
 export class AppRoutingModule {}
 ```
 
-5.  Run the App, Signup & Login
+5. Run the App, Signup & Login
 
 We are all set. Let's run the application and see Frontegg in action.
 
@@ -140,11 +174,12 @@ Open http://localhost:8080/account/sign-up and sign up with your first user.
 
 # Frontegg Admin Portal Integration
 
-In order to allow your end users to control the Security Settings, Profile, Team Management and more, the next step will be to embed the `Admin Portal` into your application.
+In order to allow your end users to control the Security Settings, Profile, Team Management and more, the next step will
+be to embed the `Admin Portal` into your application.
 
-For Frontegg admin portal integration we will import the`FronteggAppService` from the `frontegg-app` package and use `showAdminPortal`
+For Frontegg admin portal integration we will import the`FronteggAppService` from the `frontegg-app` package and
+use `showAdminPortal`
 method when clicking on the relevant button.
-
 
 ```
 import { Component, OnInit } from '@angular/core';

@@ -1,46 +1,24 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FronteggAppService, FronteggAppAuthService } from '@frontegg/angular';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FronteggAppService } from '@frontegg/angular';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  private fronteggAppState: any;
-  private fronteggAppAuthState: any;
-  private fronteggAppAuditsState: any;
-  authenticated?: boolean;
+export class AppComponent implements OnInit, OnDestroy {
+  isLoading = true;
+  loadingSubscription: Subscription;
 
-  constructor(private fronteggAppService: FronteggAppService, private froonteggAppAuthService: FronteggAppAuthService, private cdr: ChangeDetectorRef) { }
+  constructor(private fronteggAppService: FronteggAppService) {
+    this.loadingSubscription = fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading);
+  }
 
   ngOnInit(): void {
-    this.fronteggAppService?.fronteggAppState$.subscribe((s: any) => {
-      this.fronteggAppState = s;
-    });
-    this.fronteggAppService?.fronteggAppAuthState$.subscribe((authState: any) => {
-      this.fronteggAppAuthState = authState;
-    });
-    this.fronteggAppService?.fronteggAppAuditsState$.subscribe((auditsState: any) => {
-      this.fronteggAppAuditsState = auditsState;
-    });
-    this.froonteggAppAuthService?.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
-      this.authenticated = isAuthenticated
-    });
+    console.log('AppComponent', 'ngOnInit');
   }
 
-  showApp(): void {
-    this.fronteggAppService?.showAdminPortal();
-  }
-
-  showState(): void {
-    console.log('STATE', this.fronteggAppState);
-    console.log('AUTH STATE', this.fronteggAppAuthState);
-    console.log('AUTHENTICATED', this.authenticated);
-    console.log('AUDITS', this.fronteggAppAuditsState);
-  }
-
-  doLogout(): void {
-    this.froonteggAppAuthService?.logout()
+  ngOnDestroy(): void {
+    this.loadingSubscription.unsubscribe();
   }
 }

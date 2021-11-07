@@ -1,34 +1,29 @@
-import { FronteggAuthGuard } from './frontegg-app-guards.guard';
-import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { FronteggAppComponent } from './frontegg-app.component';
-import { FE_PROVIDER_CONFIG } from './constants';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FronteggAppOptions } from '@frontegg/types';
-import { FronteggAppService } from './frontegg-app.service';
-import { FronteggAppAuthService } from './frontegg-app-auth.service';
-import { RouterModule, UrlSerializer } from '@angular/router';
-import { FronteggRouterComponent } from './frontegg-router.component';
-import { CustomUrlSerializer } from './custom-url-serializer.module';
+import { FronteggAppOptionsClass, FronteggAppService } from './frontegg-app.service';
+import { FronteggComponent } from './frontegg.component';
+import { FronteggLoadGuard } from './guards/frontegg-load.guard';
+import { FronteggAuthGuard } from './guards/frontegg-auth.guard';
 
 @NgModule({
-  declarations: [FronteggAppComponent, FronteggRouterComponent],
   imports: [CommonModule, RouterModule],
-  exports: [FronteggAppComponent, FronteggRouterComponent],
+  declarations: [FronteggComponent],
+  exports: [FronteggComponent],
 })
 export class FronteggAppModule {
-  public constructor() {}
   static forRoot(config: FronteggAppOptions): ModuleWithProviders<FronteggAppModule> {
     return {
       ngModule: FronteggAppModule,
       providers: [
         FronteggAppService,
         FronteggAuthGuard,
-        FronteggAppAuthService,
+        FronteggLoadGuard,
         {
-          provide: FE_PROVIDER_CONFIG,
+          provide: FronteggAppOptionsClass,
           useValue: config,
         },
-        { provide: UrlSerializer, useClass: CustomUrlSerializer },
       ],
     };
   }

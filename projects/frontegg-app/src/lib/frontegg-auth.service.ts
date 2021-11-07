@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { FronteggAppService } from './frontegg-app.service';
 import FastDeepEqual from 'fast-deep-equal';
 import {
@@ -45,6 +44,7 @@ import {
   authStoreName,
   LoginState,
   ActivateAccountStrategyState,
+  EnhancedStore,
 } from '@frontegg/redux-store';
 import {
   ILogin,
@@ -85,6 +85,7 @@ import {
   IRolePermission,
 } from '@frontegg/rest-api';
 import { ActivateAccountState, SocialLoginState } from '@frontegg/redux-store/auth';
+import { Observable } from 'rxjs';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>;
@@ -99,94 +100,165 @@ export type WithSilentLoad<T> = T & {
   silentLoading?: boolean;
 };
 
-// noinspection JSUnusedGlobalSymbols
 @Injectable({
   providedIn: 'root',
 })
-export class FronteggAppAuthService {
-  private acceptInvitationStateSubject$ = new BehaviorSubject<AuthState['acceptInvitationState'] | null>(null);
-  private accountSettingsStateSubject$ = new BehaviorSubject<AuthState['accountSettingsState'] | null>(null);
-  private activateStateSubject$ = new BehaviorSubject<AuthState['activateState'] | null>(null);
-  private apiTokensStateSubject$ = new BehaviorSubject<AuthState['apiTokensState'] | null>(null);
-  private forgotPasswordStateSubject$ = new BehaviorSubject<AuthState['forgotPasswordState'] | null>(null);
-  private loginStateSubject$ = new BehaviorSubject<AuthState['loginState'] | null>(null);
-  private mfaStateSubject$ = new BehaviorSubject<AuthState['mfaState'] | null>(null);
-  private profileStateSubject$ = new BehaviorSubject<AuthState['profileState'] | null>(null);
-  private rolesStateSubject$ = new BehaviorSubject<AuthState['rolesState'] | null>(null);
-  private routesSubject$ = new BehaviorSubject<AuthState['routes'] | null>(null);
-  private securityPolicyStateSubject$ = new BehaviorSubject<AuthState['securityPolicyState'] | null>(null);
-  private signUpStateSubject$ = new BehaviorSubject<AuthState['signUpState'] | null>(null);
-  private socialLoginStateSubject$ = new BehaviorSubject<AuthState['socialLoginState'] | null>(null);
-  private ssoStateSubject$ = new BehaviorSubject<AuthState['ssoState'] | null>(null);
-  private teamStateSubject$ = new BehaviorSubject<AuthState['teamState'] | null>(null);
-  private tenantsStateSubject$ = new BehaviorSubject<AuthState['tenantsState'] | null>(null);
-  private userSubject$ = new BehaviorSubject<AuthState['user'] | null>(null);
-  private isAuthenticatedSubject$ = new BehaviorSubject<AuthState['isAuthenticated']>(false);
-  private isLoadingSubject$ = new BehaviorSubject<AuthState['isLoading']>(true);
-  private isSSOAuthSubject$ = new BehaviorSubject<AuthState['isSSOAuth']>(false);
-  private ssoACSSubject$ = new BehaviorSubject<AuthState['ssoACS']>('');
+export class FronteggAuthService {
+  private acceptInvitationStateSubject = new BehaviorSubject<AuthState['acceptInvitationState']>({} as AuthState['acceptInvitationState']);
+  private accountSettingsStateSubject = new BehaviorSubject<AuthState['accountSettingsState']>({} as AuthState['accountSettingsState']);
+  private activateStateSubject = new BehaviorSubject<AuthState['activateState']>({} as AuthState['activateState']);
+  private apiTokensStateSubject = new BehaviorSubject<AuthState['apiTokensState']>({} as AuthState['apiTokensState']);
+  private forgotPasswordStateSubject = new BehaviorSubject<AuthState['forgotPasswordState']>({} as AuthState['forgotPasswordState']);
+  private loginStateSubject = new BehaviorSubject<AuthState['loginState']>({} as AuthState['loginState']);
+  private mfaStateSubject = new BehaviorSubject<AuthState['mfaState']>({} as AuthState['mfaState']);
+  private profileStateSubject = new BehaviorSubject<AuthState['profileState']>({} as AuthState['profileState']);
+  private rolesStateSubject = new BehaviorSubject<AuthState['rolesState']>({} as AuthState['rolesState']);
+  private routesSubject = new BehaviorSubject<AuthState['routes']>({} as AuthState['routes']);
+  private securityPolicyStateSubject = new BehaviorSubject<AuthState['securityPolicyState']>({} as AuthState['securityPolicyState']);
+  private signUpStateSubject = new BehaviorSubject<AuthState['signUpState']>({} as AuthState['signUpState']);
+  private socialLoginStateSubject = new BehaviorSubject<AuthState['socialLoginState']>({} as AuthState['socialLoginState']);
+  private ssoStateSubject = new BehaviorSubject<AuthState['ssoState']>({} as AuthState['ssoState']);
+  private teamStateSubject = new BehaviorSubject<AuthState['teamState']>({} as AuthState['teamState']);
+  private tenantsStateSubject = new BehaviorSubject<AuthState['tenantsState']>({} as AuthState['tenantsState']);
+  private userSubject = new BehaviorSubject<AuthState['user']>({} as AuthState['user']);
+  private isAuthenticatedSubject = new BehaviorSubject<AuthState['isAuthenticated']>(false);
+  private isLoadingSubject = new BehaviorSubject<AuthState['isLoading']>(true);
+  private isSSOAuthSubject = new BehaviorSubject<AuthState['isSSOAuth']>(false);
+  private ssoACSSubject = new BehaviorSubject<AuthState['ssoACS']>('');
 
-  readonly acceptInvitationState$ = this.acceptInvitationStateSubject$.asObservable();
-  readonly accountSettingsState$ = this.accountSettingsStateSubject$.asObservable();
-  readonly activateState$ = this.activateStateSubject$.asObservable();
-  readonly apiTokensState$ = this.apiTokensStateSubject$.asObservable();
-  readonly forgotPasswordState$ = this.forgotPasswordStateSubject$.asObservable();
-  readonly loginState$ = this.loginStateSubject$.asObservable();
-  readonly mfaState$ = this.mfaStateSubject$.asObservable();
-  readonly profileState$ = this.profileStateSubject$.asObservable();
-  readonly rolesState$ = this.rolesStateSubject$.asObservable();
-  readonly routesState$ = this.routesSubject$.asObservable();
-  readonly securityPolicyState$ = this.securityPolicyStateSubject$.asObservable();
-  readonly signUpState$ = this.signUpStateSubject$.asObservable();
-  readonly socialLoginState$ = this.socialLoginStateSubject$.asObservable();
-  readonly ssoState$ = this.ssoStateSubject$.asObservable();
-  readonly teamState$ = this.teamStateSubject$.asObservable();
-  readonly tenantsState$ = this.tenantsStateSubject$.asObservable();
-  readonly userState$ = this.userSubject$.asObservable();
-  readonly isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
-  readonly isLoading$ = this.isLoadingSubject$.asObservable();
-  readonly isSSOAuth$ = this.isSSOAuthSubject$.asObservable();
-  readonly ssoACS$ = this.ssoACSSubject$.asObservable();
+
+  get acceptInvitationState$(): Observable<AuthState['acceptInvitationState']> {
+    return this.acceptInvitationStateSubject.asObservable();
+  }
+
+  get accountSettingsState$(): Observable<AuthState['accountSettingsState']> {
+    return this.accountSettingsStateSubject.asObservable();
+  }
+
+  get activateState$(): Observable<AuthState['activateState']> {
+    return this.activateStateSubject.asObservable();
+  }
+
+  get apiTokensState$(): Observable<AuthState['apiTokensState']> {
+    return this.apiTokensStateSubject.asObservable();
+  }
+
+  get forgotPasswordState$(): Observable<AuthState['forgotPasswordState']> {
+    return this.forgotPasswordStateSubject.asObservable();
+  }
+
+  get loginState$(): Observable<AuthState['loginState']> {
+    return this.loginStateSubject.asObservable();
+  }
+
+  get mfaState$(): Observable<AuthState['mfaState']> {
+    return this.mfaStateSubject.asObservable();
+  }
+
+  get profileState$(): Observable<AuthState['profileState']> {
+    return this.profileStateSubject.asObservable();
+  }
+
+  get rolesState$(): Observable<AuthState['rolesState']> {
+    return this.rolesStateSubject.asObservable();
+  }
+
+  get routesState$(): Observable<AuthState['routes']> {
+    return this.routesSubject.asObservable();
+  }
+
+  get securityPolicyState$(): Observable<AuthState['securityPolicyState']> {
+    return this.securityPolicyStateSubject.asObservable();
+  }
+
+  get signUpState$(): Observable<AuthState['signUpState']> {
+    return this.signUpStateSubject.asObservable();
+  }
+
+  get socialLoginState$(): Observable<AuthState['socialLoginState']> {
+    return this.socialLoginStateSubject.asObservable();
+  }
+
+  get ssoState$(): Observable<AuthState['ssoState']> {
+    return this.ssoStateSubject.asObservable();
+  }
+
+  get teamState$(): Observable<AuthState['teamState']> {
+    return this.teamStateSubject.asObservable();
+  }
+
+  get tenantsState$(): Observable<AuthState['tenantsState']> {
+    return this.tenantsStateSubject.asObservable();
+  }
+
+  get user$(): Observable<AuthState['user']> {
+    return this.userSubject.asObservable();
+  }
+
+  get user(): AuthState['user'] {
+    return this.fronteggAppService.fronteggApp.store.getState().auth.user;
+  }
+
+
+  get isAuthenticated$(): Observable<AuthState['isAuthenticated']> {
+    return this.isAuthenticatedSubject.asObservable();
+  }
+
+  get isAuthenticated(): AuthState['isAuthenticated'] {
+    return this.fronteggAppService.fronteggApp.store.getState().auth.isAuthenticated;
+  }
+
+  get isLoading$(): Observable<AuthState['isLoading']> {
+    return this.isLoadingSubject.asObservable();
+  }
+
+  get isSSOAuth$(): Observable<AuthState['isSSOAuth']> {
+    return this.isSSOAuthSubject.asObservable();
+  }
+
+  get ssoACS$(): Observable<AuthState['ssoACS']> {
+    return this.ssoACSSubject.asObservable();
+  }
 
   constructor(private fronteggAppService: FronteggAppService) {
     const authSubStates: AuthSubStates[] = [
-      { field: 'acceptInvitationState', subject: this.acceptInvitationStateSubject$ },
-      { field: 'accountSettingsState', subject: this.accountSettingsStateSubject$ },
-      { field: 'activateState', subject: this.activateStateSubject$ },
-      { field: 'apiTokensState', subject: this.apiTokensStateSubject$ },
-      { field: 'forgotPasswordState', subject: this.forgotPasswordStateSubject$ },
-      { field: 'tenantsState', subject: this.tenantsStateSubject$ },
-      { field: 'loginState', subject: this.loginStateSubject$ },
-      { field: 'mfaState', subject: this.mfaStateSubject$ },
-      { field: 'profileState', subject: this.profileStateSubject$ },
-      { field: 'rolesState', subject: this.rolesStateSubject$ },
-      { field: 'routes', subject: this.routesSubject$ },
-      { field: 'securityPolicyState', subject: this.securityPolicyStateSubject$ },
-      { field: 'signUpState', subject: this.signUpStateSubject$ },
-      { field: 'socialLoginState', subject: this.socialLoginStateSubject$ },
-      { field: 'ssoState', subject: this.ssoStateSubject$ },
-      { field: 'teamState', subject: this.teamStateSubject$ },
-      { field: 'user', subject: this.userSubject$ },
-      { field: 'isSSOAuth', subject: this.isSSOAuthSubject$ },
-      { field: 'ssoACS', subject: this.ssoACSSubject$ },
+      { field: 'acceptInvitationState', subject: this.acceptInvitationStateSubject },
+      { field: 'accountSettingsState', subject: this.accountSettingsStateSubject },
+      { field: 'activateState', subject: this.activateStateSubject },
+      { field: 'apiTokensState', subject: this.apiTokensStateSubject },
+      { field: 'forgotPasswordState', subject: this.forgotPasswordStateSubject },
+      { field: 'tenantsState', subject: this.tenantsStateSubject },
+      { field: 'loginState', subject: this.loginStateSubject },
+      { field: 'mfaState', subject: this.mfaStateSubject },
+      { field: 'profileState', subject: this.profileStateSubject },
+      { field: 'rolesState', subject: this.rolesStateSubject },
+      { field: 'routes', subject: this.routesSubject },
+      { field: 'securityPolicyState', subject: this.securityPolicyStateSubject },
+      { field: 'signUpState', subject: this.signUpStateSubject },
+      { field: 'socialLoginState', subject: this.socialLoginStateSubject },
+      { field: 'ssoState', subject: this.ssoStateSubject },
+      { field: 'teamState', subject: this.teamStateSubject },
+      { field: 'user', subject: this.userSubject },
+      { field: 'isSSOAuth', subject: this.isSSOAuthSubject },
+      { field: 'ssoACS', subject: this.ssoACSSubject },
     ];
 
     // Memoized Auth State
-    this.fronteggAppService.fronteggAppAuthState$.subscribe((authState) => {
+    this.fronteggAppService.authState$.subscribe((authState) => {
       if (authState != null) {
         for (const authSubState of authSubStates) {
           if (!FastDeepEqual(authSubState.subject.getValue(), authState[authSubState.field])) {
             authSubState.subject.next(authState[authSubState.field]);
           }
         }
-        this.isAuthenticatedSubject$.next(authState.isAuthenticated);
-        this.isLoadingSubject$.next(authState.isLoading);
+        this.isAuthenticatedSubject.next(authState.isAuthenticated);
+        this.isLoadingSubject.next(authState.isLoading);
       }
     });
   }
 
   private dispatchAction(type: string, payload?: any): void {
-    const store: any = this.fronteggAppService.fronteggApp.store;
+    const store: EnhancedStore = this.fronteggAppService.fronteggApp.store;
     store.dispatch({ type: `${authStoreName}/${type}`, payload });
   }
 
@@ -368,6 +440,7 @@ export class FronteggAppAuthService {
   deleteRole = (payload: WithCallback<IDeleteRole>) => this.dispatchAction('deleteRole', payload);
   attachPermissionsToRole = (payload: WithCallback<IAttachPermissionsToRole, IRole>) =>
     this.dispatchAction('attachPermissionsToRole', payload);
+
   attachPermissionToRoles = (
     payload: WithCallback<{
       permissionId: string;
