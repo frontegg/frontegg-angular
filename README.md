@@ -1,5 +1,7 @@
 # Frontegg Angular
 
+## BREAKING CHANGES SINCE VERSION 3.0.1
+If you are migrating from `@frontegg/angular` version 2 or earlier, you can find a [migration guide here](https://docs.frontegg.com/docs/migration-guide-fronteggangular-v2-v3)
 ## How to use
 
 ### 1. Install Frontegg Libraries 
@@ -127,7 +129,7 @@ Use the `FronteggAuthGuard` to redirect the user to the login page if the user n
 
 ```
 /app-routing.module.ts
- 
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProtectedAppComponent } from './components/protected.component';
