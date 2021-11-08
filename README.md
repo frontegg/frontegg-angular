@@ -2,7 +2,9 @@
 
 ## How to use
 
-### 1. Install Frontegg Libraries Run the following command to Install Frontegg Angular library.
+### 1. Install Frontegg Libraries 
+
+Run the following command to Install Frontegg Angular library:
 
 ```
 npm install @frontegg/angular
@@ -81,7 +83,9 @@ export class AppComponent implements OnDestory {
 </div>
 ```
 
-### 3. Getting the user context Frontegg exposes the user context and the authentication state via a `FronteggAppService`. You can access the whole authentication state via the `FronteggAppService`. To have an access to memoized
+### 3. Getting the user context 
+
+Frontegg exposes the user context and the authentication state via a `FronteggAppService`. You can access the whole authentication state via the `FronteggAppService`. To have an access to memoized
 authentication substates like user state, SSO state, MFA state, etc. use `FronteggAuthService` as in the following
 sample:
 
@@ -117,9 +121,13 @@ export class AppComponent implements OnInit {
 
 ```
 
-### 4. Tou can add FronteggAuthGuard to your routing module to redirect the user to the login page if the user not authenticated and trying to reach a private route.
+### 4. Add FronteggAuthGuard to your routing module 
+
+Use the `FronteggAuthGuard` to redirect the user to the login page if the user not authenticated and trying to reach a private route.
 
 ```
+/app-routing.module.ts
+ 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProtectedAppComponent } from './components/protected.component';
