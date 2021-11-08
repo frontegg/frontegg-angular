@@ -13,12 +13,13 @@ npm install @frontegg/angular
 2. Add `FronteggComponent` to `AppModule.entryComponents[]`
 
 ```
+/app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { FronteggAppModule } from '@frontegg/angular';
+import { FronteggAppModule, FronteggComponent } from '@frontegg/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -56,7 +57,7 @@ export class AppModule { }
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnDistory {
+export class AppComponent implements OnDestory {
   isLoading = true;
   loadingSubscription: Subscription;
 
@@ -64,7 +65,7 @@ export class AppComponent implements OnDistory {
     this.loadingSubscription = fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading);
   }
 
-  ngOnDistory(): void {
+  ngOnDestory(): void {
     this.loadingSubscription.unsubscribe()
   }
 }
@@ -81,19 +82,17 @@ export class AppComponent implements OnDistory {
 ```
 
 ### 3. Getting the user context Frontegg exposes the user context and the authentication state via a `FronteggAppService`. You can access the whole authentication state via the `FronteggAppService`. To have an access to memoized
-authentication substates like user state, SSO state, MFA state, etc. use `FronteggAppAuthService` as in the following
+authentication substates like user state, SSO state, MFA state, etc. use `FronteggAuthService` as in the following
 sample:
 
 ```
+/app.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FronteggAuthService, AuthState } from '@frontegg/angular';
 
 @Component({
   selector: 'app-root',
-  template: `<div *ngIf="authenticated">
-    <img src={{user?.profilePictureUrl}} alt={{user?.name}} />
-    <div>User name: {{user?.name}}</div>
-  </div>`,
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
@@ -103,11 +102,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fronteggAppAuthService?.userState$.subscribe((user) => {
+    this.fronteggAuthService?.user$.subscribe((user) => {
       this.user = user
     })
   }
 }
+
+/app.component.html
+
+<div *ngIf="!isLoading">
+    <img src={{user?.profilePictureUrl}} alt={{user?.name}} />
+    <div>User name: {{user?.name}}</div>
+</div>
+
 ```
 
 ### 4. Tou can add FronteggAuthGuard to your routing module to redirect the user to the login page if the user not authenticated and trying to reach a private route.
@@ -117,11 +124,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProtectedAppComponent } from './components/protected.component';
 import { NotFoundComponent } from './components/not-found.component';
+import { HomeComponent } from './components/home.component';
+import { UsersComponent } from './components/users.component';
 import { FronteggAuthGuard } from '@frontegg/angular';
 
 /** Option to protect a specific route **/
 const routes: Routes = [
-  { path: '', component: EmptyAppComponent },
+  { path: '', component: HomeComponent },
   { path: 'test-private-route', canActivate: [FronteggAuthGuard], component: ProtectedAppComponent },
   { path: '**', component: NotFoundComponent },
 ]
@@ -140,8 +149,8 @@ const routes: Routes = [
 ]
 
 @NgModule({
+  declarations: [ProtectedAppComponent, HomeComponent, UsersComponent, NotFoundComponent],
   imports: [RouterModule.forRoot(routes)],
-  providers: [],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
