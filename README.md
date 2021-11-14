@@ -54,8 +54,12 @@ export class AppModule { }
 
 #### Connect your application bootstrap component with `fronteggService` to listen for frontegg loading state
 
-```
-/app.component.ts
+```ts
+//app.component.ts
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FronteggAuthService, FronteggAppService } from '@frontegg/angular';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -64,11 +68,9 @@ export class AppModule { }
 export class AppComponent implements OnDestory {
   isLoading = true;
   loadingSubscription: Subscription;
-
   constructor(private fronteggAppService: FronteggAppService) {
-    this.loadingSubscription = fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading);
+    this.loadingSubscription = fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading)
   }
-
   ngOnDestory(): void {
     this.loadingSubscription.unsubscribe()
   }
@@ -77,8 +79,8 @@ export class AppComponent implements OnDestory {
 
 #### And wrap your application with `*ngIf="!isLoading"` selector to make sure you have the right context
 
-```
-/app.component.html
+```html
+<!-- app.component.html -->
 
 <div *ngIf="!isLoading">
     <router-outlet></router-outlet>
@@ -91,20 +93,27 @@ Frontegg exposes the user context and the authentication state via a `FronteggAp
 authentication substates like user state, SSO state, MFA state, etc. use `FronteggAuthService` as in the following
 sample:
 
-```
-/app.component.ts
-import { Component, OnInit } from '@angular/core';
-import { FronteggAuthService, AuthState } from '@frontegg/angular';
+```ts
+// app.component.ts
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FronteggAuthService, FronteggAppService } from '@frontegg/angular';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  user?: AuthState['user'] | null;
+export class AppComponent implements OnInit, OnDestroy {
+  isLoading = true;
+  loadingSubscription: Subscription;
+  user?: any;
 
-  constructor(private fronteggAuthService: FronteggAuthService) {
+  constructor(
+    private fronteggAuthService: FronteggAuthService, 
+    private fronteggAppService: FronteggAppService) {
+  	this.loadingSubscription = 
+      fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading)
   }
 
   ngOnInit(): void {
@@ -112,9 +121,17 @@ export class AppComponent implements OnInit {
       this.user = user
     })
   }
-}
 
-/app.component.html
+  ngOnDestory(): void {
+    this.loadingSubscription.unsubscribe()
+  }
+}
+```
+
+Update `app.component.html` to display the user's name and avatar:
+
+```html
+<!-- app.component.html-->
 
 <div *ngIf="!isLoading">
     <img src={{user?.profilePictureUrl}} alt={{user?.name}} />
@@ -127,8 +144,8 @@ export class AppComponent implements OnInit {
 
 Use the `FronteggAuthGuard` to redirect the user to the login page if the user not authenticated and trying to reach a private route.
 
-```
-/app-routing.module.ts
+```ts
+// app-routing.module.ts
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -198,7 +215,7 @@ For Frontegg admin portal integration we will import the`FronteggAppService` fro
 use `showAdminPortal`
 method when clicking on the relevant button.
 
-```
+```ts
 import { Component, OnInit } from '@angular/core';
 import { FronteggAppService } from '@frontegg/angular';
 
