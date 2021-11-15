@@ -271,6 +271,7 @@ export class FronteggAuthService {
   setLoginState = (state: Partial<LoginState>) => this.dispatchAction('setLoginState', state);
   resetLoginState = () => this.dispatchAction('resetLoginState');
   requestAuthorize = (firstTime?: boolean) => this.dispatchAction('requestAuthorize', firstTime);
+  loginWithRedirect = () => this.dispatchAction('requestHostedLoginAuthorize');
   preLogin = (payload: IPreLogin) => this.dispatchAction('preLogin', payload);
   postLogin = (payload: IPostLogin) => this.dispatchAction('postLogin', payload);
   login = (payload: ILogin) => this.dispatchAction('login', payload);
