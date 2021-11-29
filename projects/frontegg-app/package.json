@@ -1,14 +1,14 @@
 {
   "name": "@frontegg/angular",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^12.0.5",
     "@angular/core": "^12.0.5"
   },
   "dependencies": {
-    "@frontegg/admin-portal": "4.43.0",
-    "@frontegg/redux-store": "4.43.0",
+    "@frontegg/admin-portal": "5.3.0",
+    "@frontegg/redux-store": "5.3.0",
     "fast-deep-equal": "^3.1.3",
     "tslib": "^2.0.0",
     "csstype": "^3.0.8",
