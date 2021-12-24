@@ -1,12 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { NavigationStart, Route, Router, RoutesRecognized } from '@angular/router';
 import { AuthPageRoutes, FronteggState, initialize } from '@frontegg/admin-portal';
 import { FronteggAppInstance, FronteggAppOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
-
 
 type FronteggApp = FronteggAppInstance & {
   showAdminPortal(): void;
@@ -107,6 +106,15 @@ export class FronteggAppService {
       },
     ]);
 
+    this.router.events.subscribe((event) => {
+      if(event instanceof NavigationStart) {
+        const authRoutes = this.mapAuthComponents.map(({path}) => path);
+        const curr = authRoutes.find((path) => event.url.split('?')[0] !==`/${path}` && event.url.startsWith(`/${path}`));
+        if(curr){
+          this.router.navigateByUrl(`/${curr}${decodeURIComponent(event.url.split(curr)[1])}`);
+        }
+      }
+    });
 
     // Subscribe on fronteggApp store to change state subjects
     this.fronteggApp.store.subscribe(() => {
