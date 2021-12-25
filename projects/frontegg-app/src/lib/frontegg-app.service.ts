@@ -108,10 +108,10 @@ export class FronteggAppService {
 
     this.router.events.subscribe((event) => {
       if(event instanceof NavigationStart) {
-        const authRoutes = this.mapAuthComponents.map(({path}) => path);
-        const curr = authRoutes.find((path) => event.url.split('?')[0] !==`/${path}` && event.url.startsWith(`/${path}`));
+        const authRoutes = this.mapAuthComponents.map(({path}) => path?.startsWith('/')? path : `/${path}`);
+        const curr = authRoutes.find((path) => event.url.split('?')[0] !== path && event.url.startsWith(path));
         if(curr){
-          this.router.navigateByUrl(`/${curr}${decodeURIComponent(event.url.split(curr)[1])}`);
+          this.router.navigateByUrl(`${curr}${decodeURIComponent(event.url.split(curr)[1])}`);
         }
       }
     });
