@@ -6,10 +6,12 @@ import { FronteggAppOptionsClass, FronteggAppService } from './frontegg-app.serv
 import { FronteggComponent } from './frontegg.component';
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { FronteggAuthGuard } from './guards/frontegg-auth.guard';
+import { FronteggAuthService } from './frontegg-auth.service';
+import { AuthorizedContentDirective } from './directives/authorized-content.directive';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
-  declarations: [FronteggComponent],
+  declarations: [FronteggComponent, AuthorizedContentDirective],
   exports: [FronteggComponent],
 })
 export class FronteggAppModule {
@@ -20,6 +22,7 @@ export class FronteggAppModule {
         FronteggAppService,
         FronteggAuthGuard,
         FronteggLoadGuard,
+        FronteggAuthService,
         {
           provide: FronteggAppOptionsClass,
           useValue: config,
