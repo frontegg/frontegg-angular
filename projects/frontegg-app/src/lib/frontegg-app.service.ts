@@ -85,7 +85,7 @@ export class FronteggAppService {
         if (opts?.replace) {
           this.router.navigate([path], { replaceUrl: true });
         } else {
-          this.router.navigate([path]);
+          this.router.navigate([path], {queryParamsHandling: 'merge'});
         }
       }
     };
@@ -111,7 +111,7 @@ export class FronteggAppService {
         const authRoutes = this.mapAuthComponents.map(({path}) => path?.startsWith('/')? path : `/${path}`);
         const curr = authRoutes.find((path) => event.url.split('?')[0] !== path && event.url.startsWith(path));
         if(curr){
-          this.router.navigateByUrl(`${curr}${decodeURIComponent(event.url.split(curr)[1])}`);
+          this.router.navigate([`${curr}${decodeURIComponent(event.url.split(curr)[1])}`], {queryParamsHandling: 'merge'});
         }
       }
     });

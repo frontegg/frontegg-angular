@@ -19,12 +19,11 @@ import { FronteggComponent, FronteggAppModule } from '@frontegg/angular';
     FronteggAppModule.forRoot(
       {
         contextOptions: {
-          baseUrl: 'https://loudapi.frontegg.com',
-          clientId: '93447df4-edcc-45e5-8664-9fb8c196cf44'
+          baseUrl: 'https://app-na8f2nf315s2.stg.frontegg.com',
+          clientId: '11508f8e-3f77-42c5-87b4-d3d11a7e1f75'
         },
-        hostedLoginBox: true,
       },
-    ),
+    )
   ],
   entryComponents: [FronteggComponent],
   bootstrap: [AppComponent],
