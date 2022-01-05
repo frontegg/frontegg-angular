@@ -12,7 +12,7 @@ import { AuthorizedContentDirective } from './directives/authorized-content.dire
 @NgModule({
   imports: [CommonModule, RouterModule],
   declarations: [FronteggComponent, AuthorizedContentDirective],
-  exports: [FronteggComponent],
+  exports: [FronteggComponent, AuthorizedContentDirective],
 })
 export class FronteggAppModule {
   static forRoot(config: FronteggAppOptions): ModuleWithProviders<FronteggAppModule> {
