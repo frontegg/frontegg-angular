@@ -16,7 +16,7 @@ export class FronteggAuthGuard extends FronteggBaseGuard {
         if (isAuthenticated) {
           obs.next(true);
         } else {
-          this.router.navigate([this.fronteggAppService.authRoutes.loginUrl + '?redirectUrl=' + encodeURIComponent(state.url)], { queryParamsHandling: "merge" });
+          this.router.navigateByUrl(this.fronteggAppService.authRoutes.loginUrl + '?redirectUrl=' + encodeURIComponent(state.url));
           obs.next(false);
         }
       });
