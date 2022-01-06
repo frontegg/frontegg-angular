@@ -83,9 +83,9 @@ export class FronteggAppService {
         window.location.href = path;
       } else {
         if (opts?.replace) {
-          this.router.navigate([path], { replaceUrl: true });
+          this.router.navigateByUrl(path, { replaceUrl: true });
         } else {
-          this.router.navigate([path]);
+          this.router.navigateByUrl(path)
         }
       }
     };
@@ -105,16 +105,6 @@ export class FronteggAppService {
         children: [...this.router.config],
       },
     ]);
-
-    this.router.events.subscribe((event) => {
-      if(event instanceof NavigationStart) {
-        const authRoutes = this.mapAuthComponents.map(({path}) => path?.startsWith('/')? path : `/${path}`);
-        const curr = authRoutes.find((path) => event.url.split('?')[0] !== path && event.url.startsWith(path));
-        if(curr){
-          this.router.navigateByUrl(`${curr}${decodeURIComponent(event.url.split(curr)[1])}`);
-        }
-      }
-    });
 
     // Subscribe on fronteggApp store to change state subjects
     this.fronteggApp.store.subscribe(() => {
