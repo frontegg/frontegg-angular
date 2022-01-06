@@ -5,11 +5,11 @@ import { NotFoundComponent } from './components/not-found.component';
 import { AppHomeComponent } from './components/home.component';
 import { FronteggAuthGuard } from '@frontegg/angular';
 
-const protectSingleRoutes: Routes = [
-  { path: '', component: AppHomeComponent },
-  { path: 'test-private-route', component: PrivateRouteComponent, canActivate: [FronteggAuthGuard] },
-  { path: '**', component: NotFoundComponent },
-];
+// const protectSingleRoutes: Routes = [
+//   { path: '', component: AppHomeComponent },
+//   { path: 'test-private-route', component: PrivateRouteComponent, canActivate: [FronteggAuthGuard] },
+//   { path: '**', component: NotFoundComponent },
+// ];
 
 const protectAllRoutes: Routes = [
   {
@@ -23,7 +23,7 @@ const protectAllRoutes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(protectSingleRoutes)],
+  imports: [RouterModule.forRoot(protectAllRoutes)],
   providers: [],
   exports: [RouterModule],
 })
