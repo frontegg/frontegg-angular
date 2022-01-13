@@ -8,18 +8,24 @@ import { FronteggAuthGuard } from '@frontegg/angular';
 const protectSingleRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'test-private-route', component: PrivateRouteComponent, canActivate: [FronteggAuthGuard] },
+
+  { path: 'test', pathMatch: 'full', redirectTo: 'nested-router' },
+  {
+    path: 'nested-router',
+    loadChildren: () => import('./nested-module/nested-module.module').then(m => m.NestedModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
-const protectAllRoutes: Routes = [
-  {
-    path: '', canActivate: [FronteggAuthGuard], children: [
-      { path: '', component: AppHomeComponent },
-      { path: 'test-private-route', component: PrivateRouteComponent },
-      { path: '**', component: NotFoundComponent },
-    ],
-  },
-];
+// const protectAllRoutes: Routes = [
+//   {
+//     path: '', canActivate: [FronteggAuthGuard], children: [
+//       { path: '', component: AppHomeComponent },
+//       { path: 'test-private-route', component: PrivateRouteComponent },
+//       { path: '**', component: NotFoundComponent },
+//     ],
+//   },
+// ];
 
 
 @NgModule({
