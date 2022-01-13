@@ -23,3 +23,6 @@ describe('workspace-project App', () => {
     );
   });
 });
+
+
+// ng new example-angular-frontegg --create-application --defaults --minimal --package-manager yarn --routing --skip-git
