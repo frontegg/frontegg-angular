@@ -14,7 +14,7 @@ type FronteggApp = FronteggAppInstance & {
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
-    baseUrl: 'https://david.frontegg.com',
+    baseUrl: 'https://sub-domain.frontegg.com',
   };
 }
 
@@ -72,6 +72,9 @@ export class FronteggAppService {
       throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)');
     }
 
+    if((window as any).CYPRESS_CONFIG){
+      this.config = (window as any).CYPRESS_CONFIG;
+    }
     const onRedirectTo = (to: string, opts?: RedirectOptions) => {
       const baseName = window.location.origin;
       let path = to;
