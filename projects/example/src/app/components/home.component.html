@@ -5,9 +5,10 @@
     <br />
     <h1>Toolbar Frontegg App</h1>
 
+
     <br />
-    <button (click)="showApp()"><h2>Open Frontegg app</h2></button>
-    <button (click)="loginWithRedirect()"><h2>Open Hosted Login</h2></button>
+    <button data-test-id="open-admin-portal-btn" (click)="showApp()"><h2>Open Frontegg app</h2></button>
+    <button data-test-id="open-hosted" (click)="loginWithRedirect()"><h2>Open Hosted Login</h2></button>
     <br />
     <br />
     <p>Authenticated: {{authenticated}}</p>
