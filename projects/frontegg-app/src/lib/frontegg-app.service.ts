@@ -1,5 +1,5 @@
 import { Inject, Injectable, NgZone } from '@angular/core';
-import { NavigationStart, Route, Router, RoutesRecognized } from '@angular/router';
+import { Route, Router} from '@angular/router';
 import { AuthPageRoutes, FronteggState, initialize } from '@frontegg/admin-portal';
 import { FronteggAppInstance, FronteggAppOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
