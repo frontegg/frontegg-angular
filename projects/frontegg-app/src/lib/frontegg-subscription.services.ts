@@ -26,10 +26,7 @@ export class FronteggSubscriptionService {
       if (subscriptionState != null) {
         const { billing: { subscription } } = subscriptionState;
 
-        if (FastDeepEqual(this.subscriptionStateSubject.getValue(), subscription)) {
-          if (!(subscription.subscription?.externallyManaged || !subscription)) {
-            this.subscriptionStateSubject.next({ ...subscription, subscription: undefined });
-          }
+        if (!FastDeepEqual(this.subscriptionStateSubject.getValue(), subscription)) {
           this.subscriptionStateSubject.next(subscription);
         }
       }
