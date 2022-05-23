@@ -13,7 +13,6 @@ export class CheckoutDialogComponent implements OnInit, OnDestroy {
 
   checkoutStateSubscription: Subscription;
 
-
   constructor(private fronteggCheckoutService: FronteggCheckoutService) {
     this.checkoutStateSubscription = fronteggCheckoutService.checkoutState$.subscribe(({ open, confirmed, error }) => {
       this.error = error;
