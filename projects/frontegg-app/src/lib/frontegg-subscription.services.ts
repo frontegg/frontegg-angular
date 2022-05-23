@@ -35,6 +35,7 @@ export class FronteggSubscriptionService {
 
   private dispatchAction(type: string, payload?: any): void {
     const store: EnhancedStore = this.fronteggAppService.fronteggApp.store;
+    // @ts-ignore
     store.dispatch({ type: `${subscriptionsStoreName}/${type}`, payload });
   }
 

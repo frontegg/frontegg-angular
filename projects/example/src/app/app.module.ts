@@ -8,6 +8,7 @@ import { EmptyAppComponent } from './components/empty.component';
 import { PrivateRouteComponent } from './components/private-route.component';
 import { AppHomeComponent } from './components/home.component';
 import { FronteggComponent, FronteggAppModule } from '@frontegg/angular';
+import { CheckoutDialogModule } from './checkout-dialog/checkout-dialog.module';
 
 
 @NgModule({
@@ -19,11 +20,12 @@ import { FronteggComponent, FronteggAppModule } from '@frontegg/angular';
     FronteggAppModule.forRoot(
       {
         contextOptions: {
-          baseUrl: 'https://app-na8f2nf315s2.stg.frontegg.com',
-          clientId: '11508f8e-3f77-42c5-87b4-d3d11a7e1f75'
+          baseUrl: 'https://isra-stg-v4.stg.frontegg.com',
+          clientId: '4e013910-fd8a-47cb-9208-a15622143f5e'
         },
       },
-    )
+    ),
+    CheckoutDialogModule
   ],
   entryComponents: [FronteggComponent],
   bootstrap: [AppComponent],
