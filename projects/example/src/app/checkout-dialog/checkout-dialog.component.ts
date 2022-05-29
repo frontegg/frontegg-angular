@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FronteggCheckoutService } from '@frontegg/angular';
+import { FronteggSubscriptionService } from '@frontegg/angular';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -7,14 +7,16 @@ import { Subscription } from 'rxjs';
   templateUrl: './checkout-dialog.component.html',
 })
 export class CheckoutDialogComponent implements OnInit, OnDestroy {
+  loading = false;
   confirmed = false;
   error: string | null = null;
   open = false;
 
   checkoutStateSubscription: Subscription;
 
-  constructor(private fronteggCheckoutService: FronteggCheckoutService) {
-    this.checkoutStateSubscription = fronteggCheckoutService.checkoutState$.subscribe(({ open, confirmed, error }) => {
+  constructor(private fronteggSubscriptionService: FronteggSubscriptionService) {
+    this.checkoutStateSubscription = fronteggSubscriptionService.checkoutState$.subscribe(({ loading, open, confirmed, error }) => {
+      this.loading = loading;
       this.error = error;
       this.open = open;
       this.confirmed = confirmed;
@@ -30,10 +32,10 @@ export class CheckoutDialogComponent implements OnInit, OnDestroy {
   }
 
   openCheckout() {
-    this.fronteggCheckoutService.openCheckout('awesome-plan');
+    this.fronteggSubscriptionService.openCheckout('awesome-plan');
   }
 
   closeCheckout() {
-    this.fronteggCheckoutService.hideCheckout();
+    this.fronteggSubscriptionService.hideCheckout();
   }
 }
