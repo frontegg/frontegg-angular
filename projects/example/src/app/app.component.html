@@ -1,4 +1,7 @@
 <div *ngIf="!isLoading">
     <router-outlet></router-outlet>
     <div *authorizedContent="['Admin']">Authorized content section for Admin's (example)</div>
+    <div style="background: #4B4B5A;color: #fafafa;">
+        <checkout-dialog></checkout-dialog>
+    </div>
 </div>

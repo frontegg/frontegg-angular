@@ -259,6 +259,7 @@ export class FronteggAuthService {
 
   private dispatchAction(type: string, payload?: any): void {
     const store: EnhancedStore = this.fronteggAppService.fronteggApp.store;
+    // @ts-ignore
     store.dispatch({ type: `${authStoreName}/${type}`, payload });
   }
 

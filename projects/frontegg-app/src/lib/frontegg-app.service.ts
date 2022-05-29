@@ -1,7 +1,7 @@
 import { Inject, Injectable, NgZone } from '@angular/core';
 import { Route, Router} from '@angular/router';
 import { AuthPageRoutes, FronteggState, initialize } from '@frontegg/admin-portal';
-import { FronteggAppInstance, FronteggAppOptions } from '@frontegg/types';
+import { FronteggAppInstance, FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions } from '@frontegg/rest-api';
@@ -152,5 +152,15 @@ export class FronteggAppService {
   // Open admin portal
   public hideAdminPortal(): void {
     this.fronteggApp?.hideAdminPortal();
+  }
+
+  // Open checkout dialog
+  public showCheckoutDialog(opts: FronteggCheckoutDialogOptions): void {
+    this.fronteggApp.showCheckoutDialog(opts);
+  }
+
+  // Open checkout dialog
+  public hideCheckoutDialog(): void {
+    this.fronteggApp?.hideCheckoutDialog();
   }
 }

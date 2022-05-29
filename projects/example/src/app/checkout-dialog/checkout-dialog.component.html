@@ -1,0 +1,7 @@
+<div style="padding: 15px">
+    <div>opened: {{open}}</div>
+    <div>error: {{error || '---'}}</div>
+    <div>success: {{confirmed}}</div>
+
+    <button (click)="!open ? closeCheckout() : openCheckout()">{{!open ? 'Open' : 'Close'}} Checkout Dialog</button>
+</div>
