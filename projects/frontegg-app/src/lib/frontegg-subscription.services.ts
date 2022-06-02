@@ -7,7 +7,7 @@ import { EnhancedStore, SubscriptionsState, subscriptionsStoreName, Subscription
 export interface CheckoutDialogState {
   loading: boolean;
   open: boolean;
-  confirmed: boolean;
+  success: boolean;
   error: string | null;
 }
 
@@ -20,7 +20,7 @@ export class FronteggSubscriptionService {
   private checkoutStateSubject = new BehaviorSubject<CheckoutDialogState>({
     loading: false,
     open: false,
-    confirmed: false,
+    success: false,
     error: null,
   });
 
@@ -65,7 +65,7 @@ export class FronteggSubscriptionService {
     this.checkoutStateSubject.next({
       loading: false,
       open: true,
-      confirmed: false,
+      success: false,
       error: null,
     });
     this.fronteggAppService.showCheckoutDialog({
@@ -74,7 +74,7 @@ export class FronteggSubscriptionService {
         this.checkoutStateSubject.next({
           loading: false,
           open: false,
-          confirmed: true,
+          success: true,
           error: null,
         });
       },
