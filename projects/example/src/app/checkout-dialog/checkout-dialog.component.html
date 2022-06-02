@@ -2,6 +2,6 @@
      <div *ngIf="loading">loading...</div>
     <div>opened: {{open}}</div>
     <div>error: {{error || '---'}}</div>
-    <div>success: {{confirmed}}</div>
+    <div>success: {{success}}</div>
     <button (click)="!open ? openCheckout() : closeCheckout()">{{!open ? 'Open' : 'Close'}} Checkout Dialog</button>
 </div>

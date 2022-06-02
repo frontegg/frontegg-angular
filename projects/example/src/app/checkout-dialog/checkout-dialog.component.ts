@@ -8,18 +8,18 @@ import { Subscription } from 'rxjs';
 })
 export class CheckoutDialogComponent implements OnInit, OnDestroy {
   loading = false;
-  confirmed = false;
+  success = false;
   error: string | null = null;
   open = false;
 
   checkoutStateSubscription: Subscription;
 
   constructor(private fronteggSubscriptionService: FronteggSubscriptionService) {
-    this.checkoutStateSubscription = fronteggSubscriptionService.checkoutState$.subscribe(({ loading, open, confirmed, error }) => {
+    this.checkoutStateSubscription = fronteggSubscriptionService.checkoutState$.subscribe(({ loading, open, success, error }) => {
       this.loading = loading;
       this.error = error;
       this.open = open;
-      this.confirmed = confirmed;
+      this.success = success;
     });
   }
 
