@@ -8,7 +8,6 @@ import { FronteggAuthGuard } from '@frontegg/angular';
 const protectSingleRoutes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'test-private-route', component: PrivateRouteComponent, canActivate: [FronteggAuthGuard] },
-
   { path: 'test', pathMatch: 'full', redirectTo: 'nested-router' },
   {
     path: 'nested-router',
