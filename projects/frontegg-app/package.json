@@ -1,6 +1,6 @@
 {
   "name": "@frontegg/angular",
-  "version": "4.17.1",
+  "version": "4.18.0",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": ">=12.0.0",
