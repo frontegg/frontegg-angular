@@ -74,11 +74,11 @@ jobs:
           branch: "release/next"
 
       - name: Publish Pre-Release version to NPM
-        id : publish_pre_release_version
+        id: publish_pre_release_version
         run: |
           version=$(node -p 'require("./projects/frontegg-app/package.json").version')
-          echo "Publishing Pre-Release version - v${version}-alpha.${{ github.run_id }}"
           echo "::set-output name=LIB_VERSION::${version}"
+          echo "Publishing Pre-Release version - v${version}-alpha.${{ github.run_id }}"
           node -p "(function(){var fs = require('fs'); var pkg = JSON.parse(fs.readFileSync('./dist/@frontegg/angular/package.json', {encoding: 'utf8'})); pkg.version = '${version}-alpha.${{ github.run_id }}'; fs.writeFileSync('./dist/@frontegg/angular/package.json', JSON.stringify(pkg, null, 2),  {encoding: 'utf8'})})()"
           cp .npmrc ./dist/@frontegg/angular/
           cp .npmignore ./dist/@frontegg/angular/
@@ -96,3 +96,4 @@ jobs:
           SLACK_TITLE : 'A new @frontegg/angular alpha version!'
           SLACK_USERNAME : ${{ github.actor }}
           SLACK_WEBHOOK : ${{ secrets.ROTEM_SLACK_WEBHOOK }}
+          MSG_MINIMAL : true
