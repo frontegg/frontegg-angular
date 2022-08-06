@@ -74,12 +74,25 @@ jobs:
           branch: "release/next"
 
       - name: Publish Pre-Release version to NPM
+        id : publish_pre_release_version
         run: |
           version=$(node -p 'require("./projects/frontegg-app/package.json").version')
           echo "Publishing Pre-Release version - v${version}-alpha.${{ github.run_id }}"
+          echo "::set-output name=LIB_VERSION::${version}"
           node -p "(function(){var fs = require('fs'); var pkg = JSON.parse(fs.readFileSync('./dist/@frontegg/angular/package.json', {encoding: 'utf8'})); pkg.version = '${version}-alpha.${{ github.run_id }}'; fs.writeFileSync('./dist/@frontegg/angular/package.json', JSON.stringify(pkg, null, 2),  {encoding: 'utf8'})})()"
           cp .npmrc ./dist/@frontegg/angular/
           cp .npmignore ./dist/@frontegg/angular/
           cd ./dist/@frontegg/angular && npm publish --tag next
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name : Notify Slack on alpha version deployment
+        uses : rtCamp/action-slack-notify@v2
+        env :
+          SLACK_CHANNEL : frontegg-alpha-versions
+          SLACK_COLOR : ${{ job.status }}
+          SLACK_ICON : https://avatars.githubusercontent.com/u/67857107?s=40&v=4
+          SLACK_MESSAGE : '${{ steps.publish_pre_release_version.outputs.LIB_VERSION }}-alpha.${{ github.run_id }} has been released :rocket:'
+          SLACK_TITLE : 'A new @frontegg/angular alpha version!'
+          SLACK_USERNAME : ${{ github.actor }}
+          SLACK_WEBHOOK : ${{ secrets.ROTEM_SLACK_WEBHOOK }}
