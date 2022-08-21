@@ -11,8 +11,8 @@ export class AppHomeComponent implements OnInit {
   user?: any;
 
   constructor(private fronteggAppService: FronteggAppService,
-    private fronteggAuthService: FronteggAuthService,
-    private router: Router) { }
+              private fronteggAuthService: FronteggAuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.fronteggAppService.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
