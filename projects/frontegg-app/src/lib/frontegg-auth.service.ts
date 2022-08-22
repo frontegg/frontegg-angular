@@ -86,6 +86,8 @@ import {
 } from '@frontegg/rest-api';
 import { ActivateAccountState, SocialLoginState } from '@frontegg/redux-store/auth';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { FronteggState } from '@frontegg/admin-portal';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>;
@@ -104,6 +106,7 @@ export type WithSilentLoad<T> = T & {
   providedIn: 'root',
 })
 export class FronteggAuthService {
+  private authStateSubject = new BehaviorSubject<AuthState>({ isAuthenticated: false, isLoading: true } as AuthState);
   private acceptInvitationStateSubject = new BehaviorSubject<AuthState['acceptInvitationState']>({} as AuthState['acceptInvitationState']);
   private accountSettingsStateSubject = new BehaviorSubject<AuthState['accountSettingsState']>({} as AuthState['accountSettingsState']);
   private activateStateSubject = new BehaviorSubject<AuthState['activateState']>({} as AuthState['activateState']);
@@ -126,6 +129,10 @@ export class FronteggAuthService {
   private isSSOAuthSubject = new BehaviorSubject<AuthState['isSSOAuth']>(false);
   private ssoACSSubject = new BehaviorSubject<AuthState['ssoACS']>('');
 
+
+  get authState$(): Observable<AuthState> {
+    return this.authStateSubject.asObservable();
+  }
 
   get acceptInvitationState$(): Observable<AuthState['acceptInvitationState']> {
     return this.acceptInvitationStateSubject.asObservable();
@@ -220,7 +227,7 @@ export class FronteggAuthService {
     return this.ssoACSSubject.asObservable();
   }
 
-  constructor(private fronteggAppService: FronteggAppService) {
+  constructor(private fronteggAppService: FronteggAppService, private router: Router) {
     const authSubStates: AuthSubStates[] = [
       { field: 'acceptInvitationState', subject: this.acceptInvitationStateSubject },
       { field: 'accountSettingsState', subject: this.accountSettingsStateSubject },
@@ -243,18 +250,31 @@ export class FronteggAuthService {
       { field: 'ssoACS', subject: this.ssoACSSubject },
     ];
 
+    const state = this.fronteggAppService.fronteggApp.store.getState() as FronteggState;
+    this.updateState(state.auth, authSubStates);
     // Memoized Auth State
-    this.fronteggAppService.authState$.subscribe((authState) => {
-      if (authState != null) {
-        for (const authSubState of authSubStates) {
-          if (!FastDeepEqual(authSubState.subject.getValue(), authState[authSubState.field])) {
-            authSubState.subject.next(authState[authSubState.field]);
-          }
-        }
-        this.isAuthenticatedSubject.next(authState.isAuthenticated);
-        this.isLoadingSubject.next(authState.isLoading);
-      }
+    this.fronteggAppService.fronteggApp.store.subscribe(() => {
+      const newState = this.fronteggAppService.fronteggApp.store.getState() as FronteggState;
+      this.updateState(newState.auth, authSubStates);
     });
+  }
+
+  private updateState(authState: AuthState, authSubStates: AuthSubStates[]): void {
+
+    if (this.authStateSubject.value !== authState) {
+      this.authStateSubject.next(authState);
+    }
+    for (const authSubState of authSubStates) {
+      if (!FastDeepEqual(authSubState.subject.value, authState[authSubState.field])) {
+        authSubState.subject.next(authState[authSubState.field]);
+      }
+    }
+    if (this.isAuthenticatedSubject.value !== authState.isAuthenticated) {
+      this.isAuthenticatedSubject.next(authState.isAuthenticated);
+    }
+    if (this.isLoadingSubject.value !== authState.isLoading) {
+      this.isLoadingSubject.next(authState.isLoading);
+    }
   }
 
   private dispatchAction(type: string, payload?: any): void {
@@ -262,6 +282,14 @@ export class FronteggAuthService {
     // @ts-ignore
     store.dispatch({ type: `${authStoreName}/${type}`, payload });
   }
+
+
+  public isHostedLoginCallbackRoute(): boolean {
+    const path = this.fronteggAppService.router.url;
+    const hostedLoginRedirectUrl = this.fronteggAppService.authRoutes.hostedLoginRedirectUrl;
+    return path.startsWith(hostedLoginRedirectUrl ?? '/oauth/callback');
+  }
+
 
   // Root Actions
   setState = (state: Partial<AuthState>) => this.dispatchAction('setState', state);
@@ -272,7 +300,13 @@ export class FronteggAuthService {
   setLoginState = (state: Partial<LoginState>) => this.dispatchAction('setLoginState', state);
   resetLoginState = () => this.dispatchAction('resetLoginState');
   requestAuthorize = (firstTime?: boolean) => this.dispatchAction('requestAuthorize', firstTime);
-  loginWithRedirect = () => this.dispatchAction('requestHostedLoginAuthorize');
+  loginWithRedirect = () => {
+    if (this.isHostedLoginCallbackRoute()) {
+      return;
+    }
+    this.dispatchAction('requestHostedLoginAuthorize');
+    this.setState({ isLoading: true });
+  };
   preLogin = (payload: IPreLogin) => this.dispatchAction('preLogin', payload);
   postLogin = (payload: IPostLogin) => this.dispatchAction('postLogin', payload);
   login = (payload: ILogin) => this.dispatchAction('login', payload);

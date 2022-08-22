@@ -1,5 +1,5 @@
 import { Inject, Injectable, NgZone } from '@angular/core';
-import { Route, Router} from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { AuthPageRoutes, FronteggState, initialize } from '@frontegg/admin-portal';
 import { FronteggAppInstance, FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -27,7 +27,10 @@ export class FronteggAppService {
   private isLoadingSubject = new BehaviorSubject<boolean>(true);
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   private stateSubject = new BehaviorSubject<FronteggState>({} as FronteggState);
-  private authStateSubject = new BehaviorSubject<FronteggState['auth']>({} as FronteggState['auth']);
+  private authStateSubject = new BehaviorSubject<FronteggState['auth']>({
+    isLoading: true,
+    isAuthenticated: false,
+  } as FronteggState['auth']);
   private auditsStateSubject = new BehaviorSubject<FronteggState['audits']>({} as FronteggState['audits']);
   private connectivityStateSubject = new BehaviorSubject<FronteggState['connectivity']>({} as FronteggState['connectivity']);
   private subscriptionsStateSubject = new BehaviorSubject<FronteggState['subscriptions']>({} as FronteggState['subscriptions']);
@@ -67,12 +70,12 @@ export class FronteggAppService {
     return this.isAuthenticatedSubject.asObservable();
   };
 
-  constructor(@Inject(FronteggAppOptionsClass) private config: FronteggAppOptions, private router: Router, private ngZone: NgZone) {
+  constructor(@Inject(FronteggAppOptionsClass) private config: FronteggAppOptions, public router: Router, private ngZone: NgZone) {
     if (!this.config) {
       throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)');
     }
 
-    if((window as any).CYPRESS_CONFIG){
+    if ((window as any).CYPRESS_CONFIG) {
       this.config = (window as any).CYPRESS_CONFIG;
     }
     const onRedirectTo = (to: string, opts?: RedirectOptions) => {
@@ -106,28 +109,32 @@ export class FronteggAppService {
       ...this.mapAuthComponents,
       {
         path: '',
-        canActivate: [FronteggLoadGuard],
-        children: [...this.router.config],
+        canActivate: [ FronteggLoadGuard ],
+        children: [ ...this.router.config ],
       },
     ]);
-
+    const initialFronteggState = this.fronteggApp.store.getState() as FronteggState;
+    this.updateState(initialFronteggState);
     // Subscribe on fronteggApp store to change state subjects
     this.fronteggApp.store.subscribe(() => {
-      const fronteggStore = this.fronteggApp.store.getState() as FronteggState;
-      if (this.isLoadingSubject.getValue() !== fronteggStore.auth.isLoading) {
-        this.isLoadingSubject.next(fronteggStore.auth.isLoading);
-      }
-      if (this.isAuthenticatedSubject.getValue() !== fronteggStore.auth.isAuthenticated) {
-        this.isAuthenticatedSubject.next(fronteggStore.auth.isAuthenticated);
-      }
-
-      this.stateSubject.next(fronteggStore);
-      this.authStateSubject.next(fronteggStore.auth);
-      this.auditsStateSubject.next(fronteggStore.audits);
-      this.connectivityStateSubject.next(fronteggStore.connectivity);
-      this.subscriptionsStateSubject.next(fronteggStore.subscriptions);
-      this.vendorStateSubject.next(fronteggStore.vendor);
+      this.updateState(this.fronteggApp.store.getState() as FronteggState);
     });
+  }
+
+  private updateState(fronteggStore: FronteggState): void {
+    if (this.isLoadingSubject.getValue() !== fronteggStore.auth.isLoading) {
+      this.isLoadingSubject.next(fronteggStore.auth.isLoading);
+    }
+    if (this.isAuthenticatedSubject.getValue() !== fronteggStore.auth.isAuthenticated) {
+      this.isAuthenticatedSubject.next(fronteggStore.auth.isAuthenticated);
+    }
+
+    this.stateSubject.next(fronteggStore);
+    this.authStateSubject.next(fronteggStore.auth);
+    this.auditsStateSubject.next(fronteggStore.audits);
+    this.connectivityStateSubject.next(fronteggStore.connectivity);
+    this.subscriptionsStateSubject.next(fronteggStore.subscriptions);
+    this.vendorStateSubject.next(fronteggStore.vendor);
   }
 
   get mapAuthComponents(): Route[] {
