@@ -12,7 +12,7 @@ function isAdminPortalPackageUpdated() {
   const yarnLockChanges = execSync('git diff HEAD $(git describe --tags --match "v*" --abbrev=0) -- \'yarn.lock\'');
   return yarnLockChanges.toString().indexOf('@frontegg/rest-api@') !== -1 ||
     yarnLockChanges.toString().indexOf('@frontegg/redux-store@') !== -1 ||
-    yarnLockChanges.toString().indexOf('@frontegg/admin-portal@') !== -1;
+    yarnLockChanges.toString().indexOf('@frontegg/js@') !== -1;
 }
 
 function modifyVersion(newVersion) {

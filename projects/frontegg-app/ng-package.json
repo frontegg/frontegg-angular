@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "allowedNonPeerDependencies": [
-    "@frontegg/admin-portal",
+    "@frontegg/js",
     "@frontegg/redux-store",
     "fast-deep-equal",
     "csstype",
@@ -11,7 +11,7 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "@frontegg/admin-portal": "FronteggAdminPortal",
+      "@frontegg/js": "FronteggJS",
       "@frontegg/redux-store": "FronteggReduxStore",
       "@frontegg/rest-api": "FronteggRestApi",
       "fast-deep-equal": "FastDeepEqual"
