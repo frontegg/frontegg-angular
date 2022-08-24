@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FronteggAuthService } from '@frontegg/angular';
+import { FronteggAppService } from '@frontegg/angular';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,23 +8,17 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit, OnDestroy {
   isLoading = true;
-  isAuthenticated = false;
-  subscriptions?: Subscription;
+  loadingSubscription: Subscription;
 
-  constructor(private authService: FronteggAuthService, private router: Router) {
+  constructor(private fronteggAppService: FronteggAppService) {
+    this.loadingSubscription = fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading);
   }
 
   ngOnInit(): void {
-    this.subscriptions = this.authService.authState$.subscribe(authState => {
-      this.isLoading = authState.isLoading;
-      this.isAuthenticated = authState.isAuthenticated;
-      if (!authState.isLoading && !authState.isAuthenticated) {
-        this.authService.loginWithRedirect();
-      }
-    });
+    console.log('AppComponent', 'ngOnInit');
   }
 
   ngOnDestroy(): void {
-    this.subscriptions?.unsubscribe();
+    this.loadingSubscription.unsubscribe();
   }
 }
