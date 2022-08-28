@@ -12,7 +12,7 @@ import { CheckoutDialogModule } from './checkout-dialog/checkout-dialog.module';
 
 
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, AppHomeComponent, EmptyAppComponent, PrivateRouteComponent],
+  declarations: [ AppComponent, NotFoundComponent, AppHomeComponent, EmptyAppComponent, PrivateRouteComponent ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -21,14 +21,14 @@ import { CheckoutDialogModule } from './checkout-dialog/checkout-dialog.module';
       {
         contextOptions: {
           baseUrl: 'https://isra-stg-v4.stg.frontegg.com',
-          clientId: '4e013910-fd8a-47cb-9208-a15622143f5e'
+          clientId: '4e013910-fd8a-47cb-9208-a15622143f5e',
         },
       },
     ),
-    CheckoutDialogModule
+    CheckoutDialogModule,
   ],
-  entryComponents: [FronteggComponent],
-  bootstrap: [AppComponent],
+  entryComponents: [ FronteggComponent ],
+  bootstrap: [ AppComponent ],
 })
 export class AppModule {
 }
