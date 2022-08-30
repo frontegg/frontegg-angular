@@ -83,3 +83,4 @@ coverage
 cypress/videos
 .nyc_output
 cypress/screenshots
+build
