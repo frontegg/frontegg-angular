@@ -84,10 +84,9 @@ import {
   IResendInvitationLink,
   IRolePermission,
 } from '@frontegg/rest-api';
-import { ActivateAccountState, SocialLoginState } from '@frontegg/redux-store/auth';
+import type { FronteggState, ActivateAccountState, SocialLoginState } from '@frontegg/redux-store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { FronteggState } from '@frontegg/admin-portal';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>;
@@ -278,7 +277,7 @@ export class FronteggAuthService {
   }
 
   private dispatchAction(type: string, payload?: any): void {
-    const store: EnhancedStore = this.fronteggAppService.fronteggApp.store;
+    const store = this.fronteggAppService.fronteggApp.store;
     // @ts-ignore
     store.dispatch({ type: `${authStoreName}/${type}`, payload });
   }
