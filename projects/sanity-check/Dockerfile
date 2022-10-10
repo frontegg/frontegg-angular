@@ -6,5 +6,6 @@ WORKDIR frontegg-test
 RUN npm i @frontegg/angular
 COPY app.module.ts ./src/app
 COPY app.component.ts ./src/app
+COPY app.component.spec.ts ./src/app
 COPY app.component.html ./src/app
 
