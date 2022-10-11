@@ -18,6 +18,6 @@ jobs:
         uses : actions/setup-node@v1
         with :
           node-version : "${{ steps.nvm.outputs.NVMRC }}"
-      - run : cd packages/sanity-check && yarn run build && yarn run test
+      - run : cd projects/sanity-check && yarn run build && yarn run test
 
 
