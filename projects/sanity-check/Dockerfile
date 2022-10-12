@@ -1,4 +1,6 @@
-FROM node:latest as build
+FROM node:current-alpine3.12 as build
+RUN apk add chromium
+ENV CHROME_BIN=/usr/bin/chromium-browser
 RUN npm i -g @angular/cli
 ENV CI=true
 RUN ng new frontegg-test --defaults
