@@ -92,6 +92,8 @@ jobs:
         run: |
           cp .npmrc ./dist/@frontegg/angular/
           cp .npmignore ./dist/@frontegg/angular/
+          cp ./README.md ./dist/@frontegg/angular/
+          cp ./CHANGELOG.md ./dist/@frontegg/angular/
           cd ./dist/@frontegg/angular && npm publish --tag latest
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
