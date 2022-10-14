@@ -6,4 +6,4 @@ services:
       context: .
     environment:
       - CI=true
-    command: npm test -- --no-watch --no-progress
+    command: npm test -- --no-watch --no-progress --no-sandbox --headless --disable-gpu
