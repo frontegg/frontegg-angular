@@ -15,7 +15,7 @@ import { FronteggAppModule, FronteggComponent } from '@frontegg/angular';
       {
         contextOptions: {
           baseUrl: 'https://app-1p3iny7ql1ng.frontegg.com',
-          clientId: 'f7094875-fa3b-48ab-b76f-3598095d2780',
+          clientId: 'f7094875-fa3b-48ab-b76f-3598095d2780'
         },
         hostedLoginBox: true,
       },
