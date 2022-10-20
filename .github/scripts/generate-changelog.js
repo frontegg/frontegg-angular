@@ -1,8 +1,7 @@
 export default async ({context, github}) => {
   const {default: fs} = await import('fs');
   let changelog = fs.readFileSync('./CHANGELOG.md', {encoding: 'utf8'});
-  const {version} = JSON.parse(fs.readFileSync('./lerna.json', {encoding: "utf-8"}));
-
+  const {version} = JSON.parse(fs.readFileSync(`./projects/frontegg-app/package.json`, {encoding: "utf-8"}));
 
   const {data: pullsData} = await github.rest.pulls.list({
     owner: context.repo.owner,
