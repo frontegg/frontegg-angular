@@ -6,4 +6,4 @@ services:
       context: .
     environment:
       - CI=true
-    command: npm test --no-watch --no-progress --browsers=ChromeHeadlessCI
+    command: npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
