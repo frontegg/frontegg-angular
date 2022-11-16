@@ -10,4 +10,4 @@ export { FronteggSubscriptionService } from './lib/frontegg-subscription.service
 export * from './lib/directives/authorized-content.directive';
 export * from './lib/guards/frontegg-auth.guard';
 export * from './lib/guards/frontegg-load.guard';
-export * from '@frontegg/rest-api';
+export { ContextHolder } from '@frontegg/rest-api';
