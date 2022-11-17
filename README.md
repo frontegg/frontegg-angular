@@ -42,7 +42,7 @@ import { FronteggAppModule, FronteggComponent } from '@frontegg/angular';
     FronteggAppModule.forRoot(
       {
         contextOptions: {
-          baseUrl: 'https://[YOUR_SUBDOMAIN].frontegg.com'
+          baseUrl: 'https://[YOUR_SUBDOMAIN].frontegg.com',
           clientId: '[YOUR_CLIENT_ID]'
         },
       }
