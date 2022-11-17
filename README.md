@@ -1,4 +1,11 @@
-# Frontegg Angular
+<div align="center">
+<img src="https://fronteggstuff.blob.core.windows.net/frongegg-logos/logo-transparent.png" alt="Frontegg Logo" width="400" height="90">
+<h3 align="center">Frontegg Vue</h3>
+  <p align="center">
+    Frontegg is a web platform where SaaS companies can set up their fully managed, scalable and brand aware - SaaS features and integrate them into their SaaS portals in up to 5 lines of code.
+    <br />
+</div>
+    <br />
 
 ## BREAKING CHANGES SINCE VERSION 3.0.1
 If you are migrating from `@frontegg/angular` version 2 or earlier, you can find a [migration guide here](https://docs.frontegg.com/docs/migration-guide-fronteggangular-v2-v3)
@@ -8,7 +15,7 @@ If you are migrating from `@frontegg/angular` version 2 or earlier, you can find
 
 Run the following command to Install Frontegg Angular library:
 
-```
+```bash
 npm install @frontegg/angular
 ```
 
@@ -16,7 +23,7 @@ npm install @frontegg/angular
 1. Add `FronteggAppModule` to `AppModule.imports[]`
 2. Add `FronteggComponent` to `AppModule.entryComponents[]`
 
-```
+```ts
 /app.module.ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -37,9 +44,8 @@ import { FronteggAppModule, FronteggComponent } from '@frontegg/angular';
       {
         contextOptions: {
           baseUrl: 'https://[YOUR_SUBDOMAIN].frontegg.com'
+          clientId: '[YOUR_CLIENT_ID]'
         },
-        // Replace this with your app logo 👇
-        headerImage: 'https://assets.frontegg.com/public-frontegg-assets/acme-logo.svg';
       }
     ),
   ],
