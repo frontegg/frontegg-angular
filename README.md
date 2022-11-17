@@ -5,11 +5,10 @@
     Frontegg is a web platform where SaaS companies can set up their fully managed, scalable and brand aware - SaaS features and integrate them into their SaaS portals in up to 5 lines of code.
     <br />
 </div>
-    <br />
+<br />
 
 ## BREAKING CHANGES SINCE VERSION 3.0.1
 If you are migrating from `@frontegg/angular` version 2 or earlier, you can find a [migration guide here](https://docs.frontegg.com/docs/migration-guide-fronteggangular-v2-v3)
-## How to use
 
 ### 1. Install Frontegg Libraries 
 
