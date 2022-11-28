@@ -1,5 +1,17 @@
 # Change Log
 
+## [5.7.1](https://github.com/frontegg/frontegg-angular/compare/v5.7.0...v5.7.1) (2022-11-28)
+
+- FR-9750 - change api according to the new names security tabs
+- FR-9717 - update rest api to have optional name in add user payload - and make sure to not send name if not exist
+- FR-9826 - fix table header in dark theme
+- FR-9237 - Max length for secret fields increased to 100 
+- FR-9742 - enroll mfa list
+- FR-9772 - Send NULL on profilePictureUrl rather than null
+- FR-9717 - Invite user customize form API
+- FR-9597 - Webhooks - missing validation error on UI when added not allowed URL
+
+
 ## [5.7.0](https://github.com/frontegg/frontegg-angular/compare/v5.6.0...v5.7.0) (2022-11-23)
 
 - Added support for admin portal pre-defined theme options (dark, vivid, modern, and classic themes)
