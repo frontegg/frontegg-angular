@@ -1158,9 +1158,9 @@
     uuid "^8.3.2"
 
 "@frontegg/rest-api@^3.0.39":
-  version "3.0.39"
-  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-3.0.39.tgz#a4905144d1cc67fd256e787f1347b4d19a0279f5"
-  integrity sha512-FmdSyrRDStVkVQ2zA8P1xIyeEk/0q6mAr5zn0mW18yEO3QfYs+BfIVFXAkKzxbg4IXErRl2uUZG3SGZTa4T9pg==
+  version "3.0.40"
+  resolved "https://registry.yarnpkg.com/@frontegg/rest-api/-/rest-api-3.0.40.tgz#07254f140476bd04004308bfcad896609f1c5311"
+  integrity sha512-BIxdKJNxfJlEsVMx5VFMEWqscwy4ZhZwMoCYgADRa0qZ5Gs4vgu96mTas97Veescojl+Z4euVm0M8bYOzTWgeA==
   dependencies:
     "@babel/runtime" "^7.17.2"
 
