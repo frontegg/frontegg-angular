@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.8.1](https://github.com/frontegg/frontegg-angular/compare/v5.8.0...v5.8.1) (2022-12-13)
+
+- Fixed MFA flow issues
+- Added support for subscriptions billing collection
+- Fixed the issue of the OTC screen submit button is disabled on mobile devices
+- Added SCIM section in admin portal under FF
+
 ## [5.8.0](https://github.com/frontegg/frontegg-angular/compare/v5.7.1...v5.8.0) (2022-12-8)
 
 - Fixed ignoring `urlPrefix` issue
