@@ -1,5 +1,22 @@
 # Change Log
 
+## [5.8.1](https://github.com/frontegg/frontegg-angular/compare/v5.8.0...v5.8.1) (2022-12-13)
+
+- Fixed MFA flow issues
+- Added support for subscriptions billing collection
+- Fixed the issue of the OTC screen submit button is disabled on mobile devices
+- Added SCIM section in admin portal under FF
+
+## [5.8.0](https://github.com/frontegg/frontegg-angular/compare/v5.7.1...v5.8.0) (2022-12-8)
+
+- Fixed ignoring `urlPrefix` issue
+- Added the ability to Invite a user by bulk API in the admin portal
+- Fixed OTC digits are not visible on mobile devices
+- Added MFA devices management section in the admin portal under FF
+- Fixed the ability to copy invite link for dynamic base URL as well
+- Added new abilities to MFA flows under FF
+- Added support for providing an external CDN to load fonts in Frontegg components
+
 ## [5.7.1](https://github.com/frontegg/frontegg-angular/compare/v5.7.0...v5.7.1) (2022-11-28)
 
 - FR-9750 - change api according to the new names security tabs
