@@ -1,5 +1,16 @@
 # Change Log
 
+## [5.9.0](https://github.com/frontegg/frontegg-angular/compare/v5.8.1...v5.9.0) (2022-12-20)
+
+- Fixed mfa input on mobile 
+- Enabled scim without roles
+- Fixed menu component for dark theme
+- Added api navigation icon
+- Added tests for mfa
+- Added apple social login types
+- Added support for Hiding Invoices
+
+
 ## [5.8.1](https://github.com/frontegg/frontegg-angular/compare/v5.8.0...v5.8.1) (2022-12-13)
 
 - Fixed MFA flow issues
