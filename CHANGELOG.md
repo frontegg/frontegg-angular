@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.10.0](https://github.com/frontegg/frontegg-angular/compare/v5.9.0...v5.10.0) (2022-12-22)
+
+- Few bug fixes
+
+
 ## [5.9.0](https://github.com/frontegg/frontegg-angular/compare/v5.8.1...v5.9.0) (2022-12-20)
 
 - Fixed mfa input on mobile 
