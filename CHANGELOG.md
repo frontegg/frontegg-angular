@@ -1,5 +1,16 @@
 # Change Log
 
+## [5.11.0](https://github.com/frontegg/frontegg-angular/compare/v5.10.0...v5.11.0) (2023-1-11)
+
+- Fixed login with apple redirect URL
+- Added impersonation indication in login session table
+- Added support for session expired logout on Hosted Login
+- Added support for login with Linkedin
+- Added support for Google one tap
+- Improve insert OTC screen UI
+- Improve UX of authentication forms
+- Fix apple logo color and match to font color
+
 ## [5.10.0](https://github.com/frontegg/frontegg-angular/compare/v5.9.0...v5.10.0) (2022-12-22)
 
 - Few bug fixes
