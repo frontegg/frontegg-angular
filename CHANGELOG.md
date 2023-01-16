@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.12.0](https://github.com/frontegg/frontegg-angular/compare/v5.11.0...v5.12.0) (2023-1-16)
+
+- Fixed sign up position in dark theme
+- Added margin to login error
+- Added support for built-in authenticators, security keys, and SMS as MFA methods
+
+
 ## [5.11.0](https://github.com/frontegg/frontegg-angular/compare/v5.10.0...v5.11.0) (2023-1-11)
 
 - Fixed login with apple redirect URL
