@@ -1,5 +1,23 @@
 # Change Log
 
+## [5.14.0](https://github.com/frontegg/frontegg-angular/compare/v5.13.0...v5.14.0) (2023-1-29)
+
+- FR-10549 - fix error login with sms
+- FR-10437 - select color
+- FR-10518 - fix client id not show in model
+- 
+
+- FR-10485 - Update restapi version
+- FR-10017 - add email type to all email inputs
+- FR-10501 - Fix mobile width of login box
+- FR-10196 - Fix scroll in privacy page
+- FR-10489 - update scim ui
+- FR-10483 - Added the option to customize forget password button
+- FR-10374 - improve values ui in split mode
+- FR-10184 - add access tokens
+- FR-9995 - Accept Invitation text and icon change
+
+
 ## [5.13.0](https://github.com/frontegg/frontegg-angular/compare/v5.12.0...v5.13.0) (2023-1-25)
 
 - Added email type to all email inputs in the login box and admin portal
