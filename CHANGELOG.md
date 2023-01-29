@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.14.0](https://github.com/frontegg/frontegg-angular/compare/v5.13.0...v5.14.0) (2023-1-29)
+
+- Fixed error message position in login with SMS screen
+- Fixed missing client ID after creating API token
+
 ## [5.13.0](https://github.com/frontegg/frontegg-angular/compare/v5.12.0...v5.13.0) (2023-1-25)
 
 - Added email type to all email inputs in the login box and admin portal
