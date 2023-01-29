@@ -1,5 +1,21 @@
 # Change Log
 
+## [5.13.0](https://github.com/frontegg/frontegg-angular/compare/v5.12.0...v5.13.0) (2023-1-25)
+
+- Added email type to all email inputs in the login box and admin portal
+- Fixed mobile width of the login box in modern and classic theme
+- Fixed the scrolling issue in the privacy page in the admin portal
+- Updated SCIM UI
+- Added API to customize forget password button in the login with password page
+- Improve split mode values layout
+- Added support to access API tokens
+- Updated Accept Invitation text, icon, and debounce
+- Fixed OTC login for mobile
+- Added support to sync vendor security policies
+- Added impersonation indication for audit logs
+- Added support for Impersonation
+
+
 ## [5.12.0](https://github.com/frontegg/frontegg-angular/compare/v5.11.0...v5.12.0) (2023-1-16)
 
 - Fixed sign up position in dark theme
