@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.15.0](https://github.com/frontegg/frontegg-angular/compare/v5.14.0...v5.15.0) (2023-2-7)
+
+- Fixed go-to-sign-up message position in speedy login layout
+- Added an input component to the library for adding members to a tenant
+- Fix filtering SSO providers according to the vendor selection
+- Added user groups card header component to the library
+- Improved the admin portal and login box performance and bundle size
+
+
 ## [5.14.0](https://github.com/frontegg/frontegg-angular/compare/v5.13.0...v5.14.0) (2023-1-29)
 
 - Fixed error message position in login with SMS screen
