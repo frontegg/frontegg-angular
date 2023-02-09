@@ -2,10 +2,7 @@
 
 ## [5.16.0](https://github.com/frontegg/frontegg-angular/compare/v5.15.0...v5.16.0) (2023-2-8)
 
-- FR-10682 - change m2m strategy to be from identity
-- FR-10660 - ui for prompt passkeys
-- FR-10662 - fix sign up message
-
+- Updated M2M tokens to reflect the vendor choice
 
 ## [5.15.0](https://github.com/frontegg/frontegg-angular/compare/v5.14.0...v5.15.0) (2023-2-7)
 
