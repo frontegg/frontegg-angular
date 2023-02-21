@@ -1,5 +1,16 @@
 # Change Log
 
+## [5.17.0](https://github.com/frontegg/frontegg-angular/compare/v5.16.0...v5.17.0) (2023-2-21)
+
+- FR-10851 - Admin portal SSO providers options are wrong
+- FR-10821 - Fix background for table pivot column
+
+- FR-10799 - Add-refresh
+- FR-10799 - Remove redirect from imperosnation
+- FR-10804 - Fix style reorder bug when using @emotion/react and Frontegg Next.JS 
+- FR-10530 - add functionality for prompt passkeys
+
+
 ## [5.16.0](https://github.com/frontegg/frontegg-angular/compare/v5.15.0...v5.16.0) (2023-2-8)
 
 - Updated M2M tokens to reflect the vendor choice
