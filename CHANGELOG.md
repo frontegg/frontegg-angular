@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.16.0](https://github.com/frontegg/frontegg-angular/compare/v5.15.0...v5.16.0) (2023-2-8)
+
+- Updated M2M tokens to reflect the vendor choice
+
 ## [5.15.0](https://github.com/frontegg/frontegg-angular/compare/v5.14.0...v5.15.0) (2023-2-7)
 
 - Fixed go-to-sign-up message position in speedy login layout
