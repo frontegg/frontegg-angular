@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.17.0](https://github.com/frontegg/frontegg-angular/compare/v5.16.0...v5.17.0) (2023-2-21)
+
+- Fixed Admin portal SSO provider's options to be correlated with the vendor choice
+- Fixed background for table pivot column
+- Fixed impersonation by removing unnecessary redirects and adding a refresh call
+- Fixed style reorder bug when using @emotion/react and Frontegg Next.JS
+
 ## [5.16.0](https://github.com/frontegg/frontegg-angular/compare/v5.15.0...v5.16.0) (2023-2-8)
 
 - Updated M2M tokens to reflect the vendor choice
