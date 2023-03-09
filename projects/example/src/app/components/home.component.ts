@@ -12,7 +12,8 @@ export class AppHomeComponent implements OnInit {
 
   constructor(private fronteggAppService: FronteggAppService,
               private fronteggAuthService: FronteggAuthService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.fronteggAppService.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
@@ -29,7 +30,11 @@ export class AppHomeComponent implements OnInit {
   }
 
   doLogout(): void {
-    this.router.navigateByUrl(this.fronteggAppService.authRoutes.logoutUrl);
+    if (this.fronteggAppService.fronteggApp.options.hostedLoginBox) {
+      this.fronteggAuthService.logout();
+    } else {
+      this.router.navigateByUrl(this.fronteggAppService.authRoutes.logoutUrl);
+    }
   }
 
   loginWithRedirect(): void {
