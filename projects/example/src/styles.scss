@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   margin: 0;
   padding: 0;
@@ -13,6 +18,7 @@
   line-height: 1.4285em;
   color: rgba(0, 0, 0, 0.87);
   font-smoothing: antialiased;
+
   a {
     color: inherit;
     text-decoration: none;
