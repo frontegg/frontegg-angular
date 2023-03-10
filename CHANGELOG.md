@@ -2,7 +2,7 @@
 
 ## [5.18.0](https://github.com/frontegg/frontegg-angular/compare/v5.17.0...v5.18.0) (2023-3-10)
 
-- Refactored reCaptcha mechanism to load tokens correctly
+- Fixed resend OTC with reCaptcha
 - Added  support to let tenants create and manage user groups in the admin portal under a FF
 - Added support to login with passkeys and manage passkeys in the admin portal under a FF
 - Fixed invite users issue when the vendor is not forcing roles and permissions
