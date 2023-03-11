@@ -1,5 +1,20 @@
 # Change Log
 
+## [5.18.0](https://github.com/frontegg/frontegg-angular/compare/v5.17.0...v5.18.0) (2023-3-10)
+
+- Fixed resend OTC with reCaptcha
+- Added  support to let tenants create and manage user groups in the admin portal under a FF
+- Added support to login with passkeys and manage passkeys in the admin portal under a FF
+- Fixed invite users issue when the vendor is not forcing roles and permissions
+- Support auth strategy and social logins for login per tenants
+- Refactored feature flag mechanism to be based on rest-api package
+- Fixed validation for postcode in admin portal forms
+- Fixed SMS code input to have input type number
+- Improved auth screens form UX 
+
+### Angular Wrapper 5.18.0:
+- Added support for redirect url in hosted login mode
+
 ## [5.17.0](https://github.com/frontegg/frontegg-angular/compare/v5.16.0...v5.17.0) (2023-2-21)
 
 - Fixed Admin portal SSO provider's options to be correlated with the vendor choice
