@@ -70,13 +70,13 @@ import { Subscription } from 'rxjs';
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnDestory {
+export class AppComponent implements OnDestroy {
   isLoading = true;
   loadingSubscription: Subscription;
   constructor(private fronteggAppService: FronteggAppService) {
     this.loadingSubscription = fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading)
   }
-  ngOnDestory(): void {
+  ngOnDestroy(): void {
     this.loadingSubscription.unsubscribe()
   }
 }
@@ -127,7 +127,7 @@ export class AppComponent implements OnInit, OnDestroy {
     })
   }
 
-  ngOnDestory(): void {
+  ngOnDestroy(): void {
     this.loadingSubscription.unsubscribe()
   }
 }
