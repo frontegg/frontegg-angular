@@ -1,5 +1,28 @@
 # Change Log
 
+## [5.20.0](https://github.com/frontegg/frontegg-angular/compare/v5.19.0...v5.20.0) (2023-3-27)
+
+- FR-11247 - fix version branch 6.82
+
+- FR-11065 - add passkeys mock ff
+- FR-11189 - mfa authenticator app change input type
+- FR-10821 - fix table color
+- FR-11204 - add unit testing with jest
+- FR-11139 - fix groups
+- FR-11039 - fix groups dummy
+- FR-11039 - ff groups
+- FR-10530 - fix ff store name
+- FR-11067 - error handling on profile image upload
+- FR-11039 - extend users table with groups column
+
+- FR-10530 - fix ff
+- FR-10654 - Fix OIDC loading screen
+- FR-10530 - fix ff store name
+- FR-10530 - fix ff store name
+- FR-10530 - change ff behavior  
+- FR-10976 - Remove idle session export from default items
+
+
 ## [5.19.0](https://github.com/frontegg/frontegg-angular/compare/v5.18.0...v5.19.0) (2023-3-16)
 
 - Fixed use permission regex issue to accept a wild card
