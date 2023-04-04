@@ -2,19 +2,13 @@
 
 ## [5.21.0](https://github.com/frontegg/frontegg-angular/compare/v5.20.0...v5.21.0) (2023-4-3)
 
-- FR-11333 - fix tooltips
-- FR-11335 - remove autofill
-- FR-11106 - fix bug preview
-- FR-11283 - fix passkeys autofill
-- FR-11232 - tests groups
-- FR-11283 - add passkeys autofill
-- FR-11096 - SCIM groups
-- FR-11240 - passkeys text and style changes
-- FR-11042 - Fixing text across login-box - grammar and terminology
-- FR-10734 - Show impersonator that they're in an impersonation session
+- Added support for SCIM groups
+- Updated texts across login box - grammar and terminology
+- Added impersonation indicator to show impersonator that they're in an impersonation session
+- Added passkeys feature
 
 ### Angular Wrapper 5.21.0:
-- fix: typo
+- Typo fix
 
 ## [5.20.0](https://github.com/frontegg/frontegg-angular/compare/v5.19.0...v5.20.0) (2023-3-27)
 
