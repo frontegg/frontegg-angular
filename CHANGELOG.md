@@ -1,5 +1,15 @@
 # Change Log
 
+## [5.21.0](https://github.com/frontegg/frontegg-angular/compare/v5.20.0...v5.21.0) (2023-4-3)
+
+- Added support for SCIM groups
+- Updated texts across login box - grammar and terminology
+- Added impersonation indicator to show impersonator that they're in an impersonation session
+- Added passkeys feature
+
+### Angular Wrapper 5.21.0:
+- Typo fix
+
 ## [5.20.0](https://github.com/frontegg/frontegg-angular/compare/v5.19.0...v5.20.0) (2023-3-27)
 
 - FR-11247 - fix version branch 6.82
