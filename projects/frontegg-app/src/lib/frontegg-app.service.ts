@@ -81,7 +81,7 @@ export class FronteggAppService {
       if (path.startsWith(baseName) && baseName !== '/') {
         path = path.substring(baseName.length - 1);
       }
-      if (opts?.preserveQueryParams || isAuthRoute(path)) {
+      if (opts?.preserveQueryParams || isAuthRoute(path, config.authOptions?.routes)) {
         path = `${path}${window.location.search}`;
       }
 
