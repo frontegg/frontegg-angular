@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
+import { isAuthRoute } from '@frontegg/redux-store';
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
@@ -79,6 +80,9 @@ export class FronteggAppService {
       let path = to;
       if (path.startsWith(baseName) && baseName !== '/') {
         path = path.substring(baseName.length - 1);
+      }
+      if (opts?.preserveQueryParams || isAuthRoute(path)) {
+        path = `${path}${window.location.search}`;
       }
 
       if (opts?.refresh) {
