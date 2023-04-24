@@ -1,5 +1,17 @@
 # Change Log
 
+## [5.22.0](https://github.com/frontegg/frontegg-angular/compare/v5.21.0...v5.22.0) (2023-4-23)
+- Lock reduxjs/toolkit version to be compatible in Vite types plugin
+- Fixed password input placeholder text in the login box
+- Fixed social login buttons order
+- Fix Vite js-sha256 warning
+- Fixed company name error in split mode sign up
+- Fixed phone number dropdown theming
+- Added aria labels to buttons
+
+### Angular Wrapper 5.22.0:
+- FR-11351 - preserve-query-params-for-login-per-tenant
+
 ## [5.21.0](https://github.com/frontegg/frontegg-angular/compare/v5.20.0...v5.21.0) (2023-4-3)
 
 - Added support for SCIM groups
