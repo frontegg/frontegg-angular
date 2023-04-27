@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.25.0](https://github.com/frontegg/frontegg-angular/compare/v5.24.0...v5.25.0) (2023-4-27)
+
+- FR-11561 - move passkeys button out of form
+- FR-11538 - support-next-js-serach-param-for-login-per-tenant 
+- FR-11337 - Passkeys is missing in the full Preview mode in the Builder
+- FR-10976 - allow to load frontegg helper by a query param to the URL
+- [Snyk] Security upgrade webpack from 5.74.0 to 5.76.0
+
+
 ## [5.24.0](https://github.com/frontegg/frontegg-angular/compare/v5.23.0...v5.24.0) (2023-4-27)
 
 - Fixed input hover issue on suffix icon
