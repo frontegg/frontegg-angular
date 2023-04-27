@@ -1,5 +1,13 @@
 # Change Log
 
+## [5.25.0](https://github.com/frontegg/frontegg-angular/compare/v5.24.0...v5.25.0) (2023-4-27)
+
+- Fixed passkeys issue with reCaptcha
+- Removed feature flag from passkeys button
+- Enable loading Frontegg helper scripts by providing query params to Frontegg external source
+- Security upgrade webpack from 5.74.0 to 5.76.0
+
+
 ## [5.24.0](https://github.com/frontegg/frontegg-angular/compare/v5.23.0...v5.24.0) (2023-4-27)
 
 - Fixed input hover issue on suffix icon
