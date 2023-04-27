@@ -2,8 +2,8 @@
 
 ## [5.24.0](https://github.com/frontegg/frontegg-angular/compare/v5.23.0...v5.24.0) (2023-4-27)
 
-- FR-11551 - fix hover input eye icon button
-- FR-11547 - fix a11y second part
+- Fixed input hover issue on suffix icon
+- A11y improvements 
 
 
 ## [5.23.0](https://github.com/frontegg/frontegg-angular/compare/v5.22.0...v5.23.0) (2023-4-25)
