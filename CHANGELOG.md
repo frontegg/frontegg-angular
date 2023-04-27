@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.23.0](https://github.com/frontegg/frontegg-angular/compare/v5.22.0...v5.23.0) (2023-4-25)
+
+- Fix Passkeys button style
+- Support login per tenant with search param
+
 ## [5.22.0](https://github.com/frontegg/frontegg-angular/compare/v5.21.0...v5.22.0) (2023-4-23)
 - Lock reduxjs/toolkit version to be compatible in Vite types plugin
 - Fixed password input placeholder text in the login box
