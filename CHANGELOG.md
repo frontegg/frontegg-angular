@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.26.0](https://github.com/frontegg/frontegg-angular/compare/v5.25.0...v5.26.0) (2023-4-28)
+
+- FR-11564 - Social login button shouldn't inherit from secondary color
+
+
 ## [5.25.0](https://github.com/frontegg/frontegg-angular/compare/v5.24.0...v5.25.0) (2023-4-27)
 
 - Fixed passkeys issue with reCaptcha
