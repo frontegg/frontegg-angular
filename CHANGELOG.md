@@ -5,9 +5,6 @@
 - FR-11581 - fix a11y login-box onEnter event for links
 - FR-11353 - add new tree graph component
 
-### Angular Wrapper 5.27.0:
-- FR-11632 - Update CODEOWNERS
-
 ## [5.26.0](https://github.com/frontegg/frontegg-angular/compare/v5.25.0...v5.26.0) (2023-4-28)
 
 - FR-11564 - Social login button shouldn't inherit from secondary color
