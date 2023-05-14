@@ -1,5 +1,61 @@
 # Change Log
 
+## [5.28.0](https://github.com/frontegg/frontegg-angular/compare/v5.27.0...v5.28.0) (2023-5-12)
+
+- FR-11442 - Removed admin portal provisioning feature flag
+- FR-11723 - Fixed refresh token when computer clock is set to a future time
+- FR-11735 - Added support for customizing login per tenant in the admin portal
+- FR-11442 - Removed legacy SSO tab code
+- FR-11718 - Fix users' table UI issues
+- FR-11113 - Fixed Frontegg logo overlapping navigation
+- FR-11442 - Extract the provisioning tab to a separated page in the admin portal
+- FR-11617 - Fixed a11y enter key press issue
+- FR-11352 - Added support for nested table
+- [Snyk] Security upgrade @azure/storage-blob from 12.11.0 to 12.13.0
+
+# Change Log
+
+## [5.27.0](https://github.com/frontegg/frontegg-angular/compare/v5.26.0...v5.27.0) (2023-5-4)
+
+- FR-11581 - fix a11y login-box onEnter event for links
+- FR-11353 - add new tree graph component
+
+## [5.26.0](https://github.com/frontegg/frontegg-angular/compare/v5.25.0...v5.26.0) (2023-4-28)
+
+- FR-11564 - Social login button shouldn't inherit from secondary color
+
+
+## [5.25.0](https://github.com/frontegg/frontegg-angular/compare/v5.24.0...v5.25.0) (2023-4-27)
+
+- Fixed passkeys issue with reCaptcha
+- Removed feature flag from passkeys button
+- Enable loading Frontegg helper scripts by providing query params to Frontegg external source
+- Security upgrade webpack from 5.74.0 to 5.76.0
+
+
+## [5.24.0](https://github.com/frontegg/frontegg-angular/compare/v5.23.0...v5.24.0) (2023-4-27)
+
+- Fixed input hover issue on suffix icon
+- A11y improvements 
+
+
+## [5.23.0](https://github.com/frontegg/frontegg-angular/compare/v5.22.0...v5.23.0) (2023-4-25)
+
+- Fix Passkeys button style
+- Support login per tenant with search param
+
+## [5.22.0](https://github.com/frontegg/frontegg-angular/compare/v5.21.0...v5.22.0) (2023-4-23)
+- Lock reduxjs/toolkit version to be compatible in Vite types plugin
+- Fixed password input placeholder text in the login box
+- Fixed social login buttons order
+- Fix Vite js-sha256 warning
+- Fixed company name error in split mode sign up
+- Fixed phone number dropdown theming
+- Added aria labels to buttons
+
+### Angular Wrapper 5.22.0:
+- FR-11351 - preserve-query-params-for-login-per-tenant
+
 ## [5.21.0](https://github.com/frontegg/frontegg-angular/compare/v5.20.0...v5.21.0) (2023-4-3)
 
 - Added support for SCIM groups
