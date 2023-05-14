@@ -4,16 +4,24 @@ import { Observable } from 'rxjs';
 import { FronteggBaseGuard } from './frontegg-base-guard';
 import { FronteggAppService } from '../frontegg-app.service';
 import { take } from 'rxjs/operators';
+import { FronteggAuthService } from '../frontegg-auth.service';
 
 @Injectable()
 export class FronteggAuthGuard extends FronteggBaseGuard {
 
-  constructor(protected fronteggAppService: FronteggAppService, protected router: Router, protected ngZone: NgZone) {
+  constructor(protected fronteggAppService: FronteggAppService, protected fronteggAuthService: FronteggAuthService,
+              protected router: Router, protected ngZone: NgZone) {
     super();
   }
 
-  navigateToUrl(redirectUrl: string): void {
-    this.router.navigateByUrl(this.fronteggAppService.authRoutes.loginUrl + '?redirectUrl=' + encodeURIComponent(redirectUrl));
+  async navigateToUrl(redirectUrl: string): Promise<boolean> {
+    if (this.fronteggAppService.fronteggApp.options.hostedLoginBox) {
+      localStorage.setItem('FRONTEGG_AFTER_AUTH_REDIRECT_URL', redirectUrl);
+      this.fronteggAuthService.loginWithRedirect();
+      return false;
+    } else {
+      return this.router.navigateByUrl(this.fronteggAppService.authRoutes.loginUrl + '?redirectUrl=' + encodeURIComponent(redirectUrl));
+    }
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -24,13 +32,12 @@ export class FronteggAuthGuard extends FronteggBaseGuard {
           resolve(true);
         } else {
           if (NgZone.isInAngularZone()) {
-            this.navigateToUrl(redirectUrl);
+            this.navigateToUrl(redirectUrl).then(resolve, reject);
           } else {
             this.ngZone.run(() => {
-              this.navigateToUrl(redirectUrl);
+              this.navigateToUrl(redirectUrl).then(resolve, reject);
             });
           }
-          reject('unauthorized');
         }
       });
       subscription.unsubscribe();
