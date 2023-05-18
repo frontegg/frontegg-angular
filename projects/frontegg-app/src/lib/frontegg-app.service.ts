@@ -13,8 +13,10 @@ import sdkVersion from '../sdkVersion'
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
     baseUrl: 'https://sub-domain.frontegg.com',
-    version: `@frontegg/angular@${sdkVersion.version}`,
-    framework: 'angular',
+    metaDataHeaders:{
+      version: `@frontegg/angular@${sdkVersion.version}`,
+      framework: 'angular',  
+    },
   };
 }
 
