@@ -14,7 +14,7 @@ export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
     baseUrl: 'https://sub-domain.frontegg.com',
     metaDataHeaders:{
-      version: `@frontegg/angular@${sdkVersion.version}`,
+      fronteggSdkVersion: `@frontegg/angular@${sdkVersion.version}`,
       framework: 'angular',  
     },
   };
