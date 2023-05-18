@@ -8,10 +8,13 @@ import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
 import { isAuthRoute } from '@frontegg/redux-store';
+import sdkVersion from '../sdkVersion'
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
     baseUrl: 'https://sub-domain.frontegg.com',
+    version: `@frontegg/angular@${sdkVersion.version}`,
+    framework: 'angular',
   };
 }
 
