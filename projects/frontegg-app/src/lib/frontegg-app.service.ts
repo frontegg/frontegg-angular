@@ -5,7 +5,7 @@ import { AuthPageRoutes, FronteggState } from '@frontegg/redux-store';
 import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
-import { ContextHolder, RedirectOptions, FronteggFramework } from '@frontegg/rest-api';
+import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
 import { isAuthRoute } from '@frontegg/redux-store';
 import sdkVersion from '../sdkVersion'
@@ -15,7 +15,7 @@ export class FronteggAppOptionsClass implements FronteggAppOptions {
     baseUrl: 'https://sub-domain.frontegg.com',
     metadataHeaders:{
       fronteggSdkVersion: `@frontegg/angular@${sdkVersion.version}`,
-      framework: FronteggFramework.Angular,
+      framework: FronteggFrameworks.Angular,
     },
   };
 }
