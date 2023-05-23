@@ -8,7 +8,7 @@ import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
 import { isAuthRoute } from '@frontegg/redux-store';
-import sdkVersion from '../sdkVersion'
+import sdkVersion from '../sdkVersion';
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
@@ -102,6 +102,15 @@ export class FronteggAppService {
         });
       }
     };
+
+    const { contextOptions } = this.config ?? {};
+    contextOptions.metadataHeaders = {
+      fronteggSdkVersion: `@frontegg/angular@${sdkVersion.version}`,
+      framework: FronteggFrameworks.Angular,
+    }
+    
+    ContextHolder.setOnRedirectTo(onRedirectTo);
+    ContextHolder.setContext(contextOptions);
     ContextHolder.setOnRedirectTo(onRedirectTo);
     this.fronteggApp = initialize({
       onRedirectTo,
