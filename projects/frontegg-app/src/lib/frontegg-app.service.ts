@@ -13,10 +13,6 @@ import sdkVersion from '../sdkVersion';
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
     baseUrl: 'https://sub-domain.frontegg.com',
-    metadataHeaders:{
-      fronteggSdkVersion: `@frontegg/angular@${sdkVersion.version}`,
-      framework: FronteggFrameworks.Angular,
-    },
   };
 }
 
@@ -110,9 +106,8 @@ export class FronteggAppService {
     }
     
     ContextHolder.setOnRedirectTo(onRedirectTo);
-    ContextHolder.setContext(contextOptions);
-    ContextHolder.setOnRedirectTo(onRedirectTo);
-    this.fronteggApp = initialize({
+
+   this.fronteggApp = initialize({
       onRedirectTo,
       ...this.config,
     });
