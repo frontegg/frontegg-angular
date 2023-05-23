@@ -107,7 +107,7 @@ export class FronteggAppService {
     
     ContextHolder.setOnRedirectTo(onRedirectTo);
 
-   this.fronteggApp = initialize({
+    this.fronteggApp = initialize({
       onRedirectTo,
       ...this.config,
     });
