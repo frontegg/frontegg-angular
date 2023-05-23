@@ -50,6 +50,7 @@ jobs:
       - name: Commit Version UP
         run: |
           yarn increment-version
+          yarn update-version
       - name: "Set Generated changelog"
         uses: actions/github-script@v6
         id: 'generated-changelog'
