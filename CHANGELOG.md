@@ -1,5 +1,26 @@
 # Change Log
 
+## [5.29.0](https://github.com/frontegg/frontegg-angular/compare/v5.28.0...v5.29.0) (2023-5-23)
+
+- FR-11529 - fix bug white borders dark mode
+- FR-11769 - add meta data to context
+- FR-11769 - change source to enum
+- FR-11769 - add source header to request
+- FR-11658 - create mock login preview for login per tenant self service mock
+- FR-11652 - SSO Guides enhancements
+- [Snyk] Security upgrade babel-plugin-module-resolver from 4.1.0 to 5.0.0
+- FR-11735 - login per tenant self service dependence fix
+- FR-11442 - remove admin provisioning feature flag
+- FR-11723 - bump rest api version
+- FR-11735 - login per tenant self service input logo upload and fixes
+
+### Angular Wrapper 5.29.0:
+- FR-11599 - report version and framework
+- FR-11785 - revert @angular-devkit/build-angular to previous version t…
+- FR-11785 - Bump angular cli to version 13
+- [Snyk] Upgrade tslib from 2.3.0 to 2.5.0
+# Change Log
+
 ## [5.28.0](https://github.com/frontegg/frontegg-angular/compare/v5.27.0...v5.28.0) (2023-5-12)
 
 - FR-11442 - Removed admin portal provisioning feature flag
