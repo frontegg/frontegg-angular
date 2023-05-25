@@ -1,5 +1,19 @@
 # Change Log
 
+## [5.29.0](https://github.com/frontegg/frontegg-angular/compare/v5.28.0...v5.29.0) (2023-5-23)
+
+- Fix the issue with unnecessary white borders on the dark mode theme
+- Add metadataHeaders type to contextOptions
+- Add source header to all admin portal and login box requests
+- Add login per tenant self service
+- SSO Guides enhancements
+- [Snyk] Security upgrade babel-plugin-module-resolver from 4.1.0 to 5.0.0
+- Remove admin provisioning feature flag
+- Report version and framework as requests headers
+- [Snyk] Upgrade tslib from 2.3.0 to 2.5.0
+
+# Change Log
+
 ## [5.28.0](https://github.com/frontegg/frontegg-angular/compare/v5.27.0...v5.28.0) (2023-5-12)
 
 - FR-11442 - Removed admin portal provisioning feature flag
