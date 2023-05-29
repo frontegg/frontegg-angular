@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.30.0](https://github.com/frontegg/frontegg-angular/compare/v5.29.0...v5.30.0) (2023-5-28)
+
+- Fixed hosted login with hash router
+- Support login per tenant self service
+- Added Cyprus phone area code 2 fa screen
+- Added option to upload metadata file instead of metadata url
+
+# Change Log
+
 ## [5.29.0](https://github.com/frontegg/frontegg-angular/compare/v5.28.0...v5.29.0) (2023-5-23)
 
 - Fix the issue with unnecessary white borders on the dark mode theme
