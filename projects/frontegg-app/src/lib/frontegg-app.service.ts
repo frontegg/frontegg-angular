@@ -2,7 +2,7 @@ import { Inject, Injectable, NgZone } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { FronteggApp, initialize } from '@frontegg/js';
 import { AuthPageRoutes, FronteggState } from '@frontegg/redux-store';
-import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
+import { FronteggAppOptions, FronteggCheckoutDialogOptions, Entitlements } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
@@ -29,6 +29,7 @@ export class FronteggAppService {
     isLoading: true,
     isAuthenticated: false,
   } as FronteggState['auth']);
+  private entitlementsStateSubject = new BehaviorSubject<any>(null);
   private auditsStateSubject = new BehaviorSubject<FronteggState['audits']>({} as FronteggState['audits']);
   private connectivityStateSubject = new BehaviorSubject<FronteggState['connectivity']>({} as FronteggState['connectivity']);
   private subscriptionsStateSubject = new BehaviorSubject<FronteggState['subscriptions']>({} as FronteggState['subscriptions']);
@@ -63,6 +64,9 @@ export class FronteggAppService {
     return this.isLoadingSubject.asObservable();
   };
 
+  get entitlementsState$(): Observable<any> {
+    return this.entitlementsStateSubject.asObservable();
+  };
 
   get isAuthenticated$(): Observable<boolean> {
     return this.isAuthenticatedSubject.asObservable();
@@ -139,6 +143,7 @@ export class FronteggAppService {
 
     this.stateSubject.next(fronteggStore);
     this.authStateSubject.next(fronteggStore.auth);
+    this.entitlementsStateSubject.next(fronteggStore.auth.entitlementsState?.entitlements || null);
     this.auditsStateSubject.next(fronteggStore.audits);
     this.connectivityStateSubject.next(fronteggStore.connectivity);
     this.subscriptionsStateSubject.next(fronteggStore.subscriptions);
@@ -177,5 +182,13 @@ export class FronteggAppService {
   // Open checkout dialog
   public hideCheckoutDialog(): void {
     this.fronteggApp?.hideCheckoutDialog();
+  }
+
+  /**
+    @param keys The requested entitlement keys
+    @returns Entitlements contain true/false for every key (state of is key entitled)
+  */
+  public getEntitlements(keys: string[]): Entitlements {
+    return this.fronteggApp.getEntitlements(keys);
   }
 }
