@@ -1,5 +1,23 @@
 # Change Log
 
+## [5.31.0](https://github.com/frontegg/frontegg-angular/compare/v5.30.0...v5.31.0) (2023-6-6)
+
+- FR-11482 - add CustomComponentRegister to admin box to prevent duplicated code in react and next js
+- FR-10891 - fix space in input component
+- FR-11734 - MSP - all accounts main page
+- FR-11941 - Tests for login per tenant self service
+- FR-11658 - create iframe login preview for login per tenant self service
+- FR-11887 - bump rest api
+- FR-11887 - entitlements load and hook
+- FR-11600 - better error handling for login fixes
+- FR-10891 - add required to fields in invite user modal
+- FR-11985 - SSO Guides fixes
+- FR-11600 - better error handling for login
+- FR-11651 - msp all accounts state
+- FR-11887 - Revert Entitlements SDK - Load entitlements list & make the data accessible for the wrappers"
+
+# Change Log
+
 ## [5.30.0](https://github.com/frontegg/frontegg-angular/compare/v5.29.0...v5.30.0) (2023-5-28)
 
 - Fixed hosted login with hash router
