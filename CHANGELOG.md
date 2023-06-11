@@ -1,5 +1,15 @@
 # Change Log
 
+## [5.31.0](https://github.com/frontegg/frontegg-angular/compare/v5.30.0...v5.31.0) (2023-6-6)
+
+- Improve login preview for login per tenant self service to rendered inside iframe
+- Added required to fields in invite user modal
+- Improve error handling for login 
+- Added MSP - all accounts main page and state
+
+
+# Change Log
+
 ## [5.30.0](https://github.com/frontegg/frontegg-angular/compare/v5.29.0...v5.30.0) (2023-5-28)
 
 - Fixed hosted login with hash router
