@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subscription, PartialObserver } from 'rxjs
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
-import { isAuthRoute } from '@frontegg/redux-store';
+import { isAuthRoute, EntitlementsState } from '@frontegg/redux-store';
 import sdkVersion from '../sdkVersion';
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
@@ -29,7 +29,7 @@ export class FronteggAppService {
     isLoading: true,
     isAuthenticated: false,
   } as FronteggState['auth']);
-  private entitlementsStateSubject = new BehaviorSubject<any>(null);
+  private entitlementsStateSubject = new BehaviorSubject<EntitlementsState['entitlements']>(undefined);
   private auditsStateSubject = new BehaviorSubject<FronteggState['audits']>({} as FronteggState['audits']);
   private connectivityStateSubject = new BehaviorSubject<FronteggState['connectivity']>({} as FronteggState['connectivity']);
   private subscriptionsStateSubject = new BehaviorSubject<FronteggState['subscriptions']>({} as FronteggState['subscriptions']);
@@ -85,7 +85,7 @@ export class FronteggAppService {
 
     entitlementsResultSubscription.unsubscribe = ()=>{
       originalUnsubscribe();
-      stateSubscription.unsubscribe()
+      stateSubscription.unsubscribe();
     };
 
     return entitlementsResultSubscription;
