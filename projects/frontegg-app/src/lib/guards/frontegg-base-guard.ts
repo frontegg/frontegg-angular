@@ -1,7 +1,7 @@
-import { ActivatedRouteSnapshot, CanActivate, DefaultUrlSerializer, Router, RouterStateSnapshot, UrlSerializer, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, DefaultUrlSerializer, RouterStateSnapshot, UrlSerializer, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
-export abstract class FronteggBaseGuard implements UrlSerializer, CanActivate {
+export abstract class FronteggBaseGuard  implements UrlSerializer {
 
   abstract canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     : Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree;
