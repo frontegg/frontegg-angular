@@ -8,14 +8,14 @@
 <br />
 
 ## BREAKING CHANGES SINCE VERSION 3.0.1
-If you are migrating from `@frontegg/angular` version 2 or earlier, you can find a [migration guide here](https://docs.frontegg.com/docs/migration-guide-fronteggangular-v2-v3)
+If you are migrating from `frontegg-angular-16` version 2 or earlier, you can find a [migration guide here](https://docs.frontegg.com/docs/migration-guide-fronteggangular-v2-v3)
 
-### 1. Install Frontegg Libraries 
+### 1. Install Frontegg Libraries
 
 Run the following command to Install Frontegg Angular library:
 
 ```bash
-npm install @frontegg/angular
+npm install frontegg-angular-16
 ```
 
 ### 2. Configuration
@@ -29,7 +29,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { FronteggAppModule, FronteggComponent } from '@frontegg/angular';
+import { FronteggAppModule, FronteggComponent } from 'frontegg-angular-16';
 
 @NgModule({
   declarations: [AppComponent],
@@ -63,7 +63,7 @@ export class AppModule { }
 //app.component.ts
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FronteggAuthService, FronteggAppService } from '@frontegg/angular';
+import { FronteggAuthService, FronteggAppService } from 'frontegg-angular-16';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -92,7 +92,7 @@ export class AppComponent implements OnDestroy {
 </div>
 ```
 
-### 3. Getting the user context 
+### 3. Getting the user context
 
 Frontegg exposes the user context and the authentication state via a `FronteggAppService`. You can access the whole authentication state via the `FronteggAppService`. To have an access to memoized
 authentication substates like user state, SSO state, MFA state, etc. use `FronteggAuthService` as in the following
@@ -101,7 +101,7 @@ sample:
 ```ts
 // app.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FronteggAuthService, FronteggAppService } from '@frontegg/angular';
+import { FronteggAuthService, FronteggAppService } from 'frontegg-angular-16';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -115,9 +115,9 @@ export class AppComponent implements OnInit, OnDestroy {
   user?: any;
 
   constructor(
-    private fronteggAuthService: FronteggAuthService, 
+    private fronteggAuthService: FronteggAuthService,
     private fronteggAppService: FronteggAppService) {
-  	this.loadingSubscription = 
+  	this.loadingSubscription =
       fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading)
   }
 
@@ -145,7 +145,7 @@ Update `app.component.html` to display the user's name and avatar:
 
 ```
 
-### 4. Add FronteggAuthGuard to your routing module 
+### 4. Add FronteggAuthGuard to your routing module
 
 Use the `FronteggAuthGuard` to redirect the user to the login page if the user not authenticated and trying to reach a private route.
 
@@ -158,7 +158,7 @@ import { ProtectedAppComponent } from './components/protected.component';
 import { NotFoundComponent } from './components/not-found.component';
 import { HomeComponent } from './components/home.component';
 import { UsersComponent } from './components/users.component';
-import { FronteggAuthGuard } from '@frontegg/angular';
+import { FronteggAuthGuard } from 'frontegg-angular-16';
 
 /** Option to protect a specific route **/
 const routes: Routes = [
@@ -222,7 +222,7 @@ method when clicking on the relevant button.
 
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { FronteggAppService } from '@frontegg/angular';
+import { FronteggAppService } from 'frontegg-angular-16';
 
 @Component({
   selector: 'app-root',

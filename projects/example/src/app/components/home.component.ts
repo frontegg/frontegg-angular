@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FronteggAppService, FronteggAuthService } from '@frontegg/angular';
+import { FronteggAppService, FronteggAuthService } from 'frontegg-angular-16';
 import { Router } from '@angular/router';
 
 @Component({

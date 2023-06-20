@@ -72,11 +72,11 @@ export class FronteggAppService {
   public entitlements$(keys: string[], observer: PartialObserver<Entitlements>): Subscription {
     // used for computing the entitlements result because we don't return the state itself
     const entitlementsSubject = new BehaviorSubject<Entitlements>([]);
-    
+
     const stateSubscription = this.entitlementsStateSubject.subscribe(entitlements => {
       entitlementsSubject.next(getEntitlements(entitlements ?? {}, keys));
     });
-    
+
     // subscribing the consumer observer
     const entitlementsResultSubscription = entitlementsSubject.asObservable().subscribe(observer)
 
@@ -128,10 +128,10 @@ export class FronteggAppService {
 
     const { contextOptions } = this.config ?? {};
     contextOptions.metadataHeaders = {
-      fronteggSdkVersion: `@frontegg/angular@${sdkVersion.version}`,
+      fronteggSdkVersion: `frontegg-angular-16@${sdkVersion.version}`,
       framework: FronteggFrameworks.Angular,
     }
-    
+
     ContextHolder.setOnRedirectTo(onRedirectTo);
     this.fronteggApp = initialize({
       onRedirectTo,
