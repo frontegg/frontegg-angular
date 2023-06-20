@@ -8,14 +8,14 @@
 <br />
 
 ## BREAKING CHANGES SINCE VERSION 3.0.1
-If you are migrating from `frontegg-angular-16` version 2 or earlier, you can find a [migration guide here](https://docs.frontegg.com/docs/migration-guide-fronteggangular-v2-v3)
+If you are migrating from `@frontegg/angular` version 2 or earlier, you can find a [migration guide here](https://docs.frontegg.com/docs/migration-guide-fronteggangular-v2-v3)
 
 ### 1. Install Frontegg Libraries
 
 Run the following command to Install Frontegg Angular library:
 
 ```bash
-npm install frontegg-angular-16
+npm install @frontegg/angular
 ```
 
 ### 2. Configuration
@@ -29,7 +29,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { FronteggAppModule, FronteggComponent } from 'frontegg-angular-16';
+import { FronteggAppModule, FronteggComponent } from '@frontegg/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -63,7 +63,7 @@ export class AppModule { }
 //app.component.ts
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FronteggAuthService, FronteggAppService } from 'frontegg-angular-16';
+import { FronteggAuthService, FronteggAppService } from '@frontegg/angular';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -101,7 +101,7 @@ sample:
 ```ts
 // app.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FronteggAuthService, FronteggAppService } from 'frontegg-angular-16';
+import { FronteggAuthService, FronteggAppService } from '@frontegg/angular';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -158,7 +158,7 @@ import { ProtectedAppComponent } from './components/protected.component';
 import { NotFoundComponent } from './components/not-found.component';
 import { HomeComponent } from './components/home.component';
 import { UsersComponent } from './components/users.component';
-import { FronteggAuthGuard } from 'frontegg-angular-16';
+import { FronteggAuthGuard } from '@frontegg/angular';
 
 /** Option to protect a specific route **/
 const routes: Routes = [
@@ -222,7 +222,7 @@ method when clicking on the relevant button.
 
 ```ts
 import { Component, OnInit } from '@angular/core';
-import { FronteggAppService } from 'frontegg-angular-16';
+import { FronteggAppService } from '@frontegg/angular';
 
 @Component({
   selector: 'app-root',

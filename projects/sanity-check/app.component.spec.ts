@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { FronteggAppModule } from 'frontegg-angular-16';
+import { FronteggAppModule } from '@frontegg/angular';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

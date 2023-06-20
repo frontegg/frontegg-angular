@@ -5,7 +5,7 @@
 ### 1. Install Frontegg Libraries Run the following command to Install Frontegg Angular library.
 
 ```
-npm install frontegg-angular-16
+npm install @frontegg/angular
 ```
 
 ### 2. Configuration
@@ -18,7 +18,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { FronteggAppModule } from 'frontegg-angular-16';
+import { FronteggAppModule } from '@frontegg/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -86,7 +86,7 @@ export class AppComponent implements OnDistory {
 
 ```
 import { Component, OnInit } from '@angular/core';
-import { FronteggAuthService, AuthState } from 'frontegg-angular-16';
+import { FronteggAuthService, AuthState } from '@frontegg/angular';
 
 @Component({
   selector: 'app-root',
@@ -117,7 +117,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProtectedAppComponent } from './components/protected.component';
 import { NotFoundComponent } from './components/not-found.component';
-import { FronteggAuthGuard } from 'frontegg-angular-16';
+import { FronteggAuthGuard } from '@frontegg/angular';
 
 /** Option to protect a specific route **/
 const routes: Routes = [
@@ -181,7 +181,7 @@ method when clicking on the relevant button.
 
 ```
 import { Component, OnInit } from '@angular/core';
-import { FronteggAppService } from 'frontegg-angular-16';
+import { FronteggAppService } from '@frontegg/angular';
 
 @Component({
   selector: 'app-root',

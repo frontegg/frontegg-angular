@@ -128,7 +128,7 @@ export class FronteggAppService {
 
     const { contextOptions } = this.config ?? {};
     contextOptions.metadataHeaders = {
-      fronteggSdkVersion: `frontegg-angular-16@${sdkVersion.version}`,
+      fronteggSdkVersion: `@frontegg/angular@${sdkVersion.version}`,
       framework: FronteggFrameworks.Angular,
     }
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FronteggAppModule, FronteggComponent } from 'frontegg-angular-16';
+import { FronteggAppModule, FronteggComponent } from '@frontegg/angular';
 
 @NgModule({
   declarations: [

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PrivateRouteComponent } from './components/private-route.component';
 import { NotFoundComponent } from './components/not-found.component';
 import { AppHomeComponent } from './components/home.component';
-import { FronteggAuthGuard } from 'frontegg-angular-16';
+import { FronteggAuthGuard } from '@frontegg/angular';
 
 const protectSingleRoutes: Routes = [
   { path: '', component: AppHomeComponent },

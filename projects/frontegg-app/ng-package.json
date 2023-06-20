@@ -7,7 +7,7 @@
     "csstype",
     "stream"
   ],
-  "dest": "../../dist/frontegg-angular-16",
+  "dest": "../../dist/@frontegg/angular",
   "lib": {
     "entryFile": "src/public-api.ts"
   }

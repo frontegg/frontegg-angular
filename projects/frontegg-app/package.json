@@ -1,5 +1,5 @@
 {
-  "name": "frontegg-angular-16",
+  "name": "@frontegg/angular",
   "version": "5.31.0",
   "license": "MIT",
   "peerDependencies": {

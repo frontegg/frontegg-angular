@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FronteggSubscriptionService } from 'frontegg-angular-16';
+import { FronteggSubscriptionService } from '@frontegg/angular';
 import { Subscription } from 'rxjs';
 
 @Component({

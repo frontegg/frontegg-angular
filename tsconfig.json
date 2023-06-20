@@ -20,8 +20,8 @@
       "dom"
     ],
     "paths": {
-      "frontegg-angular-16": [
-        "dist/frontegg-angular-16"
+      "@frontegg/angular": [
+        "dist/@frontegg/angular"
       ]
     },
     "useDefineForClassFields": false

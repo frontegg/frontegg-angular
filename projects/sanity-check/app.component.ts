@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {FronteggAppService, FronteggAuthService} from "frontegg-angular-16";
+import {FronteggAppService, FronteggAuthService} from "@frontegg/angular";
 
 @Component({
   selector: 'app-root',

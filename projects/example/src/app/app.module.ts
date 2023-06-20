@@ -7,7 +7,7 @@ import { NotFoundComponent } from './components/not-found.component';
 import { EmptyAppComponent } from './components/empty.component';
 import { PrivateRouteComponent } from './components/private-route.component';
 import { AppHomeComponent } from './components/home.component';
-import { FronteggComponent, FronteggAppModule } from 'frontegg-angular-16';
+import { FronteggComponent, FronteggAppModule } from '@frontegg/angular';
 import { CheckoutDialogModule } from './checkout-dialog/checkout-dialog.module';
 
 
