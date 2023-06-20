@@ -107,6 +107,15 @@
               "devServerTarget": "example:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/example/**/*.ts",
+              "projects/example/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -135,11 +144,23 @@
             "tsConfig": "projects/frontegg-app/tsconfig.spec.json",
             "karmaConfig": "projects/frontegg-app/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/frontegg-app/**/*.ts",
+              "projects/frontegg-app/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
