@@ -43,7 +43,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -97,19 +96,6 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/example/tsconfig.app.json",
-              "projects/example/tsconfig.spec.json",
-              "projects/example/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
@@ -120,6 +106,15 @@
             "production": {
               "devServerTarget": "example:serve:production"
             }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/example/**/*.ts",
+              "projects/example/**/*.html"
+            ]
           }
         }
       }
@@ -151,19 +146,21 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/frontegg-app/tsconfig.lib.json",
-              "projects/frontegg-app/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/frontegg-app/**/*.ts",
+              "projects/frontegg-app/**/*.html"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "frontegg-app"
+  "cli": {
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  }
 }

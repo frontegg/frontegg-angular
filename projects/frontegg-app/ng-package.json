@@ -9,12 +9,6 @@
   ],
   "dest": "../../dist/@frontegg/angular",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "@frontegg/js": "FronteggJS",
-      "@frontegg/redux-store": "FronteggReduxStore",
-      "@frontegg/rest-api": "FronteggRestApi",
-      "fast-deep-equal": "FastDeepEqual"
-    }
+    "entryFile": "src/public-api.ts"
   }
 }

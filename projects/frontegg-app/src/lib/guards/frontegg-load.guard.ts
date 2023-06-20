@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FronteggAppService } from '../frontegg-app.service';
 
 @Injectable()
-export class FronteggLoadGuard implements CanActivate {
+export class FronteggLoadGuard  {
   constructor(protected fronteggAppService: FronteggAppService) {
   }
 

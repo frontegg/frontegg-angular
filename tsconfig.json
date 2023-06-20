@@ -13,7 +13,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2022",
     "module": "es2020",
     "lib": [
       "es2018",
@@ -23,12 +23,13 @@
       "@frontegg/angular": [
         "dist/@frontegg/angular"
       ]
-    }
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
-    "enableIvy": false
+    "enableIvy": true
   }
 }
