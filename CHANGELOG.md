@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.32.0](https://github.com/frontegg/frontegg-angular/compare/v5.31.0...v5.32.0) (2023-6-19)
+
+ Added support to load cdn component with the new vite version
+- Fix for new sso guide dark theme
+- Fix for login per tenant embedded with sub domain logout route
+- Create MSP all accounts main page
+
+# Change Log
+
 ## [5.31.0](https://github.com/frontegg/frontegg-angular/compare/v5.30.0...v5.31.0) (2023-6-6)
 
 - Improve login preview for login per tenant self service to rendered inside iframe
