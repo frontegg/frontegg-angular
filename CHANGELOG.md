@@ -1,5 +1,15 @@
 # Change Log
 
+## [5.33.0](https://github.com/frontegg/frontegg-angular/compare/v5.32.0...v5.33.0) (2023-6-22)
+
+- Update load tenants to new version
+- MSP bugfix, improvements
+- Add support to load cdn component with the new vite version
+- Fix new sso guide dark theme
+- Add support props and frontegg hooks in custom components
+
+# Change Log
+
 ## [5.32.0](https://github.com/frontegg/frontegg-angular/compare/v5.31.0...v5.32.0) (2023-6-19)
 
  Added support to load cdn component with the new vite version
