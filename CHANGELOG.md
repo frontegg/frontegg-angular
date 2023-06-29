@@ -1,5 +1,13 @@
 # Change Log
 
+## [5.34.0](https://github.com/frontegg/frontegg-angular/compare/v5.33.0...v5.34.0) (2023-6-28)
+
+- FR-12277 - Extended tenants state with the active tenant to support MSP sub-accounts
+- FR-12405 - MSP bug fixes
+- FR-12381 - Migrated users table to load users by users V2 API
+
+# Change Log
+
 ## [5.33.0](https://github.com/frontegg/frontegg-angular/compare/v5.32.0...v5.33.0) (2023-6-22)
 
 - Update load tenants to new version
