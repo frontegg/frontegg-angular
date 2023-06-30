@@ -2,10 +2,8 @@
 
 ## [5.35.0](https://github.com/frontegg/frontegg-angular/compare/v5.34.0...v5.35.0) (2023-6-30)
 
-- FR-12426 - msp visibility bypermissions
-- FR-12413 - fix msp accounts update
-- FR-12213 - add security login flows - mfa and breached password
-- FR-12277 - active tenant gap fix
+- MSP update visibility, bugfix
+- add security login flows
 
 # Change Log
 
