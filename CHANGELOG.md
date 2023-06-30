@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.35.0](https://github.com/frontegg/frontegg-angular/compare/v5.34.0...v5.35.0) (2023-6-30)
+
+- MSP update visibility, bugfix
+- add security login flows
+
+# Change Log
+
 ## [5.34.0](https://github.com/frontegg/frontegg-angular/compare/v5.33.0...v5.34.0) (2023-6-28)
 
 - FR-12277 - Extended tenants state with the active tenant to support MSP sub-accounts
