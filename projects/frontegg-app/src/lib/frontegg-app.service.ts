@@ -1,13 +1,13 @@
 import { Inject, Injectable, NgZone } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { FronteggApp, initialize } from '@frontegg/js';
-import { AuthPageRoutes, FronteggState, getEntitlements } from '@frontegg/redux-store';
-import { FronteggAppOptions, FronteggCheckoutDialogOptions, Entitlements } from '@frontegg/types';
+import { AuthPageRoutes, FronteggState } from '@frontegg/redux-store';
+import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable, Subscription, PartialObserver } from 'rxjs';
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
-import { isAuthRoute, EntitlementsState } from '@frontegg/redux-store';
+import { isAuthRoute } from '@frontegg/redux-store';
 import sdkVersion from '../sdkVersion';
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
@@ -29,7 +29,6 @@ export class FronteggAppService {
     isLoading: true,
     isAuthenticated: false,
   } as FronteggState['auth']);
-  private entitlementsStateSubject = new BehaviorSubject<EntitlementsState['entitlements']>(undefined);
   private auditsStateSubject = new BehaviorSubject<FronteggState['audits']>({} as FronteggState['audits']);
   private connectivityStateSubject = new BehaviorSubject<FronteggState['connectivity']>({} as FronteggState['connectivity']);
   private subscriptionsStateSubject = new BehaviorSubject<FronteggState['subscriptions']>({} as FronteggState['subscriptions']);
@@ -62,33 +61,6 @@ export class FronteggAppService {
 
   get isLoading$(): Observable<boolean> {
     return this.isLoadingSubject.asObservable();
-  };
-
-  /**
-   * @param keys Entitlements keys
-   * @param observer For receiving the keys data results
-   * @returns a subscription to be able to unsubscribe
-   */
-  public entitlements$(keys: string[], observer: PartialObserver<Entitlements>): Subscription {
-    // used for computing the entitlements result because we don't return the state itself
-    const entitlementsSubject = new BehaviorSubject<Entitlements>([]);
-    
-    const stateSubscription = this.entitlementsStateSubject.subscribe(entitlements => {
-      entitlementsSubject.next(getEntitlements(entitlements ?? {}, keys));
-    });
-    
-    // subscribing the consumer observer
-    const entitlementsResultSubscription = entitlementsSubject.asObservable().subscribe(observer)
-
-    // monkey patched to manage both un-subscriptions: state and entitlements result for the provided keys
-    const originalUnsubscribe = entitlementsResultSubscription.unsubscribe.bind(entitlementsResultSubscription);
-
-    entitlementsResultSubscription.unsubscribe = ()=>{
-      originalUnsubscribe();
-      stateSubscription.unsubscribe();
-    };
-
-    return entitlementsResultSubscription;
   };
 
   get isAuthenticated$(): Observable<boolean> {
@@ -166,7 +138,6 @@ export class FronteggAppService {
 
     this.stateSubject.next(fronteggStore);
     this.authStateSubject.next(fronteggStore.auth);
-    this.entitlementsStateSubject.next(fronteggStore.auth.entitlementsState?.entitlements);
     this.auditsStateSubject.next(fronteggStore.audits);
     this.connectivityStateSubject.next(fronteggStore.connectivity);
     this.subscriptionsStateSubject.next(fronteggStore.subscriptions);
@@ -205,13 +176,5 @@ export class FronteggAppService {
   // Open checkout dialog
   public hideCheckoutDialog(): void {
     this.fronteggApp?.hideCheckoutDialog();
-  }
-
-  /**
-    @param keys The requested entitlement keys
-    @returns Entitlements contain true/false for every key (state of is key entitled)
-  */
-  public getEntitlements(keys: string[]): Entitlements {
-    return this.fronteggApp.getEntitlements(keys);
   }
 }
