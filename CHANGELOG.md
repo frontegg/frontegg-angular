@@ -1,5 +1,25 @@
 # Change Log
 
+## [5.36.0](https://github.com/frontegg/frontegg-angular/compare/v5.35.0...v5.36.0) (2023-7-13)
+
+• FR-12550 - Align all auth methods to get the right login response type
+• FR-12664 - Rename redux-saga file to prevent loop imports by webpack
+• FR-12098 - Updated Admin portal user status to the correct one if email verification is off
+• FR-12020 - Fixed blinking workspace title in admin portal vivid theme
+• FR-12114 - Fixed custom social login provider shouldn't be shown if not active
+• FR-12628 - Fixed custom login with hosted Oauth in URL
+• FR-12575 - Changed remember my device value to be true by default
+• FR-12581 - Added support for custom inline html and script
+• FR-12343 - Added support for SSO per tenant
+• FR-12488 - Backward compatible support for loadUsersV1
+• FR-12164 - Added support for MSP bulk user invitation
+• FR-12479 - Fixed MSP warning dialog issue
+• FR-12408 - Redesigned Entitlements structure
+
+### Angular Wrapper 5.36.0:
+- FR-12527 - Remove entitlements
+# Change Log
+
 ## [5.35.0](https://github.com/frontegg/frontegg-angular/compare/v5.34.0...v5.35.0) (2023-6-30)
 
 - MSP update visibility, bugfix
