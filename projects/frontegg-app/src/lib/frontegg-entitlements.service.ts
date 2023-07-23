@@ -45,7 +45,6 @@ export class FronteggEntitlementsService {
       return;
     }
 
-    console.log('changed')
     this.entitlementsStateSubject.next(entitlementsState);
   }
 
