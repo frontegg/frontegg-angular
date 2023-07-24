@@ -1,13 +1,12 @@
 import { Inject, Injectable, NgZone } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { FronteggApp, initialize } from '@frontegg/js';
-import { AuthPageRoutes, FronteggState } from '@frontegg/redux-store';
+import { AuthPageRoutes,FronteggState, isAuthRoute } from '@frontegg/redux-store';
 import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
-import { BehaviorSubject, Observable, Subscription, PartialObserver } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
-import { isAuthRoute } from '@frontegg/redux-store';
 import sdkVersion from '../sdkVersion';
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
