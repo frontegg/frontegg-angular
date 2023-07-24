@@ -44,7 +44,6 @@ import {
   authStoreName,
   LoginState,
   ActivateAccountStrategyState,
-  EnhancedStore,
 } from '@frontegg/redux-store';
 import {
   ILogin,
