@@ -6,8 +6,8 @@
 - FR-12224 - Support custom login for authenticated users without a tenant alias
 - FR-12688 - Make the Admin box compatible with the updated type of IUserProfile
 - FR-12114 - Remove inactive custom social login provider
-- FR-12098 - Fix admin portal user status updates when email verification is off.
-- FR-12098 - Fix workspace title for the vivid theme
+- FR-12098 - Fixed admin portal user status updates when email verification is off
+- FR-12098 - Fixed workspace title for the vivid theme
 
 ### Angular Wrapper 5.37.0:
 - FR-12043 - Added entitlements feature
