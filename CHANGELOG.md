@@ -10,7 +10,7 @@
 - FR-12098 - Fix workspace title for the vivid theme
 
 ### Angular Wrapper 5.37.0:
-- FR-12043 - Implement FronteggEntitlementsService for exposing entitlements APIs
+- FR-12043 - Added entitlements feature
 # Change Log
 
 ## [5.36.0](https://github.com/frontegg/frontegg-angular/compare/v5.35.0...v5.36.0) (2023-7-13)
