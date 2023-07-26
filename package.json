@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build frontegg-app",
     "dev": "ng build frontegg-app --watch",
     "test": "ng test",
     "clean": "rm -rf dist && rm -rf node_modules && cd ./projects/frontegg-app && rm -rf node_modules",
