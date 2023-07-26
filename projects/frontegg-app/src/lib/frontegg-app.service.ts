@@ -1,7 +1,8 @@
-import { Inject, Injectable, NgZone } from '@angular/core';
+import { Inject, Injectable, NgZone, Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Route, Router } from '@angular/router';
 import { FronteggApp, initialize } from '@frontegg/js';
-import { AuthPageRoutes,FronteggState, isAuthRoute } from '@frontegg/redux-store';
+import { AuthPageRoutes, FronteggState, isAuthRoute } from '@frontegg/redux-store';
 import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FronteggLoadGuard } from './guards/frontegg-load.guard';
@@ -38,33 +39,65 @@ export class FronteggAppService {
     return this.stateSubject.asObservable();
   }
 
+  get stateSignal(): Signal<FronteggState | undefined> {
+    return toSignal(this.state$);
+  }
+
   get authState$(): Observable<FronteggState['auth']> {
     return this.authStateSubject.asObservable();
+  }
+
+  get authStateSignal(): Signal<FronteggState['auth'] | undefined> {
+    return toSignal(this.authState$);
   }
 
   get auditsState$(): Observable<FronteggState['audits']> {
     return this.auditsStateSubject.asObservable();
   }
 
+  get auditsStateSignal(): Signal<FronteggState['audits'] | undefined> {
+    return toSignal(this.auditsState$);
+  }
+
   get connectivityState$(): Observable<FronteggState['connectivity']> {
     return this.connectivityStateSubject.asObservable();
+  }
+
+  get connectivityStateSignal(): Signal<FronteggState['connectivity'] | undefined> {
+    return toSignal(this.connectivityState$);
   }
 
   get subscriptionsState$(): Observable<FronteggState['subscriptions']> {
     return this.subscriptionsStateSubject.asObservable();
   }
 
+  get subscriptionsStateSignal(): Signal<FronteggState['subscriptions'] | undefined> {
+    return toSignal(this.subscriptionsState$);
+  }
+
   get vendorState$(): Observable<FronteggState['vendor']> {
     return this.vendorStateSubject.asObservable();
+  }
+
+  get vendorStateSignal(): Signal<FronteggState['vendor'] | undefined> {
+    return toSignal(this.vendorState$);
   }
 
   get isLoading$(): Observable<boolean> {
     return this.isLoadingSubject.asObservable();
   };
 
+  get isLoadingSignal(): Signal<boolean | undefined> {
+    return toSignal(this.isLoading$);
+  }
+
   get isAuthenticated$(): Observable<boolean> {
     return this.isAuthenticatedSubject.asObservable();
   };
+
+  get isAuthenticatedSignal(): Signal<boolean | undefined> {
+    return toSignal(this.isAuthenticated$);
+  }
 
   constructor(@Inject(FronteggAppOptionsClass) private config: FronteggAppOptions, public router: Router, private ngZone: NgZone) {
     if (!this.config) {
@@ -102,7 +135,6 @@ export class FronteggAppService {
       fronteggSdkVersion: `@frontegg/angular@${sdkVersion.version}`,
       framework: FronteggFrameworks.Angular,
     }
-    
     ContextHolder.setOnRedirectTo(onRedirectTo);
     this.fronteggApp = initialize({
       onRedirectTo,
@@ -115,8 +147,8 @@ export class FronteggAppService {
       ...this.mapAuthComponents,
       {
         path: '',
-        canActivate: [ FronteggLoadGuard ],
-        children: [ ...this.router.config ],
+        canActivate: [FronteggLoadGuard],
+        children: [...this.router.config],
       },
     ]);
     const initialFronteggState = this.fronteggApp.store.getState() as FronteggState;

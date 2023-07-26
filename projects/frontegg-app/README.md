@@ -38,10 +38,6 @@ import { FronteggAppModule } from '@frontegg/angular';
       }
     ),
   ],
-
-  /** 2. Add Frontetgg Component to your entryComponents **/
-  entryComponents: [FronteggComponent],
-
   bootstrap: [AppComponent],
 })
 export class AppModule { }
@@ -197,5 +193,28 @@ export class AppComponent implements OnInit {
   }
 }
 ```
+### 6. Using signals
 
-6. Enjoy!
+In order to use frontegg signals you will have to call it from the frontegg services and assign them to the component state
+
+```
+import { Component, OnInit } from '@angular/core';
+import { FronteggAppService, FronteggAuthService, AuthState } from '@frontegg/angular';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+})
+export class AppComponent implements OnInit {
+  user?: AuthState['user']
+  authenticated?: boolean
+  constructor(private fronteggAppService: FronteggAppService,
+    private fronteggAuthService: FronteggAuthService) {
+    this.user = this.fronteggAuthService.userSignal()
+    this.authenticated = this.fronteggAppService.isAuthenticatedSignal()
+  }
+}
+```
+
+7. Enjoy!

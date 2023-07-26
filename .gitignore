@@ -68,6 +68,7 @@ dist-umd
 
 */dist/
 dist-umd/
+.angular
 
 # Runtime data
 pids

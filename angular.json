@@ -17,6 +17,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "fast-deep-equal",
+              "@babel/runtime/regenerator",
+              "deepmerge"
+            ],
             "outputPath": "dist/example",
             "index": "projects/example/src/index.html",
             "main": "projects/example/src/main.ts",
@@ -164,6 +169,5 @@
         }
       }
     }
-  },
-  "defaultProject": "frontegg-app"
+  }
 }

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject } from 'rxjs';
 import { FronteggAppService } from './frontegg-app.service';
 import FastDeepEqual from 'fast-deep-equal';
@@ -132,68 +133,136 @@ export class FronteggAuthService {
     return this.authStateSubject.asObservable();
   }
 
+  get authStateSignal(): Signal<AuthState | undefined> {
+    return toSignal(this.authState$);
+  }
+
   get acceptInvitationState$(): Observable<AuthState['acceptInvitationState']> {
-    return this.acceptInvitationStateSubject.asObservable();
+    return this.acceptInvitationState$;
+  }
+
+  get acceptInvitationStateSignal(): Signal<AuthState['acceptInvitationState'] | undefined> {
+    return toSignal(this.acceptInvitationStateSubject.asObservable());
   }
 
   get accountSettingsState$(): Observable<AuthState['accountSettingsState']> {
     return this.accountSettingsStateSubject.asObservable();
   }
 
+  get accountSettingsStateSignal(): Signal<AuthState['accountSettingsState'] | undefined> {
+    return toSignal(this.accountSettingsState$);
+  }
+
   get activateState$(): Observable<AuthState['activateState']> {
     return this.activateStateSubject.asObservable();
+  }
+
+  get activateStateSignal(): Signal<AuthState['activateState'] | undefined> {
+    return toSignal(this.activateState$);
   }
 
   get apiTokensState$(): Observable<AuthState['apiTokensState']> {
     return this.apiTokensStateSubject.asObservable();
   }
 
+  get apiTokensStateSignal(): Signal<AuthState['apiTokensState'] | undefined> {
+    return toSignal(this.apiTokensState$);
+  }
+
   get forgotPasswordState$(): Observable<AuthState['forgotPasswordState']> {
     return this.forgotPasswordStateSubject.asObservable();
+  }
+
+  get forgotPasswordStateSignal(): Signal<AuthState['forgotPasswordState'] | undefined> {
+    return toSignal(this.forgotPasswordState$);
   }
 
   get loginState$(): Observable<AuthState['loginState']> {
     return this.loginStateSubject.asObservable();
   }
 
+  get loginStateSignal(): Signal<AuthState['loginState'] | undefined> {
+    return toSignal(this.loginState$);
+  }
+
   get mfaState$(): Observable<AuthState['mfaState']> {
     return this.mfaStateSubject.asObservable();
+  }
+
+  get mfaStateSignal(): Signal<AuthState['mfaState'] | undefined> {
+    return toSignal(this.mfaState$);
   }
 
   get profileState$(): Observable<AuthState['profileState']> {
     return this.profileStateSubject.asObservable();
   }
 
+  get profileStateSignal(): Signal<AuthState['profileState'] | undefined> {
+    return toSignal(this.profileState$);
+  }
+
   get rolesState$(): Observable<AuthState['rolesState']> {
     return this.rolesStateSubject.asObservable();
+  }
+
+  get rolesStateSignal(): Signal<AuthState['rolesState'] | undefined> {
+    return toSignal(this.rolesState$);
   }
 
   get routesState$(): Observable<AuthState['routes']> {
     return this.routesSubject.asObservable();
   }
 
+  get routesStateSignal(): Signal<AuthState['routes'] | undefined> {
+    return toSignal(this.routesState$);
+  }
+
   get securityPolicyState$(): Observable<AuthState['securityPolicyState']> {
     return this.securityPolicyStateSubject.asObservable();
+  }
+
+  get securityPolicyStateSignal(): Signal<AuthState['securityPolicyState'] | undefined> {
+    return toSignal(this.securityPolicyState$);
   }
 
   get signUpState$(): Observable<AuthState['signUpState']> {
     return this.signUpStateSubject.asObservable();
   }
 
+  get signUpStateSignal(): Signal<AuthState['signUpState'] | undefined> {
+    return toSignal(this.signUpState$);
+  }
+
   get socialLoginState$(): Observable<AuthState['socialLoginState']> {
     return this.socialLoginStateSubject.asObservable();
+  }
+
+  get socialLoginStateSignal(): Signal<AuthState['socialLoginState'] | undefined> {
+    return toSignal(this.socialLoginState$);
   }
 
   get ssoState$(): Observable<AuthState['ssoState']> {
     return this.ssoStateSubject.asObservable();
   }
 
+  get ssoStateSignal(): Signal<AuthState['ssoState'] | undefined> {
+    return toSignal(this.ssoState$);
+  }
+
   get teamState$(): Observable<AuthState['teamState']> {
     return this.teamStateSubject.asObservable();
   }
 
+  get teamStateSignal(): Signal<AuthState['teamState'] | undefined> {
+    return toSignal(this.teamState$);
+  }
+
   get tenantsState$(): Observable<AuthState['tenantsState']> {
     return this.tenantsStateSubject.asObservable();
+  }
+
+  get tenantsStateSignal(): Signal<AuthState['tenantsState'] | undefined> {
+    return toSignal(this.tenantsState$);
   }
 
   get user$(): Observable<AuthState['user']> {
@@ -204,6 +273,9 @@ export class FronteggAuthService {
     return this.fronteggAppService.fronteggApp.store.getState().auth.user;
   }
 
+  get userSignal(): Signal<AuthState['user'] | undefined> {
+    return toSignal(this.user$);
+  }
 
   get isAuthenticated$(): Observable<AuthState['isAuthenticated']> {
     return this.isAuthenticatedSubject.asObservable();
@@ -213,16 +285,32 @@ export class FronteggAuthService {
     return this.fronteggAppService.fronteggApp.store.getState().auth.isAuthenticated;
   }
 
+  get isAuthenticatedSignal(): Signal<AuthState['isAuthenticated'] | undefined> {
+    return toSignal(this.isAuthenticated$);
+  }
+
   get isLoading$(): Observable<AuthState['isLoading']> {
     return this.isLoadingSubject.asObservable();
+  }
+
+  get isLoadingSignal(): Signal<AuthState['isLoading'] | undefined> {
+    return toSignal(this.isLoading$);
   }
 
   get isSSOAuth$(): Observable<AuthState['isSSOAuth']> {
     return this.isSSOAuthSubject.asObservable();
   }
 
+  get isSSOAuthSignal(): Signal<AuthState['isSSOAuth'] | undefined> {
+    return toSignal(this.isSSOAuth$);
+  }
+
   get ssoACS$(): Observable<AuthState['ssoACS']> {
     return this.ssoACSSubject.asObservable();
+  }
+
+  get ssoACSSignal(): Signal<AuthState['ssoACS'] | undefined> {
+    return toSignal(this.ssoACS$);
   }
 
   constructor(private fronteggAppService: FronteggAppService, private router: Router) {

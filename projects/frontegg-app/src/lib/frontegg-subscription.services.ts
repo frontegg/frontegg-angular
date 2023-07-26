@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FronteggAppService } from './frontegg-app.service';
 import FastDeepEqual from 'fast-deep-equal';
@@ -28,8 +29,16 @@ export class FronteggSubscriptionService {
     return this.subscriptionStateSubject.asObservable();
   }
 
+  get subscriptionStateSignal(): Signal<SubscriptionState | undefined> {
+    return toSignal(this.subscriptionState$);
+  }
+
   get checkoutState$(): Observable<CheckoutDialogState> {
     return this.checkoutStateSubject.asObservable();
+  }
+
+  get checkoutStateSignal(): Signal<CheckoutDialogState | undefined> {
+    return toSignal(this.checkoutState$);
   }
 
   constructor(private fronteggAppService: FronteggAppService) {
