@@ -10,8 +10,8 @@
     <button data-test-id="open-hosted" (click)="loginWithRedirect()"><h2>Open Hosted Login</h2></button>
     <br />
     <br />
-    <p>Authenticated: {{authenticated}}</p>
-    <p>Authenticated as: {{user?.name}}</p>
+    <p>Authenticated: {{authenticated()}}</p>
+    <p>Authenticated as: {{user()?.name}}</p>
     <a routerLink="/account/login"><b>Login</b></a> ---
     <span (click)="doLogout()"><b>Logout</b></span> ---
     <a routerLink="/test-private-route"><b>private-route</b></a>

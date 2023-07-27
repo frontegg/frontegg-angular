@@ -1,24 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { FronteggAppService } from '@frontegg/angular';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit, OnDestroy {
-  isLoading = true;
-  loadingSubscription: Subscription;
-
+export class AppComponent {
+  isLoading: Signal<boolean | undefined>;
   constructor(private fronteggAppService: FronteggAppService) {
-    this.loadingSubscription = fronteggAppService.isLoading$.subscribe((isLoading) => this.isLoading = isLoading);
-  }
-
-  ngOnInit(): void {
-    console.log('AppComponent', 'ngOnInit');
-  }
-
-  ngOnDestroy(): void {
-    this.loadingSubscription.unsubscribe();
+    this.isLoading = this.fronteggAppService.isLoadingSignal;
   }
 }

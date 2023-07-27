@@ -198,7 +198,7 @@ export class AppComponent implements OnInit {
 In order to use frontegg signals you will have to call it from the frontegg services and assign them to the component state
 
 ```
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Signal } from '@angular/core';
 import { FronteggAppService, FronteggAuthService, AuthState } from '@frontegg/angular';
 
 @Component({
@@ -207,14 +207,23 @@ import { FronteggAppService, FronteggAuthService, AuthState } from '@frontegg/an
   styleUrls: ['./home.component.scss'],
 })
 export class AppComponent implements OnInit {
-  user?: AuthState['user']
-  authenticated?: boolean
+  user: Signal<AuthState['user'] | undefined>
+  authenticated: Signal<boolean | undefined>
   constructor(private fronteggAppService: FronteggAppService,
-    private fronteggAuthService: FronteggAuthService) {
-    this.user = this.fronteggAuthService.userSignal()
-    this.authenticated = this.fronteggAppService.isAuthenticatedSignal()
+    private fronteggAuthService: FronteggAuthService,
+    private router: Router) {
+    this.user = this.fronteggAuthService.userSignal
+    this.authenticated = this.fronteggAppService.isAuthenticatedSignal
   }
 }
+```
+
+Then access it from the html component file
+```
+<div>
+    <p>Authenticated: {{authenticated()}}</p>
+    <p>Authenticated as: {{user()?.name}}</p>
+</div>
 ```
 
 7. Enjoy!
