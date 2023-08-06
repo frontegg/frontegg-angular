@@ -8,6 +8,7 @@ import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
 import sdkVersion from '../sdkVersion';
+import angularCoreVersion from '@angular/core/package.json';
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
@@ -100,9 +101,11 @@ export class FronteggAppService {
     const { contextOptions } = this.config ?? {};
     contextOptions.metadataHeaders = {
       fronteggSdkVersion: `@frontegg/angular@${sdkVersion.version}`,
-      framework: FronteggFrameworks.Angular,
+      //TODO: remove this ts-ignore after updating rest-api context options type to accept string.
+      //@ts-ignore
+      framework: `${FronteggFrameworks.Angular}@${angularCoreVersion.version}`,
     }
-    
+
     ContextHolder.setOnRedirectTo(onRedirectTo);
     this.fronteggApp = initialize({
       onRedirectTo,
