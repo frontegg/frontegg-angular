@@ -1,5 +1,5 @@
-/** @ts-ignore **/
-import { Signal } from '@angular/core';
+/** @ts-ignore Signal is not exported from angular/core before version 16 **/
+import type { Signal } from '@angular/core';
 import { SIGNALS_ERROR_MESSAGE } from './consts';
 import { isAngular16 } from './isAngular16';
 
