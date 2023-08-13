@@ -1,10 +1,9 @@
-import { Inject, Injectable, NgZone } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Injectable, NgZone, Inject } from '@angular/core';
+import { Route, Router, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { FronteggApp, initialize } from '@frontegg/js';
 import { AuthPageRoutes,FronteggState, isAuthRoute } from '@frontegg/redux-store';
 import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { FronteggLoadGuard } from './guards/frontegg-load.guard';
 import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
 import sdkVersion from '../sdkVersion';
@@ -178,5 +177,21 @@ export class FronteggAppService {
   // Open checkout dialog
   public hideCheckoutDialog(): void {
     this.fronteggApp?.hideCheckoutDialog();
+  }
+}
+
+@Injectable()
+export class FronteggLoadGuard implements CanActivate {
+  constructor(protected fronteggAppService: FronteggAppService) {
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return new Observable<boolean>(obs => {
+      this.fronteggAppService.isLoading$.subscribe(loading => {
+        if (!loading) {
+          obs.next(true);
+        }
+      });
+    });
   }
 }

@@ -29,8 +29,6 @@
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true,
-    "compilationMode": "partial",
-    "enableIvy": false,
+    "strictTemplates": true
   }
 }
