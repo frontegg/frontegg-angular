@@ -18,12 +18,12 @@ import { CheckoutDialogModule } from './checkout-dialog/checkout-dialog.module';
     BrowserModule,
     AppRoutingModule,
     FronteggAppModule.forRoot(
+      // @ts-ignore
+      window.CYPRESS_CONFIG ||
       {
         contextOptions: {
-          // @ts-ignore
-          baseUrl: process.env.FRONTEGG_BASE_URL || 'https://demo.frontegg.com',
-          // @ts-ignore
-          clientId: process.env.FRONTEGG_CLIENT_ID || 'b6adfe4c-d695-4c04-b95f-3ec9fd0c6cca',
+          baseUrl: 'https://demo.frontegg.com',
+          clientId: 'b6adfe4c-d695-4c04-b95f-3ec9fd0c6cca',
         },
         authOptions: {
           keepSessionAlive: true,
