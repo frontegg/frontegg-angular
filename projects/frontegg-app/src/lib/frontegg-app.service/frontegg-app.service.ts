@@ -1,14 +1,14 @@
-import { Inject, Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, Inject } from '@angular/core';
 import angularCoreVersion from '@angular/core/package.json';
-import { Route, Router } from '@angular/router';
+import { Route, Router, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { FronteggApp, initialize } from '@frontegg/js';
 import { AuthPageRoutes, FronteggState, isAuthRoute } from '@frontegg/redux-store';
 import { ContextHolder, FronteggFrameworks, RedirectOptions } from '@frontegg/rest-api';
 import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
 import sdkVersion from '../../sdkVersion';
 import { FronteggComponent } from '../frontegg.component';
-import { FronteggLoadGuard } from '../guards/frontegg-load.guard';
 import { FronteggAppSignals } from './frontegg-app.signals';
+import { Observable } from 'rxjs';
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
@@ -134,5 +134,21 @@ export class FronteggAppService extends FronteggAppSignals {
   // Open checkout dialog
   public hideCheckoutDialog(): void {
     this.fronteggApp?.hideCheckoutDialog();
+  }
+}
+
+@Injectable()
+export class FronteggLoadGuard implements CanActivate {
+  constructor(protected fronteggAppService: FronteggAppService) {
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return new Observable<boolean>(obs => {
+      this.fronteggAppService.isLoading$.subscribe(loading => {
+        if (!loading) {
+          obs.next(true);
+        }
+      });
+    });
   }
 }
