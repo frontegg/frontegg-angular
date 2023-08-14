@@ -1,13 +1,14 @@
 import { Injectable, NgZone, Inject } from '@angular/core';
 import { Route, Router, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { FronteggApp, initialize } from '@frontegg/js';
-import { AuthPageRoutes,FronteggState, isAuthRoute } from '@frontegg/redux-store';
+import { AuthPageRoutes, FronteggState, isAuthRoute } from '@frontegg/redux-store';
 import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
 import sdkVersion from '../sdkVersion';
 import angularCoreVersion from '@angular/core/package.json';
+import { mapObservablesToSignals } from './v16';
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
@@ -66,6 +67,10 @@ export class FronteggAppService {
     return this.isAuthenticatedSubject.asObservable();
   };
 
+  get signals() {
+    return mapObservablesToSignals(this);
+  }
+
   constructor(@Inject(FronteggAppOptionsClass) private config: FronteggAppOptions, public router: Router, private ngZone: NgZone) {
     if (!this.config) {
       throw Error('Need to pass config: FronteggConfigOptions in FronteggAppModule.forRoot(config)');
@@ -117,8 +122,8 @@ export class FronteggAppService {
       ...this.mapAuthComponents,
       {
         path: '',
-        canActivate: [ FronteggLoadGuard ],
-        children: [ ...this.router.config ],
+        canActivate: [FronteggLoadGuard],
+        children: [...this.router.config],
       },
     ]);
     const initialFronteggState = this.fronteggApp.store.getState() as FronteggState;

@@ -1,0 +1,1 @@
+export const SIGNALS_ERROR_MESSAGE = 'Signals only supported from angular version 16, in order to use frontegg signals please upgrade your angular version to 16 or higher';

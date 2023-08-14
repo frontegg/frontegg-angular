@@ -86,6 +86,7 @@ import {
 import type { FronteggState, ActivateAccountState, SocialLoginState } from '@frontegg/redux-store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { mapObservablesToSignals } from './v16';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>;
@@ -223,6 +224,10 @@ export class FronteggAuthService {
 
   get ssoACS$(): Observable<AuthState['ssoACS']> {
     return this.ssoACSSubject.asObservable();
+  }
+
+  get signals() {
+    return mapObservablesToSignals(this);
   }
 
   constructor(private fronteggAppService: FronteggAppService, private router: Router) {
