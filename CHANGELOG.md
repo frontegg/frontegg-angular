@@ -1,5 +1,20 @@
 # Change Log
 
+## [5.38.0](https://github.com/frontegg/frontegg-angular/compare/v5.37.0...v5.38.0) (2023-8-14)
+
+# v5.38.0
+- FR-11857 - Added new support for hosted login to load user on load
+- FR-12828 - Updated entitlements API response
+- FR-12224 - Supported custom login for authenticated users without a tenant alias
+- FR-12780 - Improved Entitlements Vanilla JS SDK
+
+### Angular Wrapper 5.38.0:
+- FR-13038 - Added support for Angular 16
+- FR-12986 - Added support of reporting Angular version header
+- FR-12043 - Implemented FronteggEntitlementsService for exposing entitlements APIs
+  
+# Change Log
+
 ## [5.37.0](https://github.com/frontegg/frontegg-angular/compare/v5.36.0...v5.37.0) (2023-7-24)
 
 - FR-12828 - Added entitlements feature
