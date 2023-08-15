@@ -2,38 +2,18 @@
 
 ## [5.38.0](https://github.com/frontegg/frontegg-angular/compare/v5.37.0...v5.38.0) (2023-8-14)
 
-- 
+# v5.38.0
 - FR-11857 - Added new support for hosted login to load user on load
-
-- 
-
-- FR-12855 - add sso recommendation
-- FR-12942 - Fix next-js build with middleware file
-- FR-12291 - msp change text
-
-- FR-12818 - Handle permissions in the security center inner pages and modified the security center main page
-- FR-12859 - Pipeline - fixed lerna version for the set alpha version step in the pipeline
-
-- FR-12828 - entitlements api response change
-- FR-12224 - support custom login for authenticated users without a tenant alias
-- FR-12780 - Entitlements Vanilla JS improvements
-- FR-12539 - security score component
-- FR-12699 - implement mfa inner page for security center
-- FR-12224 - replace admin portal public endpoint
-
-- FR-12701 - revert change settings list
-- FR-12696 - Entitlements load on demand fix
-- FR-12701 - implememt sessions inner page
-
+- FR-12828 - Updated entitlements API response
+- FR-12224 - Supported custom login for authenticated users without a tenant alias
+- FR-12780 - Improved Entitlements Vanilla JS SDK
+- FR-12224 - Updated admin portal public endpoints
 
 ### Angular Wrapper 5.38.0:
-- FR-13038 - fix-angular-tests-with-16-support
-- FR-13038 - fix angular tests in admin box pipeline
-- FR-12555 - support-release-ivy-engine
-- FR-12555 - support-release-ivy-engine
-- FR-12555 - support-angular-16-backward-compatible 
-- FR-12986 - Report angular version
-- FR-12043 - Implement FronteggEntitlementsService for exposing entitlements APIs
+- FR-13038 - Added support for Angular 16
+- FR-12986 - Added support of reporting Angular version header
+- FR-12043 - Implemented FronteggEntitlementsService for exposing entitlements APIs
+  
 # Change Log
 
 ## [5.37.0](https://github.com/frontegg/frontegg-angular/compare/v5.36.0...v5.37.0) (2023-7-24)
