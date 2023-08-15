@@ -7,7 +7,6 @@
 - FR-12828 - Updated entitlements API response
 - FR-12224 - Supported custom login for authenticated users without a tenant alias
 - FR-12780 - Improved Entitlements Vanilla JS SDK
-- FR-12224 - Updated admin portal public endpoints
 
 ### Angular Wrapper 5.38.0:
 - FR-13038 - Added support for Angular 16
