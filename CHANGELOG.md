@@ -1,5 +1,26 @@
 # Change Log
 
+## [5.39.0](https://github.com/frontegg/frontegg-angular/compare/v5.38.0...v5.39.0) (2023-8-28)
+
+- FR-13142 - Support setRootAccountData action for all account feature 
+- FR-12321 - Added max validations to session management fields 
+
+
+- FR-12974 - Fixed the issue with permissions and roles granted from user groups on User context
+- FR-12322 - Change redirect to SSO text
+- FR-12979 - Fixed MFA options save button to be disabled if the user has no security write permission
+- 
+- FR-11857 - Added new support for hosted login to load user on load
+
+
+### Angular Wrapper 5.39.0:
+- FR-13038 - fix-angular-tests-with-16-support
+- FR-13038 - fix angular tests in admin box pipeline
+- FR-12555 - support-release-ivy-engine
+- FR-12555 - support-release-ivy-engine
+- FR-12555 - support-angular-16-backward-compatible 
+# Change Log
+
 ## [5.38.0](https://github.com/frontegg/frontegg-angular/compare/v5.37.0...v5.38.0) (2023-8-14)
 
 # v5.38.0
