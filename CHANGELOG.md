@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.40.0](https://github.com/frontegg/frontegg-angular/compare/v5.39.0...v5.40.0) (2023-9-5)
+
+- Releasing the new Security Center Page, which will replace the current Security Page. Currently exposed on Early Access with limited availability by a feature flag.
+
+
+# Change Log
+
 ## [5.39.0](https://github.com/frontegg/frontegg-angular/compare/v5.38.0...v5.39.0) (2023-8-28)
 
 - FR-13142 - Support setRootAccountData action for all account feature 
