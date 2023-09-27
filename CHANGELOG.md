@@ -1,5 +1,13 @@
 # Change Log
 
+## [6.1.0](https://github.com/frontegg/frontegg-angular/compare/v5.40.0...v6.1.0) (2023-9-27)
+
+- FR-13509 - Added GTM integration
+
+
+### Angular Wrapper 6.1.0:
+- FR-13647 - release major
+
 ## [5.40.0](https://github.com/frontegg/frontegg-angular/compare/v5.39.0...v5.40.0) (2023-9-5)
 
 - Releasing the new Security Center Page, which will replace the current Security Page. Currently exposed on Early Access with limited availability by a feature flag.
