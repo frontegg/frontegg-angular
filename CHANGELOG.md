@@ -1,5 +1,13 @@
 # Change Log
 
+## [6.2.0](https://github.com/frontegg/frontegg-angular/compare/v6.1.0...v6.2.0) (2023-9-28)
+
+null
+
+### Angular Wrapper 6.2.0:
+- FR-13647 - release major
+# Change Log
+
 ## [6.1.0](https://github.com/frontegg/frontegg-angular/compare/v5.40.0...v6.1.0) (2023-9-27)
 
 - Introduction of our new security page in the admin portal replacing the current security page.
