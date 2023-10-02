@@ -1,5 +1,13 @@
 # Change Log
 
+## [6.3.0](https://github.com/frontegg/frontegg-angular/compare/v6.2.0...v6.3.0) (2023-10-2)
+
+- FR-13455 - Fixed impersonation with custom login on embedded initial blank screen
+- FR-13649 - Fixed testimonial quote layout for split signup mode
+
+
+# Change Log
+
 ## [6.2.0](https://github.com/frontegg/frontegg-angular/compare/v6.1.0...v6.2.0) (2023-9-28)
 
 - Revamped the security page in the Admin Portal
