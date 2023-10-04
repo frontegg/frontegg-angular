@@ -5,8 +5,6 @@
 - FR-13364 - Improved validations text for sign in form
 - FR-13737 - Changed breached password page to be shown just for block breached password policy
 - FR-13665 - Enhance hasPermission with inEntitled in admin portal in case entitlements is enabled
-- FR-13665 - Enhance hasPermission with inEntitled in admin portal in case entitlements is enabled
-
 
 
 ## [6.3.0](https://github.com/frontegg/frontegg-angular/compare/v6.2.0...v6.3.0) (2023-10-2)
