@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.5.0](https://github.com/frontegg/frontegg-angular/compare/v6.4.0...v6.5.0) (2023-10-11)
+
+- FR-13798 - Added support for login with SMS
+- FR-13364 - Improved validations text for sign-in form
+- 
+# Change Log
+
 ## [6.4.0](https://github.com/frontegg/frontegg-angular/compare/v6.3.0...v6.4.0) (2023-10-4)
 
 - FR-13364 - Improved validations text for sign in form
