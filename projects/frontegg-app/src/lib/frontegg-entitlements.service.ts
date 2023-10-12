@@ -1,5 +1,5 @@
 import { Subscription, PartialObserver, BehaviorSubject } from 'rxjs';
-import { User, AuthState } from '@frontegg/redux-store';
+import { AuthState } from '@frontegg/redux-store';
 import { Injectable } from '@angular/core';
 import { Entitlement, LoadEntitlementsCallback, EntitledToOptions } from '@frontegg/types';
 
@@ -21,7 +21,7 @@ import { FronteggAppService } from './frontegg-app.service';
   providedIn: 'root',
 })
 export class FronteggEntitlementsService {
-  private entitlementsStateSubject = new BehaviorSubject<User['entitlements']>(undefined);
+  private entitlementsStateSubject = new BehaviorSubject<any>(undefined);
   
   constructor(private fronteggAppService: FronteggAppService) {
     const state = this.fronteggAppService.fronteggApp.store.getState() as FronteggState;
@@ -40,7 +40,7 @@ export class FronteggEntitlementsService {
    * @param authState
    */
   private updateEntitlementsStateIfNeeded(authState: AuthState): void {
-    const entitlementsState = authState.user?.entitlements;
+    const entitlementsState = authState.user?.entitlements as any;
     if (this.entitlementsStateSubject.value === entitlementsState) {
       return;
     }
@@ -56,7 +56,7 @@ export class FronteggEntitlementsService {
    * @returns a subscription to be able to unsubscribe
    */
   private getEntitlementsManipulatorSubscription<Result>(
-    dataManipulator: (entitlements: User['entitlements']) => Result, 
+    dataManipulator: (entitlements: any) => Result, 
     observer: PartialObserver<Result>
   ): Subscription {
     // used for computing the entitlements result because we don't return the state itself, but a calculated one
