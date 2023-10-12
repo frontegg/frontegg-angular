@@ -1,8 +1,7 @@
 import { Subscription, PartialObserver, BehaviorSubject } from 'rxjs';
-import { User, AuthState } from '@frontegg/redux-store';
+import { AuthState } from '@frontegg/redux-store';
 import { Injectable } from '@angular/core';
 import { Entitlement, LoadEntitlementsCallback, EntitledToOptions } from '@frontegg/types';
-import { UserEntitlementsResponse } from '@frontegg/rest-api';
 
 import {
   FronteggState,
