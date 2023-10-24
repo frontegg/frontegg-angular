@@ -1,5 +1,20 @@
 # Change Log
 
+## [6.6.0](https://github.com/frontegg/frontegg-angular/compare/v6.5.0...v6.6.0) (2023-10-24)
+
+- FR-13923 - upgrade rest api no entitlements v2
+
+- FR-13508 - Mobile native module bridge
+- FR-13772 - Fixed issue on edit user roles modal - at least 1 role is required
+- FR-13808 - Support Login with SMS
+- FR-13786 - Support tab per tenant
+
+
+### Angular Wrapper 6.6.0:
+- FR-13894 - Add support for additional params in login with redirect action
+- FR-13820 - Rule based entitlements preparations
+# Change Log
+
 ## [6.5.0](https://github.com/frontegg/frontegg-angular/compare/v6.4.0...v6.5.0) (2023-10-11)
 
 - FR-13798 - Added support for login with SMS
