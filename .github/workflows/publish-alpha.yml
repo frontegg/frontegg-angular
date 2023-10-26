@@ -1,0 +1,91 @@
+name: "(▶) Publish Alpha Version"
+
+on:
+  workflow_dispatch:
+jobs:
+  createAlphaVersion:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node14.17.0-chrome88-ff89
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: "0"
+      - name: Git Identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Dependencies and Build Packages
+        run: |
+          yarn install
+          yarn build
+      - name: Git Identity
+        run: |
+          git config --global user.name 'frontegg'
+          git config --global user.email 'frontegg@users.noreply.github.com'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Authenticate with Registry
+        run: |
+          yarn logout
+          echo "init-author-name=Frontegg LTD" > .npmrc
+          echo "init-author-email=hello@frontegg.com" >> .npmrc
+          echo "init-author-url=https://frontegg.com" >> .npmrc
+          echo "init-license=MIT" >> .npmrc
+          echo "always-auth=true" >> .npmrc
+          echo "registry=https://registry.npmjs.org" >> .npmrc
+          echo "_authToken=$NPM_TOKEN" >> .npmrc
+          echo "@frontegg:registry=https://registry.npmjs.org" >> .npmrc
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+          npm whoami
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      - name: Commit Version UP
+        run: |
+          yarn increment-version
+          yarn update-version
+      - name: "Set Generated changelog"
+        uses: actions/github-script@v6
+        id: 'generated-changelog'
+        with:
+          result-encoding: string
+          script: |
+            const { generateChangeLog } = await import(`${process.env.GITHUB_WORKSPACE}/.github/scripts/index.js`);
+            return generateChangeLog({context, github, core})
+      - name: "Set incremented version"
+        uses: actions/github-script@v6
+        id: 'incremented-version'
+        with:
+          result-encoding: string
+          script: |
+            const {default: fs} = await import('fs');
+            const {version} = JSON.parse(fs.readFileSync('./projects/frontegg-app/package.json', {encoding: "utf-8"}));
+            return version;
+      - name: Publish Pre-Release version to NPM
+        id: publish_pre_release_version
+        run: |
+          version=$(node -p 'require("./projects/frontegg-app/package.json").version')
+          echo "::set-output name=LIB_VERSION::${version}"
+          echo "Publishing Pre-Release version - v${version}-alpha.${{ github.run_id }}"
+          node -p "(function(){var fs = require('fs'); var pkg = JSON.parse(fs.readFileSync('./dist/@frontegg/angular/package.json', {encoding: 'utf8'})); pkg.version = '${version}-alpha.${{ github.run_id }}'; fs.writeFileSync('./dist/@frontegg/angular/package.json', JSON.stringify(pkg, null, 2),  {encoding: 'utf8'})})()"
+          cp .npmrc ./dist/@frontegg/angular/
+          cp .npmignore ./dist/@frontegg/angular/
+          cp ./README.md ./dist/@frontegg/angular/
+          cd ./dist/@frontegg/angular && npm publish --tag next
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name : Notify Slack on alpha version deployment
+        uses : rtCamp/action-slack-notify@v2
+        env :
+          SLACK_CHANNEL : frontegg-alpha-versions
+          SLACK_COLOR : ${{ job.status }}
+          SLACK_ICON : https://avatars.githubusercontent.com/u/67857107?s=40&v=4
+          SLACK_MESSAGE : '${{ steps.publish_pre_release_version.outputs.LIB_VERSION }}-alpha.${{ github.run_id }} has been released :rocket:'
+          SLACK_TITLE : 'A new @frontegg/angular alpha version!'
+          SLACK_USERNAME : ${{ github.actor }}
+          SLACK_WEBHOOK : ${{ secrets.ROTEM_SLACK_WEBHOOK }}
+          MSG_MINIMAL : true
