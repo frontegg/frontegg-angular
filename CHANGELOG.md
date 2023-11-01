@@ -1,5 +1,26 @@
 # Change Log
 
+## [6.7.0](https://github.com/frontegg/frontegg-angular/compare/v6.6.0...v6.7.0) (2023-11-1)
+
+- FR-14000 - Fix time zone
+- FR-13834 - rule based entitlements - upgrade entitlements lib
+- FR-13327 - update modern theme grey palette
+- FR-13834 - Added Rule based entitlements
+
+- FR-13923 - upgrade rest api no entitlements v2
+
+- FR-13508 - Mobile native module bridge
+- FR-13772 - Fixed issue on edit user roles modal - at least 1 role is required
+- FR-13808 - Support Login with SMS
+- FR-13786 - Support tab per tenant
+
+
+### Angular Wrapper 6.7.0:
+- FR-13968 - Allow alpha creation manually
+- FR-13900 - Rule Based Entitlements
+- FR-13894 - Add support for additional params in login with redirect action
+# Change Log
+
 ## [6.6.0](https://github.com/frontegg/frontegg-angular/compare/v6.5.0...v6.6.0) (2023-10-24)
 
 - FR-13772 - Fixed issue on edit user roles modal - at least 1 role is required
