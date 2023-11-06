@@ -1,5 +1,13 @@
 # Change Log
 
+## [6.8.0](https://github.com/frontegg/frontegg-angular/compare/v6.7.0...v6.8.0) (2023-11-6)
+
+- FR-14102 - Fixed entitlements Frontegg user-id attribute usage 
+- FR-13123 - Added support to provide scopes for social logins
+
+
+# Change Log
+
 ## [6.7.0](https://github.com/frontegg/frontegg-angular/compare/v6.6.0...v6.7.0) (2023-11-1)
 
 - FR-13327 - Update modern theme grey palette
