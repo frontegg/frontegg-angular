@@ -5,11 +5,6 @@
 - FR-14102 - Fixed entitlements Frontegg user-id attribute usage 
 - FR-13123 - Added support to provide scopes for social logins
 
-- FR-14000 - Fix time zone
-- FR-13834 - rule based entitlements - upgrade entitlements lib
-- FR-13327 - update modern theme grey palette
-- FR-13834 - Added Rule based entitlements
-
 
 # Change Log
 
