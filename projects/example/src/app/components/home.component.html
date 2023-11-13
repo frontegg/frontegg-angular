@@ -11,7 +11,8 @@
     <br />
     <br />
     <p>Authenticated: {{authenticated}}</p>
-    <p>Authenticated as: {{user?.name}}</p>
+    <p>Authenticated as: {{user?.email}}</p>
+
     <a routerLink="/account/login"><b>Login</b></a> ---
     <span (click)="doLogout()"><b>Logout</b></span> ---
     <a routerLink="/test-private-route"><b>private-route</b></a>

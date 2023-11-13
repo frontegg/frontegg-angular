@@ -3,14 +3,14 @@
   "private": true,
   "version": "4.0.0",
   "scripts": {
-    "start": "ng serve",
+    "start": "npx ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint"
   },
   "peerDependencies": {
-    "@angular/common": "^12.0.5",
-    "@angular/core": "^12.0.5"
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0"
   },
   "dependencies": {
     "tslib": "^2.5.0"

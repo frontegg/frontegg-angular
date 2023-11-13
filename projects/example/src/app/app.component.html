@@ -1,5 +1,35 @@
 <div *ngIf="!isLoading">
-    <router-outlet></router-outlet>
-    <div *authorizedContent="['Admin']">Authorized content section for Admin's (example)</div>
+  <router-outlet></router-outlet>
+  <!-- <div *authorizedContent="['Admin']">Authorized content section for Admin's (example)</div> -->
 
+  <div *ngIf="!authenticated">
+    <button (click)="loginWithRedirect()">Login with redirect</button>
+    <!-- <button (click)="logOut()">Log out</button> -->
+  </div>
+
+  <section *ngIf="authenticated">
+    <div class="outer-container">
+      <div class="boxes-container">
+        <span *ngFor="let ent of entitlementsResults | keyvalue">
+          <div *ngIf="ent.value.isEntitled" class="truthy">
+            <span [innerHTML]="ent.value.name"></span>
+          </div>
+          
+          <div *ngIf="!ent?.value?.isEntitled" class="falsy">
+            <span [innerHTML]="ent.value.name"></span>
+            <br/><br/>
+            <i>{{ent?.value?.justification?.toString()}}</i>
+          </div>
+        </span>
+      </div>
+
+      <div class="entitlements-button-container">
+        <button (click)="onLoadEntitlementsClicked()">Load entitlements</button>
+      </div>
+
+      <div class="entitlements-button-container">
+        <button (click)="onLoadEntitlementsWithCallbackClicked()">Load entitlements with callback</button>
+      </div>
+    </div>
+  </section>
 </div>

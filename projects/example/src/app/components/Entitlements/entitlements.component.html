@@ -1,0 +1,106 @@
+<div *ngIf="!isLoading">
+  <router-outlet></router-outlet>
+  <!-- <div *authorizedContent="['Admin']">Authorized content section for Admin's (example)</div> -->
+
+  <div *ngIf="!authenticated">
+    <button (click)="loginWithRedirect()">Login with redirect</button>
+    <button (click)="logOut()">Log out</button>
+  </div>
+  
+  <section *ngIf="authenticated">
+    <div class="outer-container">
+      <div class="boxes-container">
+        <span *ngFor="let ent of entitlementsResults | keyvalue">
+          <div *ngIf="ent.value.isEntitled" class="truthy">
+            {{ ent.value.name }}
+          </div>
+          
+          <div *ngIf="!ent.value.isEntitled" class="falsy">
+            {{ ent.value.name }}
+            <br/><br/>
+            <i>{{ent.value.justification?.toString()}}</i>
+          </div>
+        </span>
+      </div>
+
+      <div class="entitlements-button-container">
+        <button (click)="onLoadEntitlementsClicked()">Load entitlements</button>
+      </div>
+
+      <div class="entitlements-button-container">
+        <button (click)="onLoadEntitlementsWithCallbackClicked()">Load entitlements with callback</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+.truthy {
+  display: inline-block;
+  word-wrap: break-word;
+  border: 1px dotted black;
+  height: 100px;
+  width: 355px;
+  background-color: lightgreen;
+  margin: 10px;
+  padding: 5px;
+
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  @keyframes fadeInAnimation {
+      0% {
+          opacity: 0;
+      }
+      100% {
+          opacity: 1;
+      }
+  }
+}
+
+.falsy {
+  display: inline-block;
+  word-wrap: break-word;
+  border: 1px dotted black;
+  height: 100px;
+  width: 355px;
+  background-color: pink;
+  margin: 10px;
+  padding: 5px;
+
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  @keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+}
+
+.outer-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.boxes-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.entitlements-button-container {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 0.5em;
+}
