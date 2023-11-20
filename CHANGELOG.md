@@ -1,5 +1,17 @@
 # Change Log
 
+## [6.9.0](https://github.com/frontegg/frontegg-angular/compare/v6.8.0...v6.9.0) (2023-11-20)
+
+- FR-14201 - Fixed login with SMS resend code action
+
+
+- FR-13913 - Let tenants&#x2F;users set expiry on client credentials API tokens
+- FR-14099 - Fix load custom login routes only when necessary
+- FR-13605 - Support adding phone number field to signup page and control his required state
+
+
+# Change Log
+
 ## [6.8.0](https://github.com/frontegg/frontegg-angular/compare/v6.7.0...v6.8.0) (2023-11-6)
 
 - FR-14102 - Fixed entitlements Frontegg user-id attribute usage 
