@@ -43,7 +43,6 @@ export class FronteggAuthGuard extends FronteggBaseGuard {
       } else {
         return this.router.navigateByUrl(this.fronteggAppService.authRoutes.loginUrl + '?redirectUrl=' + encodeURIComponent(redirectUrl));
       }
-      return false; // prevent navigation
     }
     return true; // activate navigation
   }
