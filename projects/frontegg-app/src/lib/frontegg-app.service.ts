@@ -1,10 +1,10 @@
 import { Injectable, NgZone, Inject } from '@angular/core';
 import { Route, Router, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { FronteggApp, initialize } from '@frontegg/js';
-import { AuthPageRoutes,FronteggState, isAuthRoute } from '@frontegg/redux-store';
+import { AuthPageRoutes, FronteggState, isAuthRoute } from '@frontegg/redux-store';
 import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ContextHolder, RedirectOptions, FronteggFrameworks } from '@frontegg/rest-api';
+import { ContextHolder, RedirectOptions, FronteggFrameworks, MetadataHeaders } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
 import sdkVersion from '../sdkVersion';
 import angularCoreVersion from '@angular/core/package.json';
@@ -97,13 +97,29 @@ export class FronteggAppService {
       }
     };
 
-    const { contextOptions } = this.config ?? {};
-    contextOptions.metadataHeaders = {
+
+    const metadataHeaders: MetadataHeaders = {
       fronteggSdkVersion: `@frontegg/angular@${sdkVersion.version}`,
-      //TODO: remove this ts-ignore after updating rest-api context options type to accept string.
-      //@ts-ignore
+      // TODO: remove this any type after updating rest-api context options type to accept string.
+      // @ts-ignore
       framework: `${FronteggFrameworks.Angular}@${angularCoreVersion.version}`,
-    }
+    };
+
+    // prepare config default values
+    this.config = {
+      ...this.config,
+      contextOptions: {
+        ...this.config.contextOptions,
+        metadataHeaders,
+      },
+      authOptions: {
+        ...this.config.authOptions,
+        hostedLoginOptions: {
+          loadUserOnFirstLoad: true, // set default to load user on first load
+          ...this.config.authOptions?.hostedLoginOptions,
+        },
+      },
+    };
 
     ContextHolder.setOnRedirectTo(onRedirectTo);
     this.fronteggApp = initialize({
