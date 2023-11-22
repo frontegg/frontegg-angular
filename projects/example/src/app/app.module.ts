@@ -32,7 +32,6 @@ import { CheckoutDialogModule } from './checkout-dialog/checkout-dialog.module';
     ),
     CheckoutDialogModule,
   ],
-  entryComponents: [ FronteggComponent ],
   bootstrap: [ AppComponent ],
 })
 export class AppModule {

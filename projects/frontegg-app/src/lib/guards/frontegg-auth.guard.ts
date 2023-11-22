@@ -3,8 +3,8 @@ import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/ro
 import { Observable } from 'rxjs';
 import { FronteggBaseGuard } from './frontegg-base-guard';
 import { FronteggAppService } from '../frontegg-app.service';
-import { take } from 'rxjs/operators';
 import { FronteggAuthService } from '../frontegg-auth.service';
+import { runNgZoneIfNeeded } from '../frontegg.utils';
 
 @Injectable()
 export class FronteggAuthGuard extends FronteggBaseGuard {
@@ -14,33 +14,57 @@ export class FronteggAuthGuard extends FronteggBaseGuard {
     super();
   }
 
-  async navigateToUrl(redirectUrl: string): Promise<boolean> {
-    if (this.fronteggAppService.fronteggApp.options.hostedLoginBox) {
-      localStorage.setItem('FRONTEGG_AFTER_AUTH_REDIRECT_URL', redirectUrl);
-      this.fronteggAuthService.loginWithRedirect();
-      return false;
-    } else {
-      return this.router.navigateByUrl(this.fronteggAppService.authRoutes.loginUrl + '?redirectUrl=' + encodeURIComponent(redirectUrl));
+
+  /**
+   * Wait for loader to finish
+   * @private
+   */
+  private waitForLoader(): Promise<boolean> {
+    return new Promise((resolve) => {
+      const subscription = this.fronteggAppService.isLoading$.subscribe((isLoading) => {
+        if (!isLoading) {
+          resolve(true);
+          subscription.unsubscribe();
+        }
+      });
+    });
+  }
+
+  /**
+   * Navigate to login page if user is not authenticated
+   * @private
+   */
+  private async navigateToLoginIfNeeded(redirectUrl: string): Promise<boolean> {
+    const { isAuthenticated } = this.fronteggAuthService.getAuthState();
+    if (!isAuthenticated) {
+      if (this.fronteggAppService.fronteggApp.options.hostedLoginBox) {
+        localStorage.setItem('FRONTEGG_AFTER_AUTH_REDIRECT_URL', redirectUrl);
+        this.fronteggAuthService.loginWithRedirect({ prompt: 'login' });
+        return false;
+      } else {
+        return this.router.navigateByUrl(this.fronteggAppService.authRoutes.loginUrl + '?redirectUrl=' + encodeURIComponent(redirectUrl));
+      }
     }
+    return true; // activate navigation
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const redirectUrl = state.url;
-    return new Promise<boolean>((resolve, reject) => {
-      const subscription = this.fronteggAppService.isAuthenticated$.pipe(take(1)).subscribe((isAuthenticated: boolean) => {
-        if (isAuthenticated) {
-          resolve(true);
-        } else {
-          if (NgZone.isInAngularZone()) {
-            this.navigateToUrl(redirectUrl).then(resolve, reject);
-          } else {
-            this.ngZone.run(() => {
-              this.navigateToUrl(redirectUrl).then(resolve, reject);
-            });
-          }
-        }
+    const { isLoading } = this.fronteggAuthService.getAuthState();
+
+    if (!isLoading) {
+      // if showLoader false
+      // check if user is authenticated
+      return this.navigateToLoginIfNeeded(redirectUrl);
+    }
+
+    // wait for loader to finish and then check if user is authenticated
+    return new Promise<boolean>(async (resolve, reject) => {
+      await this.waitForLoader();
+
+      runNgZoneIfNeeded(this.ngZone, () => {
+        this.navigateToLoginIfNeeded(redirectUrl).then(resolve).catch(reject);
       });
-      subscription.unsubscribe();
     });
   }
 }

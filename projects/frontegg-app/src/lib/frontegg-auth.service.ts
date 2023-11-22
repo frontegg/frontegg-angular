@@ -128,6 +128,10 @@ export class FronteggAuthService {
   private ssoACSSubject = new BehaviorSubject<AuthState['ssoACS']>('');
 
 
+  getAuthState(): AuthState {
+    return this.fronteggAppService.fronteggApp.store.getState().auth;
+  }
+
   get authState$(): Observable<AuthState> {
     return this.authStateSubject.asObservable();
   }
@@ -298,11 +302,12 @@ export class FronteggAuthService {
   setLoginState = (state: Partial<LoginState>) => this.dispatchAction('setLoginState', state);
   resetLoginState = () => this.dispatchAction('resetLoginState');
   requestAuthorize = (firstTime?: boolean) => this.dispatchAction('requestAuthorize', firstTime);
-  loginWithRedirect = (params?: Record<string, string>) => {
+
+  loginWithRedirect = (params?: Record<string, string>, shouldRedirectToLogin: boolean = true, firstTime: boolean = false) => {
     if (this.isHostedLoginCallbackRoute()) {
       return;
     }
-    this.dispatchAction('requestHostedLoginAuthorize', params);
+    this.dispatchAction('requestHostedLoginAuthorizeV2', { additionalParams: params, shouldRedirectToLogin, firstTime });
     this.setState({ isLoading: true });
   };
   preLogin = (payload: IPreLogin) => this.dispatchAction('preLogin', payload);
