@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { FronteggBaseGuard } from './frontegg-base-guard';
 import { FronteggAppService } from '../frontegg-app.service';
 import { FronteggAuthService } from '../frontegg-auth.service';
+import { runNgZoneIfNeeded } from '../frontegg.utils';
 
 @Injectable()
 export class FronteggAuthGuard extends FronteggBaseGuard {
@@ -61,13 +62,9 @@ export class FronteggAuthGuard extends FronteggBaseGuard {
     return new Promise<boolean>(async (resolve, reject) => {
       await this.waitForLoader();
 
-      if (NgZone.isInAngularZone()) {
+      runNgZoneIfNeeded(this.ngZone, () => {
         this.navigateToLoginIfNeeded(redirectUrl).then(resolve).catch(reject);
-      } else {
-        this.ngZone.run(() => {
-          this.navigateToLoginIfNeeded(redirectUrl).then(resolve).catch(reject);
-        });
-      }
+      });
     });
   }
 }

@@ -118,6 +118,7 @@ export class FronteggAppService {
           loadUserOnFirstLoad: true, // set default to load user on first load
           ...this.config.authOptions?.hostedLoginOptions,
         },
+        onRedirectTo,
       },
     };
 

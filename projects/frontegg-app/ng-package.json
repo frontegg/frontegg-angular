@@ -3,6 +3,8 @@
   "allowedNonPeerDependencies": [
     "@frontegg/js",
     "@frontegg/redux-store",
+    "@frontegg/entitlements-javascript-commons",
+    "@babel/runtime/regenerator",
     "fast-deep-equal",
     "csstype",
     "stream"
@@ -14,7 +16,9 @@
       "@frontegg/js": "FronteggJS",
       "@frontegg/redux-store": "FronteggReduxStore",
       "@frontegg/rest-api": "FronteggRestApi",
-      "fast-deep-equal": "FastDeepEqual"
+      "fast-deep-equal": "FastDeepEqual",
+      "@frontegg/entitlements-javascript-commons": "FronteggEntitlementsJavascriptCommons",
+      "@babel/runtime/regenerator": "BabelRuntimeRegenerator"
     }
   }
 }

@@ -303,11 +303,11 @@ export class FronteggAuthService {
   resetLoginState = () => this.dispatchAction('resetLoginState');
   requestAuthorize = (firstTime?: boolean) => this.dispatchAction('requestAuthorize', firstTime);
 
-  loginWithRedirect = (params?: Record<string, string>) => {
+  loginWithRedirect = (params?: Record<string, string>, shouldRedirectToLogin: boolean = true, firstTime: boolean = false) => {
     if (this.isHostedLoginCallbackRoute()) {
       return;
     }
-    this.dispatchAction('requestHostedLoginAuthorizeV2', { additionalParams: params });
+    this.dispatchAction('requestHostedLoginAuthorizeV2', { additionalParams: params, shouldRedirectToLogin, firstTime });
     this.setState({ isLoading: true });
   };
   preLogin = (payload: IPreLogin) => this.dispatchAction('preLogin', payload);
