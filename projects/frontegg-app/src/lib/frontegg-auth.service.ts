@@ -307,7 +307,7 @@ export class FronteggAuthService {
     if (this.isHostedLoginCallbackRoute()) {
       return;
     }
-    this.dispatchAction('requestHostedLoginAuthorizeV2', params);
+    this.dispatchAction('requestHostedLoginAuthorizeV2', { additionalParams: params });
     this.setState({ isLoading: true });
   };
   preLogin = (payload: IPreLogin) => this.dispatchAction('preLogin', payload);
