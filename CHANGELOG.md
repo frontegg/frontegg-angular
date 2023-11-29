@@ -1,5 +1,14 @@
 # Change Log
 
+## [6.10.0](https://github.com/frontegg/frontegg-angular/compare/v6.9.0...v6.10.0) (2023-11-29)
+
+- FR-13527 - Added a11y support for admin portal pages: sso, security, profile, personal tokens, users, groups, provisioning, audit logs, api tokens, webhooks, account details.
+- FR-14324 - Fixed Hosted login race condition in Angular and supported prompt login with silent refresh
+
+
+### Angular Wrapper 6.10.0:
+- FR-14324 - Fix HostedLogin with Auth Guard
+
 ## [6.9.0](https://github.com/frontegg/frontegg-angular/compare/v6.8.0...v6.9.0) (2023-11-20)
 
 - FR-14201 - Fixed login with SMS resend code action
