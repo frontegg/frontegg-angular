@@ -2,12 +2,13 @@
 
 ## [6.10.0](https://github.com/frontegg/frontegg-angular/compare/v6.9.0...v6.10.0) (2023-11-29)
 
-- FR-13527 - Added a11y support for admin portal pages: sso, security, profile, personal tokens, users, groups, provisioning, audit logs, api tokens, webhooks, account details.
-- FR-14324 - Fixed Hosted login race condition in Angular and supported prompt login with silent refresh
+# v6.10.0
 
+- FR-13527 - Added a11y support for admin portal pages: SSO, security, profile, personal tokens, users, groups, provisioning, audit logs, API tokens, webhooks, and account details.
+- FR-14324 - Fixed Hosted login race condition in Angular and supported prompt login with a silent refresh.
 
 ### Angular Wrapper 6.10.0:
-- FR-14324 - Fix HostedLogin with Auth Guard
+- FR-14324 - Fixed Auth Guard support for hosted Login.
 
 ## [6.9.0](https://github.com/frontegg/frontegg-angular/compare/v6.8.0...v6.9.0) (2023-11-20)
 
