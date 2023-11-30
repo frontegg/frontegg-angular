@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FronteggAppOptions } from '@frontegg/types';
@@ -19,18 +19,20 @@ export class FronteggAppModule {
   static forRoot(config: FronteggAppOptions): ModuleWithProviders<FronteggAppModule> {
     return {
       ngModule: FronteggAppModule,
-      providers: [
-        FronteggAppService,
-        FronteggAuthGuard,
-        FronteggLoadGuard,
-        FronteggAuthService,
-        FronteggEntitlementsService,
-        FronteggSubscriptionService,
-        {
-          provide: FronteggAppOptionsClass,
-          useValue: config,
-        },
-      ],
+      providers: provideFrontegg(config)
     };
   }
 }
+
+export const provideFrontegg = (config: FronteggAppOptions): Provider[] => [
+  FronteggAppService,
+  FronteggAuthGuard,
+  FronteggLoadGuard,
+  FronteggAuthService,
+  FronteggEntitlementsService,
+  FronteggSubscriptionService,
+  {
+    provide: FronteggAppOptionsClass,
+    useValue: config,
+  }
+]
