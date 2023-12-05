@@ -8,6 +8,7 @@ import { ContextHolder, RedirectOptions, FronteggFrameworks, MetadataHeaders } f
 import { FronteggComponent } from './frontegg.component';
 import sdkVersion from '../sdkVersion';
 import angularCoreVersion from '@angular/core/package.json';
+import { mapObservablesToSignals } from './v16';
 
 export class FronteggAppOptionsClass implements FronteggAppOptions {
   contextOptions: FronteggAppOptions['contextOptions'] = {
@@ -65,6 +66,10 @@ export class FronteggAppService {
   get isAuthenticated$(): Observable<boolean> {
     return this.isAuthenticatedSubject.asObservable();
   };
+
+  get signals() {
+    return mapObservablesToSignals(this);
+  }
 
   constructor(@Inject(FronteggAppOptionsClass) private config: FronteggAppOptions, public router: Router, private ngZone: NgZone) {
     if (!this.config) {
@@ -134,8 +139,8 @@ export class FronteggAppService {
       ...this.mapAuthComponents,
       {
         path: '',
-        canActivate: [ FronteggLoadGuard ],
-        children: [ ...this.router.config ],
+        canActivate: [FronteggLoadGuard],
+        children: [...this.router.config],
       },
     ]);
     const initialFronteggState = this.fronteggApp.store.getState() as FronteggState;
