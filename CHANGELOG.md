@@ -1,5 +1,18 @@
 # Change Log
 
+## [6.11.0](https://github.com/frontegg/frontegg-angular/compare/v6.10.0...v6.11.0) (2023-12-12)
+
+- FR-14324 - Fix android native module and add option for direct social login
+
+- FR-14287 - Fix grammar of 1 day expiry of api tokens
+
+
+- FR-14308 - Fixed alignment issue with icon in custom social login button
+
+- FR-13527 - Added a11y support for admin portal pages: sso, security, profile, personal tokens, users, groups, provisioning, audit logs, api tokens, webhooks, account details.
+
+# Change Log
+
 ## [6.10.0](https://github.com/frontegg/frontegg-angular/compare/v6.9.0...v6.10.0) (2023-11-29)
 
 # v6.10.0
