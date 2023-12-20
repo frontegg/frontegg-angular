@@ -1,5 +1,14 @@
 # Change Log
 
+## [6.13.0](https://github.com/frontegg/frontegg-angular/compare/v6.12.0...v6.13.0) (2023-12-20)
+
+- FR-14324 - Fix direct login custom social login
+
+
+### Angular Wrapper 6.13.0:
+- FR-14324 - Fix default values for loginWithRedirect
+- FR-14342 - Add loginDirectAction to loginWithRedirect options
+
 ## [6.12.0](https://github.com/frontegg/frontegg-angular/compare/v6.11.0...v6.12.0) (2023-12-17)
 
 - FR-10692 - Remove the ability to select a full category on webhooks page
