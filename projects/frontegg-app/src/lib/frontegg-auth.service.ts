@@ -86,6 +86,7 @@ import {
 import type { FronteggState, ActivateAccountState, SocialLoginState } from '@frontegg/redux-store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoginDirectAction } from '@frontegg/redux-store/auth/LoginState/interfaces';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>;
@@ -303,11 +304,14 @@ export class FronteggAuthService {
   resetLoginState = () => this.dispatchAction('resetLoginState');
   requestAuthorize = (firstTime?: boolean) => this.dispatchAction('requestAuthorize', firstTime);
 
-  loginWithRedirect = (params?: Record<string, string>, shouldRedirectToLogin: boolean = true, firstTime: boolean = false) => {
+  loginWithRedirect = (params?: Record<string, string>,
+                       shouldRedirectToLogin: boolean = true,
+                       firstTime: boolean = false,
+                       loginDirectAction?: LoginDirectAction) => {
     if (this.isHostedLoginCallbackRoute()) {
       return;
     }
-    this.dispatchAction('requestHostedLoginAuthorizeV2', { additionalParams: params, shouldRedirectToLogin, firstTime });
+    this.dispatchAction('requestHostedLoginAuthorizeV2', { additionalParams: params, shouldRedirectToLogin, firstTime, loginDirectAction });
     this.setState({ isLoading: true });
   };
   preLogin = (payload: IPreLogin) => this.dispatchAction('preLogin', payload);
