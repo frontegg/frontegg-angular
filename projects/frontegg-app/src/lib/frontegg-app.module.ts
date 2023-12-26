@@ -9,6 +9,7 @@ import { FronteggAuthService } from './frontegg-auth.service';
 import { AuthorizedContentDirective } from './directives/authorized-content.directive';
 import { FronteggSubscriptionService } from './frontegg-subscription.services';
 import { FronteggEntitlementsService } from './frontegg-entitlements.service';
+import { FronteggUserSubscriptionService } from './frontegg-user-subscription.service';
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -26,6 +27,7 @@ export class FronteggAppModule {
         FronteggAuthService,
         FronteggEntitlementsService,
         FronteggSubscriptionService,
+        FronteggUserSubscriptionService,
         {
           provide: FronteggAppOptionsClass,
           useValue: config,

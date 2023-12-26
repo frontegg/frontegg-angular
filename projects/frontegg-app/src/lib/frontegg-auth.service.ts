@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, PartialObserver, Subscription } from 'rxjs';
 import { FronteggAppService } from './frontegg-app.service';
 import FastDeepEqual from 'fast-deep-equal';
 import {
@@ -44,6 +44,8 @@ import {
   authStoreName,
   LoginState,
   ActivateAccountStrategyState,
+  IsSteppedUpOptions,
+  StepUpOptions,
 } from '@frontegg/redux-store';
 import {
   ILogin,
@@ -87,6 +89,7 @@ import type { FronteggState, ActivateAccountState, SocialLoginState } from '@fro
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginDirectAction } from '@frontegg/redux-store/auth/LoginState/interfaces';
+import { FronteggUserSubscriptionService } from './frontegg-user-subscription.service';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>;
@@ -230,7 +233,11 @@ export class FronteggAuthService {
     return this.ssoACSSubject.asObservable();
   }
 
-  constructor(private fronteggAppService: FronteggAppService, private router: Router) {
+  constructor(
+    private fronteggAppService: FronteggAppService,
+    private router: Router,
+    private fronteggUserSubscriptionService: FronteggUserSubscriptionService
+  ) {
     const authSubStates: AuthSubStates[] = [
       { field: 'acceptInvitationState', subject: this.acceptInvitationStateSubject },
       { field: 'accountSettingsState', subject: this.accountSettingsStateSubject },
@@ -292,6 +299,23 @@ export class FronteggAuthService {
     const hostedLoginRedirectUrl = this.fronteggAppService.authRoutes.hostedLoginRedirectUrl;
     return path.startsWith(hostedLoginRedirectUrl ?? '/oauth/callback');
   }
+
+  /**
+   * @param options.maxAge optional max age
+   * @returns A subscription for step up state - true when user is stepped up, false otherwise
+   */
+  public isSteppedUp$(observer: PartialObserver<boolean>, options?: IsSteppedUpOptions): Subscription {
+    return this.fronteggUserSubscriptionService.getUserManipulatorSubscription<boolean>(
+      () => { return this.fronteggAppService.fronteggApp.isSteppedUp(options)},
+      observer
+    );
+  }
+
+  /**
+   * Triggers step up flow
+   * @param options.maxAge optional max age
+   */
+  stepUp = (options?: StepUpOptions) => this.fronteggAppService.fronteggApp.stepUp(options);
 
 
   // Root Actions
