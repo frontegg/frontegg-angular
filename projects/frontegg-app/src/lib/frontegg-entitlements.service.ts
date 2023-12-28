@@ -71,10 +71,7 @@ export class FronteggEntitlementsService {
           return this.fronteggAppService.fronteggApp.getEntitlements(options, customAttributes);
         }
 
-        let justification = NotEntitledJustification.MISSING_PERMISSION;
-        if ('featureKey' in options) {
-          justification = NotEntitledJustification.MISSING_FEATURE;
-        }
+        const justification = 'featureKey' in options ? NotEntitledJustification.MISSING_FEATURE : NotEntitledJustification.MISSING_PERMISSION;
 
         return { isEntitled: false, justification };
       },

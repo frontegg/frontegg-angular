@@ -315,7 +315,7 @@ export class FronteggAuthService {
    * Triggers step up flow
    * @param options.maxAge optional max age
    */
-  stepUp = (options?: StepUpOptions) => this.fronteggAppService.fronteggApp.stepUp(options);
+  public stepUp = (options?: StepUpOptions) => this.fronteggAppService.fronteggApp.stepUp(options);
 
 
   // Root Actions
