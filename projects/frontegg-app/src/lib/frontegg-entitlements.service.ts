@@ -1,12 +1,9 @@
-import { Subscription, PartialObserver, BehaviorSubject } from 'rxjs';
-import { AuthState } from '@frontegg/redux-store';
+import { Subscription, PartialObserver } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Entitlement, LoadEntitlementsCallback, EntitledToOptions, CustomAttributes } from '@frontegg/types';
-
-import { FronteggState } from '@frontegg/redux-store';
+import { Entitlement, CustomAttributes, EntitledToOptions, LoadEntitlementsCallback } from '@frontegg/types';
+import { NotEntitledJustification } from '@frontegg/rest-api';
 import { FronteggAppService } from './frontegg-app.service';
-
-type User = FronteggState['auth']['user'];
+import { FronteggUserSubscriptionService, User } from './frontegg-user-subscription.service';
 
 /**
  * An entitlements service for: 
@@ -18,64 +15,7 @@ type User = FronteggState['auth']['user'];
   providedIn: 'root',
 })
 export class FronteggEntitlementsService {
-  private userStateSubject = new BehaviorSubject<any>(undefined);
-  
-  constructor(private fronteggAppService: FronteggAppService) {
-    const state = this.fronteggAppService.fronteggApp.store.getState() as FronteggState;
-    this.updateUserStateIfNeeded(state.auth);
-
-    // Memoized entitlements State
-    this.fronteggAppService.fronteggApp.store.subscribe(() => {
-      const newState = this.fronteggAppService.fronteggApp.store.getState() as FronteggState;
-      this.updateUserStateIfNeeded(newState.auth);
-    });
-  }
-
-  /**
-   * Trigger entitlements subject change event if the entitlements reference changes
-   * No need for deep equal because we already check it internally
-   * @param authState
-   */
-  private updateUserStateIfNeeded(authState: AuthState): void {
-    const entitlementsState = authState.user as User;
-    if (this.userStateSubject.value === entitlementsState) {
-      return;
-    }
-
-    this.userStateSubject.next(entitlementsState);
-  }
-
-  /**
-   * The function gives the ability to return a manipulated data of the user state as a subscription.
-   *
-   * @param dataManipulator Manipulator function that receives user state and returns a manipulated data
-   * @param observer For receiving manipulated data result
-   * @returns a subscription to be able to unsubscribe
-   */
-  private getUserManipulatorSubscription<Result>(
-    dataManipulator: (user: User) => Result, 
-    observer: PartialObserver<Result>
-  ): Subscription {
-    // used for computing the entitlements result because we don't return the state itself, but a calculated one
-    const userSubject = new BehaviorSubject<Result>(undefined as unknown as Result);
-    
-    const stateSubscription = this.userStateSubject.subscribe(user => {
-      userSubject.next(dataManipulator(user));
-    });
-    
-    // subscribing the consumer observer
-    const userResultSubscription = userSubject.asObservable().subscribe(observer)
-
-    // monkey patched to manage both un-subscriptions: state and user manipulated result
-    const originalUnsubscribe = userResultSubscription.unsubscribe.bind(userResultSubscription);
-
-    userResultSubscription.unsubscribe = ()=>{
-      originalUnsubscribe();
-      stateSubscription.unsubscribe();
-    };
-
-    return userResultSubscription;
-  }
+  constructor(private fronteggAppService: FronteggAppService, private fronteggUserSubscriptionService: FronteggUserSubscriptionService) {}
 
   /**
    * @param feature
@@ -86,8 +26,14 @@ export class FronteggEntitlementsService {
    * @throws when entitlement is not enabled via frontegg options
    */
   public featureEntitlements$(feature: string, observer: PartialObserver<Entitlement>, customAttributes?: CustomAttributes): Subscription {
-    return this.getUserManipulatorSubscription<Entitlement>(
-      () => { return this.fronteggAppService.fronteggApp.getFeatureEntitlements(feature, customAttributes)},
+    return this.fronteggUserSubscriptionService.getUserManipulatorSubscription<Entitlement>(
+      (user: User) => { 
+        // the entitlemenets-common npm doesn't know to overcome the case of signed out user, then we get console errors 
+        if (user) {
+          return this.fronteggAppService.fronteggApp.getFeatureEntitlements(feature, customAttributes);
+        }
+        return { isEntitled: false, justification: NotEntitledJustification.MISSING_FEATURE };
+      },
       observer
     );
   }
@@ -100,8 +46,13 @@ export class FronteggEntitlementsService {
    * @returns a subscription to be able to unsubscribe
    */
   public permissionEntitlements$(permission: string, observer: PartialObserver<Entitlement>, customAttributes?: CustomAttributes): Subscription {
-    return this.getUserManipulatorSubscription<Entitlement>(
-      () => this.fronteggAppService.fronteggApp.getPermissionEntitlements(permission, customAttributes),
+    return this.fronteggUserSubscriptionService.getUserManipulatorSubscription<Entitlement>(
+      (user: User) => { 
+        if (user) {
+          return this.fronteggAppService.fronteggApp.getPermissionEntitlements(permission, customAttributes);
+        }
+        return { isEntitled: false, justification: NotEntitledJustification.MISSING_PERMISSION };
+      },      
       observer
     );
   }
@@ -114,8 +65,16 @@ export class FronteggEntitlementsService {
    * @returns a subscription to be able to unsubscribe
    */
   public entitlements$(options: EntitledToOptions, observer: PartialObserver<Entitlement>, customAttributes?: CustomAttributes): Subscription {
-    return this.getUserManipulatorSubscription<Entitlement>(
-      () => this.fronteggAppService.fronteggApp.getEntitlements(options, customAttributes),
+    return this.fronteggUserSubscriptionService.getUserManipulatorSubscription<Entitlement>(
+      (user: User) => {
+        if (user) {
+          return this.fronteggAppService.fronteggApp.getEntitlements(options, customAttributes);
+        }
+
+        const justification = 'featureKey' in options ? NotEntitledJustification.MISSING_FEATURE : NotEntitledJustification.MISSING_PERMISSION;
+
+        return { isEntitled: false, justification };
+      },
       observer
     );
   }
