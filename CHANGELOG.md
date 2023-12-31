@@ -1,5 +1,24 @@
 # Change Log
 
+## [6.14.0](https://github.com/frontegg/frontegg-angular/compare/v6.13.0...v6.14.0) (2023-12-31)
+
+- FR-14228 - Added Step Up feature to allow a second layer of authentication for sensitive actions
+
+- FR-14578 - Fixed custom login without tenant alias
+- FR-14638 - Missing exp on user interface
+- FR-14560 - added temporary users feature
+
+
+- FR-14644 - Fixed enroll authenticator app missing error message when code is wrong
+
+
+- FR-14219 - Step up - Embedded flow
+
+### Angular Wrapper 6.14.0:
+- [FR-14227] - Step up implementation and entitlements console error when logged out
+- FR-14324 - Fix default values for loginWithRedirect
+- FR-14342 - Add loginDirectAction to loginWithRedirect options
+
 ## [6.13.0](https://github.com/frontegg/frontegg-angular/compare/v6.12.0...v6.13.0) (2023-12-20)
 
 - FR-14324 - Fix direct login custom social login
