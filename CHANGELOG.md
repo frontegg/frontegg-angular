@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.15.0](https://github.com/frontegg/frontegg-angular/compare/v6.14.0...v6.15.0) (2024-1-3)
+
+- FR-14753 - Fixed step up key removing when user doesn&#39;t finish step up flow
+
+
+
 ## [6.14.0](https://github.com/frontegg/frontegg-angular/compare/v6.13.0...v6.14.0) (2023-12-31)
 
 - FR-14228 - Added Step Up feature to allow a second layer of authentication for sensitive actions
