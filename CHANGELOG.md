@@ -2,7 +2,7 @@
 
 ## [6.15.0](https://github.com/frontegg/frontegg-angular/compare/v6.14.0...v6.15.0) (2024-1-3)
 
-- FR-14753 - Fixed step up key removing when user doesn&#39;t finish step up flow
+- FR-14753 - Fixed step up key removing when user does not finish step up flow
 
 
 
