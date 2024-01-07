@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.16.0](https://github.com/frontegg/frontegg-angular/compare/v6.15.0...v6.16.0) (2024-1-7)
+
+- FR-14807 - Fixed step up double call to generate step up session
+
+
+# Change Log
+
 ## [6.15.0](https://github.com/frontegg/frontegg-angular/compare/v6.14.0...v6.15.0) (2024-1-3)
 
 - FR-14753 - Fixed step up key removing when user does not finish step up flow
