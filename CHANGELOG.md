@@ -1,5 +1,17 @@
 # Change Log
 
+## [6.17.0](https://github.com/frontegg/frontegg-angular/compare/v6.16.0...v6.17.0) (2024-1-28)
+
+- FR-14910 - Fixed handling entitlements errors 
+- FR-14740 - Send tenant alias for hosted custom login auth user
+- FR-14197 - Added Canada to MFA SMS list of countries
+- FR-14859 - Fixed roles filtering for MSP
+- FR-14855 - Added support for social login consent, by default it is false.
+- FR-14813 - Added support for open app page with basename
+- FR-14813 - Added support for mobile deep link redirect page
+
+
+
 ## [6.16.0](https://github.com/frontegg/frontegg-angular/compare/v6.15.0...v6.16.0) (2024-1-7)
 
 - FR-14807 - Fixed step up double call to generate step up session
