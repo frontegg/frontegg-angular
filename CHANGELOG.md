@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.18.0](https://github.com/frontegg/frontegg-angular/compare/v6.17.0...v6.18.0) (2024-2-1)
+
+- FR-15087 - Added oidc support for linkedin
+- FR-14997 - Fixed invite user dialog UI issues
+
+
+
 ## [6.17.0](https://github.com/frontegg/frontegg-angular/compare/v6.16.0...v6.17.0) (2024-1-28)
 
 - FR-14910 - Fixed handling entitlements errors 
