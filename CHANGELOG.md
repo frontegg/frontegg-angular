@@ -3,7 +3,6 @@
 ## [6.19.0](https://github.com/frontegg/frontegg-angular/compare/v6.18.0...v6.19.0) (2024-2-28)
 
 - FR-15376 - fixed null group description exception
-
 - FR-15305 - Fixed changed fields sent on edit group to support SCIM group update
 - FR-15219 - Fixed missing row actions in users table when using MSP
 
