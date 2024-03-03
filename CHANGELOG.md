@@ -1,5 +1,15 @@
 # Change Log
 
+## [6.20.0](https://github.com/frontegg/frontegg-angular/compare/v6.19.0...v6.20.0) (2024-3-3)
+
+- FR-15270 - Added new roles page to the Admin Portal
+- FR-15395 - Fixed tab tenant not cleared after logout
+
+- FR-15376 - fixed null group description exception
+
+
+# Change Log
+
 ## [6.19.0](https://github.com/frontegg/frontegg-angular/compare/v6.18.0...v6.19.0) (2024-2-28)
 
 - FR-15376 - fixed null group description exception
