@@ -1,0 +1,24 @@
+<section *ngIf="!authenticated">    
+  Not Authenticated
+</section>
+
+<section *ngIf="authenticated" class="outer-container">    
+  <div class="boxes-container">
+    <span *ngFor="let ent of entitlementsResults | keyvalue">
+      <div *ngIf="ent.value.isEntitled" class="truthy">
+        {{ ent.value.name }}
+      </div>
+      
+      <div *ngIf="!ent.value.isEntitled" class="falsy">
+        {{ ent.value.name }}
+        <br/><br/>
+        <i>{{ent.value.justification?.toString()}}</i>
+      </div>
+    </span>
+  </div>
+
+  <div class="centered-flex-container" [ngStyle]="{ 'flex-direction': 'row' }">
+    <button (click)="onLoadEntitlementsClicked()">Load entitlements</button>
+    <button (click)="onLoadEntitlementsWithCallbackClicked()">Load entitlements with callback</button>
+  </div>
+</section>

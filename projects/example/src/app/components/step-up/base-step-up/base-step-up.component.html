@@ -1,0 +1,14 @@
+<section *ngIf="!authenticated">    
+  Not Authenticated
+</section>
+
+<section *ngIf="authenticated" class="centered-flex-container">
+  <div *ngIf="maxAge" class="max-age-container">Max age is <span class="positive">{{ maxAge }}</span></div>
+  <div *ngIf="!maxAge" class="max-age-container">No max age</div>
+  
+  <button *ngIf="!isSteppedUp" (click)="stepUp({ maxAge: maxAge })" class="step-up-button">Step Up</button>
+
+  <div class="stepped-up-container" *ngIf="isSteppedUp">
+    <p>Honey, you are <b class="positive">STEPPED UP</b>!</p>
+  </div>
+</section>

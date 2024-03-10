@@ -1,0 +1,24 @@
+<section *ngIf="!authenticated">    
+  Not Authenticated
+</section>
+
+<div><b>Admin</b> role section: (empty when not authorized)</div>
+<section class="authorized-section-container">
+  <div *authorizedContent="['Admin']">
+    Authorized content section for <b>Admin</b> role
+  </div>
+</section>
+
+<div><b>Dora & Admin</b> role section: (empty when not authorized for both)</div>
+<section class="authorized-section-container">
+  <div *authorizedContent="['Dora', 'Admin']">
+    Authorized content section for <b>Dora & Admin</b> role
+  </div>
+</section>
+
+<div><b>Dora</b> role section: (empty when not authorized)</div>
+<section class="authorized-section-container">
+  <div *authorizedContent="['Dora']">
+    Authorized content section for <b>Dora</b> role
+  </div>
+</section>
