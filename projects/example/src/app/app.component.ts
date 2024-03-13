@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FronteggAppService, FronteggAuthService } from '@frontegg/angular';
 import { Subscription } from 'rxjs';
 import { ROUTE_PATHS } from './links';
+import { User } from '@frontegg/redux-store';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isAuthenticatedSubscription: Subscription;
   userSubscription?: Subscription;
   authenticated = false;
-  user?: any;
+  user?: User;
   ROUTE_PATHS = ROUTE_PATHS;
 
   constructor(

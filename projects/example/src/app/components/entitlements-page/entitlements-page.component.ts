@@ -2,6 +2,7 @@ import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { FronteggAppService, FronteggEntitlementsService } from '@frontegg/angular';
 import { Entitlement } from '@frontegg/types';
 import { Subscription } from 'rxjs';
+import { User } from '@frontegg/redux-store';
 
 enum EntitlementsQueryType {
   FEATURE = 'featureEntitlements',
@@ -25,7 +26,7 @@ export class EntitlementsPage implements OnDestroy {
     } 
   } = {};
 
-  user?: any;
+  user?: User;
   subscriptions: Subscription[] = [];
   isAuthenticatedSubscription: Subscription;
 
