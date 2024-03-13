@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-not-fpund',
+  selector: 'app-not-found',
   template: `
     <div>
       404 not found
