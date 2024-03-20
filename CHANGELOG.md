@@ -1,5 +1,18 @@
 # Change Log
 
+## [6.21.0](https://github.com/frontegg/frontegg-angular/compare/v6.20.0...v6.21.0) (2024-3-20)
+
+- FR-15233 - Fix autocomplete popper
+
+
+- FR-13828 - Add option to specify prompt consent from loginDirectAction
+- FR-15315 - Added sort for role selections in Admin Portal 
+
+
+### Angular Wrapper 6.21.0:
+- Example app makeover
+# Change Log
+
 ## [6.20.0](https://github.com/frontegg/frontegg-angular/compare/v6.19.0...v6.20.0) (2024-3-3)
 
 - FR-15270 - Added new roles page to the Admin Portal
