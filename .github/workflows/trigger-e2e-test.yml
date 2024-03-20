@@ -1,7 +1,6 @@
 name: "(▶) Trigger E2E tests Workflow"
 
 on:
-  push:
   workflow_dispatch:
     inputs:
       version:
@@ -9,7 +8,7 @@ on:
         required: true
       sha:
         description: 'Commit SHA'
-        required: true    
+        required: true
 
 jobs:
   trigger_e2e_tests:
@@ -22,21 +21,11 @@ jobs:
         run: |
           echo "Received test request for @frontegg/angular@${{ inputs.version }}"
           echo "From: ${{ inputs.sha }}"
-      
-      - name: "Test version ${{ inputs.version }} with SHA ${{ (inputs.sha != '' && inputs.sha) || 'default sha' }}"
-        run: |
-          echo "Testing version ${{ inputs.version }} with SHA ${{ inputs.sha }}"
 
-      - name: Another test
-        run: |
-          cd projects/${{ ((inputs.sha != '' || inputs.sha == '1') && 'example') || 'frontegg-app' }}
-          ls -la
-        shell: bash
-
-      # - name: "Call trigger-e2e-test action"
-      #   uses: ./.github/actions/trigger-e2e-test
-      #   with:
-      #     version: ${{ inputs.version }}
-      #     sha: ${{ inputs.sha }}
-      #     bot_app_id: ${{ secrets.GH_FRONTEGG_BOT_APP_ID }}
-      #     bot_app_key: ${{ secrets.GH_FRONTEGG_BOT_APP_SECRET }}
+      - name: "Call trigger-e2e-test action"
+        uses: ./.github/actions/trigger-e2e-test
+        with:
+          version: ${{ inputs.version }}
+          sha: ${{ inputs.sha }}
+          bot_app_id: ${{ secrets.GH_FRONTEGG_BOT_APP_ID }}
+          bot_app_key: ${{ secrets.GH_FRONTEGG_BOT_APP_SECRET }}
