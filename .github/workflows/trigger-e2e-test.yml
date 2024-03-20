@@ -1,8 +1,14 @@
 name: "(▶) Trigger E2E tests Workflow"
 
 on:
-  push:
-
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+      sha:
+        description: 'Commit SHA'
+        required: true
 
 jobs:
   trigger_e2e_tests:
