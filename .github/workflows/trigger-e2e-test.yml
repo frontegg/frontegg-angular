@@ -15,7 +15,7 @@ jobs:
           echo "Received test request for @frontegg/angular@${{ inputs.version }}"
           echo "From: ${{ inputs.sha }}"
       
-      - name: "Test version ${{ inputs.version }} with SHA ${{ inputs.sha || 'default sha' }}"
+      - name: "Test version ${{ inputs.version }} with SHA ${{ (inputs.sha != '' && inputs.sha) || 'default sha' }}"
         run: |
           echo "Testing version ${{ inputs.version }} with SHA ${{ inputs.sha }}"
 
