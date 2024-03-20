@@ -28,7 +28,7 @@ jobs:
 
       - name: Another test
         run: |
-          cd projects/${{ (inputs.sha == undefined || inputs.sha == '1') ? 'example' : 'frontegg-app' }}
+          cd projects/${{ (inputs.sha == '' || inputs.sha == '1') ? 'example' : 'frontegg-app' }}
           ls -la
         shell: bash
 
