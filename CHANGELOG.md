@@ -1,10 +1,13 @@
 # Change Log
 
+## [6.21.1](https://github.com/frontegg/frontegg-angular/compare/v6.21.0...v6.21.1) (2024-3-21)
+
+
+# Change Log
+
 ## [6.21.0](https://github.com/frontegg/frontegg-angular/compare/v6.20.0...v6.21.0) (2024-3-20)
 
 - FR-15233 - Fix autocomplete popper
-
-
 - FR-13828 - Add option to specify prompt consent from loginDirectAction
 - FR-15315 - Added sort for role selections in Admin Portal 
 
