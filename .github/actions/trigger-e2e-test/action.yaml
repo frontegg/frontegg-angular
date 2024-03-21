@@ -46,6 +46,7 @@ runs:
             workflow_id,
             ref: 'master',
             inputs: {
+              client_framework: 'angular',
               version,
               dispatch_id,
             }
