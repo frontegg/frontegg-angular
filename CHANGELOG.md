@@ -1,5 +1,15 @@
 # Change Log
 
+## [6.22.0](https://github.com/frontegg/frontegg-angular/compare/v6.21.0...v6.22.0) (2024-4-2)
+
+- FR-15367 - Fixed user logo upload for SCIM users
+- FR-15111 - Fixed impersonation embedded redirection
+
+### Angular Wrapper 6.22.0:
+- FR-15672 - E2E workflows support
+- FR-15672 - E2E workflows support
+# Change Log
+
 ## [6.21.0](https://github.com/frontegg/frontegg-angular/compare/v6.20.0...v6.21.0) (2024-3-20)
 
 - FR-15233 - Fix autocomplete popper
