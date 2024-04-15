@@ -1,5 +1,16 @@
 # Change Log
 
+## [6.23.0](https://github.com/frontegg/frontegg-angular/compare/v6.22.0...v6.23.0) (2024-4-15)
+
+- FR-15863 - Changed chip list design in admin portal
+
+- FR-15367 - Fixed user logo upload for SCIM users
+- FR-15111 - Fixed impersonation embedded redirection
+
+### Angular Wrapper 6.23.0:
+- FR-15672 - E2E workflows support
+# Change Log
+
 ## [6.22.0](https://github.com/frontegg/frontegg-angular/compare/v6.21.0...v6.22.0) (2024-4-2)
 
 - FR-15367 - Fixed user logo upload for SCIM users
