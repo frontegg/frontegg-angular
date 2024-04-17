@@ -181,6 +181,15 @@ export class FronteggAppService {
     this.fronteggApp.showAdminPortal();
   }
 
+  /**
+   *  Open admin portal hosted mode
+   * @param newTab - open in new tab
+   * */
+
+  public openHostedAdminPortal(newTab?: boolean): void {
+    this.fronteggApp.openHostedAdminPortal(newTab);
+  }
+
   // Open admin portal
   public hideAdminPortal(): void {
     this.fronteggApp?.hideAdminPortal();
