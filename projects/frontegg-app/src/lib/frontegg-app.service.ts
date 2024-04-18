@@ -2,7 +2,7 @@ import { Injectable, NgZone, Inject } from '@angular/core';
 import { Route, Router, ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { FronteggApp, initialize } from '@frontegg/js';
 import { AuthPageRoutes, FronteggState, isAuthRoute } from '@frontegg/redux-store';
-import { FronteggAppOptions, FronteggCheckoutDialogOptions } from '@frontegg/types';
+import { FronteggAppOptions, FronteggCheckoutDialogOptions, ShowAdminPortalOptions } from '@frontegg/types';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ContextHolder, RedirectOptions, FronteggFrameworks, MetadataHeaders } from '@frontegg/rest-api';
 import { FronteggComponent } from './frontegg.component';
@@ -177,8 +177,17 @@ export class FronteggAppService {
   }
 
   // Open admin portal
-  public showAdminPortal(): void {
-    this.fronteggApp.showAdminPortal();
+  public showAdminPortal(options?: ShowAdminPortalOptions): void {
+    this.fronteggApp.showAdminPortal(options);
+  }
+
+  /**
+   *  Open admin portal hosted mode
+   * @param newTab - open in new tab
+   * */
+
+  public openHostedAdminPortal(newTab?: boolean): void {
+    this.fronteggApp.openHostedAdminPortal(newTab);
   }
 
   // Open admin portal
