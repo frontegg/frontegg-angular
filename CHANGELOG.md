@@ -1,5 +1,108 @@
 # Change Log
 
+## [6.23.0](https://github.com/frontegg/frontegg-angular/compare/v6.22.0...v6.23.0) (2024-4-15)
+
+- FR-15863 - Changed chip list design in admin portal
+
+- FR-15367 - Fixed user logo upload for SCIM users
+- FR-15111 - Fixed impersonation embedded redirection
+
+### Angular Wrapper 6.23.0:
+- FR-15672 - E2E workflows support
+# Change Log
+
+## [6.22.0](https://github.com/frontegg/frontegg-angular/compare/v6.21.0...v6.22.0) (2024-4-2)
+
+- FR-15367 - Fixed user logo upload for SCIM users
+- FR-15111 - Fixed impersonation embedded redirection
+
+# Change Log
+
+## [6.21.0](https://github.com/frontegg/frontegg-angular/compare/v6.20.0...v6.21.0) (2024-3-20)
+
+- FR-15233 - Fix autocomplete popper
+
+
+- FR-13828 - Add option to specify prompt consent from loginDirectAction
+- FR-15315 - Added sort for role selections in Admin Portal 
+
+
+# Change Log
+
+## [6.20.0](https://github.com/frontegg/frontegg-angular/compare/v6.19.0...v6.20.0) (2024-3-3)
+
+- FR-15270 - Added new roles page to the Admin Portal
+- FR-15395 - Fixed tab tenant not cleared after logout
+
+# Change Log
+
+## [6.19.0](https://github.com/frontegg/frontegg-angular/compare/v6.18.0...v6.19.0) (2024-2-28)
+
+- FR-15376 - fixed null group description exception
+- FR-15305 - Fixed changed fields sent on edit group to support SCIM group update
+- FR-15219 - Fixed missing row actions in users table when using MSP
+
+
+## [6.18.0](https://github.com/frontegg/frontegg-angular/compare/v6.17.0...v6.18.0) (2024-2-1)
+
+- FR-15087 - Added oidc support for linkedin
+- FR-14997 - Fixed invite user dialog UI issues
+
+
+
+## [6.17.0](https://github.com/frontegg/frontegg-angular/compare/v6.16.0...v6.17.0) (2024-1-28)
+
+- FR-14910 - Fixed handling entitlements errors 
+- FR-14740 - Send tenant alias for hosted custom login auth user
+- FR-14197 - Added Canada to MFA SMS list of countries
+- FR-14859 - Fixed roles filtering for MSP
+- FR-14855 - Added support for social login consent, by default it is false.
+- FR-14813 - Added support for open app page with basename
+- FR-14813 - Added support for mobile deep link redirect page
+
+
+
+## [6.16.0](https://github.com/frontegg/frontegg-angular/compare/v6.15.0...v6.16.0) (2024-1-7)
+
+- FR-14807 - Fixed step up double call to generate step up session
+
+
+# Change Log
+
+## [6.15.0](https://github.com/frontegg/frontegg-angular/compare/v6.14.0...v6.15.0) (2024-1-3)
+
+- FR-14753 - Fixed step up key removing when user does not finish step up flow
+
+
+
+## [6.14.0](https://github.com/frontegg/frontegg-angular/compare/v6.13.0...v6.14.0) (2023-12-31)
+
+- FR-14228 - Added Step Up feature to allow a second layer of authentication for sensitive actions
+
+- FR-14578 - Fixed custom login without tenant alias
+- FR-14638 - Missing exp on user interface
+- FR-14560 - added temporary users feature
+
+
+- FR-14644 - Fixed enroll authenticator app missing error message when code is wrong
+
+
+- FR-14219 - Step up - Embedded flow
+
+### Angular Wrapper 6.14.0:
+- [FR-14227] - Step up implementation and entitlements console error when logged out
+- FR-14324 - Fix default values for loginWithRedirect
+- FR-14342 - Add loginDirectAction to loginWithRedirect options
+
+## [6.13.0](https://github.com/frontegg/frontegg-angular/compare/v6.12.0...v6.13.0) (2023-12-20)
+
+- FR-14324 - Fix direct login custom social login
+
+
+### Angular Wrapper 6.13.0:
+- FR-14324 - Fix default values for loginWithRedirect
+- FR-14342 - Add loginDirectAction to loginWithRedirect options
+
 ## [6.12.0](https://github.com/frontegg/frontegg-angular/compare/v6.11.0...v6.12.0) (2023-12-17)
 
 - FR-10692 - Remove the ability to select a full category on webhooks page

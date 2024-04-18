@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, PartialObserver, Subscription } from 'rxjs';
 import { FronteggAppService } from './frontegg-app.service';
 import FastDeepEqual from 'fast-deep-equal';
 import {
@@ -44,6 +44,8 @@ import {
   authStoreName,
   LoginState,
   ActivateAccountStrategyState,
+  IsSteppedUpOptions,
+  StepUpOptions,
 } from '@frontegg/redux-store';
 import {
   ILogin,
@@ -86,6 +88,8 @@ import {
 import type { FronteggState, ActivateAccountState, SocialLoginState } from '@frontegg/redux-store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { LoginDirectAction } from '@frontegg/redux-store/auth/LoginState/interfaces';
+import { FronteggUserSubscriptionService } from './frontegg-user-subscription.service';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>;
@@ -229,7 +233,11 @@ export class FronteggAuthService {
     return this.ssoACSSubject.asObservable();
   }
 
-  constructor(private fronteggAppService: FronteggAppService, private router: Router) {
+  constructor(
+    private fronteggAppService: FronteggAppService,
+    private router: Router,
+    private fronteggUserSubscriptionService: FronteggUserSubscriptionService
+  ) {
     const authSubStates: AuthSubStates[] = [
       { field: 'acceptInvitationState', subject: this.acceptInvitationStateSubject },
       { field: 'accountSettingsState', subject: this.accountSettingsStateSubject },
@@ -292,6 +300,23 @@ export class FronteggAuthService {
     return path.startsWith(hostedLoginRedirectUrl ?? '/oauth/callback');
   }
 
+  /**
+   * @param options.maxAge optional max age
+   * @returns A subscription for step up state - true when user is stepped up, false otherwise
+   */
+  public isSteppedUp$(observer: PartialObserver<boolean>, options?: IsSteppedUpOptions): Subscription {
+    return this.fronteggUserSubscriptionService.getUserManipulatorSubscription<boolean>(
+      () => { return this.fronteggAppService.fronteggApp.isSteppedUp(options)},
+      observer
+    );
+  }
+
+  /**
+   * Triggers step up flow
+   * @param options.maxAge optional max age
+   */
+  public stepUp = (options?: StepUpOptions) => this.fronteggAppService.fronteggApp.stepUp(options);
+
 
   // Root Actions
   setState = (state: Partial<AuthState>) => this.dispatchAction('setState', state);
@@ -303,11 +328,19 @@ export class FronteggAuthService {
   resetLoginState = () => this.dispatchAction('resetLoginState');
   requestAuthorize = (firstTime?: boolean) => this.dispatchAction('requestAuthorize', firstTime);
 
-  loginWithRedirect = (params?: Record<string, string>, shouldRedirectToLogin: boolean = true, firstTime: boolean = false) => {
+  loginWithRedirect = (params?: Record<string, string>,
+                       shouldRedirectToLogin?: boolean,
+                       firstTime?: boolean,
+                       loginDirectAction?: LoginDirectAction) => {
     if (this.isHostedLoginCallbackRoute()) {
       return;
     }
-    this.dispatchAction('requestHostedLoginAuthorizeV2', { additionalParams: params, shouldRedirectToLogin, firstTime });
+    this.dispatchAction('requestHostedLoginAuthorizeV2', {
+      additionalParams: params,
+      shouldRedirectToLogin: shouldRedirectToLogin ?? true,
+      firstTime: firstTime ?? false,
+      loginDirectAction,
+    });
     this.setState({ isLoading: true });
   };
   preLogin = (payload: IPreLogin) => this.dispatchAction('preLogin', payload);

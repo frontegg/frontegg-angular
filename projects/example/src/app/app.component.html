@@ -1,5 +1,37 @@
-<div *ngIf="!isLoading">
-    <router-outlet></router-outlet>
-    <div *authorizedContent="['Admin']">Authorized content section for Admin's (example)</div>
+<div *ngIf="!isLoading" class="centered-flex-container">
+  <h1>Frontegg App</h1>
 
+  <div class='buttons-list'>
+    <button *ngIf="!authenticated && fronteggAppService.fronteggApp.options.hostedLoginBox === true" data-test-id="open-hosted" (click)="loginWithRedirect()">Login</button>
+    <a *ngIf="!authenticated && fronteggAppService.fronteggApp.options.hostedLoginBox === false" data-test-id="open-embedded" routerLink="/account/login"><button>Login</button></a>
+
+    <button *ngIf="authenticated" data-test-id="open-admin-portal-btn" (click)="showApp()">Open Admin Portal</button>
+
+    <span *ngIf="authenticated" (click)="logout()"><button>Logout</button></span>
+  </div>
+
+  <div *ngIf="authenticated">
+    <p>Authenticated as {{user?.name}}</p>
+  </div>
+
+  <div>
+    {{ fronteggAppService.fronteggApp.options.hostedLoginBox ? 'Hosted' : 'Embedded' }}
+  </div>
+
+  <nav class="buttons-list">
+    Pages:
+    <a routerLink="{{ROUTE_PATHS.HOME_PAGE}}"><button>Home</button></a>
+    <a routerLink="/{{ROUTE_PATHS.ENTITLEMENTS}}"><button>Entitlements</button></a>
+    <a routerLink="/{{ROUTE_PATHS.STEP_UP_NO_MAX_AGE}}"><button>Step up - no max age</button></a>
+    <a routerLink="/{{ROUTE_PATHS.STEP_UP_HIGH_MAX_AGE}}"><button>Step up - max age 5000</button></a>
+    <a routerLink="/{{ROUTE_PATHS.STEP_UP_SMALL_MAX_AGE}}"><button>Step up - max age 35</button></a>
+    <a routerLink="/{{ROUTE_PATHS.STEPPED_UP_FULL}}"><button>Stepped up (full)</button></a>
+    <a routerLink="/{{ROUTE_PATHS.AUTHORIZED_CONTENT}}"><button>Authorized content</button></a>
+    <a routerLink="/{{ROUTE_PATHS.TEST_PRIVATE_ROUTE}}"><button>Private route</button></a>
+    <a routerLink="/{{ROUTE_PATHS.UNKNOWN_ROUTE}}"><button>Fallback route</button></a>
+  </nav>
+
+  <section class='router-content'>
+    <router-outlet></router-outlet>
+  </section>
 </div>
