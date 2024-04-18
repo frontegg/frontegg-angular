@@ -1,5 +1,10 @@
 # Change Log
 
+## [6.24.0](https://github.com/frontegg/frontegg-angular/compare/v6.23.0...v6.24.0) (2024-4-18)
+
+- FR-16088 - Support hosted admin portal
+- FR-FR-15124 - Support multi-apps 
+
 ## [6.23.0](https://github.com/frontegg/frontegg-angular/compare/v6.22.0...v6.23.0) (2024-4-15)
 
 - FR-15863 - Changed chip list design in admin portal
