@@ -1,5 +1,13 @@
 # Change Log
 
+## [6.24.1](https://github.com/frontegg/frontegg-angular/compare/v6.24.0...v6.24.1) (2024-4-18)
+
+- FR-16088 - Hosted portal from frontegg app (supoport angular and vanilla)
+
+### Angular Wrapper 6.24.1:
+- hosted-admin-portal
+# Change Log
+
 ## [6.24.0](https://github.com/frontegg/frontegg-angular/compare/v6.23.0...v6.24.0) (2024-4-18)
 
 - FR-16088 - Support hosted admin portal
