@@ -1,5 +1,13 @@
 # Change Log
 
+## [6.25.0](https://github.com/frontegg/frontegg-angular/compare/v6.24.1...v6.25.0) (2024-4-21)
+
+- FR-15737 - Added an option for accounts to open sub-account management for their sub-accounts
+- FR-15603 - Added support for embedded SCIM guides
+
+
+# Change Log
+
 ## [6.24.1](https://github.com/frontegg/frontegg-angular/compare/v6.24.0...v6.24.1) (2024-4-18)
 
 - FR-16088 - Support hosted admin portal
