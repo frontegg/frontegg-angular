@@ -1,5 +1,12 @@
 # Change Log
 
+## [6.26.0](https://github.com/frontegg/frontegg-angular/compare/v6.25.0...v6.26.0) (2024-5-27)
+
+- FR-16463 - Removed domain restrictions validation when invite user from All Accounts page
+- FR-16421 - Fixed error handling in edit phone number dialog
+
+# Change Log
+
 ## [6.25.0](https://github.com/frontegg/frontegg-angular/compare/v6.24.1...v6.25.0) (2024-4-21)
 
 - FR-15737 - Added an option for accounts to open sub-account management for their sub-accounts
