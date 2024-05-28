@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.27.0](https://github.com/frontegg/frontegg-angular/compare/v6.26.0...v6.27.0) (2024-5-28)
+
+- FR-16341 - Support hiding columns in admin portal users table
+
+
+
 ## [6.26.0](https://github.com/frontegg/frontegg-angular/compare/v6.25.0...v6.26.0) (2024-5-27)
 
 - FR-16463 - Removed domain restrictions validation when invite user from All Accounts page
