@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.28.0](https://github.com/frontegg/frontegg-angular/compare/v6.27.0...v6.28.0) (2024-6-5)
+
+- FR-16513 - Show client id on all tokens in API tokens table 
+
+
+
 ## [6.27.0](https://github.com/frontegg/frontegg-angular/compare/v6.26.0...v6.27.0) (2024-5-28)
 
 - FR-16341 - Support hiding columns in admin portal users table
