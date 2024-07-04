@@ -1,5 +1,16 @@
 # Change Log
 
+## [6.29.0](https://github.com/frontegg/frontegg-angular/compare/v6.28.0...v6.29.0) (2024-7-4)
+
+- FR-16881 - Fixed hosted login redirect url when using basename
+- FR-16812 - Fixed dark theme disabled input palette
+
+- FR-16704 - fix password meter unsuspended async component
+
+FR-15484 - Fix update tenant state after account settings change
+FR-16613 - Add automatic sub-account access in MSP
+
+
 ## [6.28.0](https://github.com/frontegg/frontegg-angular/compare/v6.27.0...v6.28.0) (2024-6-5)
 
 - FR-16513 - Show client id on all tokens in API tokens table 
