@@ -4,12 +4,6 @@
 
 - FR-16737 - Allow terms and conditions checkbox on sign up form being optional
 
-- FR-16881 - Fixed hosted login redirect url when using basename
-- FR-16812 - Fixed dark theme disabled input palette
-
-- FR-16704 - fix password meter unsuspended async component
-
-
 
 ## [6.29.0](https://github.com/frontegg/frontegg-angular/compare/v6.28.0...v6.29.0) (2024-7-4)
 
