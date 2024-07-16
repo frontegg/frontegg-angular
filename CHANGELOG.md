@@ -1,5 +1,11 @@
 # Change Log
 
+## [6.32.0](https://github.com/frontegg/frontegg-angular/compare/v6.31.0...v6.32.0) (2024-7-16)
+
+* FR-17055 - Fix SSO redirect race condition
+
+
+
 ## [6.31.0](https://github.com/frontegg/frontegg-angular/compare/v6.30.0...v6.31.0) (2024-7-10)
 
 - FR-16987 - Add additional params to vanilla js loginWithRedircet
