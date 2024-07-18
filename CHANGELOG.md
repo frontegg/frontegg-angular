@@ -4,10 +4,6 @@
 
 - FR-17009 - Add the option to disable&#x2F;enable users from users table
 
-
-### Angular Wrapper 6.33.0:
-- FR-17008 - fix pipeline release version
-
 ## [6.32.0](https://github.com/frontegg/frontegg-angular/compare/v6.31.0...v6.32.0) (2024-7-16)
 
 * FR-17055 - Fix SSO redirect race condition
