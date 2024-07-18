@@ -2,7 +2,7 @@
 
 ## [6.33.0](https://github.com/frontegg/frontegg-angular/compare/v6.32.0...v6.33.0) (2024-7-18)
 
-- FR-17009 - Add the option to disable&#x2F;enable users from users table
+- FR-17009 - Add the option to disable/enable users from users table
 
 ## [6.32.0](https://github.com/frontegg/frontegg-angular/compare/v6.31.0...v6.32.0) (2024-7-16)
 
