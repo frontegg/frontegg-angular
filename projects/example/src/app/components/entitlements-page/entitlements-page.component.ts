@@ -11,19 +11,21 @@ enum EntitlementsQueryType {
 }
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'entitlements-page',
   templateUrl: './entitlements-page.component.html',
-  styleUrls: ['./entitlements-page.component.scss']
+  styleUrls: [ './entitlements-page.component.scss' ],
 })
+// tslint:disable-next-line:component-class-suffix
 export class EntitlementsPage implements OnDestroy {
   authenticated = false;
 
   entitlementsResults: {
-    [key: string]: { 
+    [key: string]: {
       name: string,
       isEntitled: Entitlement['isEntitled'],
       justification?: Entitlement['justification']
-    } 
+    }
   } = {};
 
   user?: User;
@@ -31,9 +33,9 @@ export class EntitlementsPage implements OnDestroy {
   isAuthenticatedSubscription: Subscription;
 
   constructor(
-      private fronteggAppService: FronteggAppService,
-      private fronteggEntitlementsService: FronteggEntitlementsService,
-      private ngZone: NgZone,
+    private fronteggAppService: FronteggAppService,
+    private fronteggEntitlementsService: FronteggEntitlementsService,
+    private ngZone: NgZone,
   ) {
     this.isAuthenticatedSubscription = this.fronteggAppService.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
       this.authenticated = isAuthenticated;
@@ -44,10 +46,14 @@ export class EntitlementsPage implements OnDestroy {
 
   feedEntitlements() {
     const entitlementsRequests = [
-      { queryType: EntitlementsQueryType.FEATURE, arg: 'sso', },
+      { queryType: EntitlementsQueryType.FEATURE, arg: 'sso' },
       { queryType: EntitlementsQueryType.FEATURE, arg: 'sso', customAttributes: { env: 'dev' } },
-      { queryType: EntitlementsQueryType.ENTITLEMENTS, arg: { featureKey: 'proteins.*' }, customAttributes: { pro: '20gr' }},
-      { queryType: EntitlementsQueryType.PERMISSION, arg: 'dora.protein.*', },
+      {
+        queryType: EntitlementsQueryType.ENTITLEMENTS,
+        arg: { featureKey: 'proteins.*' },
+        customAttributes: { pro: '20gr' },
+      },
+      { queryType: EntitlementsQueryType.PERMISSION, arg: 'dora.protein.*' },
       { queryType: EntitlementsQueryType.ENTITLEMENTS, arg: { permissionKey: 'fe.secure.*' } },
       { queryType: EntitlementsQueryType.PERMISSION, arg: 'fe.secure.*', customAttributes: { env: 'dev' } },
     ];
@@ -56,33 +62,33 @@ export class EntitlementsPage implements OnDestroy {
       featureEntitlements: this.fronteggEntitlementsService.featureEntitlements$.bind(this.fronteggEntitlementsService),
       permissionEntitlements: this.fronteggEntitlementsService.permissionEntitlements$.bind(this.fronteggEntitlementsService),
       entitlements: this.fronteggEntitlementsService.entitlements$.bind(this.fronteggEntitlementsService),
-    }
+    };
 
     this.subscriptions = entitlementsRequests.map(({ queryType, arg, customAttributes }) => (
       subscriptionGenerators[queryType](arg, {
         next: (
-          result: Entitlement
+          result: Entitlement,
         ) => {
           this.ngZone.run(() => {
             const customAttributesNamePart = customAttributes ? `, ${JSON.stringify(customAttributes)}` : '';
             const name = `${queryType}$(${JSON.stringify(arg)}${customAttributesNamePart})`;
             this.entitlementsResults[name] = {
               name,
-              ...result
+              ...result,
             };
           });
-        }
+        },
       })
     ));
   }
 
-  onLoadEntitlementsClicked() {
+  onLoadEntitlementsClicked(): void {
     this.fronteggEntitlementsService.loadEntitlements();
   }
 
-  onLoadEntitlementsWithCallbackClicked() {
+  onLoadEntitlementsWithCallbackClicked(): void {
     this.fronteggEntitlementsService.loadEntitlements(
-      (isSucceeded: boolean) => console.log(`Load entitlements on demand ${isSucceeded ? 'succeeded' : 'failed'}`)
+      (isSucceeded: boolean) => console.log(`Load entitlements on demand ${isSucceeded ? 'succeeded' : 'failed'}`),
     );
   }
 

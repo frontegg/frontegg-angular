@@ -15,7 +15,12 @@ export class CheckoutDialogComponent implements OnInit, OnDestroy {
   checkoutStateSubscription: Subscription;
 
   constructor(private fronteggSubscriptionService: FronteggSubscriptionService) {
-    this.checkoutStateSubscription = fronteggSubscriptionService.checkoutState$.subscribe(({ loading, open, success, error }: any) => {
+    this.checkoutStateSubscription = fronteggSubscriptionService.checkoutState$.subscribe(({
+                                                                                             loading,
+                                                                                             open,
+                                                                                             success,
+                                                                                             error,
+                                                                                           }: any) => {
       this.loading = loading;
       this.error = error;
       this.open = open;
@@ -31,11 +36,11 @@ export class CheckoutDialogComponent implements OnInit, OnDestroy {
     this.checkoutStateSubscription.unsubscribe();
   }
 
-  openCheckout() {
+  openCheckout(): void {
     this.fronteggSubscriptionService.openCheckout('awesome-plan');
   }
 
-  closeCheckout() {
+  closeCheckout(): void {
     this.fronteggSubscriptionService.hideCheckout();
   }
 }

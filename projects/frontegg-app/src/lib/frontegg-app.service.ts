@@ -105,9 +105,11 @@ export class FronteggAppService {
       framework: `${FronteggFrameworks.Angular}@${angularCoreVersion.version}`,
     };
 
+    const appName = this.config.appName ?? 'default'
     // prepare config default values
     this.config = {
       ...this.config,
+      appName,
       contextOptions: {
         ...this.config.contextOptions,
         metadataHeaders,
@@ -122,7 +124,7 @@ export class FronteggAppService {
       },
     };
 
-    ContextHolder.setOnRedirectTo(onRedirectTo);
+    ContextHolder.for(appName).setOnRedirectTo(onRedirectTo);
     this.fronteggApp = initialize({
       onRedirectTo,
       ...this.config,

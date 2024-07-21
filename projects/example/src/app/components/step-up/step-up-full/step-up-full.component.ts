@@ -31,8 +31,8 @@ export class StepUpFull implements OnDestroy, OnInit {
         this.ngZone.run(() => {
           this.isSteppedUp = isSteppedUp;
 
-          if (isSteppedUp) return;
-            
+          if (isSteppedUp) { return; }
+
           this.fronteggAuthService.stepUp({ maxAge: this.maxAge });
         });
       }
