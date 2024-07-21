@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FronteggAppService } from './frontegg-app.service';
 import FastDeepEqual from 'fast-deep-equal';
-import { EnhancedStore, SubscriptionsState, subscriptionsStoreName, SubscriptionState } from '@frontegg/redux-store';
+import { SubscriptionsState, SubscriptionState } from '@frontegg/redux-store';
 
 export interface CheckoutDialogState {
   loading: boolean;

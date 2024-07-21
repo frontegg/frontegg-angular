@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, PartialObserver, Subscription } from 'rxjs';
 import { FronteggAppService } from './frontegg-app.service';
 import FastDeepEqual from 'fast-deep-equal';
+import setValue from 'set-value';
 import {
   RolesState,
   TenantsState,
@@ -41,7 +42,6 @@ import {
   AcceptInvitationState,
   AuthState,
   User,
-  authStoreName,
   LoginState,
   ActivateAccountStrategyState,
   IsSteppedUpOptions,
@@ -90,6 +90,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginDirectAction } from '@frontegg/redux-store/auth/LoginState/interfaces';
 import { FronteggUserSubscriptionService } from './frontegg-user-subscription.service';
+import { map } from 'rxjs/operators';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>;
@@ -104,14 +105,22 @@ export type WithSilentLoad<T> = T & {
   silentLoading?: boolean;
 };
 
+type Path = (string | symbol)[];
+type Op =
+  [ op: 'set', path: Path, value: unknown, prevValue: unknown ]
+  | [ op: 'delete', path: Path, prevValue: unknown ]
+  | [ op: 'resolve', path: Path, value: unknown ]
+  | [ op: 'reject', path: Path, error: unknown ];
+
 @Injectable({
   providedIn: 'root',
 })
 export class FronteggAuthService {
+
   private authStateSubject = new BehaviorSubject<AuthState>({ isAuthenticated: false, isLoading: true } as AuthState);
   private acceptInvitationStateSubject = new BehaviorSubject<AuthState['acceptInvitationState']>({} as AuthState['acceptInvitationState']);
   private accountSettingsStateSubject = new BehaviorSubject<AuthState['accountSettingsState']>({} as AuthState['accountSettingsState']);
-  private activateStateSubject = new BehaviorSubject<AuthState['activateState']>({} as AuthState['activateState']);
+  private activateStateSubject = new BehaviorSubject<AuthState['activateAccountState']>({} as AuthState['activateAccountState']);
   private apiTokensStateSubject = new BehaviorSubject<AuthState['apiTokensState']>({} as AuthState['apiTokensState']);
   private forgotPasswordStateSubject = new BehaviorSubject<AuthState['forgotPasswordState']>({} as AuthState['forgotPasswordState']);
   private loginStateSubject = new BehaviorSubject<AuthState['loginState']>({} as AuthState['loginState']);
@@ -148,7 +157,7 @@ export class FronteggAuthService {
     return this.accountSettingsStateSubject.asObservable();
   }
 
-  get activateState$(): Observable<AuthState['activateState']> {
+  get activateState$(): Observable<AuthState['activateAccountState']> {
     return this.activateStateSubject.asObservable();
   }
 
@@ -236,12 +245,12 @@ export class FronteggAuthService {
   constructor(
     private fronteggAppService: FronteggAppService,
     private router: Router,
-    private fronteggUserSubscriptionService: FronteggUserSubscriptionService
+    private fronteggUserSubscriptionService: FronteggUserSubscriptionService,
   ) {
     const authSubStates: AuthSubStates[] = [
       { field: 'acceptInvitationState', subject: this.acceptInvitationStateSubject },
       { field: 'accountSettingsState', subject: this.accountSettingsStateSubject },
-      { field: 'activateState', subject: this.activateStateSubject },
+      { field: 'activateAccountState', subject: this.activateStateSubject },
       { field: 'apiTokensState', subject: this.apiTokensStateSubject },
       { field: 'forgotPasswordState', subject: this.forgotPasswordStateSubject },
       { field: 'tenantsState', subject: this.tenantsStateSubject },
@@ -262,11 +271,57 @@ export class FronteggAuthService {
 
     const state = this.fronteggAppService.fronteggApp.store.getState() as FronteggState;
     this.updateState(state.auth, authSubStates);
-    // Memoized Auth State
-    this.fronteggAppService.fronteggApp.store.subscribe(() => {
+
+    const callback: any = (op: Op[]) => {
+
       const newState = this.fronteggAppService.fronteggApp.store.getState() as FronteggState;
       this.updateState(newState.auth, authSubStates);
+
+      this.updateDeepState(op);
+    };
+    // Memoized Auth State
+    this.fronteggAppService.fronteggApp.store.subscribe(callback);
+    // (op:any) => {
+    // const newState = this.fronteggAppService.fronteggApp.store.getState() as FronteggState;
+    // this.updateState(newState.auth, authSubStates);
+    // });
+  }
+
+  // tslint:disable-next-line:typedef
+  private updateDeepState(ops: Op[]) {
+    ops.forEach((op) => {
+      switch (op[0]) {
+        case 'set':
+          console.log(op);
+          // this.updateDeepStateSet(op);
+          break;
+        case 'delete':
+          console.warn(op);
+          // this.updateDeepStateDelete(op);
+          break;
+        case 'resolve':
+          console.warn(op);
+          // this.updateDeepStateResolve(op);
+          break;
+        case 'reject':
+          console.warn(op);
+          // this.updateDeepStateReject(op);
+          break;
+      }
     });
+  }
+
+  private updateDeepStateSet(op: Op) {
+    if (op[1][0] === 'auth') {
+
+      if (op[1][1] === 'securityPolicyState') {
+        const oldValue = { ...this.securityPolicyStateSubject.value };
+        setValue(oldValue, op[1].slice(2), op[2]);
+        this.securityPolicyStateSubject.next(oldValue);
+        return true
+      }
+    }
+    return false
   }
 
   private updateState(authState: AuthState, authSubStates: AuthSubStates[]): void {
@@ -306,8 +361,8 @@ export class FronteggAuthService {
    */
   public isSteppedUp$(observer: PartialObserver<boolean>, options?: IsSteppedUpOptions): Subscription {
     return this.fronteggUserSubscriptionService.getUserManipulatorSubscription<boolean>(
-      () => { return this.fronteggAppService.fronteggApp.isSteppedUp(options)},
-      observer
+      () => this.fronteggAppService.fronteggApp.isSteppedUp(options),
+      observer,
     );
   }
 

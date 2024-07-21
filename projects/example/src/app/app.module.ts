@@ -43,7 +43,7 @@ const IS_HOSTED_MODE = false;
       window.CYPRESS_CONFIG ||
       {
         contextOptions: {
-          baseUrl: 'https://demo.frontegg.com',
+          baseUrl: 'https://auth.davidantoon.me',
           clientId: 'b6adfe4c-d695-4c04-b95f-3ec9fd0c6cca',
         },
         hostedLoginBox: IS_HOSTED_MODE, // don't remove it. Change it via the const value above
