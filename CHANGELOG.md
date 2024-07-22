@@ -1,5 +1,15 @@
 # Change Log
 
+## [6.34.0](https://github.com/frontegg/frontegg-angular/compare/v6.33.0...v6.34.0) (2024-7-22)
+
+- FR-16990 - Fixed social logins container styling
+- FR-17117 - Added URL validation to direct login action
+
+- FR-17009 - Add the option to disable&#x2F;enable users from users table
+
+
+# Change Log
+
 ## [6.33.0](https://github.com/frontegg/frontegg-angular/compare/v6.32.0...v6.33.0) (2024-7-18)
 
 - FR-17009 - Add the option to disable/enable users from users table
