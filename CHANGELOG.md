@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.1.0](https://github.com/frontegg/frontegg-angular/compare/v6.34.0...v7.1.0) (2024-8-5)
+## [7.0.0](https://github.com/frontegg/frontegg-angular/compare/v6.34.0...v7.0.0) (2024-8-5)
 
 
 # Change Log
