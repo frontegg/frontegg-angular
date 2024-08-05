@@ -16,7 +16,7 @@ export type User = FronteggState['auth']['user'];
 })
 export class FronteggUserSubscriptionService {
   private userStateSubject = new BehaviorSubject<any>(undefined);
-    
+
   constructor(private fronteggAppService: FronteggAppService) {
     const state = this.fronteggAppService.fronteggApp.store.getState() as FronteggState;
     this.updateUserStateIfNeeded(state.auth);
@@ -31,7 +31,7 @@ export class FronteggUserSubscriptionService {
   /**
    * Trigger user subject change event if the user reference changes
    * No need for deep equal because we already check it internally
-   * @param authState
+   * @param authState AuthState object
    */
   private updateUserStateIfNeeded(authState: AuthState): void {
     const userState = authState.user as User;
@@ -50,27 +50,27 @@ export class FronteggUserSubscriptionService {
    * @returns a subscription to be able to unsubscribe
    */
   public getUserManipulatorSubscription<Result>(
-    dataManipulator: (user: User) => Result, 
+    dataManipulator: (user: User) => Result,
     observer: PartialObserver<Result>
   ): Subscription {
     // used for computing the end user result because we don't return the state itself, but a calculated one
     const userSubject = new BehaviorSubject<Result>(undefined as unknown as Result);
-    
+
     const stateSubscription = this.userStateSubject.subscribe(user => {
       userSubject.next(dataManipulator(user));
     });
-    
+
     // subscribing the consumer observer
     const userResultSubscription = userSubject.asObservable().subscribe(observer)
 
     // monkey patched to manage both un-subscriptions: state and user manipulated result
     const originalUnsubscribe = userResultSubscription.unsubscribe.bind(userResultSubscription);
 
-    userResultSubscription.unsubscribe = ()=>{
+    userResultSubscription.unsubscribe = () => {
       originalUnsubscribe();
       stateSubscription.unsubscribe();
     };
 
     return userResultSubscription;
-  }  
+  }
 }

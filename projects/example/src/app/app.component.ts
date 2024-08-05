@@ -42,7 +42,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.fronteggAuthService.logout();
       return;
     }
-    
+
     this.router.navigateByUrl(this.fronteggAppService.authRoutes.logoutUrl);
   }
 

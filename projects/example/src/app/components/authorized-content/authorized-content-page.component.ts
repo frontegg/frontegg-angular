@@ -3,10 +3,12 @@ import { FronteggAppService } from '@frontegg/angular';
 import { Subscription } from 'rxjs';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'authorized-content-page',
   templateUrl: 'authorized-content-page.component.html',
   styleUrls: ['authorized-content-page.component.scss'],
 })
+// tslint:disable-next-line:component-class-suffix
 export class AuthorizedContentPage implements OnInit, OnDestroy {
   authenticated = false;
   isAuthenticatedSubscription?: Subscription;
