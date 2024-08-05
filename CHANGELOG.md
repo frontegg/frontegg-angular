@@ -1,5 +1,10 @@
 # Change Log
 
+## [7.1.0](https://github.com/frontegg/frontegg-angular/compare/v6.34.0...v7.1.0) (2024-8-5)
+
+
+# Change Log
+
 ## [6.34.0](https://github.com/frontegg/frontegg-angular/compare/v6.33.0...v6.34.0) (2024-7-22)
 
 - FR-16990 - Fixed social logins container styling
