@@ -4,8 +4,9 @@
     "@frontegg/js",
     "@frontegg/redux-store",
     "@frontegg/entitlements-javascript-commons",
-    "@babel/runtime/regenerator",
+    "@babel/runtime",
     "fast-deep-equal",
+    "valtio/vanilla",
     "csstype",
     "stream"
   ],
@@ -18,7 +19,8 @@
       "@frontegg/rest-api": "FronteggRestApi",
       "fast-deep-equal": "FastDeepEqual",
       "@frontegg/entitlements-javascript-commons": "FronteggEntitlementsJavascriptCommons",
-      "@babel/runtime/regenerator": "BabelRuntimeRegenerator"
+      "@babel/runtime": "BabelRuntime",
+      "valtio/vanilla": "ValtioVanilla"
     }
   }
 }
