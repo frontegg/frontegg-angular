@@ -90,7 +90,6 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginDirectAction } from '@frontegg/redux-store/auth/LoginState/interfaces';
 import { FronteggUserSubscriptionService } from './frontegg-user-subscription.service';
-import { map } from 'rxjs/operators';
 
 interface AuthSubStates {
   field: Partial<keyof AuthState>;
@@ -473,8 +472,7 @@ export class FronteggAuthService implements SubjectState<Partial<AuthStateObserv
 
   private dispatchAction(type: string, payload?: any): void {
     const store = this.fronteggAppService.fronteggApp.store;
-    // @ts-ignore
-    store.dispatch({ type: `${authStoreName}/${type}`, payload });
+    store.dispatch({ type: `auth/${type}`, payload });
   }
 
 
