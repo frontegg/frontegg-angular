@@ -2,7 +2,8 @@
 
 ## [7.1.0](https://github.com/frontegg/frontegg-angular/compare/v7.0.0...v7.1.0) (2024-8-18)
 
-null
+- FR-17169 - Added support in send unlock account email
+
 
 # Change Log
 
