@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.3.0](https://github.com/frontegg/frontegg-angular/compare/v7.2.0...v7.3.0) (2024-8-28)
+
+- FR-17626 - Fix clientId on request authorize for multi-apps
+- FR-17182 - Fix copy invite user link in hosted admin portal
+
+
+# Change Log
+
 ## [7.2.0](https://github.com/frontegg/frontegg-angular/compare/v7.1.0...v7.2.0) (2024-8-26)
 
 
