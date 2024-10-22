@@ -1,5 +1,11 @@
 # Change Log
 
+## [7.5.0](https://github.com/frontegg/frontegg-angular/compare/v7.4.0...v7.5.0) (2024-10-22)
+
+- FR-18356 - Fixed validations localization override type
+
+
+
 ## [7.4.0](https://github.com/frontegg/frontegg-angular/compare/v7.3.0...v7.4.0) (2024-10-10)
 
 - FR-18217 - Fixed impersonation on embedded
