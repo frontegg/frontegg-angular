@@ -27,10 +27,10 @@ jobs:
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install Dependencies and Build Packages
-        run: |
-          yarn install
-          yarn build
+      # - name: Install Dependencies and Build Packages
+      #   run: |
+      #     yarn install
+      #     yarn build
       - name: Git Identity
         run: |
           git config --global user.name 'frontegg'
@@ -57,7 +57,7 @@ jobs:
         id: version_type_minor
         if: contains(join(github.event.pull_request.labels.*.name, ','), 'Minor')
         run: |
-            echo "VERSION_TYPE=minor" >> $GITHUB_ENV
+            return true;
       - name: Update version in package json
         uses: actions/github-script@v6
         id: 'update-version'
@@ -65,7 +65,7 @@ jobs:
           result-encoding: string
           script: |
             const { incrementVersion } = await import(`${process.env.GITHUB_WORKSPACE}/.github/scripts/index.js`);
-            return incrementVersion($VERSION_TYPE === 'minor');
+            return incrementVersion(${{ steps.version_type_minor.outputs.result }});
       - name: Commit Version UP
         run: |
           yarn update-version
