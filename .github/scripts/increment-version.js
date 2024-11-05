@@ -1,5 +1,5 @@
 async function getCurrentVersion() {
-  const { default: path } = await import('path');
+  const path = await import('path');
   const packageJsonPath = path.join(__dirname, `../projects/frontegg-app/package.json`);
   const pkg = await import(packageJsonPath);
   const [major = 0, minor = 0, patch = 0] = pkg.version.split('.').map(Number);
@@ -8,7 +8,7 @@ async function getCurrentVersion() {
 
 async function modifyVersion(newVersion) {
   const { writeFileSync } = await import('fs');
-  const { default: path } = await import('path');
+  const path = await import('path');
   const packageJsonPath = path.join(__dirname, `../projects/frontegg-app/package.json`);
   const pkg = await import(packageJsonPath);
   console.log('Modifying package.json', packageJsonPath);
