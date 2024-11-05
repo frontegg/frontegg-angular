@@ -60,7 +60,7 @@ jobs:
             echo "VERSION_TYPE=minor" >> $GITHUB_EN
       - name: Update version in package json
         uses: actions/github-script@v6
-        id: 'generated-changelog'
+        id: 'update-version'
         with:
           result-encoding: string
           script: |
