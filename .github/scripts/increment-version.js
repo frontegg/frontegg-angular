@@ -1,12 +1,12 @@
 async function getCurrentVersion() {
-  const pkg = await import('../../frontegg-app/package.json');
+  const pkg = await import('../../projects/frontegg-app/package.json');
   const [major = 0, minor = 0, patch = 0] = pkg.version.split('.').map(Number);
   return { major, minor, patch };
 }
 
 async function modifyVersion(newVersion) {
   const { writeFileSync } = await import('fs');
-  const pkg = await import('../../frontegg-app/package.json');
+  const pkg = await import('../../projects/frontegg-app/package.json');
   pkg.version = `${newVersion.major}.${newVersion.minor}.${newVersion.patch}`;
   writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 2), { encoding: 'utf8' });
 }
