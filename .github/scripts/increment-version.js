@@ -21,10 +21,7 @@ export default (minorNeeded) => {
   let newVersion = { ...version };
 
   console.log(`Current version: ${version.major}.${version.minor}.${version.patch}`);
-  const prLabels = getPrLabels();
-
-  const minorNeeded = prLabels.some((label) => label.name?.toLowerCase?.() === 'minor');
-
+  
   if (minorNeeded) {
     console.log('Minor version needed', { minorNeeded });
   }
