@@ -52,9 +52,22 @@ jobs:
           npm whoami
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Set Minor release
+        id: version_type_minor
+        if: contains(join(github.event.pull_request.labels.*.name, ','), 'Minor')
+        run: |
+            echo "VERSION_TYPE=minor" >> $GITHUB_EN
+      - name: Update version in package json
+        uses: actions/github-script@v6
+        id: 'generated-changelog'
+        with:
+          result-encoding: string
+          script: |
+            const { incrementVersion } = await import(`${process.env.GITHUB_WORKSPACE}/.github/scripts/index.js`);
+            return incrementVersion($VERSION_TYPE === 'minor');
       - name: Commit Version UP
         run: |
-          yarn increment-version
           yarn update-version
       - name: "Set Generated changelog"
         uses: actions/github-script@v6

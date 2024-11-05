@@ -1,9 +1,8 @@
-const { execSync } = require('child_process');
 const { writeFileSync } = require('fs');
 const path = require('path');
 
 function getCurrentVersion() {
-  const pkg = require('../projects/frontegg-app/package.json');
+  const pkg = require('../../projects/frontegg-app/package.json');
   const [major = 0, minor = 0, patch = 0] = pkg.version.split('.').map(Number);
   return { major, minor, patch };
 }
@@ -16,13 +15,8 @@ function modifyVersion(newVersion) {
   writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 2), { encoding: 'utf8' });
 }
 
-//check current pr labels
-function getPrLabels() {
-  const prLabels = execSync('gh pr view 1 --json labels')?.toString?.() ?? '{}';
-  return JSON.parse(prLabels).labels ?? [];
-}
 
-function versioning() {
+export default (minorNeeded) => {
   const version = getCurrentVersion();
   let newVersion = { ...version };
 
@@ -47,4 +41,4 @@ function versioning() {
 }
 
 
-versioning();
+;
