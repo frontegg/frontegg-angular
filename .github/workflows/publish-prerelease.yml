@@ -9,7 +9,7 @@ name: Publish Pre-Release to NPM
 on:
   pull_request:
     types: [ opened, edited, synchronize, reopened, labeled, unlabeled ]
-    
+
 jobs:
   createReleasePullRequest:
     if: "!contains(join(github.event.pull_request.labels.*.name, ','), 'Release') && github.event.pull_request.merged == true"
@@ -72,67 +72,68 @@ jobs:
           script: |
             const {default: fs} = await import('fs');
             const {version} = JSON.parse(fs.readFileSync('./projects/frontegg-app/package.json', {encoding: "utf-8"}));
+            console.log({version});
             return version;
-      - name: Commit changes
-        shell: bash -ex {0}
-        id: 'cpr_commit_sha'
-        run: |
-          git add . && git commit -m "chore(release): publish ${{ steps.incremented-version.outputs.result }}"
-          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      # - name: Commit changes
+      #   shell: bash -ex {0}
+      #   id: 'cpr_commit_sha'
+      #   run: |
+      #     git add . && git commit -m "chore(release): publish ${{ steps.incremented-version.outputs.result }}"
+      #     echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Create Release Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v3.5.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: ${{ secrets.GITHUB_WORKSPACE }}
-          commit-message: "Update v${{ steps.incremented-version.outputs.result }}"
-          committer: GitHub <noreply@github.com>
-          author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
-          title: 'v${{ steps.incremented-version.outputs.result }}'
-          body: |
-            # v${{ steps.incremented-version.outputs.result }}
+      # - name: Create Release Pull Request
+      #   id: cpr
+      #   uses: peter-evans/create-pull-request@v3.5.1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     path: ${{ secrets.GITHUB_WORKSPACE }}
+      #     commit-message: "Update v${{ steps.incremented-version.outputs.result }}"
+      #     committer: GitHub <noreply@github.com>
+      #     author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+      #     title: 'v${{ steps.incremented-version.outputs.result }}'
+      #     body: |
+      #       # v${{ steps.incremented-version.outputs.result }}
 
-            ${{steps.generated-changelog.outputs.result}}
+      #       ${{steps.generated-changelog.outputs.result}}
 
-          labels: "Type: Release"
-          branch: "release/next"
+      #     labels: "Type: Release"
+      #     branch: "release/next"
 
-      - name: Publish Pre-Release version to NPM
-        id: publish_pre_release_version
-        run: |
-          version=$(node -p 'require("./projects/frontegg-app/package.json").version')
-          echo "::set-output name=LIB_VERSION::${version}"
-          echo "Publishing Pre-Release version - v${version}-alpha.${{ github.run_id }}"
-          node -p "(function(){var fs = require('fs'); var pkg = JSON.parse(fs.readFileSync('./dist/@frontegg/angular/package.json', {encoding: 'utf8'})); pkg.version = '${version}-alpha.${{ github.run_id }}'; fs.writeFileSync('./dist/@frontegg/angular/package.json', JSON.stringify(pkg, null, 2),  {encoding: 'utf8'})})()"
-          cp .npmrc ./dist/@frontegg/angular/
-          cp .npmignore ./dist/@frontegg/angular/
-          cp ./README.md ./dist/@frontegg/angular/
-          cd ./dist/@frontegg/angular && npm publish --tag next
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      # - name: Publish Pre-Release version to NPM
+      #   id: publish_pre_release_version
+      #   run: |
+      #     version=$(node -p 'require("./projects/frontegg-app/package.json").version')
+      #     echo "::set-output name=LIB_VERSION::${version}"
+      #     echo "Publishing Pre-Release version - v${version}-alpha.${{ github.run_id }}"
+      #     node -p "(function(){var fs = require('fs'); var pkg = JSON.parse(fs.readFileSync('./dist/@frontegg/angular/package.json', {encoding: 'utf8'})); pkg.version = '${version}-alpha.${{ github.run_id }}'; fs.writeFileSync('./dist/@frontegg/angular/package.json', JSON.stringify(pkg, null, 2),  {encoding: 'utf8'})})()"
+      #     cp .npmrc ./dist/@frontegg/angular/
+      #     cp .npmignore ./dist/@frontegg/angular/
+      #     cp ./README.md ./dist/@frontegg/angular/
+      #     cd ./dist/@frontegg/angular && npm publish --tag next
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      - name : Notify Slack on alpha version deployment
-        uses : rtCamp/action-slack-notify@v2
-        env :
-          SLACK_CHANNEL : frontegg-alpha-versions
-          SLACK_COLOR : ${{ job.status }}
-          SLACK_ICON : https://avatars.githubusercontent.com/u/67857107?s=40&v=4
-          SLACK_MESSAGE : '${{ steps.publish_pre_release_version.outputs.LIB_VERSION }}-alpha.${{ github.run_id }} has been released :rocket:'
-          SLACK_TITLE : 'A new @frontegg/angular alpha version!'
-          SLACK_USERNAME : ${{ github.actor }}
-          SLACK_WEBHOOK : ${{ secrets.ROTEM_SLACK_WEBHOOK }}
-          MSG_MINIMAL : true
+      # - name : Notify Slack on alpha version deployment
+      #   uses : rtCamp/action-slack-notify@v2
+      #   env :
+      #     SLACK_CHANNEL : frontegg-alpha-versions
+      #     SLACK_COLOR : ${{ job.status }}
+      #     SLACK_ICON : https://avatars.githubusercontent.com/u/67857107?s=40&v=4
+      #     SLACK_MESSAGE : '${{ steps.publish_pre_release_version.outputs.LIB_VERSION }}-alpha.${{ github.run_id }} has been released :rocket:'
+      #     SLACK_TITLE : 'A new @frontegg/angular alpha version!'
+      #     SLACK_USERNAME : ${{ github.actor }}
+      #     SLACK_WEBHOOK : ${{ secrets.ROTEM_SLACK_WEBHOOK }}
+      #     MSG_MINIMAL : true
 
-      - name: Wait until NPM registry finished indexing the new version
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const checkingVersion = '${{ steps.publish_pre_release_version.outputs.LIB_VERSION }}-alpha.${{ github.run_id }}';
-            const checkNpmVersions = require('./scripts/wait-for-npm-indexing.js');
-            await checkNpmVersions(github, ['@frontegg/angular'], checkingVersion);
+      # - name: Wait until NPM registry finished indexing the new version
+      #   uses: actions/github-script@v6
+      #   with:
+      #     script: |
+      #       const checkingVersion = '${{ steps.publish_pre_release_version.outputs.LIB_VERSION }}-alpha.${{ github.run_id }}';
+      #       const checkNpmVersions = require('./scripts/wait-for-npm-indexing.js');
+      #       await checkNpmVersions(github, ['@frontegg/angular'], checkingVersion);
 
-      - name: "Call trigger-e2e-test action"
+      # - name: "Call trigger-e2e-test action"
         uses: ./.github/actions/trigger-e2e-test
         with:
           version: ${{ steps.publish_pre_release_version.outputs.LIB_VERSION }}-alpha.${{ github.run_id }}
