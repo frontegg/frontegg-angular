@@ -57,7 +57,8 @@ jobs:
         id: version_type_minor
         if: contains(join(github.event.pull_request.labels.*.name, ','), 'Minor')
         run: |
-            return true;
+            echo "::set-output name=result::true";
+
       - name: Update version in package json
         uses: actions/github-script@v6
         id: 'update-version'
@@ -65,6 +66,7 @@ jobs:
           result-encoding: string
           script: |
             const { incrementVersion } = await import(`${process.env.GITHUB_WORKSPACE}/.github/scripts/index.js`);
+            console.log('version_type_minor', ${{ steps.version_type_minor.outputs.result }});
             return incrementVersion(${{ steps.version_type_minor.outputs.result }});
       - name: Commit Version UP
         run: |
