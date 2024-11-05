@@ -8,13 +8,6 @@ function getCurrentVersion() {
   return { major, minor, patch };
 }
 
-function isAdminPortalPackageUpdated() {
-  const yarnLockChanges = execSync('git diff HEAD $(git describe --tags --match "v*" --abbrev=0) -- \'yarn.lock\'');
-  return yarnLockChanges.toString().indexOf('@frontegg/rest-api@') !== -1 ||
-    yarnLockChanges.toString().indexOf('@frontegg/redux-store@') !== -1 ||
-    yarnLockChanges.toString().indexOf('@frontegg/js@') !== -1;
-}
-
 function modifyVersion(newVersion) {
   const packageJsonPath = path.join(__dirname, `../projects/frontegg-app/package.json`);
   console.log('Modifying package.json', packageJsonPath);
@@ -23,18 +16,26 @@ function modifyVersion(newVersion) {
   writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 2), { encoding: 'utf8' });
 }
 
+//check current pr labels
+function getPrLabels() {
+  const prLabels = execSync('gh pr view 1 --json labels')?.toString?.() ?? '{}';
+  return JSON.parse(prLabels).labels ?? [];
+}
+
 function versioning() {
   const version = getCurrentVersion();
   let newVersion = { ...version };
 
-  const adminPortalChanged = isAdminPortalPackageUpdated();
-
   console.log(`Current version: ${version.major}.${version.minor}.${version.patch}`);
-  if (adminPortalChanged) {
-    console.log('New version of Admin Portal');
+  const prLabels = getPrLabels();
+
+  const minorNeeded = prLabels.some((label) => label.name?.toLowerCase?.() === 'minor');
+
+  if (minorNeeded) {
+    console.log('Minor version needed', { minorNeeded });
   }
 
-  if (adminPortalChanged) {
+  if (minorNeeded) {
     // minor version
     newVersion.minor = version.minor + 1;
     newVersion.patch = 0;
