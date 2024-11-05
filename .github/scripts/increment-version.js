@@ -1,12 +1,13 @@
 async function getCurrentVersion() {
-  const pkg = await import('../../projects/frontegg-app/package.json').default;
-  const [major = 0, minor = 0, patch = 0] = pkg.version.split('.').map(Number);
+  const { default: fs } = await import('fs');
+  const { version } = JSON.parse(fs.readFileSync(`./projects/frontegg-app/package.json`, { encoding: "utf-8" }));
+  const [major = 0, minor = 0, patch = 0] = version.split('.').map(Number);
   return { major, minor, patch };
 }
 
 async function modifyVersion(newVersion) {
-  const { writeFileSync } = await import('fs');
-  const pkg = await import('../../projects/frontegg-app/package.json').default;
+  const { writeFileSync, readFileSync } = await import('fs');
+  const pkg = JSON.parse(readFileSync(`./projects/frontegg-app/package.json`, { encoding: "utf-8" }));
   pkg.version = `${newVersion.major}.${newVersion.minor}.${newVersion.patch}`;
   writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 2), { encoding: 'utf8' });
 }
@@ -18,7 +19,7 @@ export default async (minorNeeded) => {
   let newVersion = { ...version };
 
   console.log(`Current version: ${version.major}.${version.minor}.${version.patch}`);
-  
+
   if (minorNeeded) {
     console.log('Minor version needed', { minorNeeded });
   }
@@ -35,4 +36,4 @@ export default async (minorNeeded) => {
 }
 
 
-;
+  ;
