@@ -1,13 +1,12 @@
-const { writeFileSync } = require('fs');
-const path = require('path');
-
 function getCurrentVersion() {
   const pkg = require('../../projects/frontegg-app/package.json');
   const [major = 0, minor = 0, patch = 0] = pkg.version.split('.').map(Number);
   return { major, minor, patch };
 }
 
-function modifyVersion(newVersion) {
+async function modifyVersion(newVersion) {
+  const { writeFileSync } = await import('fs');
+  const { path } = await import('path');
   const packageJsonPath = path.join(__dirname, `../projects/frontegg-app/package.json`);
   console.log('Modifying package.json', packageJsonPath);
   const pkg = require(packageJsonPath);
@@ -16,8 +15,9 @@ function modifyVersion(newVersion) {
 }
 
 
-export default (minorNeeded) => {
+export default async (minorNeeded) => {
   const version = getCurrentVersion();
+
   let newVersion = { ...version };
 
   console.log(`Current version: ${version.major}.${version.minor}.${version.patch}`);
@@ -33,7 +33,7 @@ export default (minorNeeded) => {
   } else {
     newVersion.patch = version.patch + 1;
   }
-  modifyVersion(newVersion);
+  await modifyVersion(newVersion);
   console.log('new version', newVersion);
 }
 
