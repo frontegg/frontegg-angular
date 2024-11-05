@@ -57,7 +57,7 @@ jobs:
         id: version_type_minor
         if: contains(join(github.event.pull_request.labels.*.name, ','), 'Minor')
         run: |
-            echo "VERSION_TYPE=minor" >> $GITHUB_EN
+            echo "VERSION_TYPE=minor" >> $GITHUB_ENV
       - name: Update version in package json
         uses: actions/github-script@v6
         id: 'update-version'
