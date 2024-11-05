@@ -1,5 +1,5 @@
-function getCurrentVersion() {
-  const pkg = require('../../projects/frontegg-app/package.json');
+async function getCurrentVersion() {
+  const pkg = await import('../../projects/frontegg-app/package.json');
   const [major = 0, minor = 0, patch = 0] = pkg.version.split('.').map(Number);
   return { major, minor, patch };
 }
@@ -16,7 +16,7 @@ async function modifyVersion(newVersion) {
 
 
 export default async (minorNeeded) => {
-  const version = getCurrentVersion();
+  const version = await getCurrentVersion();
 
   let newVersion = { ...version };
 
