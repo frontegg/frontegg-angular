@@ -1,5 +1,24 @@
 # Change Log
 
+## [7.6.0](https://github.com/frontegg/frontegg-angular/compare/v7.5.0...v7.6.0) (2024-11-5)
+
+- FR-18529 - Fixed empty roles field bug when appName is provided
+
+
+- FR-18353 - Fixed tooltips mount component
+- FR-18476 - Added url for beforeRequestInterceptor function
+- FR-18476 - Added request interceptor
+- FR-18472 - Fixed Google one tap login stuck after unmounting login
+- FR-18436 - Fixed activate account with empty redirect bug
+
+- FR-17943 - Added code pages
+
+
+- FR-18427 - Added Support for triggering MFA after native passkeys &#x2F; iOS apple login
+- FR-18211 - Fixed email overlapping roles field
+
+
+
 ## [7.5.0](https://github.com/frontegg/frontegg-angular/compare/v7.4.0...v7.5.0) (2024-10-29)
 
 - FR-17943 - Added code pages
