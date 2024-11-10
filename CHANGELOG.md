@@ -1,5 +1,14 @@
 # Change Log
 
+## [7.6.1](https://github.com/frontegg/frontegg-angular/compare/v7.6.0...v7.6.1) (2024-11-10)
+
+- FR-18561 - Fixed get ip metadata when app name is provided
+- FR-17091 - Fixed long name in groups and roles
+
+
+### Angular Wrapper 7.6.1:
+- FR-18542: support minor versions
+
 ## [7.6.0](https://github.com/frontegg/frontegg-angular/compare/v7.5.0...v7.6.0) (2024-11-5)
 
 - FR-18529 - Fixed empty roles field bug when appName is provided
