@@ -1,5 +1,18 @@
 # Change Log
 
+## [7.6.2](https://github.com/frontegg/frontegg-angular/compare/v7.6.1...v7.6.2) (2024-11-12)
+
+- FR-18594 - Fixed blinking bug On IP and domain page
+- FR-18499 - Fixed otc page blink
+- FR-18005 - Fixed search api tokens with null descriptions 
+- FR-18499 - Fixed activate with code and password
+- FR-18582 - Fixed loader size and wrong massage
+
+- FR-18561 - Fixed get ip metadata when app name is provided
+- FR-17091 - Fixed long name in groups and roles
+
+
+
 ## [7.6.1](https://github.com/frontegg/frontegg-angular/compare/v7.6.0...v7.6.1) (2024-11-10)
 
 - FR-18561 - Fixed get ip metadata when app name is provided
