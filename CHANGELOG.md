@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.6.3](https://github.com/frontegg/frontegg-angular/compare/v7.6.2...v7.6.3) (2024-11-14)
+
+- FR-18646 - Fixed missing permissions with wildcard on custom roles
+- FR-18341 - Fixed Google Chrome Translate feature causes a crash
+- FR-16902 - Fixed login box scroll on mobile browsers
+
+
+
 ## [7.6.2](https://github.com/frontegg/frontegg-angular/compare/v7.6.1...v7.6.2) (2024-11-12)
 
 - FR-18594 - Fixed blinking bug On IP and domain page
