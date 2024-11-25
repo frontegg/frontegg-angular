@@ -14,8 +14,6 @@
 - FR-18341 - Fixed social login button size
 - FR-12722 - Fixed Incorrect order of social logins display
 
-### Angular Wrapper 7.6.4:
-- FR-18699 - Fixed alpha creation pipeline
 
 ## [7.6.3](https://github.com/frontegg/frontegg-angular/compare/v7.6.2...v7.6.3) (2024-11-14)
 
