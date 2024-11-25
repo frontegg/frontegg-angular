@@ -5,9 +5,6 @@
 - FR-18699 - Removed entitlements automatic 30 seconds refresh mechanism
 - FR-18138 - Added logic to improve login box and admin portal stability and resiliency
 
-- FR-18341 - Fixed social login button size
-- FR-12722 - Fixed Incorrect order of social logins display
-
 
 ## [7.6.4](https://github.com/frontegg/frontegg-angular/compare/v7.6.3...v7.6.4) (2024-11-19)
 
