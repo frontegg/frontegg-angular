@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.8.0](https://github.com/frontegg/frontegg-angular/compare/v7.7.0...v7.8.0) (2024-11-28)
+
+- FR-18838 - Added MFA with email code
+- FR-17593 - Fixed SAML enable with non SSO user try to login not throwing an error
+
+
+# Change Log
+
 ## [7.7.0](https://github.com/frontegg/frontegg-angular/compare/v7.6.4...v7.7.0) (2024-11-21)
 
 - FR-18699 - Removed entitlements automatic 30 seconds refresh mechanism
