@@ -1,5 +1,11 @@
 # Change Log
 
+## [7.8.2](https://github.com/frontegg/frontegg-angular/compare/v7.8.1...v7.8.2) (2024-12-5)
+
+FR-18954 - Fixed MFA with email active state, step and missing erros
+FR-18973 - Added login to show error page only for 5xx errors
+
+
 ## [7.8.1](https://github.com/frontegg/frontegg-angular/compare/v7.8.0...v7.8.1) (2024-12-3)
 
 - FR-18925 - Fixed wrong ip presented in Audit logs table IP column
