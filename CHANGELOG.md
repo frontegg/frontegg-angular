@@ -1,5 +1,11 @@
 # Change Log
 
+## [7.9.1](https://github.com/frontegg/frontegg-angular/compare/v7.9.0...v7.9.1) (2024-12-19)
+
+- FR-18683 - Changed phone number selector input
+
+
+
 ## [7.9.0](https://github.com/frontegg/frontegg-angular/compare/v7.8.2...v7.9.0) (2024-12-15)
 
 - FR-18941 - Fixed permissions evaluation without permissions in JWT
