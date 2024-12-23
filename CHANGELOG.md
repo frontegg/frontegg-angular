@@ -1,5 +1,16 @@
 # Change Log
 
+## [7.10.0](https://github.com/frontegg/frontegg-angular/compare/v7.9.0...v7.10.0) (2024-12-23)
+
+- FR-19047 - Fixed permissions evalutaion when have more than one permission
+- FR-18988 - Fixed missing email on MFA verification description
+- FR-19068 - Fixed MFA error appears after clicking on verify another way
+- FR-18917 - Fixed user roles deletion
+
+- FR-18683 - Changed phone number selector input
+
+
+
 ## [7.9.0](https://github.com/frontegg/frontegg-angular/compare/v7.8.2...v7.9.0) (2024-12-15)
 
 - FR-18941 - Fixed permissions evaluation without permissions in JWT
