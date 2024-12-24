@@ -1,5 +1,16 @@
 # Change Log
 
+## [7.10.1](https://github.com/frontegg/frontegg-angular/compare/v7.10.0...v7.10.1) (2024-12-24)
+
+- FR-19079 - Added Suggest Save password in mobile sdk
+
+- FR-19047 - Fixed permissions evalutaion when have more than one permission
+- FR-18988 - Fixed missing email on MFA verification description
+- FR-19068 - Fixed MFA error appears after clicking on verify another way
+- FR-18917 - Fixed user roles deletion
+
+
+
 ## [7.10.0](https://github.com/frontegg/frontegg-angular/compare/v7.9.0...v7.10.0) (2024-12-23)
 
 - FR-19047 - Fixed permissions evalutaion when have more than one permission
