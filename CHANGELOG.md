@@ -1,6 +1,6 @@
 # Change Log
 
-## [7.10.1](https://github.com/frontegg/frontegg-angular/compare/v7.10.0...v7.10.1) (2024-12-24)
+## [7.11.0](https://github.com/frontegg/frontegg-angular/compare/v7.10.0...v7.10.1) (2024-12-24)
 
 - FR-19079 - Added Suggest Save password in mobile sdk
 
