@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.11.2](https://github.com/frontegg/frontegg-angular/compare/v7.11.1...v7.11.2) (2024-12-31)
+
+- FR-19220 - Fixed roles selection for MSP users
+- FR-19205 - Added filter country code by country calling code
+- FR-18963 - Added SMS enhancements
+
+
+
 ## [7.11.1](https://github.com/frontegg/frontegg-angular/compare/v7.11.0...v7.11.1) (2024-12-29)
 
 - FR-19191 - Fixed infinite loop on get ip metadata
