@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.11.3](https://github.com/frontegg/frontegg-angular/compare/v7.11.2...v7.11.3) (2025-1-6)
+
+- FR-19272 - Fixed sso input
+
+
+- FR-19068 - Fixed MFA error appears after reset
+
+
 ## [7.11.2](https://github.com/frontegg/frontegg-angular/compare/v7.11.1...v7.11.2) (2024-12-31)
 
 - FR-19220 - Fixed roles selection for MSP users
