@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.11.4](https://github.com/frontegg/frontegg-angular/compare/v7.11.3...v7.11.4) (2025-1-14)
+
+- FR-19236 - Fixed error handling on OIDC failure
+- FR-19301 - Fixed settings list item title
+- FR-19121 - Fixed security center recommendations after policy changed
+
+
+
 ## [7.11.3](https://github.com/frontegg/frontegg-angular/compare/v7.11.2...v7.11.3) (2025-1-6)
 
 - FR-19272 - Fixed sso input
