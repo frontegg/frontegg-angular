@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.11.5](https://github.com/frontegg/frontegg-angular/compare/v7.11.4...v7.11.5) (2025-1-16)
+
+- FR-19387 - Fixed login with apple in iOS devices
+- FR-18450 - Changed permissions tree components (refactor)
+
+
+
 ## [7.11.4](https://github.com/frontegg/frontegg-angular/compare/v7.11.3...v7.11.4) (2025-1-14)
 
 - FR-19236 - Fixed error handling on OIDC failure
