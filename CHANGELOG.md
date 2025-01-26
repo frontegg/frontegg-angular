@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.11.6](https://github.com/frontegg/frontegg-angular/compare/v7.11.5...v7.11.6) (2025-1-26)
+
+- FR-19351 - Fixed MFA with SMS error and inital state bugs
+- FR-19269 - Changed initial requests to run in parallel
+
+
+
 ## [7.11.5](https://github.com/frontegg/frontegg-angular/compare/v7.11.4...v7.11.5) (2025-1-16)
 
 - FR-19387 - Fixed login with apple in iOS devices
