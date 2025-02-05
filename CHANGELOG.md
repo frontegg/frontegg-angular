@@ -1,5 +1,12 @@
 # Change Log
 
+## [7.11.8](https://github.com/frontegg/frontegg-angular/compare/v7.11.7...v7.11.8) (2025-2-5)
+
+- FR-19618 - Fixed FRONTEGG_AFTER_AUTH_REDIRECT_URL usage on custom login
+- FR-19509 - Fixed sms as main auth strategy validation
+
+
+
 ## [7.11.7](https://github.com/frontegg/frontegg-angular/compare/v7.11.6...v7.11.7) (2025-2-2)
 
 - FR-19573 - Fixed redundant required asterisk on optional field
