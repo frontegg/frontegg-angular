@@ -1,5 +1,11 @@
 # Change Log
 
+## [7.12.1](https://github.com/frontegg/frontegg-angular/compare/v7.12.0...v7.12.1) (2025-2-10)
+
+- FR-19547 - Changed prestep component to get t instead of texts
+
+
+
 ## [7.12.0](https://github.com/frontegg/frontegg-angular/compare/v7.11.8...v7.12.0) (2025-2-10)
 
 - FR-19547 - Added prestep support for auth flows
