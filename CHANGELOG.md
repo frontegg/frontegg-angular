@@ -1,5 +1,17 @@
 # Change Log
 
+## [7.13.1](https://github.com/frontegg/frontegg-angular/compare/v7.13.0...v7.13.1) (2025-3-4)
+
+- FR-19752 - Fixed error not shown in custom role creation
+- FR-18568 - Added password rotation support
+
+- FR-19037 - Added fallback for skip user load
+- FR-19648 - Added password expiration to login box
+
+- FR-19037 - Added an option to skip user load
+
+
+
 ## [7.13.0](https://github.com/frontegg/frontegg-angular/compare/v7.12.1...v7.13.0) (2025-2-20)
 
 - FR-18630 - Fixed input transparent autofill for vite
