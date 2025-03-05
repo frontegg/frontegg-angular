@@ -1,5 +1,11 @@
 # Change Log
 
+## [7.13.2](https://github.com/frontegg/frontegg-angular/compare/v7.13.1...v7.13.2) (2025-3-5)
+
+- FR-19452 - Added a &quot;silent refresh&quot; to switchTenant
+
+
+
 ## [7.13.1](https://github.com/frontegg/frontegg-angular/compare/v7.13.0...v7.13.1) (2025-3-4)
 
 - FR-19752 - Fixed error not shown in custom role creation
