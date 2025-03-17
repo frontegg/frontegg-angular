@@ -1,5 +1,15 @@
 # Change Log
 
+## [7.13.3](https://github.com/frontegg/frontegg-angular/compare/v7.13.2...v7.13.3) (2025-3-16)
+
+- FR-20068 - Added password config custom tests
+
+- FR-13869 - Fixed autocomplete overrides input theme
+- FR-19956 - Fixed missing email for unenreolled MFA users
+- FR-20037 - Fixed input focus on user invite dialog
+
+
+
 ## [7.13.2](https://github.com/frontegg/frontegg-angular/compare/v7.13.1...v7.13.2) (2025-3-5)
 
 - FR-19452 - Added a &quot;silent refresh&quot; to switchTenant
