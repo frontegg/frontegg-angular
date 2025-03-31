@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.13.5](https://github.com/frontegg/frontegg-angular/compare/v7.13.4...v7.13.5) (2025-3-31)
+
+- FR-20267 - Added support for direction by metadata
+- FR-20250 - Fixed min optional tests on password strength
+- FR-19976 - Fixed pre step shouldn&#39;t appear when shouldSetPassword is not false
+
+
+
 ## [7.13.4](https://github.com/frontegg/frontegg-angular/compare/v7.13.3...v7.13.4) (2025-3-23)
 
 - FR-19299 - Fixed Hebrew translation of password rotation
