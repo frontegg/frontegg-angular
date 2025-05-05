@@ -1,5 +1,18 @@
 # Change Log
 
+## [7.14.1](https://github.com/frontegg/frontegg-angular/compare/v7.14.0...v7.14.1) (2025-5-5)
+
+- FR-20047 - Added support for overrideSignupFields as string js code
+- FR-19797 - Fixed bug duplicate request on double click
+- FR-20479 - Added type error validation method to yup interfaces
+
+- FR-20482 - Added one of validation method to yup boolean interface
+- FR-19402 - Fixed UI delete all checkbox
+- FR-20398 - Added delete all option to SCIM deletion
+- FR-20047 - Added Custom Signup Fields
+
+
+
 ## [7.14.0](https://github.com/frontegg/frontegg-angular/compare/v7.13.5...v7.14.0) (2025-4-14)
 
 - FR-18986 - Added tooltip functionality for individual chips in GroupsChipsList component
