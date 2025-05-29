@@ -1,5 +1,19 @@
 # Change Log
 
+## [7.15.0](https://github.com/frontegg/frontegg-angular/compare/v7.14.2...v7.15.0) (2025-5-27)
+
+- FR-20899 - Changed logout user session button
+- FR-20901 - Fixed select actions menu item
+- FR-20871 - Added support for default language
+- FR-20894 - Added support regex in string input
+
+
+- FR-19718 - Added username strategies
+
+- FR-20337 - Fixed errors not displayed on submit
+
+
+
 ## [7.14.2](https://github.com/frontegg/frontegg-angular/compare/v7.14.1...v7.14.2) (2025-5-20)
 
 - FR-20337 - Fixed errors not displayed on submit
