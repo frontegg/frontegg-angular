@@ -1,5 +1,17 @@
 # Change Log
 
+## [7.17.0](https://github.com/frontegg/frontegg-angular/compare/v7.16.1...v7.17.0) (2025-7-29)
+
+- FR-21351 - Changed user loading methods to use the new V3 API
+- FR-21350 - Added usage for tenant-application access types in hosted Admin box
+
+- FR-20601 - Fixed metadata sync when using custom signup fields
+- FR-20601 - Fixed custom signup fields visibility
+- FR-21194 - Fixed translations options to have all supported languages
+- FR-21242 - Added customization for select phone number country codes
+
+
+
 ## [7.16.1](https://github.com/frontegg/frontegg-angular/compare/v7.16.0...v7.16.1) (2025-6-23)
 
 - FR-20838 - Added search for role in the edit roles dialog of users page
