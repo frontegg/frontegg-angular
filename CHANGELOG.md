@@ -1,5 +1,13 @@
 # Change Log
 
+## [7.17.3](https://github.com/frontegg/frontegg-angular/compare/v7.17.2...v7.17.3) (2025-9-10)
+
+- FR-22001 - Added Embedded Social Login in MobileSDK
+
+- FR-22006 - Fixed signup login direct action with basename
+
+
+
 ## [7.17.2](https://github.com/frontegg/frontegg-angular/compare/v7.17.1...v7.17.2) (2025-9-3)
 
 - FR-21916 - Added username field to InviteUserForm with validation
