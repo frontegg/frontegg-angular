@@ -1,5 +1,11 @@
 # Change Log
 
+## [7.17.4](https://github.com/frontegg/frontegg-angular/compare/v7.17.3...v7.17.4) (2025-9-14)
+
+- FR-22130 - Removed autoFocus from invite user&#39;s email field 
+
+
+
 ## [7.17.3](https://github.com/frontegg/frontegg-angular/compare/v7.17.2...v7.17.3) (2025-9-10)
 
 - FR-22001 - Added Embedded Social Login in MobileSDK
