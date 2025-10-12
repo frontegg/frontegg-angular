@@ -1,5 +1,11 @@
 # Change Log
 
+## [7.17.6](https://github.com/frontegg/frontegg-angular/compare/v7.17.5...v7.17.6) (2025-10-12)
+
+
+### Angular Wrapper 7.17.6:
+- FR-22362 - Fix emitter component EOL
+
 ## [7.17.5](https://github.com/frontegg/frontegg-angular/compare/v7.17.4...v7.17.5) (2025-9-25)
 
 - FR-22238 - Added a &#39;Back&#39; button when both link and form invitations …
