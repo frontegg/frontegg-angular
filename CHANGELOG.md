@@ -1,5 +1,23 @@
 # Change Log
 
+## [7.17.8](https://github.com/frontegg/frontegg-angular/compare/v7.17.7...v7.17.8) (2025-11-30)
+
+- FR-22193 - Added admin portal support for searching by username, email, name, etc. in the users table
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrades Frontegg dependencies to 7.93.0 across package manifests and lockfile.
+> 
+> - **Dependencies**:
+>   - Upgrade `@frontegg/js` to `7.93.0` in `package.json` and `projects/frontegg-app/package.json`.
+>   - Update `yarn.lock` to `7.93.0` for related Frontegg packages: `@frontegg/js`, `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`.
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 99c1e050fc628a93de7c93608d3ca04caf10c7ae. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.7](https://github.com/frontegg/frontegg-angular/compare/v7.17.6...v7.17.7) (2025-10-19)
 
 
