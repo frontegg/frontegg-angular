@@ -1,5 +1,37 @@
 # Change Log
 
+## [7.17.9](https://github.com/frontegg/frontegg-angular/compare/v7.17.8...v7.17.9) (2025-12-11)
+
+- FR-21830 - Fixed IP location
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrade Frontegg dependencies to version 7.95.0 across the app and library.
+> 
+> - **Dependencies**:
+>   - Bump `@frontegg/js` to `7.95.0` in `package.json` and `projects/frontegg-app/package.json`.
+>   - Align related Frontegg packages to `7.95.0` in `yarn.lock` (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 69aa4957bbeb8c66beac2f281ab5f2ed49588646. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-22289 - Added support new columns in users table
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrade `@frontegg/js` (and aligned Frontegg deps) to 7.94.0 across the workspace.
+> 
+> - **Dependencies**:
+>   - Bump `@frontegg/js` to `7.94.0` in `package.json` and `projects/frontegg-app/package.json`.
+>   - Align related Frontegg packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`) to `7.94.0`.
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 941ddcb986dbc56949dfb91357d9c9d281232d76. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.8](https://github.com/frontegg/frontegg-angular/compare/v7.17.7...v7.17.8) (2025-11-30)
 
 - FR-22193 - Added admin portal support for searching by username, email, name, etc. in the users table
