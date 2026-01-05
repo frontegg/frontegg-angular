@@ -1,5 +1,38 @@
 # Change Log
 
+## [7.17.10](https://github.com/frontegg/frontegg-angular/compare/v7.17.9...v7.17.10) (2026-1-5)
+
+- FR-17084 - Fixed loader
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrades Frontegg SDK to the latest minor release with corresponding lockfile updates.
+> 
+> - Bump `@frontegg/js` from `7.95.0` to `7.96.0` in `package.json` and `projects/frontegg-app/package.json`
+> - Refresh `yarn.lock` resolving to `@frontegg/*` `7.96.0` packages (`redux-store`, `rest-api`, `types`)
+> 
+> No application code changes.
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit b04a34cf48989defae6ab4cbf0c98b4e95ee2413. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-21830 - Fixed IP location
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrade Frontegg dependencies to version 7.95.0 across the app and library.
+> 
+> - **Dependencies**:
+>   - Bump `@frontegg/js` to `7.95.0` in `package.json` and `projects/frontegg-app/package.json`.
+>   - Align related Frontegg packages to `7.95.0` in `yarn.lock` (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 69aa4957bbeb8c66beac2f281ab5f2ed49588646. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.9](https://github.com/frontegg/frontegg-angular/compare/v7.17.8...v7.17.9) (2025-12-11)
 
 - FR-21830 - Fixed IP location
