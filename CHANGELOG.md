@@ -1,5 +1,23 @@
 # Change Log
 
+## [7.17.11](https://github.com/frontegg/frontegg-angular/compare/v7.17.10...v7.17.11) (2026-1-14)
+
+- FR-23141 - Added username edit config
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Dependency upgrade**
+> 
+> - Bump `@frontegg/js` to `7.97.0` in `package.json` and `projects/frontegg-app/package.json`
+> - Update `yarn.lock` to `@frontegg/js@7.97.0` and align transitive `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api` to `7.97.0`
+> - No application source changes
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit c02d9342fb6e2b2bb0dc8967c0f76fe7c94083ca. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.10](https://github.com/frontegg/frontegg-angular/compare/v7.17.9...v7.17.10) (2026-1-5)
 
 - FR-17084 - Fixed loader
