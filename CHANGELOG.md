@@ -1,5 +1,23 @@
 # Change Log
 
+## [7.17.12](https://github.com/frontegg/frontegg-angular/compare/v7.17.11...v7.17.12) (2026-1-27)
+
+- FR-22263 - Fixed publish
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Updates Frontegg dependencies across the workspace.
+> 
+> - Bumps `@frontegg/js` to `7.99.0` in `package.json` and `projects/frontegg-app/package.json`
+> - Refreshes `yarn.lock`, updating transitive Frontegg packages to `7.99.0` (`@frontegg/redux-store`, `@frontegg/rest-api`, `@frontegg/types`)
+> - No application/source code changes
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 46c3bac0e7ffd7384664697c4941412801948eba. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.11](https://github.com/frontegg/frontegg-angular/compare/v7.17.10...v7.17.11) (2026-1-14)
 
 - FR-23141 - Added username edit config
