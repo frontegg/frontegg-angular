@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.17.13](https://github.com/frontegg/frontegg-angular/compare/v7.17.12...v7.17.13) (2026-2-10)
+
+- FR-23484 - Added an option to render SSO guides outside of admin box
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump with no application code changes; risk is limited to potential upstream behavioral changes in the Frontegg SDK.
+> 
+> **Overview**
+> Updates the Frontegg SDK dependency from `@frontegg/js@7.99.0` to `7.100.0` in both the root app and the `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` accordingly, pulling the matching `7.100.0` versions of Frontegg transitive packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 8533e297ccb8b5610401278e9243667ed94d27e4. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.12](https://github.com/frontegg/frontegg-angular/compare/v7.17.11...v7.17.12) (2026-1-27)
 
 - FR-22263 - Fixed publish
