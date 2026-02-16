@@ -1,5 +1,26 @@
 # Change Log
 
+## [7.17.14](https://github.com/frontegg/frontegg-angular/compare/v7.17.13...v7.17.14) (2026-2-16)
+
+- FR-22346 - Fixed enable session per tenant data mismatch between user jwt and sdk    
+- FR-22346 - Fixed enable session per tenant data mismatch between user jwt and sdk    
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump to Frontegg packages; primary risk is behavior changes/regressions coming from the upstream SDK update.
+> 
+> **Overview**
+> Updates the Frontegg SDK dependency to `@frontegg/js@7.101.0` in both the root app and the published `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` accordingly, pulling in matching `7.101.0` versions of related Frontegg packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 361f80b3d473f777367d9028f8c5e2a5fb6ff94b. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.13](https://github.com/frontegg/frontegg-angular/compare/v7.17.12...v7.17.13) (2026-2-10)
 
 - FR-23484 - Added an option to render SSO guides outside of admin box
