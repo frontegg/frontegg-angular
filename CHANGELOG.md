@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.17.15](https://github.com/frontegg/frontegg-angular/compare/v7.17.14...v7.17.15) (2026-3-8)
+
+- FR-22979 - Changed callback in InviteUserForm to handle errors and reset form state
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Dependency-only upgrade, but it changes the underlying Frontegg SDK (`@frontegg/js` and related `@frontegg/*` packages) which can affect runtime auth/admin-portal behavior. No application code changes are included, so the main risk is regressions introduced by the upstream release.
+> 
+> **Overview**
+> Updates the pinned Frontegg SDK version from `7.101.0` to `7.102.0` in both the root `package.json` and `projects/frontegg-app/package.json`.
+> 
+> Refreshes `yarn.lock` to pull in the matching `7.102.0` versions of `@frontegg/js` and its related dependencies (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 5b92f96e6c673c79c0f7695669959ffbafe932a3. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.14](https://github.com/frontegg/frontegg-angular/compare/v7.17.13...v7.17.14) (2026-2-16)
 
 - FR-22346 - Fixed enable session per tenant data mismatch between user jwt and sdk    
