@@ -1,5 +1,26 @@
 # Change Log
 
+## [7.17.16](https://github.com/frontegg/frontegg-angular/compare/v7.17.15...v7.17.16) (2026-3-19)
+
+- FR-23610 - Added login completed GTM
+- FR-23421 - Added support for CMC SCIM guide dialog and fix SSO guide
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk dependency-only update; behavior changes are limited to whatever is introduced by `@frontegg/js` and its transitive packages in 7.103.0.
+> 
+> **Overview**
+> Updates `@frontegg/js` from `7.102.0` to `7.103.0` in both the root app and the `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` to pull in the corresponding `7.103.0` versions of Frontegg transitive packages (notably `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 9c60416a03b8dfe5545d4cb1f6da29c6ae21cc8d. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.15](https://github.com/frontegg/frontegg-angular/compare/v7.17.14...v7.17.15) (2026-3-8)
 
 - FR-22979 - Changed callback in InviteUserForm to handle errors and reset form state
