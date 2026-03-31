@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.17.17](https://github.com/frontegg/frontegg-angular/compare/v7.17.16...v7.17.17) (2026-3-31)
+
+- FR-23900 - Added validation for reset password token and improved user feedback for expired links
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk dependency-only upgrade with no in-repo code changes, but behavior may change via updated Frontegg SDK internals (auth/reset-password flows).
+> 
+> **Overview**
+> Updates `@frontegg/js` from `7.103.0` to `7.104.0` in both the root app and the published `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` to pull in the corresponding `7.104.0` Frontegg dependency chain (notably `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 8801273660fe1051d7a7d50254dbbcc9dab68031. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.17.16](https://github.com/frontegg/frontegg-angular/compare/v7.17.15...v7.17.16) (2026-3-19)
 
 - FR-23610 - Added login completed GTM
