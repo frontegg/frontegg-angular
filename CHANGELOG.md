@@ -1,5 +1,47 @@
 # Change Log
 
+## [7.18.0](https://github.com/frontegg/frontegg-angular/compare/v7.17.18...v7.18.0) (2026-5-17)
+
+- FR-24663 - Fixed country restriction dark theme input
+- FR-24664 - Fixed country field background in modern theme
+- FR-24693 - Fixed country restriction admin portal not full list of countries display for allow deny lists
+- FR-24661 - Fixed country restriction tip counter updates
+- FR-24667 - Added country restriction admin portal current country is not added to the list after enabling the counter restriction toggle
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk dependency bump: updates the Frontegg SDK and its transitive packages via lockfile changes, with no application code modifications.
+> 
+> **Overview**
+> Updates the project and library dependency on `@frontegg/js` from `7.106.0` to `7.107.0` in both the root and `projects/frontegg-app` packages.
+> 
+> Refreshes `yarn.lock` to pull in the corresponding `7.107.0` versions of Frontegg transitive dependencies (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit a68e754d95d36292b90afaa266cd70f064f75975. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-24187 - Fixed CPU issues
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk change limited to a patch-level dependency upgrade, but it may slightly alter runtime behavior/performance due to updated Frontegg internals.
+> 
+> **Overview**
+> Updates the Frontegg Admin Portal SDK dependency by bumping `@frontegg/js` from `7.105.0` to `7.106.0` in both the root app and the `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` to pull the corresponding `7.106.0` versions of transitive Frontegg packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit bf32be89c131d97c6234e8558d6b27dc4bdbd53f. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+### Angular Wrapper 7.18.0:
+- fix - e2e trigger
+
 ## [7.17.18](https://github.com/frontegg/frontegg-angular/compare/v7.17.17...v7.17.18) (2026-5-5)
 
 - FR-24187 - Fixed CPU issues
