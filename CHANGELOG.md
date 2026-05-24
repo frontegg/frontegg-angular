@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.18.1](https://github.com/frontegg/frontegg-angular/compare/v7.18.0...v7.18.1) (2026-5-19)
+
+- FR-23507 - Fixed custom login box favicon not displaying pulls from main login box instead
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low-risk dependency bump that primarily affects the embedded Frontegg Admin Portal behavior; main risk is unintended upstream regressions from the library update.
+> 
+> **Overview**
+> Updates the Frontegg SDK dependency to `@frontegg/js@7.108.0` in both the root app and the published `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` to pull in the corresponding `7.108.0` versions of Frontegg transitive packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 6c7449dc6b73f415889b95fab1a3d13d1004b804. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.0](https://github.com/frontegg/frontegg-angular/compare/v7.17.18...v7.18.0) (2026-5-17)
 
 - FR-24663 - Fixed country restriction dark theme input
