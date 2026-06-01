@@ -1,5 +1,23 @@
 # Change Log
 
+## [7.18.2](https://github.com/frontegg/frontegg-angular/compare/v7.18.1...v7.18.2) (2026-6-1)
+
+- FR-25022 - Changed phone validations
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only version bump with no app code changes; main impact is inherited Frontegg validation behavior in embedded auth/admin flows.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.108.0** to **7.109.0** in the root app and **`@frontegg/angular`** library (`package.json` in both places), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages. No Angular or local source changes—this pulls in upstream Admin Portal behavior, including **FR-25022** phone validation updates from the release notes.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 6f408915c405c711ae44b26ad5688911c7baae13. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.1](https://github.com/frontegg/frontegg-angular/compare/v7.18.0...v7.18.1) (2026-5-19)
 
 - FR-23507 - Fixed custom login box favicon not displaying pulls from main login box instead
