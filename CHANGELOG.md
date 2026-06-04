@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.18.3](https://github.com/frontegg/frontegg-angular/compare/v7.18.2...v7.18.3) (2026-6-4)
+
+- FR-25111 - Fixed tenant regex
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump with no local code changes; low risk unless the upstream tenant-regex fix affects existing tenant validation edge cases.
+> 
+> **Overview**
+> Bumps the embedded **Frontegg** SDK from **7.109.0** to **7.110.0** in the root app and `@frontegg/angular` library `package.json`, with matching lockfile updates for `@frontegg/js`, `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`.
+> 
+> There are **no application source changes** in this repo; behavior comes from the upgraded package (notably a **tenant regex fix**, FR-25111, per the PR description).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit cdd243b7c1c4995bfdd47399cb04f6a31b7fc61a. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.2](https://github.com/frontegg/frontegg-angular/compare/v7.18.1...v7.18.2) (2026-6-1)
 
 - FR-25022 - Changed phone validations
