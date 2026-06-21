@@ -1,5 +1,27 @@
 # Change Log
 
+## [7.18.4](https://github.com/frontegg/frontegg-angular/compare/v7.18.3...v7.18.4) (2026-6-21)
+
+- FR-24579 - Added native token bridge for the admin portal (no second login)
+- FR-20973 - Fixed sso with username
+- FR-20975 - Fixed description username login with magic code
+- FR-22194 - Fixed error massage of username already exists missing from UI
+- FR-20977 - Fixed resend with username in magic link
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Dependency-only change, but it pulls in upstream auth, SSO, and admin-portal login behavior where regressions would affect end-user sign-in flows.
+> 
+> **Overview**
+> This PR **only updates the pinned `@frontegg/js` version** from `7.110.0` to `7.111.0` in the root `package.json` and `projects/frontegg-app/package.json`, and refreshes `yarn.lock` for `@frontegg/js` and its transitive packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`). There are **no application or library source changes** in this repo—the Admin Portal / auth behavior called out in the PR description comes from the upgraded SDK release (e.g. admin portal native token bridge, username SSO and magic-link fixes).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit c5db1d9ffcb4131b34ad71220cc8e286c8733b49. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.3](https://github.com/frontegg/frontegg-angular/compare/v7.18.2...v7.18.3) (2026-6-4)
 
 - FR-25111 - Fixed tenant regex
