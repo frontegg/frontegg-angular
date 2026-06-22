@@ -1,5 +1,26 @@
 # Change Log
 
+## [7.18.5](https://github.com/frontegg/frontegg-angular/compare/v7.18.4...v7.18.5) (2026-6-22)
+
+- FR-24579 - Fixed admin-portal redirect race on native auth handoff
+- FR-24579 - Fixed admin-portal mobile bridge capability gating and stuck loading
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> No application source changes—only pinned Frontegg SDK versions and lockfile updates.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.111.0** to **7.112.0** in the root app and **`@frontegg/angular`** library, with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages.
+> 
+> This pulls in Admin Portal fixes for **FR-24579**: a redirect race during native auth handoff, and mobile bridge capability gating that could leave the portal stuck loading.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 282b4c84a844803151cfdeb85085920f524776b7. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.4](https://github.com/frontegg/frontegg-angular/compare/v7.18.3...v7.18.4) (2026-6-21)
 
 - FR-24579 - Added native token bridge for the admin portal (no second login)
