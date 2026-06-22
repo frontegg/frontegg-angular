@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.18.6](https://github.com/frontegg/frontegg-angular/compare/v7.18.5...v7.18.6) (2026-6-22)
+
+- FR-24579 - Fixed admin-portal white screen in mobile SDK by refreshing session from native tokens
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Scope is version pins and lockfile only; session/auth behavior changes live in the upstream @frontegg/js release, so regression risk is limited to consuming that fix.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.112.0** to **7.113.0** in the root app, **`@frontegg/angular`** library package, and **`yarn.lock`** (including aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`**).
+> 
+> This pulls in **FR-24579**: a fix for the **admin portal white screen** on the **mobile SDK** by **refreshing the session from native tokens**. No Angular wrapper code changes in this PR—only the Frontegg JS stack version.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit d96f104d97f60aedc0b9b7311383326a3a5c8669. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.5](https://github.com/frontegg/frontegg-angular/compare/v7.18.4...v7.18.5) (2026-6-22)
 
 - FR-24579 - Fixed admin-portal redirect race on native auth handoff
