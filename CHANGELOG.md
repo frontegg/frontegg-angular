@@ -1,5 +1,26 @@
 # Change Log
 
+## [7.18.7](https://github.com/frontegg/frontegg-angular/compare/v7.18.6...v7.18.7) (2026-6-25)
+
+- FR-24988 - Fixed hosted login box accessibility issues
+- FR-25494 - fixed stale frontegg oauth stale
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Scope is limited to a patch-level Frontegg SDK bump; auth/OAuth fixes live in the dependency, so regression risk is mainly in login flows rather than this repo’s code.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.113.0** to **7.114.0** in the root app and **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions.
+> 
+> There are **no application source changes** in this repo; behavior comes from the new SDK release (notably hosted login accessibility fixes and OAuth stale-state fixes per the PR notes).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit aeb82aae1e0eed4d63896d731946c6e65607709a. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.6](https://github.com/frontegg/frontegg-angular/compare/v7.18.5...v7.18.6) (2026-6-22)
 
 - FR-24579 - Fixed admin-portal white screen in mobile SDK by refreshing session from native tokens
