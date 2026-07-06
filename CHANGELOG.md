@@ -1,5 +1,44 @@
 # Change Log
 
+## [7.18.8](https://github.com/frontegg/frontegg-angular/compare/v7.18.7...v7.18.8) (2026-7-6)
+
+- FR-23757 - Fixed the actor of system audit logs to not be unknown
+
+- FR-25580 - Fixed token refresh resilience with retry backoff
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump with no local code changes; main risk is regressions or API changes inside the upstream `@frontegg/js` 7.117.0 package.
+> 
+> **Overview**
+> Bumps the pinned **`@frontegg/js`** dependency from **7.115.0** to **7.117.0** in the root app and in **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions.
+> 
+> There are **no Angular library or application code changes** in this PR; behavior updates (e.g. token refresh retry/backoff from upstream) come from the new Frontegg JS SDK release.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 3bd53840dd3a43053ceecd7289cefe6799d319b8. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-24939 - Fixed step-up gate ignoring max_age when the token has no auth_time
+- FR-24939 - Fixed mobile SDK step-up looping to a blank&#x2F;error page instead of the MFA challenge
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Touches authentication step-up and MFA flows via a SDK upgrade; scope is limited to a patch-version dependency bump with no local code edits.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.114.0** to **7.115.0** in the root app and **`@frontegg/angular`** library (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages.
+> 
+> There are no Angular source changes in this PR; behavior updates come from the new JS SDK release, including **FR-24939** fixes for step-up **`max_age`** when the token lacks **`auth_time`**, and a fix for mobile SDK step-up redirecting to a blank/error page instead of the MFA challenge.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit cae01d2e880767b2139198952091d5469c813250. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.7](https://github.com/frontegg/frontegg-angular/compare/v7.18.6...v7.18.7) (2026-6-25)
 
 - FR-24988 - Fixed hosted login box accessibility issues
