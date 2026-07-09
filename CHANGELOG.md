@@ -1,5 +1,44 @@
 # Change Log
 
+## [7.18.9](https://github.com/frontegg/frontegg-angular/compare/v7.18.8...v7.18.9) (2026-7-9)
+
+- FR-24939 - Fixed native step-up challenge not rendering in the embedded login WebView
+- FR-24853 - Removed identifiers flag
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Version pin and lockfile updates only; risk is limited to whatever changed inside the external @frontegg/js 7.118.0 package (login WebView step-up and identifiers flag).
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.117.0** to **7.118.0** in the root app and **`@frontegg/angular`** package, with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions. There are **no Angular source changes** in this PR—consumers pick up upstream Admin Portal / JS SDK behavior from the new release.
+> 
+> Per the release notes, **7.118.0** includes a fix for **native step-up challenge** not rendering in the **embedded login WebView** (FR-24939) and removal of the **identifiers** flag (FR-24853).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 1e03baf0b1fcbdef7578a579e6993ecffaea8467. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-23757 - Fixed the actor of system audit logs to not be unknown
+
+- FR-25580 - Fixed token refresh resilience with retry backoff
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump with no local code changes; main risk is regressions or API changes inside the upstream `@frontegg/js` 7.117.0 package.
+> 
+> **Overview**
+> Bumps the pinned **`@frontegg/js`** dependency from **7.115.0** to **7.117.0** in the root app and in **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions.
+> 
+> There are **no Angular library or application code changes** in this PR; behavior updates (e.g. token refresh retry/backoff from upstream) come from the new Frontegg JS SDK release.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 3bd53840dd3a43053ceecd7289cefe6799d319b8. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.8](https://github.com/frontegg/frontegg-angular/compare/v7.18.7...v7.18.8) (2026-7-6)
 
 - FR-23757 - Fixed the actor of system audit logs to not be unknown
