@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.18.10](https://github.com/frontegg/frontegg-angular/compare/v7.18.9...v7.18.10) (2026-7-23)
+
+- FR-26014 - Added admin-box addressType redux branch (external instant-nav) [7.119.x]
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Version pin and lockfile-only change with no local auth or app logic edits; residual risk is whatever ships in the upstream @frontegg/js patch release.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.118.0** to **7.119.0** in the root app and **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** aligned for **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`**.
+> 
+> There are no changes to Angular library or app source in this repo; consumers pick up upstream **7.119.x** behavior (e.g. admin-box **addressType** Redux support for external instant-nav per FR-26014).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 6c3acdf44b60bd7ed66bb020df14bba771bd783b. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.9](https://github.com/frontegg/frontegg-angular/compare/v7.18.8...v7.18.9) (2026-7-9)
 
 - FR-24939 - Fixed native step-up challenge not rendering in the embedded login WebView
