@@ -1,5 +1,28 @@
 # Change Log
 
+## [7.19.0](https://github.com/frontegg/frontegg-angular/compare/v7.18.10...v7.19.0) (2026-7-27)
+
+- FR-25731 - Fixed chooser load-error state seeding when switchable list empties after opening
+
+
+- FR-25731 - Added post-auth Choose Organization step in login-box (forward-port of #2864 to v7.120.x)
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Touches the authentication/login path via a third-party SDK bump; no local code changes, but login and org-selection behavior should be regression-tested.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.119.0** to **7.121.0** in the root app and **`@frontegg/angular`** library (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions.
+> 
+> Per the PR notes, this pulls in **FR-25731**: a **post-auth “Choose Organization”** step in the login box (forward-port of upstream #2864). There are **no Angular source changes** in this repo—behavior comes entirely from the upgraded Frontegg JS SDK.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 155d2ee523c6487290511e12623ca9f9565b94b2. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.18.10](https://github.com/frontegg/frontegg-angular/compare/v7.18.9...v7.18.10) (2026-7-23)
 
 - FR-26014 - Added admin-box addressType redux branch (external instant-nav) [7.119.x]
