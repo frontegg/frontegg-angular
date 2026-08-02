@@ -1,5 +1,27 @@
 # Change Log
 
+## [7.20.0](https://github.com/frontegg/frontegg-angular/compare/v7.19.0...v7.20.0) (2026-8-2)
+
+- FR-24113 - Added mobile-friendly authenticator setup-key enrollment UI
+- FR-24965 - Added remember last used MFA factor preference
+- FR-26112 - Fixed iOS Password AutoFill on the embedded login page
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Touches the auth/MFA/login stack via a third-party SDK upgrade with no local code review of upstream behavior; impact is limited to version pins only.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.121.0** to **7.122.0** in the root app and **`@frontegg/angular`** library `package.json` files so both consumers pick up the same Admin Portal / JS SDK release.
+> 
+> That version brings **mobile-friendly authenticator setup-key enrollment**, **remember last used MFA factor**, and a fix for **iOS Password AutoFill on embedded login** (per release notes); there are no Angular source changes in this PR.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 71cde4374f9e361873f493fcaa163d7b7f8863a4. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.19.0](https://github.com/frontegg/frontegg-angular/compare/v7.18.10...v7.19.0) (2026-7-27)
 
 - FR-25731 - Fixed chooser load-error state seeding when switchable list empties after opening
