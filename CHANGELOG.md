@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.20.2](https://github.com/frontegg/frontegg-angular/compare/v7.20.1...v7.20.2) (2026-8-17)
+
+- FR-26036 - Fixed tenant selection takes precedence over skipUserLoading
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump with no local code changes; risk is limited to upstream SDK behavior around tenant loading and skipUserLoading.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.123.0** to **7.124.0** in the root app, **`@frontegg/angular`** (`projects/frontegg-app`), and **`yarn.lock`**. Transitive Frontegg packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`) move to **7.124.0** with the lockfile update.
+> 
+> This pulls in upstream **FR-26036**: **tenant selection now takes precedence over `skipUserLoading`**. There are no Angular wrapper or app source changes in this PR—only the SDK version and a trailing newline fix in `projects/frontegg-app/package.json`.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 03b6cace3b9b3d2420dff9d61adbea905b400aa2. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.20.1](https://github.com/frontegg/frontegg-angular/compare/v7.20.0...v7.20.1) (2026-8-17)
 
 - FR-26036 - Added tenantChoicePending to fix the hosted postlogin vs tenant-chooser race
