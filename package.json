@@ -8,7 +8,7 @@
     "dev": "ng build --watch",
     "test": "ng test",
     "lint": "ng lint",
-    "increment-version": "node scripts/increment-version.js",
+    "increment-version": "node .github/scripts/increment-version.js",
     "update-version": "node scripts/update-entry.js"
   },
   "private": true,
@@ -24,7 +24,6 @@
     "@frontegg/js": "7.123.0",
     "csstype": "^3.0.8",
     "rxjs": "~6.6.0",
-    "stream": "^0.0.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

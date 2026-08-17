@@ -5,6 +5,7 @@ on:
     branches:
       - master
     types: [ closed ]
+
 jobs:
   createReleasePullRequest:
     if: "!contains(join(github.event.pull_request.labels.*.name, ','), 'Release') && github.event.pull_request.merged == true"
@@ -47,9 +48,24 @@ jobs:
           npm whoami
         env:
           NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Set Minor release
+        id: version_type_minor
+        if: contains(join(github.event.pull_request.labels.*.name, ','), 'Minor')
+        run: |
+            echo "::set-output name=result::true";
+
+      - name: Update version in package json
+        uses: actions/github-script@v6
+        id: 'update-version'
+        with:
+          result-encoding: string
+          script: |
+            const { incrementVersion } = await import(`${process.env.GITHUB_WORKSPACE}/.github/scripts/index.js`);
+            console.log('version_type_minor', ${{ steps.version_type_minor.outputs.result }});
+            return incrementVersion(${{ steps.version_type_minor.outputs.result }});
       - name: Commit Version UP
         run: |
-          yarn increment-version
           yarn update-version
       - name: "Set Generated changelog"
         uses: actions/github-script@v6
@@ -67,6 +83,7 @@ jobs:
           script: |
             const {default: fs} = await import('fs');
             const {version} = JSON.parse(fs.readFileSync('./projects/frontegg-app/package.json', {encoding: "utf-8"}));
+            console.log({version});
             return version;
       - name: Commit changes
         shell: bash -ex {0}

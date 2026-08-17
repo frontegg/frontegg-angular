@@ -1,5 +1,1059 @@
 # Change Log
 
+## [7.20.0](https://github.com/frontegg/frontegg-angular/compare/v7.19.0...v7.20.0) (2026-8-2)
+
+- FR-24113 - Added mobile-friendly authenticator setup-key enrollment UI
+- FR-24965 - Added remember last used MFA factor preference
+- FR-26112 - Fixed iOS Password AutoFill on the embedded login page
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Touches the auth/MFA/login stack via a third-party SDK upgrade with no local code review of upstream behavior; impact is limited to version pins only.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.121.0** to **7.122.0** in the root app and **`@frontegg/angular`** library `package.json` files so both consumers pick up the same Admin Portal / JS SDK release.
+> 
+> That version brings **mobile-friendly authenticator setup-key enrollment**, **remember last used MFA factor**, and a fix for **iOS Password AutoFill on embedded login** (per release notes); there are no Angular source changes in this PR.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 71cde4374f9e361873f493fcaa163d7b7f8863a4. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.19.0](https://github.com/frontegg/frontegg-angular/compare/v7.18.10...v7.19.0) (2026-7-27)
+
+- FR-25731 - Fixed chooser load-error state seeding when switchable list empties after opening
+
+
+- FR-25731 - Added post-auth Choose Organization step in login-box (forward-port of #2864 to v7.120.x)
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Touches the authentication/login path via a third-party SDK bump; no local code changes, but login and org-selection behavior should be regression-tested.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.119.0** to **7.121.0** in the root app and **`@frontegg/angular`** library (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions.
+> 
+> Per the PR notes, this pulls in **FR-25731**: a **post-auth “Choose Organization”** step in the login box (forward-port of upstream #2864). There are **no Angular source changes** in this repo—behavior comes entirely from the upgraded Frontegg JS SDK.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 155d2ee523c6487290511e12623ca9f9565b94b2. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.10](https://github.com/frontegg/frontegg-angular/compare/v7.18.9...v7.18.10) (2026-7-23)
+
+- FR-26014 - Added admin-box addressType redux branch (external instant-nav) [7.119.x]
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Version pin and lockfile-only change with no local auth or app logic edits; residual risk is whatever ships in the upstream @frontegg/js patch release.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.118.0** to **7.119.0** in the root app and **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** aligned for **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`**.
+> 
+> There are no changes to Angular library or app source in this repo; consumers pick up upstream **7.119.x** behavior (e.g. admin-box **addressType** Redux support for external instant-nav per FR-26014).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 6c3acdf44b60bd7ed66bb020df14bba771bd783b. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.9](https://github.com/frontegg/frontegg-angular/compare/v7.18.8...v7.18.9) (2026-7-9)
+
+- FR-24939 - Fixed native step-up challenge not rendering in the embedded login WebView
+- FR-24853 - Removed identifiers flag
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Version pin and lockfile updates only; risk is limited to whatever changed inside the external @frontegg/js 7.118.0 package (login WebView step-up and identifiers flag).
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.117.0** to **7.118.0** in the root app and **`@frontegg/angular`** package, with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions. There are **no Angular source changes** in this PR—consumers pick up upstream Admin Portal / JS SDK behavior from the new release.
+> 
+> Per the release notes, **7.118.0** includes a fix for **native step-up challenge** not rendering in the **embedded login WebView** (FR-24939) and removal of the **identifiers** flag (FR-24853).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 1e03baf0b1fcbdef7578a579e6993ecffaea8467. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-23757 - Fixed the actor of system audit logs to not be unknown
+
+- FR-25580 - Fixed token refresh resilience with retry backoff
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump with no local code changes; main risk is regressions or API changes inside the upstream `@frontegg/js` 7.117.0 package.
+> 
+> **Overview**
+> Bumps the pinned **`@frontegg/js`** dependency from **7.115.0** to **7.117.0** in the root app and in **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions.
+> 
+> There are **no Angular library or application code changes** in this PR; behavior updates (e.g. token refresh retry/backoff from upstream) come from the new Frontegg JS SDK release.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 3bd53840dd3a43053ceecd7289cefe6799d319b8. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.8](https://github.com/frontegg/frontegg-angular/compare/v7.18.7...v7.18.8) (2026-7-6)
+
+- FR-23757 - Fixed the actor of system audit logs to not be unknown
+
+- FR-25580 - Fixed token refresh resilience with retry backoff
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump with no local code changes; main risk is regressions or API changes inside the upstream `@frontegg/js` 7.117.0 package.
+> 
+> **Overview**
+> Bumps the pinned **`@frontegg/js`** dependency from **7.115.0** to **7.117.0** in the root app and in **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions.
+> 
+> There are **no Angular library or application code changes** in this PR; behavior updates (e.g. token refresh retry/backoff from upstream) come from the new Frontegg JS SDK release.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 3bd53840dd3a43053ceecd7289cefe6799d319b8. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-24939 - Fixed step-up gate ignoring max_age when the token has no auth_time
+- FR-24939 - Fixed mobile SDK step-up looping to a blank&#x2F;error page instead of the MFA challenge
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Touches authentication step-up and MFA flows via a SDK upgrade; scope is limited to a patch-version dependency bump with no local code edits.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.114.0** to **7.115.0** in the root app and **`@frontegg/angular`** library (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages.
+> 
+> There are no Angular source changes in this PR; behavior updates come from the new JS SDK release, including **FR-24939** fixes for step-up **`max_age`** when the token lacks **`auth_time`**, and a fix for mobile SDK step-up redirecting to a blank/error page instead of the MFA challenge.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit cae01d2e880767b2139198952091d5469c813250. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.7](https://github.com/frontegg/frontegg-angular/compare/v7.18.6...v7.18.7) (2026-6-25)
+
+- FR-24988 - Fixed hosted login box accessibility issues
+- FR-25494 - fixed stale frontegg oauth stale
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Scope is limited to a patch-level Frontegg SDK bump; auth/OAuth fixes live in the dependency, so regression risk is mainly in login flows rather than this repo’s code.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.113.0** to **7.114.0** in the root app and **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** versions.
+> 
+> There are **no application source changes** in this repo; behavior comes from the new SDK release (notably hosted login accessibility fixes and OAuth stale-state fixes per the PR notes).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit aeb82aae1e0eed4d63896d731946c6e65607709a. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.6](https://github.com/frontegg/frontegg-angular/compare/v7.18.5...v7.18.6) (2026-6-22)
+
+- FR-24579 - Fixed admin-portal white screen in mobile SDK by refreshing session from native tokens
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Scope is version pins and lockfile only; session/auth behavior changes live in the upstream @frontegg/js release, so regression risk is limited to consuming that fix.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.112.0** to **7.113.0** in the root app, **`@frontegg/angular`** library package, and **`yarn.lock`** (including aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`**).
+> 
+> This pulls in **FR-24579**: a fix for the **admin portal white screen** on the **mobile SDK** by **refreshing the session from native tokens**. No Angular wrapper code changes in this PR—only the Frontegg JS stack version.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit d96f104d97f60aedc0b9b7311383326a3a5c8669. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.5](https://github.com/frontegg/frontegg-angular/compare/v7.18.4...v7.18.5) (2026-6-22)
+
+- FR-24579 - Fixed admin-portal redirect race on native auth handoff
+- FR-24579 - Fixed admin-portal mobile bridge capability gating and stuck loading
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> No application source changes—only pinned Frontegg SDK versions and lockfile updates.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.111.0** to **7.112.0** in the root app and **`@frontegg/angular`** library, with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages.
+> 
+> This pulls in Admin Portal fixes for **FR-24579**: a redirect race during native auth handoff, and mobile bridge capability gating that could leave the portal stuck loading.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 282b4c84a844803151cfdeb85085920f524776b7. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.4](https://github.com/frontegg/frontegg-angular/compare/v7.18.3...v7.18.4) (2026-6-21)
+
+- FR-24579 - Added native token bridge for the admin portal (no second login)
+- FR-20973 - Fixed sso with username
+- FR-20975 - Fixed description username login with magic code
+- FR-22194 - Fixed error massage of username already exists missing from UI
+- FR-20977 - Fixed resend with username in magic link
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Dependency-only change, but it pulls in upstream auth, SSO, and admin-portal login behavior where regressions would affect end-user sign-in flows.
+> 
+> **Overview**
+> This PR **only updates the pinned `@frontegg/js` version** from `7.110.0` to `7.111.0` in the root `package.json` and `projects/frontegg-app/package.json`, and refreshes `yarn.lock` for `@frontegg/js` and its transitive packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`). There are **no application or library source changes** in this repo—the Admin Portal / auth behavior called out in the PR description comes from the upgraded SDK release (e.g. admin portal native token bridge, username SSO and magic-link fixes).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit c5db1d9ffcb4131b34ad71220cc8e286c8733b49. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.3](https://github.com/frontegg/frontegg-angular/compare/v7.18.2...v7.18.3) (2026-6-4)
+
+- FR-25111 - Fixed tenant regex
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump with no local code changes; low risk unless the upstream tenant-regex fix affects existing tenant validation edge cases.
+> 
+> **Overview**
+> Bumps the embedded **Frontegg** SDK from **7.109.0** to **7.110.0** in the root app and `@frontegg/angular` library `package.json`, with matching lockfile updates for `@frontegg/js`, `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`.
+> 
+> There are **no application source changes** in this repo; behavior comes from the upgraded package (notably a **tenant regex fix**, FR-25111, per the PR description).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit cdd243b7c1c4995bfdd47399cb04f6a31b7fc61a. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.2](https://github.com/frontegg/frontegg-angular/compare/v7.18.1...v7.18.2) (2026-6-1)
+
+- FR-25022 - Changed phone validations
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only version bump with no app code changes; main impact is inherited Frontegg validation behavior in embedded auth/admin flows.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.108.0** to **7.109.0** in the root app and **`@frontegg/angular`** library (`package.json` in both places), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages. No Angular or local source changes—this pulls in upstream Admin Portal behavior, including **FR-25022** phone validation updates from the release notes.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 6f408915c405c711ae44b26ad5688911c7baae13. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.1](https://github.com/frontegg/frontegg-angular/compare/v7.18.0...v7.18.1) (2026-5-19)
+
+- FR-23507 - Fixed custom login box favicon not displaying pulls from main login box instead
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low-risk dependency bump that primarily affects the embedded Frontegg Admin Portal behavior; main risk is unintended upstream regressions from the library update.
+> 
+> **Overview**
+> Updates the Frontegg SDK dependency to `@frontegg/js@7.108.0` in both the root app and the published `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` to pull in the corresponding `7.108.0` versions of Frontegg transitive packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 6c7449dc6b73f415889b95fab1a3d13d1004b804. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.18.0](https://github.com/frontegg/frontegg-angular/compare/v7.17.18...v7.18.0) (2026-5-17)
+
+- FR-24663 - Fixed country restriction dark theme input
+- FR-24664 - Fixed country field background in modern theme
+- FR-24693 - Fixed country restriction admin portal not full list of countries display for allow deny lists
+- FR-24661 - Fixed country restriction tip counter updates
+- FR-24667 - Added country restriction admin portal current country is not added to the list after enabling the counter restriction toggle
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk dependency bump: updates the Frontegg SDK and its transitive packages via lockfile changes, with no application code modifications.
+> 
+> **Overview**
+> Updates the project and library dependency on `@frontegg/js` from `7.106.0` to `7.107.0` in both the root and `projects/frontegg-app` packages.
+> 
+> Refreshes `yarn.lock` to pull in the corresponding `7.107.0` versions of Frontegg transitive dependencies (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit a68e754d95d36292b90afaa266cd70f064f75975. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-24187 - Fixed CPU issues
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk change limited to a patch-level dependency upgrade, but it may slightly alter runtime behavior/performance due to updated Frontegg internals.
+> 
+> **Overview**
+> Updates the Frontegg Admin Portal SDK dependency by bumping `@frontegg/js` from `7.105.0` to `7.106.0` in both the root app and the `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` to pull the corresponding `7.106.0` versions of transitive Frontegg packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit bf32be89c131d97c6234e8558d6b27dc4bdbd53f. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+### Angular Wrapper 7.18.0:
+- fix - e2e trigger
+
+## [7.17.18](https://github.com/frontegg/frontegg-angular/compare/v7.17.17...v7.17.18) (2026-5-5)
+
+- FR-24187 - Fixed CPU issues
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk change limited to a patch-level dependency upgrade, but it may slightly alter runtime behavior/performance due to updated Frontegg internals.
+> 
+> **Overview**
+> Updates the Frontegg Admin Portal SDK dependency by bumping `@frontegg/js` from `7.105.0` to `7.106.0` in both the root app and the `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` to pull the corresponding `7.106.0` versions of transitive Frontegg packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit bf32be89c131d97c6234e8558d6b27dc4bdbd53f. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-23435 - Added country restriction features to Security Center
+- FR-23515 - Fixed wrong audit log tooltips
+- FR-23524 - Added guidesCdnUrl to SSOPage
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk dependency-only change; behavior changes are limited to what ships in the upstream `@frontegg/js` 7.105.0 release.
+> 
+> **Overview**
+> Updates the Frontegg AdminPortal dependency from `@frontegg/js` `7.104.0` to `7.105.0` in both the root app and `projects/frontegg-app`.
+> 
+> Refreshes `yarn.lock` accordingly, pulling in the matching `7.105.0` versions of Frontegg transitive packages (notably `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit e8816d060e5ecc9fc08ea49ab94d4705cbeb617b. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+### Angular Wrapper 7.17.18:
+- fix - e2e trigger
+
+## [7.17.17](https://github.com/frontegg/frontegg-angular/compare/v7.17.16...v7.17.17) (2026-3-31)
+
+- FR-23900 - Added validation for reset password token and improved user feedback for expired links
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk dependency-only upgrade with no in-repo code changes, but behavior may change via updated Frontegg SDK internals (auth/reset-password flows).
+> 
+> **Overview**
+> Updates `@frontegg/js` from `7.103.0` to `7.104.0` in both the root app and the published `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` to pull in the corresponding `7.104.0` Frontegg dependency chain (notably `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 8801273660fe1051d7a7d50254dbbcc9dab68031. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.16](https://github.com/frontegg/frontegg-angular/compare/v7.17.15...v7.17.16) (2026-3-19)
+
+- FR-23610 - Added login completed GTM
+- FR-23421 - Added support for CMC SCIM guide dialog and fix SSO guide
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Low risk dependency-only update; behavior changes are limited to whatever is introduced by `@frontegg/js` and its transitive packages in 7.103.0.
+> 
+> **Overview**
+> Updates `@frontegg/js` from `7.102.0` to `7.103.0` in both the root app and the `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` to pull in the corresponding `7.103.0` versions of Frontegg transitive packages (notably `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 9c60416a03b8dfe5545d4cb1f6da29c6ae21cc8d. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.15](https://github.com/frontegg/frontegg-angular/compare/v7.17.14...v7.17.15) (2026-3-8)
+
+- FR-22979 - Changed callback in InviteUserForm to handle errors and reset form state
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Dependency-only upgrade, but it changes the underlying Frontegg SDK (`@frontegg/js` and related `@frontegg/*` packages) which can affect runtime auth/admin-portal behavior. No application code changes are included, so the main risk is regressions introduced by the upstream release.
+> 
+> **Overview**
+> Updates the pinned Frontegg SDK version from `7.101.0` to `7.102.0` in both the root `package.json` and `projects/frontegg-app/package.json`.
+> 
+> Refreshes `yarn.lock` to pull in the matching `7.102.0` versions of `@frontegg/js` and its related dependencies (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 5b92f96e6c673c79c0f7695669959ffbafe932a3. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.14](https://github.com/frontegg/frontegg-angular/compare/v7.17.13...v7.17.14) (2026-2-16)
+
+- FR-22346 - Fixed enable session per tenant data mismatch between user jwt and sdk    
+- FR-22346 - Fixed enable session per tenant data mismatch between user jwt and sdk    
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump to Frontegg packages; primary risk is behavior changes/regressions coming from the upstream SDK update.
+> 
+> **Overview**
+> Updates the Frontegg SDK dependency to `@frontegg/js@7.101.0` in both the root app and the published `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` accordingly, pulling in matching `7.101.0` versions of related Frontegg packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 361f80b3d473f777367d9028f8c5e2a5fb6ff94b. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.13](https://github.com/frontegg/frontegg-angular/compare/v7.17.12...v7.17.13) (2026-2-10)
+
+- FR-23484 - Added an option to render SSO guides outside of admin box
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only bump with no application code changes; risk is limited to potential upstream behavioral changes in the Frontegg SDK.
+> 
+> **Overview**
+> Updates the Frontegg SDK dependency from `@frontegg/js@7.99.0` to `7.100.0` in both the root app and the `@frontegg/angular` package.
+> 
+> Refreshes `yarn.lock` accordingly, pulling the matching `7.100.0` versions of Frontegg transitive packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 8533e297ccb8b5610401278e9243667ed94d27e4. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.12](https://github.com/frontegg/frontegg-angular/compare/v7.17.11...v7.17.12) (2026-1-27)
+
+- FR-22263 - Fixed publish
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Updates Frontegg dependencies across the workspace.
+> 
+> - Bumps `@frontegg/js` to `7.99.0` in `package.json` and `projects/frontegg-app/package.json`
+> - Refreshes `yarn.lock`, updating transitive Frontegg packages to `7.99.0` (`@frontegg/redux-store`, `@frontegg/rest-api`, `@frontegg/types`)
+> - No application/source code changes
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 46c3bac0e7ffd7384664697c4941412801948eba. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.11](https://github.com/frontegg/frontegg-angular/compare/v7.17.10...v7.17.11) (2026-1-14)
+
+- FR-23141 - Added username edit config
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Dependency upgrade**
+> 
+> - Bump `@frontegg/js` to `7.97.0` in `package.json` and `projects/frontegg-app/package.json`
+> - Update `yarn.lock` to `@frontegg/js@7.97.0` and align transitive `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api` to `7.97.0`
+> - No application source changes
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit c02d9342fb6e2b2bb0dc8967c0f76fe7c94083ca. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.10](https://github.com/frontegg/frontegg-angular/compare/v7.17.9...v7.17.10) (2026-1-5)
+
+- FR-17084 - Fixed loader
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrades Frontegg SDK to the latest minor release with corresponding lockfile updates.
+> 
+> - Bump `@frontegg/js` from `7.95.0` to `7.96.0` in `package.json` and `projects/frontegg-app/package.json`
+> - Refresh `yarn.lock` resolving to `@frontegg/*` `7.96.0` packages (`redux-store`, `rest-api`, `types`)
+> 
+> No application code changes.
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit b04a34cf48989defae6ab4cbf0c98b4e95ee2413. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-21830 - Fixed IP location
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrade Frontegg dependencies to version 7.95.0 across the app and library.
+> 
+> - **Dependencies**:
+>   - Bump `@frontegg/js` to `7.95.0` in `package.json` and `projects/frontegg-app/package.json`.
+>   - Align related Frontegg packages to `7.95.0` in `yarn.lock` (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 69aa4957bbeb8c66beac2f281ab5f2ed49588646. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.9](https://github.com/frontegg/frontegg-angular/compare/v7.17.8...v7.17.9) (2025-12-11)
+
+- FR-21830 - Fixed IP location
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrade Frontegg dependencies to version 7.95.0 across the app and library.
+> 
+> - **Dependencies**:
+>   - Bump `@frontegg/js` to `7.95.0` in `package.json` and `projects/frontegg-app/package.json`.
+>   - Align related Frontegg packages to `7.95.0` in `yarn.lock` (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`).
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 69aa4957bbeb8c66beac2f281ab5f2ed49588646. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+- FR-22289 - Added support new columns in users table
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrade `@frontegg/js` (and aligned Frontegg deps) to 7.94.0 across the workspace.
+> 
+> - **Dependencies**:
+>   - Bump `@frontegg/js` to `7.94.0` in `package.json` and `projects/frontegg-app/package.json`.
+>   - Align related Frontegg packages (`@frontegg/types`, `@frontegg/redux-store`, `@frontegg/rest-api`) to `7.94.0`.
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 941ddcb986dbc56949dfb91357d9c9d281232d76. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.8](https://github.com/frontegg/frontegg-angular/compare/v7.17.7...v7.17.8) (2025-11-30)
+
+- FR-22193 - Added admin portal support for searching by username, email, name, etc. in the users table
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> Upgrades Frontegg dependencies to 7.93.0 across package manifests and lockfile.
+> 
+> - **Dependencies**:
+>   - Upgrade `@frontegg/js` to `7.93.0` in `package.json` and `projects/frontegg-app/package.json`.
+>   - Update `yarn.lock` to `7.93.0` for related Frontegg packages: `@frontegg/js`, `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`.
+> 
+> <sup>Written by [Cursor Bugbot](https://cursor.com/dashboard?tab=bugbot) for commit 99c1e050fc628a93de7c93608d3ca04caf10c7ae. This will update automatically on new commits. Configure [here](https://cursor.com/dashboard?tab=bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
+## [7.17.7](https://github.com/frontegg/frontegg-angular/compare/v7.17.6...v7.17.7) (2025-10-19)
+
+
+
+## [7.17.6](https://github.com/frontegg/frontegg-angular/compare/v7.17.5...v7.17.6) (2025-10-12)
+
+
+### Angular Wrapper 7.17.6:
+- FR-22362 - Fix emitter component EOL
+
+## [7.17.5](https://github.com/frontegg/frontegg-angular/compare/v7.17.4...v7.17.5) (2025-9-25)
+
+- FR-22238 - Added a &#39;Back&#39; button when both link and form invitations …
+- FR-22167 - Fixed username field to be hidden by default in the invite…
+
+
+- FR-22185 - Fixed running afterAuthRedirect in social login callback
+- FR-22201 - Added invitation user form state preservation for enhanced…
+
+
+- FR-22185 - Added support for whitelisting direct login action with metadataOverrides
+
+
+
+## [7.17.4](https://github.com/frontegg/frontegg-angular/compare/v7.17.3...v7.17.4) (2025-9-14)
+
+- FR-22130 - Removed autoFocus from invite user&#39;s email field 
+
+
+
+## [7.17.3](https://github.com/frontegg/frontegg-angular/compare/v7.17.2...v7.17.3) (2025-9-10)
+
+- FR-22001 - Added Embedded Social Login in MobileSDK
+
+- FR-22006 - Fixed signup login direct action with basename
+
+
+
+## [7.17.2](https://github.com/frontegg/frontegg-angular/compare/v7.17.1...v7.17.2) (2025-9-3)
+
+- FR-21916 - Added username field to InviteUserForm with validation
+- FR-21330 - Fixed empty names
+- FR-22047 - Fixed user invite initial dialog to use inviteByEmailEnable...
+- FR-21924 - Added roles to invitation link flow
+- FR-21914 - Added smart navigation for invite dialog based on enabled …
+- FR-21913 - Added dialog step management enum and logic for enhanced invite user modal
+
+
+- FR-22006 - Added signup to login direct action
+- FR-21912 - Added InvitationLink component (basic version)
+- FR-21911 - Added InviteUserViaLink component (basic version)
+- FR-21910 - Added an InviteUserSelector component
+- FR-21909 - Changed InviteUserForm component to separate file from InviteUserDialog
+
+
+
+## [7.17.1](https://github.com/frontegg/frontegg-angular/compare/v7.17.0...v7.17.1) (2025-8-12)
+
+- FR-21734 - Added the applications that are free-access for this tenant to the user&#39;s application list
+- FR-21350 - Added FREE-ACCESS application tenant to the user&#39;s application list
+- FR-21495 - Changed Georgia phone country code as requested
+
+- FR-21351 - Changed user loading methods to use the new V3 API
+- FR-21350 - Added usage for tenant-application access types in hosted Admin box
+
+
+
+## [7.17.0](https://github.com/frontegg/frontegg-angular/compare/v7.16.1...v7.17.0) (2025-7-29)
+
+- FR-21351 - Changed user loading methods to use the new V3 API
+- FR-21350 - Added usage for tenant-application access types in hosted Admin box
+
+- FR-20601 - Fixed metadata sync when using custom signup fields
+- FR-20601 - Fixed custom signup fields visibility
+- FR-21194 - Fixed translations options to have all supported languages
+- FR-21242 - Added customization for select phone number country codes
+
+
+
+## [7.16.1](https://github.com/frontegg/frontegg-angular/compare/v7.16.0...v7.16.1) (2025-6-23)
+
+- FR-20838 - Added search for role in the edit roles dialog of users page
+- FR-21222 - Fixed reset password selector icons to be aligned to the center
+- FR-21206 - Fixed user goes to &quot;Forget password?&quot; page after clicking on &quot;Try another method&quot;
+- FR-21208 - Added support for dynamic redirect url after signup
+- FR-21174 - Changed forgot password sms option translation
+- FR-21173 - Fixed password reset success state handling
+
+
+- FR-0000 - Fixed node version
+- FR-21160 - Removed exclusion of set user email policy state
+- FR-20862 - Fixed useLoginHint and add tests to simulate hosted prelogin flow
+- FR-21121 - Added reset password with email&#x2F;sms actions and a Forgot password sms otc page 
+- FR-21097 - Added suspense to renderCMCComponent
+- FR-21120 - Added BaseOTC component and use it in login otc flows
+- FR-21112 - Added password recovery selector and a determinePasswordRecoveryStrategy function
+- FR-21118 - Fixed default language handle
+- FR-20838 - Added search functionality to roles popper
+- FR-20178 - Added generic IdentifierField and used it in login and forgot password flows
+- FR-20945 - Added username in profile
+- FR-20868 - Added usernames
+
+
+
+## [7.16.0](https://github.com/frontegg/frontegg-angular/compare/v7.15.0...v7.16.0) (2025-6-12)
+
+- FR-20862 - Fixed useLoginHint and add tests to simulate hosted prelogin flow
+- FR-21121 - Added reset password with email&#x2F;sms actions and a Forgot password sms otc page 
+- FR-21097 - Added suspense to renderCMCComponent
+- FR-21120 - Added BaseOTC component and use it in login otc flows
+- FR-21112 - Added password recovery selector and a determinePasswordRecoveryStrategy function
+- FR-21118 - Fixed default language handle
+- FR-20838 - Added search functionality to roles popper
+- FR-20178 - Added generic IdentifierField and used it in login and forgot password flows
+- FR-20945 - Added username in profile
+- FR-20868 - Added usernames
+
+- FR-21024 - Added callback to reset password cmc
+- FR-20953 - Added Display specific countries for phone number
+- FR-20733 - Fixed Screen flickering after forget password success
+- FR-20104 - Fixed Issue with search term persistence in the Personal and non-Personal API Tokens modals
+- FR-20811 - Fixed optional localizations deep partial type
+- FR-20407 - Added localization support for 25 languages
+
+
+
+## [7.15.0](https://github.com/frontegg/frontegg-angular/compare/v7.14.2...v7.15.0) (2025-5-27)
+
+- FR-20899 - Changed logout user session button
+- FR-20901 - Fixed select actions menu item
+- FR-20871 - Added support for default language
+- FR-20894 - Added support regex in string input
+
+
+- FR-19718 - Added username strategies
+
+- FR-20337 - Fixed errors not displayed on submit
+
+
+
+## [7.14.2](https://github.com/frontegg/frontegg-angular/compare/v7.14.1...v7.14.2) (2025-5-20)
+
+- FR-20337 - Fixed errors not displayed on submit
+
+- FR-19738 - Added support for CMC components
+
+- FR-20047 - Added support for overrideSignupFields as string js code
+- FR-19797 - Fixed bug duplicate request on double click
+- FR-20479 - Added type error validation method to yup interfaces
+
+
+
+## [7.14.1](https://github.com/frontegg/frontegg-angular/compare/v7.14.0...v7.14.1) (2025-5-5)
+
+- FR-20047 - Added support for overrideSignupFields as string js code
+- FR-19797 - Fixed bug duplicate request on double click
+- FR-20479 - Added type error validation method to yup interfaces
+
+- FR-20482 - Added one of validation method to yup boolean interface
+- FR-19402 - Fixed UI delete all checkbox
+- FR-20398 - Added delete all option to SCIM deletion
+- FR-20047 - Added Custom Signup Fields
+
+
+
+## [7.14.0](https://github.com/frontegg/frontegg-angular/compare/v7.13.5...v7.14.0) (2025-4-14)
+
+- FR-18986 - Added tooltip functionality for individual chips in GroupsChipsList component
+- FR-20385 - Fixed user impersonation with identifiers
+- FR-20254 - Added localizations for activate with social logins
+- FR-20280 - Added support for signup with phone number
+
+
+
+## [7.13.5](https://github.com/frontegg/frontegg-angular/compare/v7.13.4...v7.13.5) (2025-3-31)
+
+- FR-20267 - Added support for direction by metadata
+- FR-20250 - Fixed min optional tests on password strength
+- FR-19976 - Fixed pre step shouldn&#39;t appear when shouldSetPassword is not false
+
+
+
+## [7.13.4](https://github.com/frontegg/frontegg-angular/compare/v7.13.3...v7.13.4) (2025-3-23)
+
+- FR-19299 - Fixed Hebrew translation of password rotation
+- FR-17951 - Changed the api routes of  profile page&#39;s phone number
+
+- FR-20068 - Added password config custom tests
+
+
+
+## [7.13.3](https://github.com/frontegg/frontegg-angular/compare/v7.13.2...v7.13.3) (2025-3-16)
+
+- FR-20068 - Added password config custom tests
+
+- FR-13869 - Fixed autocomplete overrides input theme
+- FR-19956 - Fixed missing email for unenreolled MFA users
+- FR-20037 - Fixed input focus on user invite dialog
+
+
+
+## [7.13.2](https://github.com/frontegg/frontegg-angular/compare/v7.13.1...v7.13.2) (2025-3-5)
+
+- FR-19452 - Added a &quot;silent refresh&quot; to switchTenant
+
+
+
+## [7.13.1](https://github.com/frontegg/frontegg-angular/compare/v7.13.0...v7.13.1) (2025-3-4)
+
+- FR-19752 - Fixed error not shown in custom role creation
+- FR-18568 - Added password rotation support
+
+- FR-19037 - Added fallback for skip user load
+- FR-19648 - Added password expiration to login box
+
+- FR-19037 - Added an option to skip user load
+
+
+
+## [7.13.0](https://github.com/frontegg/frontegg-angular/compare/v7.12.1...v7.13.0) (2025-2-20)
+
+- FR-18630 - Fixed input transparent autofill for vite
+- FR-15942 - Changed titles in SSO configuration guides
+- FR-19747 - Added a pre step toggler to the dashboard that enables a confirmation mechanism on relevant emails, to prevent automated scanners from invalidating magic links
+
+
+- FR-19677 - Added hebrew translations for the pre step screens
+- FR-19547 - Changed pre step titles
+
+
+
+## [7.12.1](https://github.com/frontegg/frontegg-angular/compare/v7.12.0...v7.12.1) (2025-2-10)
+
+- FR-19547 - Changed prestep component to get t instead of texts
+
+
+
+## [7.12.0](https://github.com/frontegg/frontegg-angular/compare/v7.11.8...v7.12.0) (2025-2-10)
+
+- FR-19547 - Added prestep support for auth flows
+- FR-19048 - Changed sign-up with 6 digit code flow
+- FR-19626 - Added support for social login eventually style
+- FR-9045 - Fixed login form placeholder color
+
+
+
+## [7.11.8](https://github.com/frontegg/frontegg-angular/compare/v7.11.7...v7.11.8) (2025-2-5)
+
+- FR-19618 - Fixed FRONTEGG_AFTER_AUTH_REDIRECT_URL usage on custom login
+- FR-19509 - Fixed sms as main auth strategy validation
+
+
+
+## [7.11.7](https://github.com/frontegg/frontegg-angular/compare/v7.11.6...v7.11.7) (2025-2-2)
+
+- FR-19573 - Fixed redundant required asterisk on optional field
+- FR-19566 - Fixed navbar route title appearing without items
+- FR-19351 - Fixed SMS input calling code replace
+
+
+
+## [7.11.6](https://github.com/frontegg/frontegg-angular/compare/v7.11.5...v7.11.6) (2025-1-26)
+
+- FR-19351 - Fixed MFA with SMS error and inital state bugs
+- FR-19269 - Changed initial requests to run in parallel
+
+
+
+## [7.11.5](https://github.com/frontegg/frontegg-angular/compare/v7.11.4...v7.11.5) (2025-1-16)
+
+- FR-19387 - Fixed login with apple in iOS devices
+- FR-18450 - Changed permissions tree components (refactor)
+
+
+
+## [7.11.4](https://github.com/frontegg/frontegg-angular/compare/v7.11.3...v7.11.4) (2025-1-14)
+
+- FR-19236 - Fixed error handling on OIDC failure
+- FR-19301 - Fixed settings list item title
+- FR-19121 - Fixed security center recommendations after policy changed
+
+
+
+## [7.11.3](https://github.com/frontegg/frontegg-angular/compare/v7.11.2...v7.11.3) (2025-1-6)
+
+- FR-19272 - Fixed sso input
+
+
+- FR-19068 - Fixed MFA error appears after reset
+
+
+## [7.11.2](https://github.com/frontegg/frontegg-angular/compare/v7.11.1...v7.11.2) (2024-12-31)
+
+- FR-19220 - Fixed roles selection for MSP users
+- FR-19205 - Added filter country code by country calling code
+- FR-18963 - Added SMS enhancements
+
+
+
+## [7.11.1](https://github.com/frontegg/frontegg-angular/compare/v7.11.0...v7.11.1) (2024-12-29)
+
+- FR-19191 - Fixed infinite loop on get ip metadata
+
+
+# Change Log
+
+## [7.11.0](https://github.com/frontegg/frontegg-angular/compare/v7.10.0...v7.10.1) (2024-12-24)
+
+- FR-19079 - Added Suggest Save password in mobile sdk
+
+- FR-19047 - Fixed permissions evalutaion when have more than one permission
+- FR-18988 - Fixed missing email on MFA verification description
+- FR-19068 - Fixed MFA error appears after clicking on verify another way
+- FR-18917 - Fixed user roles deletion
+
+
+
+## [7.10.0](https://github.com/frontegg/frontegg-angular/compare/v7.9.0...v7.10.0) (2024-12-23)
+
+- FR-19047 - Fixed permissions evalutaion when have more than one permission
+- FR-18988 - Fixed missing email on MFA verification description
+- FR-19068 - Fixed MFA error appears after clicking on verify another way
+- FR-18917 - Fixed user roles deletion
+
+- FR-18683 - Changed phone number selector input
+
+
+
+## [7.9.0](https://github.com/frontegg/frontegg-angular/compare/v7.8.2...v7.9.0) (2024-12-15)
+
+- FR-18941 - Fixed permissions evaluation without permissions in JWT
+- FR-18966 - Added override error message infrastructure
+
+
+- FR-18896 - Added RTL support
+
+
+
+## [7.8.2](https://github.com/frontegg/frontegg-angular/compare/v7.8.1...v7.8.2) (2024-12-5)
+
+FR-18954 - Fixed MFA with email active state, step and missing erros
+FR-18973 - Added login to show error page only for 5xx errors
+
+
+## [7.8.1](https://github.com/frontegg/frontegg-angular/compare/v7.8.0...v7.8.1) (2024-12-3)
+
+- FR-18925 - Fixed wrong ip presented in Audit logs table IP column
+
+
+- FR-18682 - Changed country flags image
+
+
+## [7.8.0](https://github.com/frontegg/frontegg-angular/compare/v7.7.0...v7.8.0) (2024-11-28)
+
+- FR-18838 - Added MFA with email code
+- FR-17593 - Fixed SAML enable with non SSO user try to login not throwing an error
+
+
+# Change Log
+
+## [7.7.0](https://github.com/frontegg/frontegg-angular/compare/v7.6.4...v7.7.0) (2024-11-21)
+
+- FR-18699 - Removed entitlements automatic 30 seconds refresh mechanism
+- FR-18138 - Added logic to improve login box and admin portal stability and resiliency
+
+
+## [7.6.4](https://github.com/frontegg/frontegg-angular/compare/v7.6.3...v7.6.4) (2024-11-19)
+
+- FR-18341 - Fixed social login button size
+- FR-12722 - Fixed Incorrect order of social logins display
+
+
+## [7.6.3](https://github.com/frontegg/frontegg-angular/compare/v7.6.2...v7.6.3) (2024-11-14)
+
+- FR-18646 - Fixed missing permissions with wildcard on custom roles
+- FR-18341 - Fixed Google Chrome Translate feature causes a crash
+- FR-16902 - Fixed login box scroll on mobile browsers
+
+
+
+## [7.6.2](https://github.com/frontegg/frontegg-angular/compare/v7.6.1...v7.6.2) (2024-11-12)
+
+- FR-18594 - Fixed blinking bug On IP and domain page
+- FR-18499 - Fixed otc page blink
+- FR-18005 - Fixed search api tokens with null descriptions 
+- FR-18499 - Fixed activate with code and password
+- FR-18582 - Fixed loader size and wrong massage
+
+- FR-18561 - Fixed get ip metadata when app name is provided
+- FR-17091 - Fixed long name in groups and roles
+
+
+
+## [7.6.1](https://github.com/frontegg/frontegg-angular/compare/v7.6.0...v7.6.1) (2024-11-10)
+
+- FR-18561 - Fixed get ip metadata when app name is provided
+- FR-17091 - Fixed long name in groups and roles
+
+
+### Angular Wrapper 7.6.1:
+- FR-18542: support minor versions
+
+## [7.6.0](https://github.com/frontegg/frontegg-angular/compare/v7.5.0...v7.6.0) (2024-11-5)
+
+- FR-18529 - Fixed empty roles field bug when appName is provided
+
+
+- FR-18353 - Fixed tooltips mount component
+- FR-18476 - Added url for beforeRequestInterceptor function
+- FR-18476 - Added request interceptor
+- FR-18472 - Fixed Google one tap login stuck after unmounting login
+- FR-18436 - Fixed activate account with empty redirect bug
+
+- FR-17943 - Added code pages
+
+
+- FR-18427 - Added Support for triggering MFA after native passkeys &#x2F; iOS apple login
+- FR-18211 - Fixed email overlapping roles field
+
+
+
+## [7.5.0](https://github.com/frontegg/frontegg-angular/compare/v7.4.0...v7.5.0) (2024-10-29)
+
+- FR-17943 - Added code pages
+
+
+- FR-18427 - Added Support for triggering MFA after native passkeys &#x2F; iOS apple login
+- FR-18211 - Fixed email overlapping roles field
+
+- FR-18356 - Fixed validations localization override type
+
+
+
+## [7.4.0](https://github.com/frontegg/frontegg-angular/compare/v7.3.0...v7.4.0) (2024-10-10)
+
+- FR-18217 - Fixed impersonation on embedded
+- FR-18167 - Fixed back to login on magic link
+- FR-8030 - Fixed website dialog cancel button typeography
+- FR-17760 - Fixed empty lastSeen column on expanded user info 
+- FR-17762 - Fixed tree component using mui/x-tree-view
+- FR-17517 - Fixed login direct action race condition
+- FR-17649 - Fixed autofill sms code iOS SDK
+- FR-17650 - Fixed auto capitalize email input in login page
+- FR-17443 - Fixed infinite loader when using direct login action
+
+
+## [7.3.0](https://github.com/frontegg/frontegg-angular/compare/v7.2.0...v7.3.0) (2024-8-28)
+
+- FR-17626 - Fix clientId on request authorize for multi-apps
+- FR-17182 - Fix copy invite user link in hosted admin portal
+
+
+# Change Log
+
+## [7.2.0](https://github.com/frontegg/frontegg-angular/compare/v7.1.0...v7.2.0) (2024-8-26)
+
+
+# Change Log
+
+## [7.1.0](https://github.com/frontegg/frontegg-angular/compare/v7.0.0...v7.1.0) (2024-8-18)
+
+- FR-17169 - Added support in send unlock account email
+
+
+# Change Log
+
 ## [7.0.0](https://github.com/frontegg/frontegg-angular/compare/v6.34.0...v7.0.0) (2024-8-5)
 
 ### 🚀 Major Changes
