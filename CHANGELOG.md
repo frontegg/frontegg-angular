@@ -1,5 +1,27 @@
 # Change Log
 
+## [7.20.1](https://github.com/frontegg/frontegg-angular/compare/v7.20.0...v7.20.1) (2026-8-17)
+
+- FR-26036 - Added tenantChoicePending to fix the hosted postlogin vs tenant-chooser race
+- FR-26413 - Fixed the identifier field showing the default keyboard instead of the email keyboard on iOS
+- FR-23291 - Added Admin Portal users filter by role UI
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Auth, post-login, and Admin Portal flows change via an upstream SDK bump with no local code to review; regression-test login, tenant selection, and admin user filtering.
+> 
+> **Overview**
+> **Bumps `@frontegg/js` from 7.122.0 to 7.123.0** in the root app and `@frontegg/angular` (`projects/frontegg-app/package.json`), with `yarn.lock` aligned for `@frontegg/types`, `@frontegg/redux-store`, and `@frontegg/rest-api`. There are **no Angular source changes** in this repo—behavior comes from the upgraded SDK.
+> 
+> Per the release notes, **7.123.0** includes **FR-26036** (`tenantChoicePending` to address hosted post-login vs tenant-chooser race), **FR-26413** (email keyboard on the identifier field on iOS), and **FR-23291** (Admin Portal users filter-by-role UI).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit ea1216367dc3c26d61f2951e8824a02c1825745d. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.20.0](https://github.com/frontegg/frontegg-angular/compare/v7.19.0...v7.20.0) (2026-8-2)
 
 - FR-24113 - Added mobile-friendly authenticator setup-key enrollment UI
