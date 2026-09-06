@@ -1,5 +1,29 @@
 # Change Log
 
+## [7.21.0](https://github.com/frontegg/frontegg-angular/compare/v7.20.2...v7.21.0) (2026-9-6)
+
+- FR-26860 - Fixed lastTermsCheck missing on signup when terms are text-only
+- FR-25906 - Fixed the passkey button reading as disabled after a cancelled credential sheet
+- FR-26334 - Fixed the MFA method-selection page painting without layout on iOS
+- FR-23613 - Changed role pickers to restrict equal-level assignment
+- FR-26112 - Fixed email keyboard and passkey autofill on the login identifier
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency pin and lockfile only; any auth, MFA, or passkey behavior changes come from the upstream `@frontegg/js` release rather than edits in this repository.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.124.0** to **7.125.0** in the root app and **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** aligned for **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`**. There are no Angular source changes in this repo.
+> 
+> Consumers of this package pick up the **7.125.0** Admin Portal / JS SDK release, including fixes for text-only signup terms (`lastTermsCheck`), passkey button state after a cancelled credential sheet, MFA method-selection layout on iOS, login identifier email keyboard and passkey autofill, and role pickers that restrict equal-level assignment.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 93f30ab91032c3924747d0ed27df84d796aa3a97. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.20.2](https://github.com/frontegg/frontegg-angular/compare/v7.20.1...v7.20.2) (2026-8-17)
 
 - FR-26036 - Fixed tenant selection takes precedence over skipUserLoading
