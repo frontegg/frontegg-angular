@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.22.0](https://github.com/frontegg/frontegg-angular/compare/v7.21.0...v7.22.0) (2026-9-15)
+
+- FR-27031 - Added the @frontegg&#x2F;js SDK identifier to outgoing requests
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Version pin and lockfile-only change; residual risk is whatever ships in the upstream @frontegg/js 7.126.0 release (request header/identifier behavior).
+> 
+> **Overview**
+> Bumps the pinned **`@frontegg/js`** dependency from **7.125.0** to **7.126.0** in the root app and **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages.
+> 
+> There are **no local Angular source changes** in this PR; consumers pick up upstream **7.126.0** behavior, including **FR-27031**: the **`@frontegg/js` SDK identifier** is added to **outgoing requests** (Admin Portal / JS SDK release).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 38a2a2291eb67973e595095077a006c6f7ca5c5e. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.21.0](https://github.com/frontegg/frontegg-angular/compare/v7.20.2...v7.21.0) (2026-9-6)
 
 - FR-26860 - Fixed lastTermsCheck missing on signup when terms are text-only
