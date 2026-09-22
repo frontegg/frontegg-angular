@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.22.1](https://github.com/frontegg/frontegg-angular/compare/v7.22.0...v7.22.1) (2026-9-22)
+
+- FR-27124 - Fixed the edit account name action showing on the root account
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Version pin and lockfile-only change; residual risk is whatever ships in the upstream @frontegg/js 7.127.0 release.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.126.0** to **7.127.0** in the root app and **`@frontegg/angular`** library (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages.
+> 
+> There are **no local Angular or app source changes**—consumers get upstream Admin Portal / JS SDK behavior, including **FR-27124** (the edit account name action no longer appears incorrectly on the root account).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit c330aa6629a99e601891c1366c09c2324682c7ae. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.22.0](https://github.com/frontegg/frontegg-angular/compare/v7.21.0...v7.22.0) (2026-9-15)
 
 - FR-27031 - Added the @frontegg&#x2F;js SDK identifier to outgoing requests
