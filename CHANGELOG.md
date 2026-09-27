@@ -1,5 +1,27 @@
 # Change Log
 
+## [7.23.0](https://github.com/frontegg/frontegg-angular/compare/v7.22.1...v7.23.0) (2026-9-27)
+
+- FR-26965 - Added request details, title and a clearer layout to the approval flow page
+- FR-26993 - Added invite link V1 fallback stranded on next&#x2F;v7.125.x
+- FR-24962 - Changed the MFA SMS factor label to &#39;Phone number&#39; in LoginBox and the Admin Portal
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency-only version bump with no local code changes; behavior shifts come from the published Frontegg SDK release.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.127.0** to **7.128.0** in the root app and **`@frontegg/angular`** library (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages.
+> 
+> There are no Angular or library source changes in this repo; consumers pick up upstream Admin Portal / LoginBox behavior from the new SDK, including a clearer approval-flow layout (request details and title), invite-link V1 fallback, and renaming the MFA SMS factor label to **Phone number**.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit b1a06b8506c7768861664c91be200f3af47e766c. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.22.1](https://github.com/frontegg/frontegg-angular/compare/v7.22.0...v7.22.1) (2026-9-22)
 
 - FR-27124 - Fixed the edit account name action showing on the root account
