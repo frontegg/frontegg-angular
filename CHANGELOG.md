@@ -1,5 +1,28 @@
 # Change Log
 
+## [7.23.1](https://github.com/frontegg/frontegg-angular/compare/v7.23.0...v7.23.1) (2026-10-6)
+
+- FR-26746 - Fixed the infinite loader on Resend invitation email failure
+
+
+- FR-27326 - Fixed double redirect to sso
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> SSO/login behavior comes from the upgraded `@frontegg/js` stack; validate SSO flows after deploy even though this repo only changes lockfile versions.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.128.0** to **7.130.0** in the root app and **`@frontegg/angular`** library, with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages.
+> 
+> This pulls in upstream Frontegg JS changes (including **FR-27326**, fixing a **double redirect on SSO**). There are no Angular or library source changes in this PR—only dependency versions.
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 8670b1175245ba7f3e6c7cbdc50ed22bb0c30dc6. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.23.0](https://github.com/frontegg/frontegg-angular/compare/v7.22.1...v7.23.0) (2026-9-27)
 
 - FR-26965 - Added request details, title and a clearer layout to the approval flow page
