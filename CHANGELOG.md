@@ -1,5 +1,25 @@
 # Change Log
 
+## [7.24.0](https://github.com/frontegg/frontegg-angular/compare/v7.23.1...v7.24.0) (2026-10-8)
+
+- FR-27075 - Added SSO enforcement handling on tenant switch and token refresh
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Medium Risk**
+> Dependency-only change, but the new SDK version alters SSO enforcement during tenant switch and token refresh, which can affect login flows for integrated apps.
+> 
+> **Overview**
+> **Bumps `@frontegg/js` from 7.130.0 to 7.131.0** in the root app and **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the matching **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** pins.
+> 
+> There are **no local Angular or library source changes** in this PR; behavior comes from the upstream SDK release (**FR-27075**: SSO enforcement handling when switching tenants and on token refresh).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 7750563596cf76694867a83329508944900f4379. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.23.1](https://github.com/frontegg/frontegg-angular/compare/v7.23.0...v7.23.1) (2026-10-6)
 
 - FR-26746 - Fixed the infinite loader on Resend invitation email failure
