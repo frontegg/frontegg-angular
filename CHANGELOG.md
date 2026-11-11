@@ -1,5 +1,27 @@
 # Change Log
 
+## [7.24.2](https://github.com/frontegg/frontegg-angular/compare/v7.24.1...v7.24.2) (2026-11-11)
+
+- FR-28071 - Fixed environment roles hidden for accounts targeted by tenant
+- FR-28071 - Fixed new environments missing until a page refresh
+- FR-28071 - Fixed the roles +N cut off for long role names
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Version pin and lockfile-only change with no local auth or app logic edits; residual risk is whatever ships in the upstream @frontegg/js patch release.
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.133.0** to **7.134.0** in the root app and **`@frontegg/angular`** library (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages. No Angular or library source files change in this PR.
+> 
+> Consumers of the embedded Admin Portal pick up upstream **7.134.0** fixes referenced in the release (e.g. environment roles visibility for tenant-targeted accounts, new environments appearing without a full refresh, and roles **+N** overflow for long role names).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit 59556f74522ff53bc1a513f1fe0f050268ab657c. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.24.1](https://github.com/frontegg/frontegg-angular/compare/v7.24.0...v7.24.1) (2026-10-29)
 
 - FR-28081 - Fixed the admin portal rendering before the metadata overrides load
