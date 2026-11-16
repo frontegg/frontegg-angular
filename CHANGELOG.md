@@ -1,5 +1,27 @@
 # Change Log
 
+## [7.24.3](https://github.com/frontegg/frontegg-angular/compare/v7.24.2...v7.24.3) (2026-11-16)
+
+- FR-28071 - Added environment roles to the invite user dialog
+
+- FR-28423 - Fixed activation losing the redirect when another user is signed in (behind flag)
+
+<!-- CURSOR_SUMMARY -->
+---
+
+> [!NOTE]
+> **Low Risk**
+> Dependency pin and lockfile only; risk is limited to behavior changes inside the external `@frontegg/js` 7.136.0 release (invite roles UI and activation redirect).
+> 
+> **Overview**
+> Bumps **`@frontegg/js`** from **7.134.0** to **7.136.0** in the root app and in **`@frontegg/angular`** (`projects/frontegg-app/package.json`), with **`yarn.lock`** updated for the aligned **`@frontegg/types`**, **`@frontegg/redux-store`**, and **`@frontegg/rest-api`** packages. There are **no local Angular source changes** in this PR.
+> 
+> The upgrade pulls in upstream Admin Portal behavior described as **environment roles in the invite-user dialog** (FR-28071) and a **fix for activation redirect when another user is already signed in** (FR-28423, behind a flag).
+> 
+> <sup>Reviewed by [Cursor Bugbot](https://cursor.com/bugbot) for commit a5623101f72276f078304557ef3ddacb68af6976. Bugbot is set up for automated code reviews on this repo. Configure [here](https://www.cursor.com/dashboard/bugbot).</sup>
+<!-- /CURSOR_SUMMARY -->
+
+
 ## [7.24.2](https://github.com/frontegg/frontegg-angular/compare/v7.24.1...v7.24.2) (2026-11-11)
 
 - FR-28071 - Fixed environment roles hidden for accounts targeted by tenant
